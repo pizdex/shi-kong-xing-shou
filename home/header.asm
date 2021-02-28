@@ -1,22 +1,26 @@
 ; rst vectors (called through the rst instruction)
 
 SECTION "rst08", ROM0[$0008]
+_hl_::
 	jp hl
 
 SECTION "rst20", ROM0[$0020]
+Bankswitch::
 	ld [$d08f], a
 	ld [$2000], a
 	ret
 
 SECTION "rst30", ROM0[$0030]
+FarCall::
+; Call b:hl.
 	ld a, [$7fff]
 	push af
 	ld a, b
-	rst $20
-	rst $08
+	rst Bankswitch
+	rst _hl_
 	pop af
 ; SECTION "rst38", ROM0[$0038]
-	rst $20
+	rst Bankswitch
 	ret
 
 

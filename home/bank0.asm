@@ -55,7 +55,36 @@ DelayFrame:
 	ret
 
 Func_02cc:
-	dr $02cc, $2843
+	dr $02cc, $096a
+
+Func_096a::
+	dr $096a, $09d2
+
+Func_09d2::
+	dr $09d2, $0b69
+
+Func_0b69:
+	dr $0b69, $0c17
+
+Func_0c17:
+	ld a, [$d986]
+	and a
+	jr nz, .asm_0c22
+	ld a, [$d9e2]
+	jr .asm_0c25
+
+.asm_0c22
+	ld a, [$d9e3]
+
+.asm_0c25
+	ld [$d9d8], a
+	farcall unk_026_4000
+	pop hl
+	push hl
+	jp Func_0b69
+
+Func_0c33::
+	dr $0c33, $2843
 
 VBlank::
 	dr $2843, $2886
