@@ -23,11 +23,11 @@ SECTION "rst30", ROM0[$0030]
 ; Game Boy hardware interrupts
 
 SECTION "vblank", ROM0[$0040]
-	jp $2843
+	jp VBlank
 	ret
 
 SECTION "lcd", ROM0[$0048]
-	jp $28be
+	jp LCD
 	ret
 
 
@@ -35,21 +35,22 @@ SECTION "Header Code", ROM0[$00b0]
 Func_00b0:
 	push af
 	di
-	ld de, $00ca
+	ld de, Func_00ca
 	ld hl, $c000
-	ld bc, $0020
-	call Func_00c1
+	ld bc, $20
+	call CopyBytes
 	jp $c000
 
-Func_00c1:
-.asm_00c1
+CopyBytes::
+; copy bc bytes from de to hl
+.loop
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_00c1
+	jr nz, .loop
 	ret
 
 Func_00ca:

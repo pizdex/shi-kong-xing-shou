@@ -10,7 +10,8 @@ SCANINC := tools/scan_includes
 
 SOURCES := \
 	home.asm \
-	main.asm
+	main.asm \
+	wram.asm
 
 OBJS := $(SOURCES:%.asm=%.o)
 
