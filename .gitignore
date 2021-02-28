@@ -1,0 +1,29 @@
+# compiled objects
+*.o
+
+# compiled roms
+*.gbc
+*.gb
+
+# rgbds extras
+*.map
+*.sym
+
+# tool binaries
+*.exe
+
+# precompiled python
+*.pyc
+*$py.class
+
+# save game files
+*.sgm
+*.sav
+*.rtc
+*.sn*
+*.sa*
+*.sg1
+
+# swap files for vim and gedit
+.*.swp
+*~
