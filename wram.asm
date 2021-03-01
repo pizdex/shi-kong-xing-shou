@@ -23,7 +23,10 @@ wd0dd:: ds $19
 wCharacterTileDest:: ds 2
 wd0f8:: ds $8c8
 wCharacterTileSrc:: ds 2
-wd9c2:: ds $1e
+wd9c2:: ds $1c
+
+wWX:: ds 1
+wWY:: ds 1
 
 wd9e0:: ds 2
 wd9e2:: ds $139

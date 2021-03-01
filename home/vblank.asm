@@ -5,28 +5,32 @@ VBlank::
 	push de
 	push hl
 
-; Real time clock?
+; Count frame (should be last priority, not first)
 	call GameTimer
 
 ; Currently in VBlank
 	ld a, 1
 	ldh [hVBlank], a
 
-	ldh a, [hFFAE]
+; Update scroll and window positions
+	ldh a, [hSCX]
 	ldh [rSCX], a
-	ldh a, [hFFB0]
+	ldh a, [hSCY]
 	ldh [rSCY], a
-	ld a, [$d9de]
+	ld a, [wWX]
 	ldh [rWX], a
-	ld a, [$d9df]
+	ld a, [wWY]
 	ldh [rWY], a
+
 	call Func_297a
-	call hFF80
+	call hTransferVirtualOAM
 	call Func_279e
+
 	call LoadCharacter
 	call PrintCharacter
 	call Func_28d6
-	ld a, [$7fff]
+
+	ld a, [_BANKNUM]
 	push af
 	ld a, [$d091]
 	rst Bankswitch

@@ -85,9 +85,23 @@ Func_0c17:
 	jp Func_0b69
 
 Func_0c33::
-	dr $0c33, $1063
+	dr $0c33, $105a
+
+ByteFill:
+; Fill bc bytes with the value of a, starting at hl
+	ld d, a
+.loop
+	ld a, d
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .loop
+	ret
 
 ByteFill_VRAM:
+; Fill bc bytes with the value of a, starting at hl
+; Wait until VRAM is write-able first
 	ld d, a
 .loop
 	call WaitVRAM_STAT
@@ -411,8 +425,23 @@ Func_26e1:
 	dr $26e1, $279e
 
 Func_279e:
-	dr $279e, $2843
+; Joypad
+	dr $279e, $27f0
 
+WaitLCD_STAT:
+.wait
+	ldh a, [rSTAT]
+	and STATF_LCD
+	jr nz, .wait
+; ???
+.wait2
+	ldh a, [rSTAT]
+	and STATF_LCD
+	jr nz, .wait2
+	ret
+
+INCLUDE "home/load_oam.asm"
+INCLUDE "home/clear_memory.asm"
 INCLUDE "home/vblank.asm"
 INCLUDE "home/lcd.asm"
 
@@ -519,4 +548,7 @@ ENDR
 	ret
 
 Func_297a:
-	dr $297a, $2ff0
+	dr $297a, $29c8
+
+Func_29c8:
+	dr $29c8, $2ff0

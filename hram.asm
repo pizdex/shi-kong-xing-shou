@@ -1,17 +1,5 @@
-SECTION "HRAM", HRAM
+SECTION "HRAM", HRAM[$ff8c]
 
-hFF80:: ds 1
-hFF81:: ds 1
-hFF82:: ds 1
-hFF83:: ds 1
-hFF84:: ds 1
-hFF85:: ds 1
-hFF86:: ds 1
-hFF87:: ds 1
-hFF88:: ds 1
-hFF89:: ds 1
-hFF8A:: ds 1
-hFF8B:: ds 1
 hFF8C:: ds 1
 hFF8D:: ds 1
 hFF8E:: ds 1
@@ -45,9 +33,9 @@ hFFAA:: ds 1
 hFFAB:: ds 1
 hFFAC:: ds 1
 hFFAD:: ds 1
-hFFAE:: ds 1
+hSCX:: ds 1
 hFFAF:: ds 1
-hFFB0:: ds 1
+hSCY:: ds 1
 hFFB1:: ds 1
 hFFB2:: ds 1
 hFFB3:: ds 1
