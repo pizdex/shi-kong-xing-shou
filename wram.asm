@@ -14,14 +14,21 @@ wcbf6:: ds $40a
 
 SECTION "WRAM1", WRAMX
 
-wd000:: ds $f6
+wd000:: ds $db
+
+wGameTimeHours:: ds 1
+wGameTimeMinutes:: ds 1
+wd0dd:: ds $19
 
 wCharacterTileDest:: ds 2
-
 wd0f8:: ds $8c8
-
 wCharacterTileSrc:: ds 2
+wd9c2:: ds $1e
 
-wd9c2:: ds $63e
+wd9e0:: ds 2
+wd9e2:: ds $139
+
+wGameTimeSeconds:: ds 1
+wdb1c:: ds $4e4
 
 INCLUDE "hram.asm"

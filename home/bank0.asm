@@ -100,7 +100,23 @@ ByteFill_VRAM:
 	ret
 
 Func_106f:
-	dr $106f, $19ca
+	jp Func_28d0
+
+Func_1072:
+	ld a, [$d9de]
+	ldh [rSCX], a
+	ld a, [$d9df]
+	ldh [rSCY], a
+	jp Func_28d0
+
+Func_107f:
+	dr $107f, $109a
+
+Func_109a:
+	dr $109a, $10b5
+
+Func_10b5:
+	dr $10b5, $19ca
 
 Func_19ca:
 	ldh a, [hFFBC] ; text type?
@@ -381,7 +397,7 @@ WaitVRAM_STAT:
 
 CopyBytes2:
 ; copy bc bytes from hl to de
-.loop:
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -392,16 +408,16 @@ CopyBytes2:
 	ret
 
 Func_26e1:
-	dr $26e1, $2843
+	dr $26e1, $279e
 
-VBlank::
-	dr $2843, $2886
+Func_279e:
+	dr $279e, $2843
 
-Func_2886:
-	dr $2886, $28be
+INCLUDE "home/vblank.asm"
+INCLUDE "home/lcd.asm"
 
-LCD::
-	dr $28be, $28fb
+Func_28d6:
+	dr $28d6, $28fb
 
 PrintCharacter:
 ; Print one vertically arranged character using four tiles
@@ -436,7 +452,7 @@ ENDR
 	ld [wCharacterBGMapTransferStatus], a
 	ret
 
-Get1bpp:
+LoadCharacter:
 	ld a, [wCharacterTileTransferStatus]
 	and a
 	ret z

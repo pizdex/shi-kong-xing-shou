@@ -88,7 +88,7 @@ hFFD5:: ds 1
 hFFD6:: ds 1
 hFFD7:: ds 1
 hFFD8:: ds 1
-hFFD9:: ds 1
+hGameTimeFrames:: ds 1
 hFFDA:: ds 1
 hFFDB:: ds 1
 hFFDC:: ds 1
