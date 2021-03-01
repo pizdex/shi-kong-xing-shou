@@ -34,8 +34,7 @@ hFF9E:: ds 1
 hFF9F:: ds 1
 hFFA0:: ds 1
 hFFA1:: ds 1
-hFFA2:: ds 1
-hFFA3:: ds 1
+hFFA2:: ds 2
 hFFA4:: ds 1
 hFFA5:: ds 1
 hFFA6:: ds 1
@@ -62,7 +61,7 @@ hFFBA:: ds 1
 hFFBB:: ds 1
 hFFBC:: ds 1
 hFFBD:: ds 1
-hFFBE:: ds 1
+hTargetBank:: ds 1
 hFFBF:: ds 1
 hFFC0:: ds 1
 hFFC1:: ds 1

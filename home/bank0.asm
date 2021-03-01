@@ -1,5 +1,5 @@
 _Start::
-	ldh [$ff91], a
+	ldh [hFF91], a
 	ld sp, $dfff
 
 ; Scroll
@@ -58,6 +58,7 @@ Func_02cc:
 	dr $02cc, $096a
 
 Func_096a::
+; Switch intro scene?
 	dr $096a, $09d2
 
 Func_09d2::
@@ -93,4 +94,106 @@ Func_2886:
 	dr $2886, $28be
 
 LCD::
-	dr $28be, $4000
+	dr $28be, $28fb
+
+PrintCharacter:
+; Print one vertically arranged character using four tiles
+	ld a, [wCharacterBGMapTransferStatus]
+	and a
+	ret z
+
+; Backup stack pointer
+	ld [hFFA2], sp
+
+; BG map addresses are held at wc0b0
+	ld hl, wc0b0
+	ld sp, hl
+	ld a, [wcbf3]
+; Each character occupies four tiles
+REPT 3
+	pop bc
+	ld [bc], a
+	inc a
+ENDR
+	pop bc
+	ld [bc], a
+
+; Restore old stack pointer
+	ldh a, [hFFA2]
+	ld l, a
+	ldh a, [hFFA2 + 1]
+	ld h, a
+	ld sp, hl
+
+	xor a
+	ld [wCharacterBGMapTransferStatus], a
+	ret
+
+Get1bpp:
+	ld a, [wCharacterTileTransferStatus]
+	and a
+	ret z
+
+; Save current ROM bank
+	ld a, [_BANKNUM]
+	push af
+; Switch
+	ldh a, [hTargetBank]
+	rst Bankswitch
+
+; Backup stack pointer
+	ld [hFFA2], sp
+
+	ld a, [wCharacterTileSrc]
+	ld l, a
+	ld a, [wCharacterTileSrc + 1]
+	ld h, a
+	ld sp, hl
+
+	ld a, [wCharacterTileDest]
+	ld l, a
+	ld a, [wCharacterTileDest + 1]
+	ld h, a
+	ld a, [wCharacterTileCount]
+	ld e, a
+
+.load_tile
+REPT 3
+	pop bc
+	ld [hl], c
+	inc l
+	ld [hl], c
+	inc l
+	ld [hl], b
+	inc l
+	ld [hl], b
+	inc l
+ENDR
+	pop bc
+	ld [hl], c
+	inc l
+	ld [hl], c
+	inc l
+	ld [hl], b
+	inc l
+	ld [hl], b
+
+	inc hl
+	dec e
+	jr nz, .load_tile
+
+; Restore old stack pointer
+	ldh a, [hFFA2]
+	ld l, a
+	ldh a, [hFFA2 + 1]
+	ld h, a
+	ld sp, hl
+
+	xor a
+	ld [wCharacterTileTransferStatus], a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_297a:
+	dr $297a, $4000

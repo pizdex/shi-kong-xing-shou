@@ -13,7 +13,7 @@ Bankswitch::
 SECTION "rst30", ROM0[$0030]
 FarCall::
 ; Call b:hl.
-	ld a, [$7fff]
+	ld a, [_BANKNUM]
 	push af
 	ld a, b
 	rst Bankswitch
