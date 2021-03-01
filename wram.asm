@@ -8,7 +8,8 @@ wc0b0:: ds $b42
 wCharacterTileCount:: ds 1
 wcbf3:: ds 1
 wCharacterBGMapTransferStatus:: ds 1
-wCharacterTileTransferStatus:: ds $40b
+wCharacterTileTransferStatus:: ds 1
+wcbf6:: ds $40a
 
 
 SECTION "WRAM1", WRAMX

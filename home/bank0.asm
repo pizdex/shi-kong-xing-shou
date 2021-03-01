@@ -85,7 +85,314 @@ Func_0c17:
 	jp Func_0b69
 
 Func_0c33::
-	dr $0c33, $2843
+	dr $0c33, $1063
+
+ByteFill_VRAM:
+	ld d, a
+.loop
+	call WaitVRAM_STAT
+	ld a, d
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .loop
+	ret
+
+Func_106f:
+	dr $106f, $19ca
+
+Func_19ca:
+	ldh a, [hFFBC] ; text type?
+	cp 1
+	jr z, .type1
+	cp 2
+	jr z, .type2
+	cp 3
+	jr z, .type3
+	cp 4
+	jr z, .type4
+	cp 5
+	jr z, .type5
+	ret
+
+.type1
+	ldh a, [hFFB6]
+	jr .select_bank
+
+.type2
+	ldh a, [hFFC0]
+	jr .select_bank
+
+.type3
+	ldh a, [hFFC3]
+	jr .select_bank
+
+.type4
+	ldh a, [hFFB7]
+	jr .select_bank
+
+.type5
+	ld a, [$dcb5]
+	jr .select_bank
+
+.select_bank
+	rst Bankswitch
+	push hl
+
+Func_19f8:
+	pop hl
+	ld a, [hli]
+	push hl
+
+	cp $f0
+	jp nc, Func_1a08
+	cp $e0
+	jp nc, Func_1b23
+	jp Func_1a2b
+
+Func_1a08:
+	call Func_1a0e
+	jp Func_19f8
+
+Func_1a0e:
+	and $0f
+	push af
+	srl a
+	add $40
+	ld [hTargetBank], a
+	pop af
+	bit 0, a
+	jr nz, .asm_1a21
+	ld a, $40
+	jr .asm_1a23
+
+.asm_1a21
+	ld a, $60
+
+.asm_1a23
+	ld [$dcd2], a
+	xor a
+	ld [$dcd1], a
+	ret
+
+Func_1a2b:
+	ld [$db1e], a
+	call Func_1aa4
+
+.asm_1a31
+	ldh a, [hFF95]
+	bit 0, a
+	jr z, .asm_1a3c
+
+	ld a, $01
+	ld [$d085], a
+
+.asm_1a3c
+	call DelayFrame
+	ld a, [$d085]
+	dec a
+	ld [$d085], a
+	jr nz, .asm_1a31
+
+	call Func_1a5f
+	ld a, 1
+	ld [wCharacterBGMapTransferStatus], a
+	call DelayFrame
+	ld hl, $cbf0
+	inc [hl]
+	ld a, $03
+	ld [$d085], a
+	jp Func_19f8
+
+Func_1a5f:
+	dr $1a5f, $1aa4
+
+Func_1aa4:
+	dr $1aa4, $1b23
+
+Func_1b23:
+	ld de, table_1b31
+	sub $e0
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+table_1b31:
+	dw Func_1b51
+	dw Func_1c2c
+	dw Func_1c6e
+	dw Func_1c96
+	dw $1ca9
+	dw $1cb6
+	dw $1cde
+	dw $1d41
+	dw $1d67
+	dw Func_1b51
+	dw $1e0a
+	dw $1e1a
+	dw $1e2a
+	dw $1e5b
+	dw $1f6a
+	dw $1fe9
+
+Func_1b51:
+	dr $1b51, $1ba0
+
+Func_1ba0:
+; Clear old name buffer
+	ld bc, $100
+	ld hl, $8e00
+	xor a
+	call ByteFill_VRAM
+	call DelayFrame
+
+	ld a, $0a
+	rst Bankswitch
+	xor a
+	ld [$dce0], a
+	ld de, $45fb
+	ld a, [$cbf7]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+Func_1bc2:
+; Used for names on textboxes
+	ld a, $0a
+	rst Bankswitch
+	ld a, [hli]
+	push hl
+	cp $f0
+	jr nc, .asm_1c20
+	cp $ed
+	jr z, .end_of_name
+
+	ld [$db1e], a
+	ld a, [$dce0]
+	add $e0
+	ld c, a
+	ld [$cbf3], a
+	swap a
+	ld b, a
+	and $0f
+	or $80
+	ld [wCharacterTileDest + 1], a
+	ld a, b
+	and $f0
+	ld [wCharacterTileDest], a
+
+	ld a, [$dcd1]
+	ld e, a
+	ld a, [$dcd1 + 1]
+	ld d, a
+; hl = a * 32
+	ld a, [$db1e]
+	ld l, a
+	ld h, 0
+REPT 5
+	add hl, hl
+ENDR
+	add hl, de
+	ld a, l
+	ld [wCharacterTileSrc], a
+	ld a, h
+	ld [wCharacterTileSrc + 1], a
+	ld a, 4
+	ld [wCharacterTileCount], a
+	ld a, 1
+	ld [wCharacterTileTransferStatus], a
+	call DelayFrame
+	ld a, [$dce0]
+	add 4
+	ld [$dce0], a
+	pop hl
+	jp Func_1bc2
+
+.asm_1c20
+	call Func_1a0e
+	pop hl
+	jp Func_1bc2
+
+.end_of_name
+	pop hl
+	ld a, $0a
+	rst Bankswitch
+	ret
+
+Func_1c2c:
+; Save current bank
+	ld a, [_BANKNUM]
+	push af
+; Switch
+	ld a, $0a
+	rst Bankswitch
+	call unk_00a_4063
+	call DelayFrame
+	call unk_00a_40b3
+; Switch
+	ld a, BANK(unk_004_4024)
+	rst Bankswitch
+	call unk_004_4024
+; Restore old bank
+	pop af
+	rst Bankswitch
+
+	xor a
+	ld [$dce0], a
+	ld a, $01
+	ld [$d085], a
+	ld a, [$d0cf]
+	ld e, a
+	ld a, [$d0d0]
+	ld d, a
+	ld hl, $003d
+	add hl, de
+	ld a, l
+	ld [$d0d1], a
+	ld a, h
+	ld [$d0d2], a
+	xor a
+	ld [$cbf0], a
+	ld [$cbf1], a
+	ld [$dce0], a
+	jp Func_19f8
+
+Func_1c6e:
+	dr $1c6e, $1c96
+
+Func_1c96:
+	dr $1c96, $26d1
+
+WaitVRAM_STAT:
+	ldh a, [rSTAT]
+	bit 1, a ; STATF_BUSY
+	ret z
+	jr WaitVRAM_STAT
+
+CopyBytes2:
+; copy bc bytes from hl to de
+.loop:
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .loop
+	ret
+
+Func_26e1:
+	dr $26e1, $2843
 
 VBlank::
 	dr $2843, $2886
@@ -196,4 +503,4 @@ ENDR
 	ret
 
 Func_297a:
-	dr $297a, $4000
+	dr $297a, $2ff0
