@@ -8,8 +8,8 @@ hVBlank:: ds 1
 hFF91:: ds 1
 hFF92:: ds 1
 hFF93:: ds 1
-hFF94:: ds 1
-hFF95:: ds 1
+hJoypadPressed:: ds 1
+hJoypadDown:: ds 1
 hFF96:: ds 1
 hFF97:: ds 1
 hFF98:: ds 1

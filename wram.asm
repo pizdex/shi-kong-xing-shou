@@ -14,7 +14,10 @@ wcbf6:: ds $40a
 
 SECTION "WRAM1", WRAMX
 
-wd000:: ds $db
+wd000:: ds $82
+
+wd082:: ds 1
+wd083:: ds $58
 
 wGameTimeHours:: ds 1
 wGameTimeMinutes:: ds 1

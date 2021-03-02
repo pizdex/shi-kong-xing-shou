@@ -211,7 +211,7 @@ Func_1a2b:
 	call Func_1aa4
 
 .asm_1a31
-	ldh a, [hFF95]
+	ldh a, [hJoypadDown]
 	bit 0, a
 	jr z, .asm_1a3c
 
@@ -424,9 +424,7 @@ CopyBytes2:
 Func_26e1:
 	dr $26e1, $279e
 
-Func_279e:
-; Joypad
-	dr $279e, $27f0
+INCLUDE "home/joypad.asm"
 
 WaitLCD_STAT:
 .wait

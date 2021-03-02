@@ -24,7 +24,7 @@ VBlank::
 
 	call Func_297a
 	call hTransferVirtualOAM
-	call Func_279e
+	call Joypad
 
 	call LoadCharacter
 	call PrintCharacter
