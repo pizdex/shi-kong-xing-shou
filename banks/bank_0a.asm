@@ -23,7 +23,10 @@ unk_00a_4145:
 	dr $28145, $282db
 
 unk_00a_42db:
-	dr $282db, $28923
+	dr $282db, $285fb
+
+unk_00a_45fb::
+	dr $285fb, $28923
 
 
 SECTION "banknum0a", ROMX[$7fff], BANK[$0a]

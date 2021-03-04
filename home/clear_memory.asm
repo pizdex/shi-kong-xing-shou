@@ -6,7 +6,7 @@ ClearMemory:
 ; Clear VRAM
 	xor a
 	ld bc, $2000
-	ld hl, _VRAM
+	ld hl, vTiles0
 	call ByteFill
 
 ; Clear most of RAM
@@ -17,13 +17,13 @@ ClearMemory:
 
 ; Clear HRAM
 	ld bc, $7f
-	ldh a, [hFF91]
+	ldh a, [hConsoleType]
 	push af
 	xor a
 	ld hl, _HRAM
 	call ByteFill
 	pop af
-	ldh [hFF91], a
+	ldh [hConsoleType], a
 
 	pop bc
 	pop de

@@ -32,11 +32,12 @@ VBlank::
 
 	ld a, [_BANKNUM]
 	push af
-	ld a, [$d091]
+	ld a, [wd091]
 	rst Bankswitch
 	call $4000
 	pop af
 	rst Bankswitch
+
 	ei
 	pop hl
 	pop de

@@ -11,7 +11,7 @@
 ;* Rev 1.5 - 15-Aug-97 : Added _HRAM, PAD, CART defines
 ;*                     :  and Nintendo Logo
 ;* Rev 1.6 - 30-Nov-97 : Added rDIV, rTIMA, rTMA, & rTAC
-;* Rev 1.7 - 31-Jan-98 : Added _SCRN0, _SCRN1
+;* Rev 1.7 - 31-Jan-98 : Added vBGMap0, vBGMap1
 ;* Rev 1.8 - 15-Feb-98 : Added rSB, rSC
 ;* Rev 1.9 - 16-Feb-98 : Converted I/O registers to $FFXX format
 ;* Rev 2.0 -           : Added GBC registers
@@ -39,12 +39,11 @@ rev_Check_hardware_inc : MACRO
     ENDC
 ENDM
 
-_VRAM        EQU $8000 ; $8000->$9FFF
-_VRAM8000    EQU _VRAM
-_VRAM8800    EQU _VRAM+$800
-_VRAM9000    EQU _VRAM+$1000
-_SCRN0       EQU $9800 ; $9800->$9BFF
-_SCRN1       EQU $9C00 ; $9C00->$9FFF
+vTiles0      EQU $8000 ; $8000->$9FFF
+vTiles1      EQU vTiles0+$800
+vTiles2      EQU vTiles0+$1000
+vBGMap0      EQU $9800 ; $9800->$9BFF
+vBGMap1      EQU $9C00 ; $9C00->$9FFF
 _SRAM        EQU $A000 ; $A000->$BFFF
 _RAM         EQU $C000 ; $C000->$CFFF / $C000->$DFFF
 _RAMBANK     EQU $D000 ; $D000->$DFFF
@@ -55,7 +54,7 @@ _HRAM        EQU $FF80 ; $FF80->$FFFE
 
 ; *** MBC5 Equates ***
 
-rRAMG        EQU $0000 ; $0000->$1fff
+rRAMG        EQU $0000 ; $0000->$1fff - RAM enable
 rROMB0       EQU $2000 ; $2000->$2fff
 rROMB1       EQU $3000 ; $3000->$3fff - If more than 256 ROM banks are present.
 rRAMB        EQU $4000 ; $4000->$5fff - Bit 3 enables rumble (if present)
@@ -815,8 +814,8 @@ CART_SRAM_8KB   EQU 2 ; 1 bank
 CART_SRAM_32KB  EQU 3 ; 4 banks
 CART_SRAM_128KB EQU 4 ; 16 banks
 
-CART_SRAM_ENABLE  EQU $0A
-CART_SRAM_DISABLE EQU $00
+SRAM_ENABLE  EQU $0A
+SRAM_DISABLE EQU $00
 
 ; $014A Destination code
 CART_DEST_JAPANESE     EQU $00

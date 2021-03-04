@@ -46,7 +46,7 @@ Func_00b0:
 	jp $c000
 
 CopyBytes::
-; copy bc bytes from de to hl
+; Copy bc bytes from de to hl
 .loop
 	ld a, [de]
 	ld [hli], a

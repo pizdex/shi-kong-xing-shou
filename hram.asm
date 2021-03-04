@@ -5,7 +5,7 @@ hFF8D:: ds 1
 hFF8E:: ds 1
 hFF8F:: ds 1
 hVBlank:: ds 1
-hFF91:: ds 1
+hConsoleType:: ds 1
 hFF92:: ds 1
 hFF93:: ds 1
 hJoypadPressed:: ds 1

@@ -4,6 +4,14 @@ dr: MACRO
 	INCBIN "baserom.gbc", \1, \2 +- \1
 ENDM
 
+lb: MACRO ; r, hi, lo
+	ld \1, ((\2) & $ff) << 8 | ((\3) & $ff)
+ENDM
+
+ln: MACRO ; r, hi, lo
+	ld \1, ((\2) & $f) << 4 | ((\3) & $f)
+ENDM
+
 ; Constant data (db, dw, dl) macros
 
 dwb: MACRO
