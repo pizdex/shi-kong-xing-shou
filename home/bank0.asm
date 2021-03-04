@@ -1,5 +1,8 @@
 _Start::
+; Save console type (DMG or CGB)
 	ldh [hConsoleType], a
+
+; Set stack
 	ld sp, $dfff
 
 ; Scroll
@@ -34,7 +37,50 @@ unk_017f:
 	dr $017f, $0200
 
 Func_0200:
-	dr $0200, $0257
+	call ClearMemory
+	call WriteOAMDMACodeToHRAM
+	ld hl, $106f
+	ld a, l
+	ld [$d9e0], a
+	ld a, h
+	ld [$d9e1], a
+	ei
+	ld a, $02
+	ld [$d091], a
+	call Func_262d
+	call SRAMTest
+	ld a, $03
+	ldh [hFF9B], a
+	ld a, $00
+	ldh [hFF9C], a
+	ld [$d0ff], a
+	ld [$d0df], a
+	ld [$d0ef], a
+	ld a, $00
+	ld [hFFBA], a
+	call Func_15e7
+	ld a, $12
+	ld [$d0fa], a
+
+jr_000_023b:
+	ld bc, $cab0
+	xor a
+	ldh [hFFC4], a
+	call Func_092e
+	ld de, $025c
+	ld a, [$d0fa]
+	ld l, a
+	ld h, $00
+	add hl, hl
+	add l
+	ld l, a
+	add hl, de
+	ld a, [hli]
+	rst Bankswitch
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
 
 Func_0257:
 	dr $0257, $02bf
@@ -204,7 +250,10 @@ PlaceTilemap::
 	ret
 
 Func_0398:
-	dr $0398, $06a6
+	dr $0398, $062c
+
+Func_062c:
+	dr $062c, $06a6
 
 LoadPalettes::
 ; Load b palettes from hl into rBCPD
@@ -242,7 +291,10 @@ Func_06c6:
 	ret
 
 Func_06d0:
-	dr $06d0, $096a
+	dr $06d0, $092e
+
+Func_092e:
+	dr $092e, $096a
 
 Func_096a::
 ; Switch intro scene?
@@ -362,8 +414,56 @@ Func_109a:
 Func_10b5:
 	dr $10b5, $12fd
 
-Func_12fd:
-	dr $12fd, $19ca
+SRAMTest_Fast:
+; Check for pattern at start of SRAM
+; 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
+; 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+; Enable SRAM
+	ld a, SRAM_ENABLE
+	ld [rRAMG], a
+
+; Select bank
+	xor a ; bank 0
+	ld [rRAMB], a
+
+; Check for increasing value pattern
+	ld hl, _SRAM
+	ld c, 0
+.check_pattern1
+	ld a, [hli]
+	cp c
+	jr nz, .no_pattern
+	inc c
+	ld a, c
+	cp $10 + 1
+	jr c, .check_pattern1
+
+	ld c, $0f
+.check_pattern2
+	ld a, [hli]
+	and a
+	jr nz, .no_pattern
+	dec c
+	jr nz, .check_pattern2
+
+; pattern found
+	xor a
+	ld [rRAMG], a
+	xor a
+	ret
+
+.no_pattern
+	xor a
+	ld [rRAMG], a
+	ld a, 1
+	ret
+
+Func_132b:
+	dr $132b, $15e7
+
+Func_15e7:
+	dr $15e7, $19ca
 
 Func_19ca:
 	ldh a, [hFFBC] ; text type?
@@ -640,7 +740,10 @@ Func_1e6e:
 	dr $1e6e, $1e7b
 
 Func_1e7b:
-	dr $1e7b, $26d1
+	dr $1e7b, $262d
+
+Func_262d:
+	dr $262d, $26d1
 
 WaitVRAM_STAT2:
 ; Copy of WaitVRAM_STAT
@@ -826,8 +929,8 @@ Func_29f1:
 unk_2ab8:
 	dr $2ab8, $2bb8
 
-Func_2bb8:
-	call Func_12fd
+SRAMTest:
+	call SRAMTest_Fast
 	and a
 	ret z
 
@@ -839,9 +942,9 @@ Func_2bb8:
 	xor a
 	ld [rRAMB], a
 
-	ld a, BANK(DebugSRAMTester)
+	ld a, BANK(_SRAMTest)
 	rst Bankswitch
-	call DebugSRAMTester
+	call _SRAMTest
 	call ClearSRAM
 
 ; Finished writing to SRAM

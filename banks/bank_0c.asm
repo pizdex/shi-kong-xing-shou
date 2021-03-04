@@ -1,7 +1,7 @@
 unk_00c_4000:
 	dr $30000, $32cee
 
-DebugSRAMTester::
+_SRAMTest::
 ; Write pattern of decreasing bytes into SRAM and verify that they were written correctly
 ; If check succeeds, exit silently; otherwise display error screen
 	ld hl, _SRAM
@@ -61,7 +61,7 @@ DebugSRAMTester::
 	call PlaceTilemap_Bank1
 
 ; CGB only
-	ld hl, unk_00c_6e65
+	ld hl, SRAMErrorPalette
 	ld c, BCPSF_AUTOINC
 	ld b, 8
 	call LoadPalettes
@@ -92,11 +92,20 @@ SRAMErrorEmptyTilemap:
 SRAMErrorTilemap:
 	INCBIN "gfx/sram_error.tilemap"
 
-unk_00c_6e65:
+SRAMErrorPalette:
 	INCLUDE "gfx/sram_error.pal"
 
 unk_00c_6ea5:
-	dr $32ea5, $33230
+	dr $32ea5, $32ebe
+
+unk_00c_6ebe:
+	dr $32ebe, $32ed7
+
+unk_00c_6ed7:
+	dr $32ed7, $32f22
+
+unk_00c_6f22:
+	dr $32f22, $33230
 
 
 SECTION "banknumc", ROMX[$7fff], BANK[$c]
