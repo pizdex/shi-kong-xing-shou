@@ -20,6 +20,19 @@ palblue  EQUS "(1 << 10) *"
 tiles EQUS "* LEN_2BPP_TILE"
 tile  EQUS "+ LEN_2BPP_TILE *"
 
+hlcoord EQUS "coord hl,"
+bccoord EQUS "coord bc,"
+decoord EQUS "coord de,"
+
+coord: MACRO
+; register, x, y[, origin]
+	if _NARG < 4
+	ld \1, (\3) * SCREEN_WIDTH + (\2) + wTilemap
+	else
+	ld \1, (\3) * SCREEN_WIDTH + (\2) + \4
+	endc
+ENDM
+
 hlbgcoord EQUS "bgcoord hl,"
 bcbgcoord EQUS "bgcoord bc,"
 debgcoord EQUS "bgcoord de,"

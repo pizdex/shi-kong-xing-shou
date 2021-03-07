@@ -33,7 +33,7 @@ _SRAMTest::
 	ei
 	call ClearBGMap0
 
-; Load tiles into tilemap
+; Load tiles into vTiles2
 	ld de, vTiles2
 	ld hl, SRAMErrorGFX
 	ld bc, 14 tiles
