@@ -12,6 +12,7 @@ ln: MACRO ; r, hi, lo
 	ld \1, ((\2) & $f) << 4 | ((\3) & $f)
 ENDM
 
+
 ; Constant data (db, dw, dl) macros
 
 dwb: MACRO

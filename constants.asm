@@ -1,4 +1,4 @@
-; INCLUDE "charmap.asm"
+INCLUDE "charmap.asm"
 
 INCLUDE "macros.asm"
 

@@ -36,22 +36,24 @@ Func_19ca:
 	rst Bankswitch
 	push hl
 
-Func_19f8:
+CheckCharacter::
 	pop hl
 	ld a, [hli]
 	push hl
 
 	cp $f0
-	jp nc, Func_1a08
+	jp nc, .SwitchCharacterSet
 	cp $e0
 	jp nc, Func_1b23
-	jp Func_1a2b
+	jp CheckCharacter_Continue
 
-Func_1a08:
-	call Func_1a0e
-	jp Func_19f8
+.SwitchCharacterSet:
+	call GetCharacterSetBase
+	jp CheckCharacter
 
-Func_1a0e:
+GetCharacterSetBase:
+; Determine which bank and address to get the character set from
+; $f0 = 40:4000, $f1 = $40:6000, $f2 = $41:4000, etc.
 	and $0f
 	push af
 	srl a
@@ -59,21 +61,22 @@ Func_1a0e:
 	ld [hTargetBank], a
 	pop af
 	bit 0, a
-	jr nz, .asm_1a21
+	jr nz, .upper_characterset
+; lower character set
 	ld a, $40
-	jr .asm_1a23
+	jr .store_address
 
-.asm_1a21
+.upper_characterset
 	ld a, $60
 
-.asm_1a23
+.store_address
 	ld [wdcd1 + 1], a
 	xor a
 	ld [wdcd1], a
 	ret
 
-Func_1a2b:
-	ld [wdb1e], a
+CheckCharacter_Continue:
+	ld [wCurrentCharacterByte], a
 	call PrintCharacter_wTilemap
 
 .check_delay
@@ -101,7 +104,7 @@ Func_1a2b:
 	inc [hl]
 	ld a, 3
 	ld [wTextDelayFrames], a
-	jp Func_19f8
+	jp CheckCharacter
 
 .Func_1a5f:
 	lb hl, 5, 13
@@ -234,7 +237,7 @@ PrintCharacter_wTilemap:
 	ld a, [wdcd1 + 1]
 	ld d, a
 ; hl = a * (4*8) (4 tiles, 8 bytes)
-	ld a, [wdb1e]
+	ld a, [wCurrentCharacterByte]
 	ld l, a
 	ld h, 0
 REPT 5
@@ -330,7 +333,7 @@ Func_1b51:
 	ld [wCharacterTilemapPos], a
 	ld [wTextLine], a
 	ld [wCharacterTilePos], a
-	jp Func_19f8
+	jp CheckCharacter
 
 Func_1ba0:
 ; Clear old name buffer
@@ -361,11 +364,11 @@ Func_1bc2:
 	ld a, [hli]
 	push hl
 	cp $f0
-	jr nc, .asm_1c20
+	jr nc, .switch_characterset
 	cp $ed
 	jr z, .end_of_name
 
-	ld [wdb1e], a
+	ld [wCurrentCharacterByte], a
 	ld a, [wCharacterTilePos]
 	add $e0
 	ld c, a
@@ -387,7 +390,7 @@ Func_1bc2:
 	ld a, [wdcd1 + 1]
 	ld d, a
 ; hl = a * (4*8) (4 tiles, 8 bytes)
-	ld a, [wdb1e]
+	ld a, [wCurrentCharacterByte]
 	ld l, a
 	ld h, 0
 REPT 5
@@ -410,8 +413,8 @@ ENDR
 	pop hl
 	jp Func_1bc2
 
-.asm_1c20
-	call Func_1a0e
+.switch_characterset
+	call GetCharacterSetBase
 	pop hl
 	jp Func_1bc2
 
@@ -459,7 +462,7 @@ Func_1c2c:
 	ld [wCharacterTilemapPos], a
 	ld [wTextLine], a
 	ld [wCharacterTilePos], a
-	jp Func_19f8
+	jp CheckCharacter
 
 Func_1c6e:
 	dr $1c6e, $1c96

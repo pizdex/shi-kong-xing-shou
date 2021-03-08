@@ -74,7 +74,7 @@ wdad0:: ds $4b
 wGameTimeSeconds:: ds 1
 wdb1c:: ds 1
 wdb1d:: ds 1
-wdb1e:: ds $197
+wCurrentCharacterByte:: ds $197
 
 wdcb5:: ds 1
 wdcb6:: ds $1b

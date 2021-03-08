@@ -26,7 +26,18 @@ unk_00a_42db:
 	dr $282db, $285fb
 
 unk_00a_45fb::
-	dr $285fb, $28923
+	dr $285fb, $286b8
+
+unk_00a_46b8::
+	textset 0, "巴"
+    textset 4, "洛"
+    textset 1, "特"
+    db TX_END
+
+	; db $f0, $16, $f4, $23, $f1, $c6, $ed
+
+unk_00a_46bf::
+	dr $286bf, $28923
 
 
 SECTION "banknum0a", ROMX[$7fff], BANK[$0a]
