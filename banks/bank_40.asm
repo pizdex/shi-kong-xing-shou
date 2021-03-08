@@ -1,8 +1,10 @@
+SECTION "charset0_low", ROMX[$4000], BANK[$40]
+
 unk_040_4000:
 	INCBIN "gfx/character_set/image_40_4000.1bpp"
 
-unk_040_5c00:
-	dr $101c00, $102000
+
+SECTION "charset0_high", ROMX[$6000], BANK[$40]
 
 unk_040_6000:
 	INCBIN "gfx/character_set/image_40_6000.1bpp"

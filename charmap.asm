@@ -204,7 +204,7 @@ NEWCHARMAP charmap0
 	charmap "子", $c9
 	charmap "香", $ca
 	charmap "甜", $cb
-	charmap "泡", $cc ; ?
+	charmap "孢", $cc ; ?
 	charmap "麻", $cd ; ?
 	charmap "痺", $ce
 	charmap "粉", $cf
