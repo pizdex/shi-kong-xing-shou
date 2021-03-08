@@ -1,12 +1,15 @@
 textset: MACRO
 if _NARG > 1
-db ($f0 | \1)
-setcharmap charmap\1
-db \2
+	db ($f0 | \2)
+	setcharmap charmap\2
+	db \1
 else
-db \1
+	db \1
 endc
 ENDM
+
+
+; Text commands
 
 	const_def $e0
 

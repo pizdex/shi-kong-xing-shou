@@ -204,7 +204,7 @@ NEWCHARMAP charmap0
 	charmap "子", $c9
 	charmap "香", $ca
 	charmap "甜", $cb
-	charmap "孢", $cc ; ?
+	charmap "孢", $cc
 	charmap "麻", $cd ; ?
 	charmap "痺", $ce
 	charmap "粉", $cf
@@ -227,10 +227,237 @@ NEWCHARMAP charmap0
 
 NEWCHARMAP charmap1
 ; 40:6000
+	charmap "擾", $00
+	charmap "詛", $01
+	charmap "咒", $02
+	charmap "真", $03
+	charmap "空", $04 ; ?
+	charmap "過", $05
+	charmap "龍", $06
+	charmap "捲", $07 ; ?
+	charmap "沙", $08
+	charmap "漠", $09
+	charmap "燕", $0a
+	charmap "舞", $0b
+	charmap "替", $0c
+	charmap "弓", $0d
+	charmap "念", $0e ; ?
+	charmap "怒", $0f
+	charmap "國", $10
+	charmap "黏", $11
+	charmap "液", $12
+	charmap "模", $13
+	charmap "仿", $14
+	charmap "霧", $15 ; ?
+	charmap "瓦", $16
+	charmap "斯", $17
+	charmap "淬", $18
+	charmap "回", $19
+	charmap "復", $1a
+	charmap "獸", $1b
+	charmap "竊", $1c
+	charmap "變", $1d
+	charmap "遁", $1e ; ?
+	charmap "鏡", $1f
+	charmap "謎", $20
+	charmap "浴", $21
+	charmap "重", $22
+	charmap "生", $23
+	charmap "華", $24
+	charmap "三", $25
+	charmap "味", $26
+	charmap "障", $27
+	charmap "主", $28
+	charmap "怪", $29
+	charmap "1", $2a
+	charmap "2", $2b
+	charmap "道", $2c ; ?
+	charmap "具", $2d
+	charmap "交", $2e
+	charmap "換", $2f
+	charmap "逃", $30
+	charmap "跑", $31
+	charmap "嗯", $32
+	charmap ",", $33
+	charmap "找", $34
+	charmap "!", $35
+	charmap "伴", $36
+	charmap "圖", $37
+	charmap "鑑", $38
+	charmap "存", $39
+	charmap "檔", $3a
+	charmap "移", $3b
+	charmap "位", $3c
+	charmap "詳", $3d
+	charmap "細", $3e
+	charmap "使", $3f
+	charmap "用", $40
+	charmap "丟", $41
+	charmap "棄", $42
+	charmap "是", $43
+	charmap "否", $44
+	charmap "裝", $45
+	charmap "備", $46
+	charmap "確", $47
+	charmap "定", $48
+	charmap "取", $49
+	charmap "消", $4a
+	charmap "木", $4b
+	charmap "格", $4c
+	charmap "般", $4d
+	charmap "請", $4e
+	charmap "選", $4f
+	charmap "擇", $50
+	charmap "的", $51
+	charmap "類", $52
+	charmap "。", $53
+	charmap "技", $54
+	charmap "巧", $55
+	charmap "已", $56
+	charmap "滿", $57
+	charmap "要", $58
+	charmap "忘", $59
+	charmap "記", $5a
+	charmap "舊", $5b ; ?
+	charmap "嗎", $5c
+	charmap "?", $5d
+	charmap "哪", $5e
+	charmap "項", $5f
+	charmap "學", $60
+	charmap "習", $61
+	charmap "到", $62
+	charmap "新", $63
+	charmap "了", $64
+	charmap "有", $65
+	charmap "案", $66
+	charmap "錄", $67
+	charmap "覆", $68
+	charmap "蓋", $69
+	charmap "成", $6a
+	charmap "功", $6b
+	charmap "失", $6c
+	charmap "敗", $6d
+	charmap "土", $6e
+	charmap "草", $6f
+	charmap "速", $70
+	charmap "度", $71
+	charmap "魔", $72
+	charmap "經", $73
+	charmap "驗", $74
+	charmap "值", $75
+	charmap "膠", $76
+	charmap "票", $77 ; ?
+	charmap "極", $78
+	charmap "品", $79
+	charmap "利", $7a
+	charmap "果", $7b
+	charmap "實", $7c
+	charmap "醫", $7d
+	charmap "包", $7e
+	charmap "效", $7f
+	charmap "蔡", $80
+	charmap "超", $81
+	charmap "健", $82
+	charmap "康", $83
+	charmap "針", $84
+	charmap "齊", $85 ; ?
+	charmap "解", $86
+	charmap "清", $87
+	charmap "興", $88
+	charmap "奮", $89
+	charmap "除", $8a
+	charmap "青", $8b
+	charmap "萬", $8c
+	charmap "能", $8d
+	charmap "急", $8e
+	charmap "救", $8f
+	charmap "機", $90
+	charmap "器", $91
+	charmap "甦", $92
+	charmap "儀", $93
+	charmap "壽", $94
+	charmap "司", $95
+	charmap "源", $96
+	charmap "補", $97
+	charmap "充", $98
+	charmap "營", $99
+	charmap "養", $9a
+	charmap "餐", $9b
+	charmap "迴", $9c
+	charmap "避", $9d
+	charmap "高", $9e
+	charmap "軟", $9f
+	charmap "呆", $a0
+	charmap "滞", $a1
+	charmap "眼", $a2
+	charmap "遲", $a3
+	charmap "緩", $a4
+	charmap "隱", $a5 ; ?
+	charmap "設", $a6
+	charmap "達", $a7
+	charmap "奇", $a8
+	charmap "線", $a9
+	charmap "晶", $aa
+	charmap "3", $ab
+	charmap "4", $ac
+	charmap "5", $ad
+	charmap "6", $ae
+	charmap "7", $af
+	charmap "8", $b0
+	charmap "9", $b1
+	charmap "0", $b2
+	charmap "蹟", $b3
+	charmap "元", $b4
+	charmap "點", $b5
+	charmap "滴", $b6
+	charmap "魚", $b7
+	charmap "整", $b8 ; ?
+	charmap "整", $b9 ; ?
+	charmap "娘", $ba
+	charmap "麟", $bb ; ?
+	charmap "淚", $bc
+	charmap "淚", $bd
+	charmap "甲", $be
+	charmap "羽", $bf
+	charmap "衣", $c0
+	charmap "鬧", $c1
+	charmap "鐘", $c2
+	charmap "守", $c3
+	charmap "玉", $c4
+	charmap "幻", $c5
 	charmap "特", $c6
+	charmap "殊", $c7
+	charmap "可", $c8
+	charmap "服", $c9
+	charmap "科", $ca
+	charmap "以", $cb
+	charmap "很", $cc
+	charmap "率", $cd
+	charmap "體", $ce
+	charmap "方", $cf
+	charmap "便", $d0
+	charmap "隨", $d1
+	charmap "而", $d2
+	charmap "所", $d3
+	charmap "提", $d4
+	charmap "煉", $d5
+	charmap "%", $d6
+	charmap "內", $d7
+	charmap "含", $d8
+	charmap "傳", $d9
+	charmap "說", $da
+	charmap "狀", $db
+	charmap "態", $dc
+	charmap "燒", $dd
+	charmap "涷", $de
+	charmap "活", $df
 
 NEWCHARMAP charmap2
 ; 41:4000
+	charmap "~", $1f
+	charmap "入", $30
+	charmap "個", $4f
+	charmap "這", $57
 
 NEWCHARMAP charmap3
 ; 41:6000

@@ -29,10 +29,10 @@ unk_00a_45fb::
 	dr $285fb, $286b8
 
 unk_00a_46b8::
-	; db $f0, $16, $f4, $23, $f1, $c6, $ed
-	textset 0, "巴"
-    textset 4, "洛"
-    textset 1, "特"
+	; $f0, $16, $f4, $23, $f1, $c6, $ed
+	textset "巴", 0
+    textset "洛", 4
+    textset "特", 1
     db TX_LINE
 
 unk_00a_46bf::
