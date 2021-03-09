@@ -18,13 +18,13 @@ unk_008_4552:
 
 unk_008_4555:
 	textset "⋯", 2
-	db $F3, $9A
-	db $F2, $57, $4F, $32
-	db $F3, $9D
+	textset "在", 3
+	textset "這個時", 2
+	textset "候", 3
 	textset "~", 2
 	db TX_LINE
-	db $F2, $DA, $2B
-	db $F3, $9E, $9F, $A0
+	textset "再加", 2
+	textset "調味料", 3
 	textset "⋯⋯", 2
 	text_end
 
