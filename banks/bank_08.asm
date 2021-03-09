@@ -14,8 +14,22 @@ unk_008_4545:
 	text_end
 
 unk_008_4552:
-	dr $20552, $23fff
+	db $e0, $01, $00
 
+unk_008_4555:
+	textset "⋯", 2
+	db $F3, $9A
+	db $F2, $57, $4F, $32
+	db $F3, $9D
+	textset "~", 2
+	db TX_LINE
+	db $F2, $DA, $2B
+	db $F3, $9E, $9F, $A0
+	textset "⋯⋯", 2
+	text_end
+
+unk_008_456d:
+	dr $2056d, $23fff
 
 SECTION "banknum8", ROMX[$7fff], BANK[$8]
 	db $8
