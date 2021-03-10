@@ -1,0 +1,13 @@
+@org 8, $4542:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "嗯~";
+	line "放入這個~";
+	done;
+
+@org 8, $4552:
+	init NAME_BALLOT, PIC_BALLOT_0;
+    text "⋯在這個時候~"; 
+    line "再加調味";
+    textmap "味" 3;
+    text "料⋯⋯";
+    done;

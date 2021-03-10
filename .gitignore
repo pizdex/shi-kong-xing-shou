@@ -1,5 +1,6 @@
 # compiled objects
 *.o
+data/text/*.asm
 
 # compiled roms
 *.gbc

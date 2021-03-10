@@ -28,12 +28,7 @@ unk_00a_42db:
 unk_00a_45fb::
 	dr $285fb, $286b8
 
-unk_00a_46b8::
-	; $f0, $16, $f4, $23, $f1, $c6, $ed
-	textset "巴", 0
-    textset "洛", 4
-    textset "特", 1
-    db TX_LINE
+INCLUDE "data/text/name_ballot.asm"
 
 unk_00a_46bf::
 	dr $286bf, $28923
