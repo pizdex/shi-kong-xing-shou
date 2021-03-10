@@ -1,3 +1,3 @@
-@org $a, $46b8:
+@org $a, $46b8 (BallotName):
 	text "巴洛特";
 	line;
