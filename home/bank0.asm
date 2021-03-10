@@ -517,12 +517,6 @@ Func_15e7:
 
 INCLUDE "home/text.asm"
 
-Func_1e6e:
-	dr $1e6e, $1e7b
-
-Func_1e7b:
-	dr $1e7b, $262d
-
 Func_262d:
 	dr $262d, $26d1
 

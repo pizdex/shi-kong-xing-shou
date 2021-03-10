@@ -908,7 +908,118 @@ NEWCHARMAP charmap3
 
 NEWCHARMAP charmap4
 ; 42:4000
+	charmap "但", $00
+	charmap "誤", $01
+	charmap "告", $02
+	charmap "訴", $03
+	charmap "婆", $04
+	charmap "村", $05
+	charmap "名", $06
+	charmap "美", $07
+	charmap "隼", $08
+	charmap "網", $09
+	charmap "問", $0a
+	charmap "題", $0b
+	charmap "場", $0c
+	charmap "今", $0d
+	charmap "朋", $0e
+	charmap "友", $0f
+	charmap "多", $10
+	charmap "把", $11
+	charmap "別", $12
+	charmap "毯", $13
+	charmap "弄", $14
+	charmap "髒", $15
+	charmap "鳴", $16
+	charmap "芳", $17
+	charmap "唷", $18
+	charmap "留", $19
+	charmap "棒", $1a
+	charmap "界", $1b
+	charmap "只", $1c
+	charmap "脾", $1d
+	charmap "古", $1e
+	charmap "玩", $1f
+	charmap "難", $20
+	charmap "見", $21
+	charmap "景", $22
 	charmap "洛", $23
+	charmap "受", $24
+	charmap "如", $25
+	charmap "話", $26
+	charmap "進", $27
+	charmap "α", $28
+	charmap "妮", $29
+	charmap "校", $2a
+	charmap "門", $2b
+	charmap "關", $2c
+	charmap "喧", $2d ;?
+	charmap "像", $2e
+	charmap "樣", $2f
+	charmap "仔", $30
+	charmap "顏", $31
+	charmap "色", $32
+	charmap "暖", $33
+	charmap "澄", $34
+	charmap "黃", $35
+	charmap "怕", $36
+	charmap "終", $37
+	charmap "早", $38
+	charmap "槽", $39
+	charmap "趕", $3a
+	charmap "快", $3b
+	charmap "歲", $3c
+	charmap "期", $3d
+	charmap "曉", $3e
+	charmap "為", $3f
+	charmap "露", $40
+	charmap "臉", $41
+	charmap "溜", $42
+	charmap "噠", $43
+	charmap "室", $44
+	charmap "課", $45
+	charmap "情", $46
+	charmap "表", $47
+	charmap "吉", $48
+	charmap "介", $49
+	charmap "紹", $4a
+	charmap "青", $4b ; ?
+	charmap "酸", $4c
+	charmap "萄", $4d
+	charmap "葡", $4e
+	charmap "借", $4f
+	charmap "誰", $50
+	charmap "趣", $51
+	charmap "莫", $52
+	charmap "坐", $53
+	charmap "右", $54
+	charmap "兒", $55
+	charmap "專", $56
+	charmap "聽", $57
+	charmap "壯", $58
+	charmap "觀", $59
+	charmap "豪", $5a
+	charmap "望", $5b
+	charmap "遠", $5c
+	charmap "育", $5d ; ?
+	charmap "弗", $5e
+	charmap "茲", $5f
+	charmap "系", $60
+	charmap "距", $61
+	charmap "獎", $62
+	charmap "勵", $63
+	charmap "父", $64
+	charmap "親", $65
+	charmap "商", $66
+	charmap "館", $67
+	charmap "讓", $68
+	charmap "賞", $69
+	charmap "壞", $6a
+	charmap "論", $6b ; ?
+	charmap "住", $6c
+	charmap "論", $6d
+	charmap "聲", $6e
+	charmap "某", $6f
 
 NEWCHARMAP charmap5
 ; 42:6000

@@ -13,6 +13,12 @@ ENDM
 
 	const_def $e0
 
+	const TX_INIT ; $e0
+text_init: MACRO
+; name, face
+	db TX_INIT, \1, \2
+ENDM
+
 	const_next $e2
 
 	const TX_END ; $e2

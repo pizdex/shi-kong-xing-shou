@@ -266,7 +266,7 @@ ENDR
 	ret
 
 Func_1b23:
-	ld de, table_1b31
+	ld de, .table_1b31
 	sub $e0
 	ld l, a
 	ld h, 0
@@ -277,36 +277,36 @@ Func_1b23:
 	ld l, a
 	jp hl
 
-table_1b31:
-	dw Func_1b51
-	dw Func_1c2c ; sign?
-	dw Func_1c6e
-	dw Func_1c96
-	dw $1ca9
-	dw $1cb6
-	dw $1cde
-	dw $1d41
-	dw $1d67
-	dw Func_1b51
-	dw $1e0a
-	dw $1e1a
-	dw $1e2a
-	dw $1e5b
-	dw $1f6a
-	dw $1fe9
+.table_1b31:
+	dw Text_Init ; $e0
+	dw Func_1c2c ; $e1 sign?
+	dw Text_End ; $e2
+	dw Func_1c96 ; $e3
+	dw Func_1ca9 ; $e4
+	dw Func_1cb6 ; $e5
+	dw Func_1cde ; $e6
+	dw Func_1d41 ; $e7
+	dw Func_1d67 ; $e8
+	dw Text_Init ; $e9
+	dw Func_1e0a ; $ea
+	dw Func_1e1a ; $eb
+	dw Text_Paragraph ; $ec
+	dw Text_NextLine ; $ed
+	dw Func_1f6a ; $ee
+	dw Func_1fe9 ; $ef
 
-Func_1b51:
+Text_Init:
 	pop hl
 	ld a, [hli]
 	ld [wcbf7], a
 	ld a, [hli]
-	ld [$dcd8], a
+	ld [wdcd8], a
 	push hl
 	ld a, [_BANKNUM]
 	push af
 	ld a, $0a
 	rst Bankswitch
-	call Func_00a_4000
+	call Func_00a_4000 ; load face picture
 	call DelayFrame
 	call Func_1ba0
 	call Func_00a_40b3
@@ -464,11 +464,102 @@ Func_1c2c:
 	ld [wCharacterTilePos], a
 	jp CheckCharacter
 
-Func_1c6e:
-	dr $1c6e, $1c96
+Text_End:
+	call Func_1fb9
+
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_00a_4178)
+	rst Bankswitch
+	call Func_1c8b
+	call Func_0419
+	call Func_00a_4178
+	call DelayFrame
+	pop af
+	rst Bankswitch
+
+	xor a
+	ldh [hFFBC], a
+	pop hl
+	ret
+
+Func_1c8b:
+	ld hl, $cbd0
+	ld c, $20
+	xor a
+.asm_1c91
+	ld [hli], a
+	dec c
+	jr nz, .asm_1c91
+	ret
 
 Func_1c96:
 	dr $1c96, $1ca9
 
 Func_1ca9:
-	dr $1ca9, $1e6e
+	dr $1ca9, $1cb6
+
+Func_1cb6:
+	dr $1cb6, $1cde
+
+Func_1cde:
+	dr $1cde, $1d41
+
+Func_1d41:
+	dr $1d41, $1d67
+
+Func_1d67:
+	dr $1d67, $1e0a
+
+Func_1e0a:
+	dr $1e0a, $1e1a
+
+Func_1e1a:
+	dr $1e1a, $1e2a
+
+Text_Paragraph:
+	call Func_1fb9
+	call Func_1e40
+	call Func_1e7b
+	xor a
+	ld [wCharacterTilemapPos], a
+	ld [wTextLine], a
+	ld [wCharacterTilePos], a
+	jp CheckCharacter
+
+Func_1e40:
+	dr $1e40, $1e5b
+
+Text_NextLine:
+	xor a
+	ld [wCharacterTilemapPos], a
+
+	ld a, [wTextLine]
+	and a
+	jp nz, Func_1e6e
+
+	ld a, 1
+	ld [wTextLine], a
+	jp CheckCharacter
+
+Func_1e6e:
+	xor a
+	ld [wCharacterTilemapPos], a
+	call Func_1f24
+	call Func_1e7b
+	jp CheckCharacter
+
+Func_1e7b:
+	dr $1e7b, $1f24
+
+Func_1f24:
+	dr $1f24, $1f6a
+
+Func_1f6a:
+	dr $1f6a, $1fb9
+
+Func_1fb9:
+	dr $1fb9, $1fe9
+
+Func_1fe9:
+	dr $1fe9, $262d

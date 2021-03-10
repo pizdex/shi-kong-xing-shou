@@ -1,10 +1,8 @@
 unk_008_4000:
-	dr $20000, $20545
+	dr $20000, $20542
 
-unk_008_4545:
-; 嗯~
-; 放入這個~
-; $f1, $32, $f2, $1f, $ed, $f0, $33, $f2, $30, $57, $4f, $1f, $e2
+unk_008_4542:
+	text_init 1, 0
 	textset "嗯", 1
 	textset "~", 2
 	db TX_LINE
@@ -14,9 +12,7 @@ unk_008_4545:
 	text_end
 
 unk_008_4552:
-	db $e0, $01, $00
-
-unk_008_4555:
+	text_init 1, 0
 	textset "⋯", 2
 	textset "在", 3
 	textset "這個時", 2
