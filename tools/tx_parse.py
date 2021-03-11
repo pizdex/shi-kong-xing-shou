@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #-------------------------------------------------------------------------------
 # lexer.py
 #
@@ -126,22 +127,33 @@ if __name__ == '__main__':
 		(';|:',			   'END_COMMAND'),
 		('@org',			'ORG'),
 		('\((\\.|[^\(\)])*\)',		  'LABEL'),
+		('textmap', 'TXMAP'),
+		('forcemap', 'FORCEMAP'),
 		('text',			'TX_TEXT'),
 		('line',			'TX_LINE'),
 		('para',			'TX_PARA'),
 		('cont',			'TX_CONT'),
-		('end',			 'TX_END'),
+		('init',       'TX_INIT'),
+		('done',			 'TX_END'),
 		('\d+',			 'DECIMAL_NUMBER'),
 		('\$[0-9a-fA-F]+',  'HEXADECIMAL_NUMBER'),
 		('\"(\\.|[^\"])*\"|\'(\\.|[^\'])*\'',	 'STRING'),
 		('\w+',			 'IDENTIFIER'),
 	]
 	
-	charsets = {
-		0: " 死之吻狂咬打擊瘋突防禦破碎催眠術煙幕彈百裂巴掌全力一集氣硬化封印忍耐人攻細綁精神中療傷尖叫犧牲勒緊不放電光閃分身熱血正拳石縮小槍刺洗腦拍翅膀偷吃步先發制角致命殺狼嚎潛哀號沉睡疾風護銅牆鐵壁瞄準劍切斬撞刀兩斷靈二流盾勢瞬間手居合蓄鬥·嵐無雙噸摔地獄車必投擲天寒冰烈焰吸收反亂通火炎噴射旋爆炸鳥翼同歸於盡毒濃泡沫雨飄紅強水柱暴海嘯凍東雪黑暗飛砂走落崩挖洞大震殞巨雷閣延頂磁波星法藤鞭樹汁散葉片太陽花寄魂種子香甜孢麻痺粉猛舌頭舔怨恨衝邪惡侵蝕維音魅惑干",
-		1: "嗯",
-		2: "入這個~"
-	}
+	# populate the charmap
+	charsets = {}
+	with open("charmap.asm", "r") as charmap:
+		ccm = -999
+		x = charmap.readline()
+		while x:
+			if re.match(r'\s{0,}NEWCHARMAP\s+charmap(\d+)', x):
+				ccm = re.match(r'\s{0,}NEWCHARMAP\s+charmap(\d+)', x).group(1)
+			if re.match(r'\s{0,}charmap\s+\"(\\.|[^\"])*\"', x):
+				if ccm not in charsets.keys():
+					charsets[ccm] = ""
+				charsets[ccm] += re.match(r'\s{0,}charmap\s+\"(\\.|[^\"])*\"', x).group(1)
+			x = charmap.readline()
 
 	lx = Lexer(rules, skip_whitespace=True)
 	with open(sys.argv[1], 'r') as f:
@@ -150,82 +162,122 @@ if __name__ == '__main__':
 	command_buffer = []
 	char_set = -999
 	prev_char_set = char_set
+	buf = ""
 	try:
 		for tok in lx.tokens():
+			#print(tok)
 			if tok.type == 'COMMENT':
 				print(f';{tok.val[1:]}')
 				command_buffer = []
 			elif tok.type == 'END_COMMAND':
 				p = [x.type for x in command_buffer]
 				q = [x.val for x in command_buffer]
+				if p[0] == 'TX_INIT':
+					print(f'\ttext_init {", ".join(q[1:])}')
 				if p == ['ORG', 'DECIMAL_NUMBER', 'DECIMAL_NUMBER']:
-					print(f'text_{"{:02x}".format(int(q[1]))}_{hex(int(q[2]))[2:]}::')
+					print(f'\ntext_{"{:02x}".format(int(q[1]))}_{hex(int(q[2]))[2:]}::')
 					char_set = -999
 					prev_char_set = char_set
-				elif p == ['ORG', 'DECIMAL_NUMBER', 'DECIMAL_NUMBER', 'LABEL']:
-					print(f'{q[3][1:-1]}::\t;{"{:02x}".format(int(q[1]))}:{hex(int(q[2]))[2:]}')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'DECIMAL_NUMBER', 'HEXADECIMAL_NUMBER']:
-					print(f'text_{"{:02x}".format(int(q[1]))}_{q[2][1:]}::')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'DECIMAL_NUMBER', 'HEXADECIMAL_NUMBER', 'LABEL']:
-					print(f'{q[3][1:-1]}::\t;{"{:02x}".format(int(q[1]))}:{q[2][1:]}')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'DECIMAL_NUMBER']:
-					print(f'text_{q[1][1:]}_{hex(int(q[2]))[2:]}::')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'DECIMAL_NUMBER', 'LABEL']:
-					print(f'{q[3][1:-1]}::\t;{q[1][1:]}:{hex(int(q[2]))[2:]}')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'HEXADECIMAL_NUMBER']:
-					print(f'text_{q[1][1:]}_{q[2][1:]}::')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'HEXADECIMAL_NUMBER', 'LABEL']:
-					print(f'{q[3][1:-1]}::\t;{q[1][1:]}:{q[2][1:]}')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'HEXADECIMAL_NUMBER']:
-					print(f'text_{q[1][1:]}::')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'LABEL']:
-					print(f'{q[2][1:-1]}::\t;{q[1][1:]}')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'DECIMAL_NUMBER']:
-					print(f'text_{"{:02x}".format(int(q[1]))}')
-					char_set = -999
-					prev_char_set = char_set
-				elif p == ['ORG', 'DECIMAL_NUMBER', 'LABEL']:
-					print(f'{q[2][1:-1]}::\t;{"{:02x}".format(int(q[1]))}')
-					char_set = -999
-					prev_char_set = char_set
-				elif p[0] in ['TX_TEXT', 'TX_LINE', 'TX_PARA', 'TX_CONT']:
-					if p[0] == 'TX_LINE': print('\tdb TX_LINE')
-					if p[0] == 'TX_PARA': print('\tdb TX_PARA')
-					if p[0] == 'TX_CONT': print('\tdb TX_CONT')
 					buf = ""
-					buf += f'\ttextset "'
-					for i in q[1][1:-1]:
-						for s in charsets:
-							if i in charsets[s]:
-								char_set = s
-						if prev_char_set != char_set:
-							buf += f'{i}", {char_set}\n\ttextset "'
-							prev_char_set = char_set
+				elif p == ['ORG', 'DECIMAL_NUMBER', 'DECIMAL_NUMBER', 'LABEL']:
+					print(f'\n{q[3][1:-1]}::\t;{"{:02x}".format(int(q[1]))}:{hex(int(q[2]))[2:]}')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'DECIMAL_NUMBER', 'HEXADECIMAL_NUMBER']:
+					print(f'\ntext_{"{:02x}".format(int(q[1]))}_{q[2][1:]}::')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'DECIMAL_NUMBER', 'HEXADECIMAL_NUMBER', 'LABEL']:
+					print(f'\n{q[3][1:-1]}::\t;{"{:02x}".format(int(q[1]))}:{q[2][1:]}')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'DECIMAL_NUMBER']:
+					print(f'\ntext_{q[1][1:]}_{hex(int(q[2]))[2:]}::')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'DECIMAL_NUMBER', 'LABEL']:
+					print(f'\n{q[3][1:-1]}::\t;{q[1][1:]}:{hex(int(q[2]))[2:]}')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'HEXADECIMAL_NUMBER']:
+					print(f'\ntext_{q[1][1:]}_{q[2][1:]}::')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'HEXADECIMAL_NUMBER', 'LABEL']:
+					print(f'\n{q[3][1:-1]}::\t;{q[1][1:]}:{q[2][1:]}')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'HEXADECIMAL_NUMBER']:
+					print(f'\ntext_{q[1][1:]}::')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'HEXADECIMAL_NUMBER', 'LABEL']:
+					print(f'\n{q[2][1:-1]}::\t;{q[1][1:]}')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'DECIMAL_NUMBER']:
+					print(f'\ntext_{"{:02x}".format(int(q[1]))}')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p == ['ORG', 'DECIMAL_NUMBER', 'LABEL']:
+					print(f'\n{q[2][1:-1]}::\t;{"{:02x}".format(int(q[1]))}')
+					char_set = -999
+					prev_char_set = char_set
+					buf = ""
+				elif p[0] in ['TX_TEXT', 'TX_LINE', 'TX_PARA', 'TX_CONT', 'TXMAP', 'FORCEMAP']:
+					if buf:
+						print(f'\ttext "{buf}"')
+					if p[0] == 'TX_LINE':
+						print('\tline')
+						char_set = -999
+						prev_char_set = char_set
+					if p[0] == 'TX_PARA':
+						print('\tpara')
+						char_set = -999
+						prev_char_set = char_set
+					if p[0] == 'TX_CONT':
+						print('\tcont')
+						char_set = -999
+						prev_char_set = char_set
+					if p[0] == 'TXMAP':
+						char_set = q[2]
+						if char_set == prev_char_set:
+							print(f'\ttext "{q[1][1:-1]}"')
 						else:
-							buf += i
-					buf += '"'
-					buf = buf.replace('\n\ttextset ""', '')
-					print(buf)
-				elif p[0] == 'TX_END':
-					print('\ttext_end')
+							print(f'\ttext "{q[1][1:-1]}", {char_set}')
+					elif p[0] == 'FORCEMAP':
+						char_set = q[2]
+						print(f'\ttext "{q[1][1:-1]}", {char_set}')
+					else:
+						if len(p) > 1:
+							for i in q[1][1:-1]:
+								#print(i)
+								for s in charsets:
+									if i in charsets[s]:
+										#print('in')
+										char_set = s
+										if char_set != prev_char_set:
+											if buf:
+												print(f'\ttext "{buf}"')
+											print(f'\ttext "{i}", {s}')
+											prev_char_set = char_set
+											buf = ""
+										else:
+											buf += i
+				if p[0] == 'TX_END':
+					if buf:
+						print(f'\ttext "{buf}"')
+					print('\tdone')
 				command_buffer = []
 			else:
 				command_buffer.append(tok)

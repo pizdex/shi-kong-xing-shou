@@ -64,10 +64,10 @@ Func_00a_45ce:
 	ret
 
 unk_00a_45fb::
-	dw unk_00a_46b3
-	dw unk_00a_46b8
-	dw unk_00a_46bf
-	dw unk_00a_46c6
+	dw BlankName
+	dw BallotName
+	dw BuckName
+	dw NinaName
 	dw unk_00a_46cd
 	dw unk_00a_46d3
 	dw $46da
@@ -157,21 +157,7 @@ unk_00a_45fb::
 	dw $4915
 	dw $491c
 
-unk_00a_46b3::
-	dr $286b3, $286b8
-
-unk_00a_46b8::
-	; $f0, $16, $f4, $23, $f1, $c6, $ed
-	textset "巴", 0
-	textset "洛", 4
-	textset "特", 1
-	db TX_LINE
-
-unk_00a_46bf::
-	dr $286bf, $286c6
-
-unk_00a_46c6::
-	dr $286c6, $286cd
+INCLUDE "data/text/names.asm"
 
 unk_00a_46cd::
 	dr $286cd, $286d3

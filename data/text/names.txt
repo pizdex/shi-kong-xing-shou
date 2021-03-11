@@ -1,0 +1,17 @@
+@org $a, $46b3 (BlankName):
+	text "   ";
+	line;
+
+@org $a, $46b8 (BallotName):
+	text "巴洛特";
+	line;
+
+@org $a, $46bf (BuckName):
+	text "巴";
+	forcemap " " 0; # F0 xx F0 xx
+	text "克";
+	line;
+
+@org $a, $46c6 (NinaName):
+	text "妮 娜";
+	line;

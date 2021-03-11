@@ -27,16 +27,17 @@ ROM_TITLE := "TIMER MONSTER  "
 .PRECIOUS:
 .SECONDARY:
 
-all: $(ROM)
+all: $(ROM) compare
 
 tools:
 	@$(MAKE) -C tools/
 
 compare: $(ROM)
-	$(MD5) rom.md5
+	@$(MD5) rom.md5
 
 clean:
 	$(RM) $(ROM) $(MAP) $(SYM) $(OBJS)
+	$(RM) data/text/*.asm		# Text preprocessor generated files
 	$(MAKE) clean -C tools/
 
 # The dep rules have to be explicit or else missing files won't be reported.
