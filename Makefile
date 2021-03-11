@@ -4,7 +4,7 @@ GFX  := rgbgfx
 FIX  := rgbfix
 MD5  := md5sum -c
 
-PYTHON := python
+PYTHON := python3
 
 ASMFLAGS :=
 
@@ -28,13 +28,13 @@ ROM_TITLE := "TIMER MONSTER  "
 .PRECIOUS:
 .SECONDARY:
 
-all: $(ROM)
+all: $(ROM) compare
 
 tools:
 	@$(MAKE) -C tools/
 
 compare: $(ROM)
-	$(MD5) rom.md5
+	@$(MD5) rom.md5
 
 clean:
 	$(RM) $(ROM) $(MAP) $(SYM) $(OBJS)

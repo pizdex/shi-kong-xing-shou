@@ -28,7 +28,7 @@ unk_00a_42db:
 unk_00a_45fb::
 	dr $285fb, $286b8
 
-INCLUDE "data/text/name_ballot.asm"
+INCLUDE "data/text/names.asm"
 
 unk_00a_46bf::
 	dr $286bf, $28923
