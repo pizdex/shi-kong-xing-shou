@@ -27,13 +27,13 @@ ROM_TITLE := "TIMER MONSTER  "
 .PRECIOUS:
 .SECONDARY:
 
-all: $(ROM) compare
+all: $(ROM)
 
 tools:
 	@$(MAKE) -C tools/
 
 compare: $(ROM)
-	@$(MD5) rom.md5
+	$(MD5) rom.md5
 
 clean:
 	$(RM) $(ROM) $(MAP) $(SYM) $(OBJS)

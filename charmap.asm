@@ -265,7 +265,7 @@ NEWCHARMAP charmap1
 	charmap "生", $23
 	charmap "華", $24
 	charmap "三", $25
-	charmap "味", $26
+	charmap "昧", $26
 	charmap "障", $27
 	charmap "主", $28
 	charmap "怪", $29
@@ -1123,7 +1123,7 @@ NEWCHARMAP charmap4
 	charmap "克", $d4
 	charmap "覺", $d5
 	charmap "愛", $d6
-	; ?
+	charmap "鬱", $d7
 	charmap "驅", $d8
 	charmap "形", $d9
 	charmap "範", $da
@@ -1247,7 +1247,6 @@ NEWCHARMAP charmap5
 	charmap "頓", $6d
 	charmap "陰", $6e
 	charmap "影", $6f
-
 	charmap "尾", $70
 	charmap "展", $71
 	charmap "慢", $72

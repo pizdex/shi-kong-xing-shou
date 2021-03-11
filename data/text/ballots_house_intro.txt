@@ -7,7 +7,5 @@
 @org 8, $4552 (House_CutsceneText2):
 	init NAME_BALLOT, PIC_BALLOT_0;
 	text "⋯在這個時候~"; 
-	line "再加調";
-	textmap "味" 3;
-	text "料⋯⋯";
+	line "再加調味料⋯⋯";
 	done;
