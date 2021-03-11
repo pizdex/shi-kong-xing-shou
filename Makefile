@@ -3,7 +3,6 @@ LINK := rgblink
 GFX  := rgbgfx
 FIX  := rgbfix
 MD5  := md5sum -c
-
 PYTHON := python3
 
 ASMFLAGS :=
@@ -62,6 +61,5 @@ $(ROM): $(OBJS)
 	$(LINK) -n $(SYM) -m $(MAP) -p 0 -o $@ $(OBJS)
 	$(FIX) -cv -t $(ROM_TITLE) -l 0x33 -k A7 -m 0x1b -r 2 -p 0 $@
 
-# Text preprocessor
-%.asm: %.tx
+data/text/%.asm: data/text/%.txt
 	$(PYTHON) tools/tx_parse.py $< > $@

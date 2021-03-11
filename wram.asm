@@ -80,7 +80,10 @@ wdcb5:: ds 1
 wdcb6:: ds $1b
 
 wdcd1:: ds 2
-wdcd3:: ds 13
+wdcd3:: ds 5
+
+wdcd8:: ds 1
+wdcd9:: ds 7
 
 wCharacterTilePos:: ds 1
 wdce1:: ds 1

@@ -13,8 +13,9 @@ ENDM
 
 	const_def $e0
 
-	const TX_INIT
+	const TX_INIT ; $e0
 text_init: MACRO
+; name, face
 	db TX_INIT, \1, \2
 ENDM
 
