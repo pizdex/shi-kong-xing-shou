@@ -128,6 +128,7 @@ if __name__ == '__main__':
 		('@org',			'ORG'),
 		('\((\\.|[^\(\)])*\)',		  'LABEL'),
 		('textmap', 'TXMAP'),
+		('forcemap', 'FORCEMAP'),
 		('text',			'TX_TEXT'),
 		('line',			'TX_LINE'),
 		('para',			'TX_PARA'),
@@ -164,6 +165,7 @@ if __name__ == '__main__':
 	buf = ""
 	try:
 		for tok in lx.tokens():
+			#print(tok)
 			if tok.type == 'COMMENT':
 				print(f';{tok.val[1:]}')
 				command_buffer = []
@@ -232,7 +234,9 @@ if __name__ == '__main__':
 					char_set = -999
 					prev_char_set = char_set
 					buf = ""
-				elif p[0] in ['TX_TEXT', 'TX_LINE', 'TX_PARA', 'TX_CONT', 'TXMAP']:
+				elif p[0] in ['TX_TEXT', 'TX_LINE', 'TX_PARA', 'TX_CONT', 'TXMAP', 'FORCEMAP']:
+					if buf:
+						print(f'\ttext "{buf}"')
 					if p[0] == 'TX_LINE':
 						print('\tline')
 						char_set = -999
@@ -250,23 +254,28 @@ if __name__ == '__main__':
 						if char_set == prev_char_set:
 							print(f'\ttext "{q[1][1:-1]}"')
 						else:
-							print(f'\ttext "{q[1][1:-1]}, {char_set}"')
+							print(f'\ttext "{q[1][1:-1]}", {char_set}')
+					elif p[0] == 'FORCEMAP':
+						char_set = q[2]
+						print(f'\ttext "{q[1][1:-1]}", {char_set}')
 					else:
 						if len(p) > 1:
 							for i in q[1][1:-1]:
+								#print(i)
 								for s in charsets:
 									if i in charsets[s]:
+										#print('in')
 										char_set = s
 										if char_set != prev_char_set:
-											if buf != "":
+											if buf:
 												print(f'\ttext "{buf}"')
 											print(f'\ttext "{i}", {s}')
 											prev_char_set = char_set
 											buf = ""
 										else:
 											buf += i
-				elif p[0] == 'TX_END':
-					if buf != "":
+				if p[0] == 'TX_END':
+					if buf:
 						print(f'\ttext "{buf}"')
 					print('\tdone')
 				command_buffer = []
