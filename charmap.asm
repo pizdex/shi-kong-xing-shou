@@ -1952,7 +1952,7 @@ NEWCHARMAP charmap8
 	charmap "呤", $84
 	charmap "唱", $85
 	charmap "炙", $86
-	charmap "偑", $87 ; ?
+	charmap "偑", $87
 	charmap "奉", $88
 	charmap "吾", $89
 	charmap "囚", $8a
@@ -2044,3 +2044,67 @@ NEWCHARMAP charmap8
 
 NEWCHARMAP charmap9
 ; 44:6000
+	charmap "讚", $00
+	charmap "揚", $01
+	charmap "濕", $02
+	charmap "殆", $03
+	charmap "熾", $04
+	charmap "吒", $05
+	charmap "窺", $06
+	charmap "覓", $07 ; ?
+	charmap "冬", $08
+	charmap "腹", $09
+	charmap "膚", $0a
+	charmap "里", $0b
+	charmap "剔", $0c ; ?
+	charmap "韌", $0d
+	charmap "志", $0e
+	charmap "桀", $0f
+	charmap "桀", $10
+	charmap "髮", $11
+	charmap "肌", $12
+	charmap "豎", $13
+	charmap "盲", $14
+	charmap "變", $15
+	charmap "曲", $16
+	charmap "伞", $17 ; ?
+	charmap "峽", $18
+	charmap "溪", $19
+	charmap "摧", $1a
+	charmap "享", $1b
+	charmap "央", $1c
+	charmap "陀", $1d
+	charmap "抛", $1e
+	charmap "捕", $1f
+	charmap "聰", $20
+	charmap "裹", $21
+	charmap "衍", $22
+	charmap "室", $23
+	charmap "隧", $24
+	charmap "歌", $25
+	charmap "推", $26
+	charmap "邀", $27
+	charmap "姬", $28
+	charmap "箱", $29
+	charmap "廠", $2a
+	charmap "↑", $2b
+	charmap "↓", $2c
+	charmap "←", $2d
+	charmap "→", $2e
+	charmap "↖", $2f
+	charmap "↗", $30
+	charmap "↙", $31
+	charmap "↘", $32
+	charmap "間", $33
+	charmap "勿", $34
+	charmap "区", $35
+	charmap "拘", $36
+	charmap "莽", $37
+	charmap "富", $38
+	charmap "炫", $39
+	charmap "耀", $3a
+	charmap "酷", $3b
+	charmap "缺", $3c
+	charmap "乏", $3d
+	charmap "隕", $3e
+	charmap "遵", $3f
