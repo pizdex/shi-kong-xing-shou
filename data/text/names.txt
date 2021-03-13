@@ -19,3 +19,373 @@
 @org $0a, $46cd:
 	text "克勞德";
 	line;
+
+@org $0a, $46d3:
+	text "海";
+	forcemap " ", 0;
+	text "藍";
+	line;
+
+@org $0a, $46da:
+	text "藍 特";
+	line;
+
+@org $0a, $46e1:
+	text "雷";
+	forcemap " ", 0;
+	text "德";
+	line;
+
+@org $0a, $46e8:
+	text "米 特";
+	line;
+
+@org $0a, $46ef:
+	text "小";
+	forcemap " ", 0;
+	text "白";
+	line;
+
+@org $0a, $46f6:
+	text "機械鳥";
+	line;
+
+@org $0a, $46fd:
+	text "小綿羊";
+	line;
+
+@org $0a, $4703:
+	text "鸚鵡獸";
+	line;
+
+@org $0a, $4709:
+	text "水精靈";
+	line;
+
+@org $0a, $470e:
+	text "音樂靈";
+	line;
+
+@org $0a, $4715:
+	text "時空獸";
+	line;
+
+@org $0a, $471b:
+	text "彩繪家";
+	line;
+
+@org $0a, $4720:
+	text "賽 亞";
+	line;
+
+@org $0a, $4727:
+	text "伊隼人";
+	line;
+
+@org $0a, $472e:
+	text "芳 芳";
+	line;
+
+@org $0a, $4735:
+	text "妮 可";
+	line;
+
+@org $0a, $473c:
+	text "莫老師";
+	line;
+
+@org $0a, $4742:
+	text "校 長";
+	line;
+
+@org $0a, $4749:
+	text "怪 獸";
+	line;
+
+@org $0a, $4750:
+	text "系 統";
+	line;
+
+@org $0a, $4757:
+	text "老 閱";
+	line;
+
+@org $0a, $475e:
+	text "艾 娜";
+	line;
+
+@org $0a, $4765:
+	text "基 多";
+	line;
+
+@org $0a, $476c:
+	text "雷";
+	forcemap " ", 0;
+	text "歐";
+	line;
+
+@org $0a, $4773:
+	text "荳 荳";
+	line;
+
+@org $0a, $477a:
+	text "拉 琪";
+	line;
+
+@org $0a, $4781:
+	text "庫 魯";
+	line;
+
+@org $0a, $4788:
+	text "語 音";
+	line;
+
+@org $0a, $478e:
+	text "貓 怪";
+	line;
+
+@org $0a, $4795:
+	text "隊 員";
+	line;
+
+@org $0a, $479c:
+	text "博 多";
+	line;
+
+@org $0a, $47a3:
+	text "迪 普";
+	line;
+
+@org $0a, $47aa:
+	text "馬 克";
+	line;
+
+@org $0a, $47b1:
+	text "小綿羊";
+	line;
+
+@org $0a, $47b7:
+	text "咖啡怪";
+	line;
+
+@org $0a, $47bd:
+	text "哈爾遜";
+	line;
+
+@org $0a, $47c3:
+	text "時";
+	textmap "間", 0; # fixme
+	text "怪";
+	line;
+
+@org $0a, $47ca:
+	text "黑西裝人";
+	line;
+
+@org $0a, $47d3:
+	text "貝 貝";
+	line;
+
+@org $0a, $47da:
+	text "面具男";
+	line;
+
+@org $0a, $47e1:
+	text "山 豬";
+	line;
+
+@org $0a, $47e8:
+	text "鴿";
+	forcemap " ", 0;
+	text "子";
+	line;
+
+@org $0a, $47ef:
+	text "兔先生";
+	line;
+
+@org $0a, $47f6:
+	text "石兔子";
+	line;
+
+@org $0a, $47fd:
+	text "胖 貓";
+	line;
+
+@org $0a, $4804:
+	text "石山豬";
+	line;
+
+@org $0a, $480a:
+	text "火山怪";
+	line;
+
+@org $0a, $4811:
+	text "兔小姐";
+	line;
+
+@org $0a, $4818:
+	text "麗";
+	forcemap " ", 0;
+	text "子";
+	line;
+
+@org $0a, $481f:
+	text "評 審";
+	line;
+
+@org $0a, $4826:
+	text "主持人";
+	line;
+
+@org $0a, $482d:
+	text "哈瑪斯";
+	line;
+
+@org $0a, $4834:
+	text "安 東";
+	line;
+
+@org $0a, $483b:
+	text "烏 龜";
+	line;
+
+@org $0a, $4842:
+	text "螃 蟹";
+	line;
+
+@org $0a, $4849:
+	text "蝦";
+	forcemap " ", 0;
+	text "子";
+	line;
+
+@org $0a, $4850:
+	text "海";
+	forcemap " ", 0;
+	textmap "青", 3; # fixme
+	line;
+
+@org $0a, $4857:
+	text "海巫師";
+	line;
+
+@org $0a, $485e:
+	text "神视獸";
+	line;
+
+@org $0a, $4865:
+	text "狼人怪";
+	line;
+
+@org $0a, $486b:
+	text "星";
+	forcemap " ", 0;
+	text "獸";
+	line;
+
+@org $0a, $4872:
+	text "魚之魂";
+	line;
+
+@org $0a, $4878:
+	text "蒂 朵";
+	line;
+
+@org $0a, $487f:
+	text "老 鼠";
+	line;
+
+@org $0a, $4886:
+	text "邪火怪";
+	line;
+
+@org $0a, $488c:
+	text "吉魯德";
+	line;
+
+@org $0a, $4893:
+	text "白蟻怪";
+	line;
+
+@org $0a, $489a:
+	text "卡 爾";
+	line;
+
+@org $0a, $48a1:
+	text "卡迪拉";
+	line;
+
+@org $0a, $48a7:
+	text "謝麗娜";
+	line;
+
+@org $0a, $48ae:
+	text "分析儀";
+	line;
+
+@org $0a, $48b5:
+	text "雪";
+	forcemap " ", 0;
+	text "熊";
+	line;
+
+@org $0a, $48bc:
+	text "貝 爾";
+	line;
+
+@org $0a, $48c3:
+	text "教 授";
+	line;
+
+@org $0a, $48ca:
+	text "薦 拉";
+	line;
+
+@org $0a, $48d1:
+	text "龍魔人";
+	line;
+
+@org $0a, $48d7:
+	text "水魔人";
+	line;
+
+@org $0a, $48de:
+	text "火魔人";
+	line;
+
+@org $0a, $48e5:
+	text "徽罰者";
+	line;
+
+@org $0a, $48eb:
+	text "姆 斯";
+	line;
+
+@org $0a, $48f2:
+	text "帕 達";
+	line;
+
+@org $0a, $48f9:
+	text "仔 仔";
+	line;
+
+@org $0a, $4900:
+	text "諾 克";
+	line;
+
+@org $0a, $4907:
+	text "媞 雅";
+	line;
+
+@org $0a, $490e:
+	text "瑪 姬";
+	line;
+
+@org $0a, $4915:
+	text "管 家";
+	line;
+
+@org $0a, $491c:
+	text "艾 斯";
+	line;

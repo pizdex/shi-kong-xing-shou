@@ -347,7 +347,7 @@ Func_1ba0:
 	rst Bankswitch
 	xor a
 	ld [wCharacterTilePos], a
-	ld de, unk_00a_45fb
+	ld de, NamePointers
 	ld a, [$cbf7]
 	ld l, a
 	ld h, 0
