@@ -16,27 +16,27 @@
 	text "妮 娜";
 	line;
 
-@org $0a, $46cd:
+@org $0a, $46cd (ClaudeName):
 	text "克勞德";
 	line;
 
-@org $0a, $46d3:
+@org $0a, $46d3 (HelenName):
 	text "海";
 	forcemap " ", 0;
 	text "藍";
 	line;
 
-@org $0a, $46da:
+@org $0a, $46da (LanteName):
 	text "藍 特";
 	line;
 
-@org $0a, $46e1:
+@org $0a, $46e1 (RandtName):
 	text "雷";
 	forcemap " ", 0;
 	text "德";
 	line;
 
-@org $0a, $46e8:
+@org $0a, $46e8 (MittName):
 	text "米 特";
 	line;
 

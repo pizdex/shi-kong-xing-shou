@@ -63,7 +63,7 @@ Func_00a_45ce:
 	jr nz, .asm_45f3
 	ret
 
-INCLUDE "data/text/name_pointers.asm"
+INCLUDE "data/name_pointers.asm"
 INCLUDE "data/text/names.asm"
 
 
