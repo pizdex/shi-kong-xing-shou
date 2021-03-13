@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 chars = {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
 
 file = "../shi_kong_xing_shou.gbc"
