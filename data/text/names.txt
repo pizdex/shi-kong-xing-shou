@@ -8,7 +8,7 @@
 
 @org $a, $46bf (BuckName):
 	text "巴";
-	forcemap " " 0; # F0 xx F0 xx
+	forcemap " ", 0; # F0 xx F0 xx
 	text "克";
 	line;
 
