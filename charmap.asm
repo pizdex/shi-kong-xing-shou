@@ -278,7 +278,7 @@ NEWCHARMAP charmap1
 	charmap "逃", $30
 	charmap "跑", $31
 	charmap "嗯", $32
-	charmap ",", $33
+	charmap "，", $33
 	charmap "找", $34
 	charmap "!", $35
 	charmap "伴", $36

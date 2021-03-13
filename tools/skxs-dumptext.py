@@ -50,7 +50,7 @@ def print_text():
         
     return done
 
-count = 4
+count = 5
 
 while count != 0:
     byte = int.from_bytes(file.read(1), "little")
