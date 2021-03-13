@@ -66,12 +66,13 @@ for l in t:
 		if comm == 'ORG':
 			char_set = -999
 			prev_char_set = char_set
-			label = 'text_'
+			bank = b[1][1][1]
+			address = b[3][1][1]
 			for q in b[1:]:
 				if q[0] == 'DECIMAL_NUMBER':
-					label += "{:04x}_".format(int(q[1].group(1)))
+					label = ("text_%s_%s" % (bank[1:], address[1:]))
 				elif q[0] == 'HEXADECIMAL_NUMBER':
-					label += "{:04x}_".format(int(q[1].group(1)[1:], 16))
+					label = ("text_%s_%s" % (bank[1:], address[1:]))
 				elif q[0] == 'LABEL':
 					label = q[1].group(1)[1:-1]
 			print(f'\n{label}::')

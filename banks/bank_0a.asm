@@ -68,8 +68,8 @@ unk_00a_45fb::
 	dw BallotName
 	dw BuckName
 	dw NinaName
-	dw unk_00a_46cd
-	dw unk_00a_46d3
+	dw text_0a_46cd
+	dw text_0a_46d3
 	dw $46da
 	dw $46e1
 	dw $46e8
@@ -155,15 +155,15 @@ unk_00a_45fb::
 	dw $4907
 	dw $490e
 	dw $4915
-	dw $491c
+	dw text_0a_491c
 
 INCLUDE "data/text/names.asm"
 
-unk_00a_46cd::
-	dr $286cd, $286d3
+text_0a_46d3::
+	dr $286d3, $2891c
 
-unk_00a_46d3::
-	dr $286d3, $28923
+text_0a_491c::
+	dr $2891c, $28923
 
 
 SECTION "banknum0a", ROMX[$7fff], BANK[$0a]

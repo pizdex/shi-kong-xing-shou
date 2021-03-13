@@ -15,3 +15,7 @@
 @org $a, $46c6 (NinaName):
 	text "妮 娜";
 	line;
+
+@org $0a, $46cd:
+	text "克勞德";
+	line;
