@@ -1,3 +1,5 @@
+import math
+
 chars = {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
 
 file = "../shi_kong_xing_shou.gbc"
@@ -38,21 +40,34 @@ def print_text():
             print(char, end="")
         elif byte == 0xe2:
             done = 1
-            print("\";\ndone;")
+            print("\";\n\tdone;")
             break
         elif byte == 0xec:
-            print("\";\npara \"", end="")
+            print("\";\n\tpara \"", end="")
         elif byte == 0xed:
-            print("\";\nline \"", end="")
+            print("\";\n\tline \"", end="")
+        elif byte == 0xee:
+            print("\";\n\tcont \"", end="")
         else:
             char = chars[backup_charset][byte]
             print(char, end="")
         
     return done
 
-count = 5
+def get_bank_address(offset):
+    offset = file.tell()
+    bank = math.floor(offset / 0x4000)
+    if bank != 0:
+        address = (offset - (bank * 0x4000)) + 0x4000
+    else:
+        address = (offset - (bank * 0x4000))
+    return bank, address
+
+count = 10
 
 while count != 0:
+    bank, address = get_bank_address(file.tell())
+
     byte = int.from_bytes(file.read(1), "little")
     # print("{:02x}".format(byte))
     if not byte:
@@ -63,12 +78,13 @@ while count != 0:
     byte_high, charset = divmod(byte, 0x10)
     backup_charset = charset
     if byte == 0xe0:
+        print("@org $%02x, $%04x:" % (bank, address))
         arg1 = int.from_bytes(file.read(1), "little")
         arg2 = int.from_bytes(file.read(1), "little")
-        print("init $%02x, $%02x; # TEMP" % (arg1, arg2))
+        print("\tinit $%02x, $%02x; # TEMP" % (arg1, arg2))
     if byte_high == 0xf:
         count -= 1
-        print("text \"", end="")
+        print("\ttext \"", end="")
         if print_text():
             print()
         else:

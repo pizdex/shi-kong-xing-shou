@@ -1,13 +1,58 @@
 Func_00a_4000::
-	dr $28000, $2805b
+	hlcoord 0, 0
+	ld a, [wTextboxPos]
+	and a
+	jr nz, .backup_tilemap
 
-unk_00a_405b:
+	hlcoord 0, 10
+.backup_tilemap
+	ld a, l
+	ld [wTextboxPointer], a
+	ld a, h
+	ld [wTextboxPointer + 1], a
+	ld de, wcb30
+	ld c, 8 * SCREEN_WIDTH
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy
+
+; Load textbox border tiles
+	call DelayFrame
+	ld hl, unk_00a_4523
+	ld de, $8a00
+	ld bc, $70
+	call CopyBytesVRAM
+
+	call DelayFrame
+	farcall unk_00d_4000
+
+; Inefficient
+	ld hl, wd1a0
+	call Func_00a_405b
+	ld hl, wd1a8
+	call Func_00a_405b
+
+	call Func_0868
+	call DelayFrame
+	call Func_0885
+	call DelayFrame
+	ld hl, $42e3
+	ld a, l
+	ld [$dcd6], a
+	ld a, h
+	ld [$dcd6 + 1], a
+	ret
+
+Func_00a_405b:
 	ld c, 8
 	xor a
-.asm_405e
+.clear
 	ld [hli], a
 	dec c
-	jr nz, .asm_405e
+	jr nz, .clear
 	ret
 
 unk_00a_4063::
@@ -26,7 +71,10 @@ Func_00a_4178::
 	dr $28178, $282db
 
 unk_00a_42db:
-	dr $282db, $285ce
+	dr $282db, $28523
+
+unk_00a_4523:
+	dr $28523, $285ce
 
 Func_00a_45ce:
 	ld a, [$d08e]

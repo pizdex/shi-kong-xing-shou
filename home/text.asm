@@ -280,7 +280,7 @@ Func_1b23:
 .table_1b31:
 	dw Text_Init ; $e0
 	dw Func_1c2c ; $e1 sign?
-	dw Text_End ; $e2
+	dw Text_End  ; $e2
 	dw Func_1c96 ; $e3
 	dw Func_1ca9 ; $e4
 	dw Func_1cb6 ; $e5
@@ -291,9 +291,9 @@ Func_1b23:
 	dw Func_1e0a ; $ea
 	dw Func_1e1a ; $eb
 	dw Text_Paragraph ; $ec
-	dw Text_NextLine ; $ed
-	dw Func_1f6a ; $ee
-	dw Func_1fe9 ; $ef
+	dw Text_NextLine  ; $ed
+	dw Text_Cont      ; $ee
+	dw Func_1fe9      ; $ef
 
 Text_Init:
 	pop hl
@@ -337,7 +337,7 @@ Text_Init:
 
 Func_1ba0:
 ; Clear old name buffer
-	ld bc, $10 * $10
+	ld bc, $10 tiles
 	ld hl, $8e00
 	xor a
 	call ByteFillVRAM
@@ -365,7 +365,7 @@ Func_1bc2:
 	push hl
 	cp $f0
 	jr nc, .switch_characterset
-	cp $ed
+	cp TX_LINE
 	jr z, .end_of_name
 
 	ld [wCurrentCharacterByte], a
@@ -555,11 +555,103 @@ Func_1e7b:
 Func_1f24:
 	dr $1f24, $1f6a
 
-Func_1f6a:
-	dr $1f6a, $1fb9
+Text_Cont:
+	call Func_1fb9
+	jp Text_NextLine
+
+Func_1f70:
+	ld hl, wcde0
+	ld [hl], $3f
+	ld a, [hFFD3]
+	and a
+	jr nz, .asm_1f81
+
+	ld a, [wTextboxPos]
+	and a
+	jr nz, .asm_1f83
+
+.asm_1f81
+	ld [hl], $8f
+
+.asm_1f83
+	inc hl
+	ld [hl], $98
+	inc hl
+	ld [hl], 3
+	ret
+
+Func_1f8a:
+; Inefficient
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(unk_004_4045)
+	rst Bankswitch
+	call unk_004_4045
+	pop af
+	rst Bankswitch
+	ret
+
+Func_1f97:
+; Timer between flash
+	ld bc, wcde0
+	ld hl, 3
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	cp 10
+	ret c
+
+	ld [hl], 0
+	dec hl
+	ld a, [hl]
+	cp 3
+	jr z, .asm_1fae
+
+	ld [hl], 3
+	ret
+
+.asm_1fae
+	ld [hl], 4
+	ret
+
+Func_1fb1:
+; Inefficient
+	ld hl, wcde0
+	inc hl
+	inc hl
+	ld [hl], 0
+	ret
 
 Func_1fb9:
-	dr $1fb9, $1fe9
+; Flashing gameboy icon on textbox stuff
+	call Func_1f70
+	xor a
+	ldh [hVBlank], a
+	ldh [hJoypadPressed], a
+	call Func_1f8a
+.joypad_loop
+	ldh a, [hJoypadDown]
+	and D_PAD | BUTTONS
+	jr nz, .asm_1fda
+
+	ldh a, [hVBlank]
+	and a
+	jr z, .joypad_loop
+
+	xor a
+	ldh [hVBlank], a
+	call Func_1f97
+	call Func_1f8a
+	jr .joypad_loop
+
+.asm_1fda
+	ld a, $17
+	call Func_2be2
+	xor a
+	ldh [hVBlank], a
+	call Func_1fb1
+	call Func_1f8a
+	ret
 
 Func_1fe9:
 	dr $1fe9, $262d

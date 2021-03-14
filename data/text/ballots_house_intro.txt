@@ -9,3 +9,48 @@
 	text "⋯在這個時候~"; 
 	line "再加調味料⋯⋯";
 	done;
+
+@org $08, $456d:
+	init NAME_BALLOT, $2a; # TEMP
+	text "成功了!";
+	para "這就是媽媽料理";
+	line "的味道!";
+	done;
+
+@org $08, $458a:
+	init NAME_BALLOT, $2b; # TEMP
+	text "媽媽⋯⋯⋯";
+	line "我好想妳⋯⋯";
+	para "⋯⋯⋯⋯";
+	done;
+
+@org $08, $45a5:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "不行~不行!";
+	para "我答應過媽媽，";
+	line "要堅強的!";
+	done;
+
+@org $08, $45cc:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸~吃飯了!";
+	done;
+
+@org $08, $45db:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸~";
+	line "吃~飯~了!!";
+	done;
+
+@org $08, $45f0:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸又到天文台了";
+	line "嗎?";
+	para "這陣子常整晚都";
+	line "待在天文台裡。";
+	para "真是反常⋯⋯";
+	para "找爸回來吃飯吧";
+	line "!";
+	cont "不然辛苦做的飯";
+	line "菜都冷了。";
+	done;

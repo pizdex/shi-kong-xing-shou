@@ -12,11 +12,11 @@ tokens = [
 	('textmap', 'TXMAP'),
 	('forcemap', 'FORCEMAP'),
 	('text',			'TX_TEXT'),
-	('line',			'TX_LINE'),
 	('para',			'TX_PARA'),
+	('line',			'TX_LINE'),
 	('cont',			'TX_CONT'),
-	('init',       'TX_INIT'),
-	('done',			 'TX_END'),
+	('init',			'TX_INIT'),
+	('done',			'TX_END'),
 	('\d+',			 'DECIMAL_NUMBER'),
 	('\$[0-9a-fA-F]+',  'HEXADECIMAL_NUMBER'),
 	('\"(\\.|[^\"])*\"|\'(\\.|[^\'])*\'',	 'STRING'),
@@ -84,16 +84,18 @@ for l in t:
 					ll.append(q[1].group(1))
 			print(f'\ttext_init {", ".join(ll)}')
 			
-		elif comm in ['TX_TEXT', 'TX_LINE', 'TX_PARA']:
+		elif comm in ['TX_TEXT', 'TX_PARA', 'TX_LINE', 'TX_CONT']:
 			p = ""
 			tx_sets = []
-			if comm in ['TX_LINE', 'TX_PARA']:
+			if comm in ['TX_PARA', 'TX_LINE', 'TX_CONT']:
 				char_set = -999
 				prev_char_set = char_set
-			if comm == 'TX_LINE':
-				print('\tline')
 			if comm == 'TX_PARA':
 				print('\tpara')
+			if comm == 'TX_LINE':
+				print('\tline')
+			if comm == 'TX_CONT':
+				print('\tcont')
 			for q in b[1:]:
 				if q[0] == 'STRING':
 					p = ""

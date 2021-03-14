@@ -341,7 +341,13 @@ GetTextBGMapPointer:
 	ret
 
 Func_07e2:
-	dr $07e2, $092e
+	dr $07e2, $0868
+
+Func_0868::
+	dr $0868, $0885
+
+Func_0885::
+	dr $0885, $092e
 
 Func_092e:
 	dr $092e, $096a
@@ -740,4 +746,7 @@ ClearSRAM:
 	ret
 
 Func_2be2:
-	dr $2be2, $2ff0
+	dr $2be2, $2c03
+
+Func_2c03:
+	dr $2c03, $2ff0

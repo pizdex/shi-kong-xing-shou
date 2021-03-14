@@ -45,3 +45,12 @@ else
 	db TX_LINE, \1
 endc
 ENDM
+
+	const TX_CONT ; $ee
+cont: MACRO
+if _NARG == 0
+	db TX_CONT
+else
+	db TX_CONT, \1
+endc
+ENDM
