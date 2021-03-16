@@ -110,7 +110,7 @@ NEWCHARMAP charmap0
 	charmap "盾", $6b
 	charmap "勢", $6c
 	charmap "瞬", $6d
-	charmap "間", $6e ; ?
+	charmap "間", $6e
 	charmap "手", $6f
 	charmap "居", $70
 	charmap "合", $71
@@ -896,7 +896,7 @@ NEWCHARMAP charmap3
 	charmap "最", $d4
 	charmap "近", $d5
 	charmap "睛", $d6 ; ?
-	charmap "間", $d7 ; ?
+	charmap "聞", $d7 ; ?
 	charmap "報", $d8
 	charmap "導", $d9
 	charmap "明", $da
@@ -1654,7 +1654,7 @@ NEWCHARMAP charmap7
 	charmap "懷", $3e
 	charmap "殿", $3f
 	charmap "屏", $40
-	charmap "睛", $41 ; ?
+	charmap "瞞", $41
 	charmap "劃", $42
 	charmap "妄", $43
 	charmap "甚", $44
@@ -2094,7 +2094,7 @@ NEWCHARMAP charmap9
 	charmap "↗", $30
 	charmap "↙", $31
 	charmap "↘", $32
-	charmap "間", $33
+	charmap "閒", $33 ; ?
 	charmap "勿", $34
 	charmap "区", $35
 	charmap "拘", $36

@@ -1,6 +1,6 @@
 ; Names
 	const_def
-	const NAME_00     ; $00
+	const NAME_BLANK  ; $00
 	const NAME_BALLOT ; $01
 	const NAME_BUCK   ; $02
 	const NAME_NINA   ; $03

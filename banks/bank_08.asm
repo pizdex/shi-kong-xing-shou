@@ -3,8 +3,10 @@ unk_008_4000:
 
 INCLUDE "data/text/ballots_house_intro.asm"
 
-unk_008_4651:
-	dr $20651, $23fff
+INCLUDE "data/text/bank08_misc.asm"
+
+unk_008_5001:
+	dr $21001, $23fff
 
 SECTION "banknum8", ROMX[$7fff], BANK[$8]
 	db $8

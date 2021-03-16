@@ -1,0 +1,446 @@
+@org $08, $4651:
+	init $09, $08;
+	text "汪汪~汪~";
+	done;
+
+@org $08, $465e:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "小白~";
+	line "乖~乖~";
+	para "肚子餓了嗎?";
+	para "我們一起去天文";
+	line "台，";
+	cont "找爸爸回來吃晚";
+	line "餐好嗎?";
+	done;
+
+@org $08, $46a4:
+	init $09, $08;
+	text "汪~汪汪~";
+	done;
+
+@org $08, $46b1:
+	init NAME_BLANK, $1b;
+	text "賽亞?";
+	para "我剛剛才和他聊";
+	line "過天而已。";
+	para "不過他一看到月";
+	line "亮之後，";
+	cont "就緊張兮兮往天";
+	line "文台跑去了。";
+	done;
+
+@org $08, $46fe:
+	init NAME_BLANK, $13;
+	text "⋯啊?";
+	cont "要找你爸爸回家";
+	line "吃晚餐啊。";
+	para "真是孝順的小孩";
+	line "。";
+	para "媽媽病逝後，";
+	line "要更堅強喲!";
+	para "啊啊啊!!";
+	cont "又提到這件事~";
+	line "真是對不起。";
+	done;
+
+@org $08, $4768:
+	init NAME_BLANK, $20;
+	text "是你啊!";
+	para "哈哈哈~";
+	cont "昨天考試，你又";
+	line "考輸我了!";
+	para "嘻嘻~";
+	cont "每‧次‧都‧輸";
+	line "‧我!";
+	done;
+
+@org $08, $47af:
+	init NAME_BLANK, $1d;
+	text "老師要教人家做";
+	line "小餅乾。";
+	cont "這次要吃光光峨";
+	line "。";
+	para "人家這次不會再";
+	line "做那種奇怪的餅";
+	line "乾了啦!";
+	done;
+
+@org $08, $47fb:
+	init NAME_BLANK, $16;
+	text "唉呀~";
+	cont "最近的月亮怎麼";
+	line "看起來，";
+	cont "有點藍藍的呢?";
+	para "一定是我眼睛又";
+	line "花了。";
+	done;
+
+@org $08, $4837:
+	init NAME_BLANK, $19;
+	text "新聞報導說，";
+	cont "明天晚上會有大";
+	line "規模的流星雨。";
+	para "記得我年輕的時";
+	line "候，";
+	cont "也曾預測過一次";
+	line "。";
+	para "但那次的預測錯";
+	line "誤。";
+	para "告訴你峨!";
+	cont "婆婆年輕的時候";
+	line "~";
+	cont "是村子裡有名的";
+	line "⋯⋯";
+	cont "大‧美‧女‧峨";
+	line "!";
+	done;
+
+@org $08, $48d0:
+	init NAME_BLANK, $22;
+	text "啊!?";
+	cont "隼人說突然想打";
+	line "網球嗎?";
+	para "沒~有問題!";
+	para "爸爸馬上去買一";
+	line "個網球場!";
+	done;
+
+@org $08, $4911:
+	init $12, $26; # TEMP
+	text "OH~";
+	line "BABY~";
+	para "我今天到朋友家";
+	line "，";
+	cont "看到了很多的發";
+	line "明品喲!";
+	para "他可是個天才的";
+	line "機械科學家。";
+	para "比你爸爸還厲害";
+	line "的科學家喲!";
+	done;
+
+@org $08, $497a:
+	init NAME_BLANK, $1f;
+	text "啊啊!!!";
+	para "怎麼把狗帶到別";
+	line "人家裡來。";
+	para "我才剛換了新地";
+	line "毯，";
+	cont "這下又弄髒了!";
+	para "真是沒教養的小";
+	line "孩。";
+	done;
+
+@org $08, $49cc:
+	init $09, $08; # TEMP
+	text "嗚~~汪汪汪!";
+	done;
+
+@org $08, $49db:
+	init NAME_BLANK, $15;
+	text "你是來找芳芳的";
+	line "嗎?";
+	para "芳~芳~!";
+	para "妳的朋友來找你";
+	line "唷~";
+	para "都這麼晚了，";
+	cont "留下來一起吃晚";
+	line "餐好嗎?";
+	done;
+
+@org $08, $4a2e:
+	init NAME_BLANK, $18;
+	text "賽亞是一個很棒";
+	line "的天文科學家。";
+	para "在我們天文科學";
+	line "界，";
+	cont "他算是個天才吧";
+	line "!";
+	para "只是脾氣古怪了";
+	line "一點⋯⋯";
+	done;
+
+@org $08, $4a87:
+	init $13, $1a; # TEMP
+	text "你是來找我一起";
+	line "玩的嗎?";
+	para "好~高~興~";
+	done;
+
+@org $08, $4aac:
+	init NAME_BLANK, $15;
+	text "明天晚上會有大";
+	line "規模的流星雨。";
+	para "這種難見的奇景";
+	line "，";
+	cont "我一定不能錯過";
+	line "!";
+	para "對了~";
+	para "明天晚上，";
+	cont "我們去你爸的天";
+	line "文台看流星雨。";
+	done;
+
+@org $08, $4b14:
+	init $14, $25; # TEMP
+	text "受傷了嗎";
+	forcemap "?", 1;
+	para "如果受傷的話，";
+	cont "只要進去這個α";
+	line "射線放射器裡，";
+	cont "一下下~";
+	line "就會復原喲!";
+	para "要是受傷了，";
+	line "就來找妮可吧!";
+	done;
+
+@org $08, $4b77:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "學校的門關起來";
+	line "了!";
+	done;
+
+@org $08, $4b8b:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸~";
+	line "回家吃飯了!";
+	done;
+
+@org $08, $4b9f:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸~";
+	line "吃飯了。";
+	done;
+
+@org $08, $4baf:
+	init NAME_BALLOT, $2c;
+	text "爸~!!!";
+	done;
+
+@org $08, $4bbb:
+	init $11, $11; # TEMP
+	text "是巴洛特呀!";
+	para "⋯⋯⋯⋯⋯";
+	done;
+
+@org $08, $4bd2:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸⋯⋯⋯";
+	done;
+
+@org $08, $4bdc:
+	init $11, $11; # TEMP
+	text "喧~";
+	para "不要說話~";
+	para "過來~";
+	done;
+
+@org $08, $4bf3:
+	init $11, $11; # TEMP
+	text "自從你媽媽病逝";
+	line "後，";
+	cont "就沒有像這樣仔";
+	line "細的看過你了。";
+	done;
+
+@org $08, $4c1d:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸爸⋯";
+	para "你怎麼了?";
+	done;
+
+@org $08, $4c2e:
+	init $11, $11; # TEMP
+	text "不要多話。";
+	para "看看今夜的星空";
+	line "。";
+	done;
+
+@org $08, $4c4c:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸~";
+	para "月光的顏色，";
+	cont "不是暖澄澄的黃";
+	line "色嗎?";
+	para "今晚的月光，";
+	line "藍的有點可怕⋯";
+	done;
+
+@org $08, $4c8c:
+	init $11, $11; # TEMP
+	text "⋯⋯⋯";
+	para "終於來了嗎?";
+	para "時機似乎太早了";
+	line "一點⋯⋯";
+	done;
+
+@org $08, $4cb5:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "爸⋯";
+	done;
+
+@org $08, $4cbd:
+	init $11, $11; # TEMP
+	text "⋯⋯⋯⋯";
+	done;
+
+@org $08, $4cc6:
+	init NAME_BALLOT, $2d;
+	text "槽了!";
+	para "再不趕快出發到";
+	line "學校的話，";
+	cont "一定會遲到的。";
+	done;
+
+@org $08, $4cf4:
+	init $11, $11; # TEMP
+	text "起床了嗎?";
+	line "";
+	para "該上學了。";
+	line "";
+	done;
+
+@org $08, $4d0b:
+	init $11, $11; # TEMP
+	text "等等~巴洛特!";
+	done;
+
+@org $08, $4d1a:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "⋯?";
+	para "爸，有事嗎?";
+	done;
+
+@org $08, $4d2d:
+	init $11, $11; # TEMP
+	text "先吃完早餐吧。";
+	done;
+
+@org $08, $4d3e:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "不了。";
+	para "上學快要遲到了";
+	line "。";
+	done;
+
+@org $08, $4d56:
+	init $11, $11; # TEMP
+	text "⋯⋯";
+	para "巴洛特~";
+	para "關於那個⋯⋯";
+	done;
+
+@org $08, $4d70:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "嗯?";
+	done;
+
+@org $08, $4d77:
+	init $11, $11; # TEMP
+	text "⋯⋯沒什麼。";
+	para "上學去吧。";
+	done;
+
+@org $08, $4d8f:
+	init NAME_BALLOT, $2c;
+	text "又是這樣!";
+	para "自從媽媽過逝後";
+	line "，";
+	cont "爸爸就總是不能";
+	line "老";
+	textmap "實的，", 1; # "實" is wrong
+	cont "說出想說的話!";
+	para "巴洛特已經";
+	line "12歲了!";
+	para "不是小孩子了!";
+	para "爸⋯爸爸⋯⋯";
+	cont "大举蛋!!!";
+	done;
+
+@org $08, $4e04:
+	init $11, $11; # TEMP
+	text "⋯⋯";
+	para "上學去吧。";
+	done;
+
+@org $08, $4e15:
+	init $09, $08; # TEMP
+	text "汪汪~汪汪!";
+	done;
+
+@org $08, $4e23:
+	init NAME_BLANK, $1b;
+	text "新聞報導說，";
+	cont "今天晚上會有大";
+	line "規模的流星雨。";
+	para "真是期待呢!";
+	done;
+
+@org $08, $4e55:
+	init NAME_BLANK, $13;
+	text "不曉得為什麼，";
+	cont "只要一提到流星";
+	line "雨的事，";
+	cont "賽亞就會露出不";
+	line "安的臉色⋯";
+	para "巴洛特呀，";
+	cont "你知道為什麼嗎";
+	line "?";
+	done;
+
+@org $08, $4eb0:
+	init NAME_BLANK, $22;
+	text "是巴洛特呀!";
+	line "隼人去上學了。";
+	done;
+
+@org $08, $4ecc:
+	init NAME_BLANK, $1f;
+	text "真是可惡~";
+	para "才剛換了新地毯";
+	line "，";
+	cont "這下又弄髒了!";
+	done;
+
+@org $08, $4ef4:
+	init NAME_BLANK, $15;
+	text "你是來找芳芳的";
+	line "嗎?";
+	cont "芳芳上學去了唷";
+	line "~";
+	done;
+
+@org $08, $4f1a:
+	init NAME_BLANK, $15;
+	text "今天晚上會有大";
+	line "規模的流星雨。";
+	para "這種難見的奇景";
+	line "，";
+	cont "我一定不能錯過";
+	line "!";
+	para "對了~";
+	para "今天晚上，";
+	cont "我們去你爸的天";
+	line "文台看流星雨。";
+	done;
+
+@org $08, $4f82:
+	init NAME_BALLOT, PIC_BALLOT_0;
+	text "上學快要遲到了";
+	line "，";
+	cont "不是到處溜噠的";
+	line "時間。";
+	done;
+
+@org $08, $4fa8:
+	init $15, $24; # TEMP
+	text "早啊~巴洛特。";
+	para "快點進教窒，";
+	line "就要上課了。";
+	para "⋯⋯啊?!";
+	para "巴洛特真是健忘";
+	line "。";
+	cont "教窒就是上面的";
+	line "那間啊!";
+	done;

@@ -467,6 +467,7 @@ Func_1c2c:
 Text_End:
 	call Func_1fb9
 
+.asm_1c71:
 	ld a, [_BANKNUM]
 	push af
 	ld a, BANK(Func_00a_4178)
@@ -503,7 +504,11 @@ Func_1cb6:
 	dr $1cb6, $1cde
 
 Func_1cde:
-	dr $1cde, $1d41
+	call Func_1ce4
+	jp Text_End.asm_1c71
+
+Func_1ce4:
+	dr $1ce4, $1d41
 
 Func_1d41:
 	dr $1d41, $1d67

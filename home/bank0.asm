@@ -34,6 +34,7 @@ _Start::
 	jp Func_0200
 
 unk_017f:
+; Alternate header?
 	dr $017f, $0200
 
 Func_0200:
@@ -51,7 +52,7 @@ Func_0200:
 	call SRAMTest
 	ld a, 3
 	ldh [hFF9B], a
-	ld a, $00
+	ld a, 0
 	ldh [hFF9C], a
 	ld [$d0ff], a
 	ld [$d0df], a
@@ -568,7 +569,8 @@ INCLUDE "home/vblank.asm"
 INCLUDE "home/lcd.asm"
 
 Func_28d6:
-; Clear line of text in textbox
+; Clear or duplicate line of text in textbox
+; Used in para and cont text commands
 	ld a, [wcbf6]
 	and a
 	ret z

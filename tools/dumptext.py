@@ -22,7 +22,8 @@ for line in open("../charmap.asm"):
             chars[charset][byte] = char
 
 file = open(file, "rb")
-file.seek(0x20542)
+file.seek(int(input("Enter address: "), 16))
+count = int(input("Enter count: "))
 
 def print_text():
     global backup_charset
@@ -62,8 +63,6 @@ def get_bank_address(offset):
     else:
         address = (offset - (bank * 0x4000))
     return bank, address
-
-count = 10
 
 while count != 0:
     bank, address = get_bank_address(file.tell())
