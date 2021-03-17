@@ -253,7 +253,10 @@ PlaceTilemap::
 	ret
 
 Func_0398:
-	dr $0398, $0419
+	dr $0398, $03e9
+
+Func_03e9::
+	dr $03e9, $0419
 
 Func_0419:
 	dr $0419, $062c
@@ -401,7 +404,10 @@ ClearBGMap0::
 	ret
 
 Func_0a0a:
-	dr $0a0a, $0b69
+	dr $0a0a, $0b30
+
+Func_0b30::
+	dr $0b30, $0b69
 
 Func_0b69:
 	dr $0b69, $0c17

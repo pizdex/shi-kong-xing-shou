@@ -444,3 +444,254 @@
 	cont "教窒就是上面的";
 	line "那間啊!";
 	done;
+
+@org $08, $5001:
+	init $16, $16; # TEMP
+	text "巴洛特，早安。";
+	para "怎麼一大早，";
+	cont "就露出這種心情";
+	line "不好的表情呢?";
+	done;
+
+@org $08, $5039:
+	init $00, $1e; # TEMP
+	text "今天要上的是植";
+	line "物課。";
+	para "所以我帶了白老";
+	line "鼠~吉吉來唷!";
+	done;
+
+@org $08, $506b:
+	init $00, $21; # TEMP
+	text "人家今天的便當";
+	line "，";
+	cont "很好~很好吃峨";
+	line "。";
+	para "才‧不‧給‧你";
+	line "‧吃!";
+	done;
+
+@org $08, $50a3:
+	init $12, $26; # TEMP
+	text "OH~";
+	line "BABY~";
+	para "巴洛特~";
+	line "你來的正好!";
+	para "介紹我的新朋友";
+	line "~";
+	cont "高貴隼人1號。";
+	done;
+
+@org $08, $50e8:
+	init $01, $2c; # TEMP
+	text "很好~了不起!";
+	para "我要上課了。";
+	done;
+
+@org $08, $5105:
+	init $12, $26; # TEMP
+	text "OH~NO~";
+	para "巴洛特不要說出";
+	line "，";
+	cont "這種酸萄葡的話";
+	line "。";
+	para "這可是我的一個";
+	line "天才機械發明家";
+	line "朋友，";
+	cont "借給我的機器人";
+	line "。";
+	para "他可是非常的有";
+	line "名唷。";
+	cont "想知道他是誰嗎";
+	line "?";
+	done;
+
+@org $08, $5188:
+	init $01, $2c; # TEMP
+	text "沒有興趣。";
+	done;
+
+@org $08, $5195:
+	init $12, $26; # TEMP
+	text "OH~";
+	line "BABY~";
+	para "難得巴洛特這麼";
+	line "有興趣，";
+	cont "隼人真是感動。";
+	para "放學後，";
+	cont "隼人就帶你去找";
+	line "他。";
+	done;
+
+@org $08, $51e5:
+	init $13, $1a; # TEMP
+	text "巴洛特!";
+	para "莫老師來了。";
+	para "快回位置坐好。";
+	para "你的位置有點變";
+	line "動唷!";
+	cont "就在最右上方的";
+	line "座位。";
+	done;
+
+@org $08, $522e:
+	init $15, $24; # TEMP
+	text "巴洛特!";
+	para "老師都已經來了";
+	line "，";
+	cont "你要上哪兒去呢";
+	line "?";
+	para "快回去坐好!";
+	done;
+
+@org $08, $5267:
+	init $13, $1a; # TEMP
+	text "快回位置坐好。";
+	para "你的位置就在最";
+	line "右上方的座位。";
+	done;
+
+@org $08, $5291:
+	init $12, $26; # TEMP
+	text "OH~";
+	line "BABY~";
+	para "上課了，";
+	cont "像我這樣的好學";
+	line "生，";
+	cont "一定會專心聽課";
+	line "的。";
+	done;
+
+@org $08, $52d0:
+	init $00, $1e; # TEMP
+	text "上⋯上⋯";
+	line "上課⋯課了。";
+	para "巴‧巴巴洛特⋯";
+	cont "快去⋯坐⋯";
+	line "坐⋯坐好。";
+	done;
+
+@org $08, $5306:
+	init $15, $24; # TEMP
+	text "大家都知道吧?";
+	para "晚上會有一場很";
+	line "壯觀的流星雨。";
+	para "大家一定也很期";
+	line "待吧!";
+	done;
+
+@org $08, $5346:
+	init $12, $26; # TEMP
+	text "OH~";
+	line "BABY~";
+	para "爸爸還特地買了";
+	line "，";
+	cont "超超豪華天文望";
+	line "遠鏡給隼人呢。";
+	done;
+
+@org $08, $5387:
+	init $15, $24; # TEMP
+	text "很⋯很好⋯⋯";
+	para "誰知道這個流星";
+	line "雨的詳細資料?";
+	done;
+
+@org $08, $53af:
+	init $01, $00; # TEMP
+	text "弗烈茲星系流星";
+	line "雨，";
+	cont "離上次流星雨事";
+	line "件120年。";
+	para "距地球1932";
+	line "光年。";
+	done;
+
+@org $08, $53ef:
+	init $15, $24; # TEMP
+	text "完全正確!!";
+	para "為了獎勵大家，";
+	cont "今天就提早下課";
+	line "吧!";
+	para "巴洛特!";
+	para "老師待會會到你";
+	line "家。";
+	para "和你父親商量，";
+	cont "晚上借天文館看";
+	line "流星雨的事。";
+	para "待會見了。";
+	done;
+
+@org $08, $5468:
+	init $11, $11; # TEMP
+	text "不行~!";
+	para "絕對不行。";
+	done;
+
+@org $08, $547e:
+	init $15, $24; # TEMP
+	text "我不曉得什麼事";
+	line "，";
+	cont "讓先生這麼生氣";
+	line "!";
+	para "但出借天文館，";
+	cont "讓小朋友觀賞流";
+	line "星雨，";
+	cont "不是件壞事吧!";
+	done;
+
+@org $08, $54d2:
+	init $11, $11; # TEMP
+	text "不行~";
+	para "就是今晚不行!";
+	done;
+
+@org $08, $54eb:
+	init $15, $24; # TEMP
+	text "⋯⋯";
+	para "真是不可理諭!";
+	done;
+
+@org $08, $5500:
+	init $01, $00; # TEMP
+	text "爸⋯你怎麼了!";
+	done;
+
+@org $08, $550e:
+	init $11, $11; # TEMP
+	text "巴洛特!!";
+	line "你千萬要記住!";
+	para "今天晚上!";
+	line "就是今天晚上!";
+	para "無論如何~";
+	cont "你都要待在家裡";
+	line "。";
+	para "無論聽到什麼聲";
+	line "音，";
+	cont "都不要出來。";
+	para "知道嗎?";
+	done;
+
+@org $08, $557d:
+	init $01, $00; # TEMP
+	text "怎麼回事?";
+	done;
+
+@org $08, $558a:
+	init $11, $11; # TEMP
+	text "⋯⋯⋯";
+	done;
+
+@org $08, $5592:
+	init $15, $24; # TEMP
+	text "各位同學，";
+	line "下課了!";
+	done;
+
+@org $08, $55a7:
+	init $01, $00; # TEMP
+	text "不行~";
+	line "要趕快去天文台";
+	para "找爸爸回家";
+	line "吃晚飯!";
+	done;
