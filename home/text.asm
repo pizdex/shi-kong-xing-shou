@@ -304,7 +304,7 @@ Text_Init:
 	push hl
 	ld a, [_BANKNUM]
 	push af
-	ld a, $0a
+	ld a, BANK(Func_00a_4000)
 	rst Bankswitch
 	call Func_00a_4000 ; load face picture
 	call DelayFrame
