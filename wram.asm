@@ -71,7 +71,10 @@ wcbf3:: ds 1
 wCharacterBGMapTransferStatus:: ds 1
 wCharacterTileTransferStatus:: ds 1
 wcbf6:: ds 1
-wcbf7:: ds $1e9
+wcbf7:: ds 7
+
+wcbfe:: ds 2
+wcc00:: ds $1e0
 
 wcde0:: ds 1
 wcde1:: ds $21f
@@ -99,7 +102,10 @@ wGameTimeMinutes:: ds 1
 wd0dd:: ds $19
 
 wCharacterTileDest:: ds 2
-wd0f8:: ds $30
+wd0f8:: ds 1
+wd0f9:: ds 1
+wd0fa:: ds 1
+wd0fb:: ds $2d
 
 wd128:: ds $78
 
@@ -120,7 +126,10 @@ wd9e0:: ds 2
 wd9e2:: ds $e
 
 wTempBank:: ds 1
-wd9f1:: ds $dd
+wd9f1:: ds $b2
+
+wdaa3:: ds 1
+wdaa4:: ds $2a
 
 wTextBGMapPointer:: ds 2
 wdad0:: ds $4b

@@ -15,7 +15,10 @@ Func_008_55d1:
 	ret
 
 Func_008_55e4:
-	dr $215e4, $21ab2
+	dr $215e4, $2160c
+
+Func_008_560c::
+	dr $2160c, $21ab2
 
 ; Cutscene graphics?
 unk_008_5ab2:

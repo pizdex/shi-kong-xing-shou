@@ -30,8 +30,10 @@ def print_text():
     done = 0
     while True:
         byte = int.from_bytes(file.read(1), "little")
+        """
         if not byte:
             break
+        """
 
         byte_high, new_charset = divmod(byte, 0x10)
         if byte_high == 0xf:
@@ -40,8 +42,17 @@ def print_text():
             char = chars[new_charset][byte]
             print(char, end="")
         elif byte == 0xe2:
-            done = 1
             print("\";\n\tdone;")
+            done = 1
+            break
+        elif byte == 0xe5:
+            arg = int.from_bytes(file.read(2), "little")
+            print("\";\n\tgetchoice $%04x; # TEMP" % arg, end="")
+            done = 1
+            break
+        elif byte == 0xe6:
+            print("\";\n\tchoice;", end="")
+            done = 1
             break
         elif byte == 0xec:
             print("\";\n\tpara \"", end="")

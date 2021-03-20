@@ -283,8 +283,8 @@ Func_1b23:
 	dw Text_End  ; $e2
 	dw Func_1c96 ; $e3
 	dw Func_1ca9 ; $e4
-	dw Func_1cb6 ; $e5
-	dw Func_1cde ; $e6
+	dw PrintTwoOptionMenu     ; $e5
+	dw InterpretTwoOptionMenu ; $e6
 	dw Func_1d41 ; $e7
 	dw Func_1d67 ; $e8
 	dw Text_Init ; $e9
@@ -500,15 +500,102 @@ Func_1c96:
 Func_1ca9:
 	dr $1ca9, $1cb6
 
-Func_1cb6:
-	dr $1cb6, $1cde
+PrintTwoOptionMenu:
+	pop hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld [wcbfe], a
+	ld a, h
+	ld [wcbfe + 1], a
+	push hl
+	jp CheckCharacter
 
-Func_1cde:
+unk_1cc5:
+	text "  ", 0
+	text "是", 1
+	text "  ", 0
+	text "否", 1
+	choice
+
+unk_1cd0:
+	text "  ", 0
+	text "回", 1
+	text "春", 3
+	text " ", 0
+	text "靈", 0
+	text "動", 2
+	choice
+
+InterpretTwoOptionMenu:
 	call Func_1ce4
 	jp Text_End.asm_1c71
 
 Func_1ce4:
-	dr $1ce4, $1d41
+	ld a, [wdaa3]
+	res 3, a
+	ld [wdaa3], a
+	call Func_1f70
+	ld hl, wcde0
+	inc hl
+	ld [hl], $40
+	xor a
+	ldh [hVBlank], a
+	ldh [hJoypadPressed], a
+
+.input_loop:
+; Flash gameboy icon
+	call Func_1f97
+	call Func_1f8a
+
+; Check left
+	call DelayFrame
+	ldh a, [hJoypadPressed]
+	bit D_LEFT_F, a
+	jr z, .check_right
+
+; Pressed left
+	ld hl, wcde0
+	inc hl
+	ld [hl], $40
+	jr .check_A
+
+.check_right
+	ldh a, [hJoypadPressed]
+	bit D_RIGHT_F, a
+	jr z, .check_A
+
+; Pressed right
+	ld hl, wcde0
+	inc hl
+	ld [hl], $70
+	jr .check_A ; inefficient
+
+.check_A
+	ldh a, [hJoypadPressed]
+	bit A_BUTTON_F, a
+	jr z, .loop
+
+; Pressed A
+	ld hl, wcde0
+	inc hl
+	ld a, [hl]
+	cp $40
+	jr z, .choose_option
+
+	ld a, [wdaa3]
+	set 3, a
+	ld [wdaa3], a
+	jr .choose_option
+
+; ???
+.loop
+	jr .input_loop
+
+.choose_option
+	call Func_1fb1
+	call Func_1f8a
+	ret
 
 Func_1d41:
 	dr $1d41, $1d67

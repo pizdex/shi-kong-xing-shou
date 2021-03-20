@@ -26,6 +26,20 @@ done: MACRO
 	db TX_END
 ENDM
 
+	const_next $e5
+
+	const TX_GETCHOICE ; $e5
+getchoice: MACRO
+; address to choice text
+	db TX_GETCHOICE
+	dw \1
+ENDM
+
+	const TX_CHOICE ; $e6
+choice: MACRO
+	db TX_CHOICE
+ENDM
+
 	const_next $ec
 
 	const TX_PARA ; $ec

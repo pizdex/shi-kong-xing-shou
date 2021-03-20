@@ -40,16 +40,20 @@ unk_017f:
 Func_0200:
 	call ClearMemory
 	call WriteOAMDMACodeToHRAM
-	ld hl, $106f
+
+	ld hl, Func_106f
 	ld a, l
-	ld [$d9e0], a
+	ld [wd9e0], a
 	ld a, h
-	ld [$d9e1], a
+	ld [wd9e0 + 1], a
 	ei
 	ld a, 2
 	ld [$d091], a
 	call Func_262d
+
+; Check SRAM
 	call SRAMTest
+
 	ld a, 3
 	ldh [hFF9B], a
 	ld a, 0
@@ -61,14 +65,15 @@ Func_0200:
 	ld [hFFBA], a
 	call Func_15e7
 	ld a, $12
-	ld [$d0fa], a
+	ld [wd0fa], a
 
+asm_023b:
 	ld bc, $cab0
 	xor a
 	ldh [hFFC4], a
 	call Func_092e
-	ld de, unk_025c
-	ld a, [$d0fa]
+	ld de, unkTable_025c
+	ld a, [wd0fa]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -83,10 +88,43 @@ Func_0200:
 	jp hl
 
 Func_0257:
-	dr $0257, $025c
+	call Func_15e7
+	jr asm_023b
 
-unk_025c:
-	dr $025c, $02bf
+unkTable_025c:
+	dba Func_005_41fb
+	dba Func_008_560c
+	dba Func_03c_40d2
+	dba Func_03c_4343
+	dba Func_01b_4000
+	dba Func_05d_4000
+	dba Func_04e_4943
+	dba Func_055_4000
+	dba Func_01a_4000
+	dba Func_061_4000
+	dba Func_05c_55e7
+	dba Func_061_5d22
+	dba Func_05e_401c
+	dba Func_05f_4000
+	dba Func_05b_4000
+	dba Func_04e_46e5
+	dba Func_062_4000
+	dba Func_04e_4637
+	dba Func_077_4000
+	dba Func_067_4000
+	dba Func_067_506e
+	dba Func_067_51f5
+	dba Func_062_5df3
+	dba Func_03c_40d2
+	dba Func_03c_40d2
+	dba Func_062_5f9c
+	dba Func_03c_4c74
+	dba Func_07a_401f
+	dba Func_07a_4188
+	dba Func_06f_4000
+	dba Func_070_4000
+	dba Func_071_4000
+	dba Func_071_5a49
 
 DelayFrame::
 ; Wastes cycles until the VBlank interrupt occurs, where hVBlank is set to 1
