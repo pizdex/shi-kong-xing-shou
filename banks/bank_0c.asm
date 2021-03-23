@@ -64,7 +64,7 @@ _SRAMTest::
 	ld hl, SRAMErrorPalette
 	ld c, BCPSF_AUTOINC
 	ld b, 8
-	call LoadPalettes
+	call LoadPalettes_BCPD
 
 	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a

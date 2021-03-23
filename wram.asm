@@ -74,7 +74,12 @@ wcbf6:: ds 1
 wcbf7:: ds 7
 
 wcbfe:: ds 2
-wcc00:: ds $1e0
+wcc00:: ds $40
+wcc40:: ds $40
+wcc80:: ds $a4
+
+wcd24:: ds 1
+wcd25:: ds $bb
 
 wcde0:: ds 1
 wcde1:: ds $21f
@@ -88,10 +93,15 @@ wd082:: ds 1
 wd083:: ds 1
 wd084:: ds 1
 wTextDelayFrames:: ds 1
-wd086:: ds 11
+wd086:: ds 9
 
+wd08f:: ds 1
+wd090:: ds 1
 wd091:: ds 1
-wd092:: ds $3d
+wd092:: ds $22
+
+wd0b4:: ds 1
+wd0b5:: ds $1a
 
 wTextboxPointer:: ds 2
 wd0d1:: ds 2
@@ -111,7 +121,12 @@ wd128:: ds $78
 
 wd1a0:: ds 8
 wd1a8:: ds 8
-wd1b0:: ds $7df
+wd1b0:: ds $4b
+
+wd1fb:: ds 1
+	ds 4
+
+wd200:: ds $78f
 
 wd98f:: ds 2
 wd991:: ds $2f
@@ -123,7 +138,10 @@ wWX:: ds 1
 wWY:: ds 1
 
 wd9e0:: ds 2
-wd9e2:: ds $e
+wd9e2:: ds 1
+wd9e3:: ds 1
+wd9e4:: ds 1
+wd9e5:: ds $b
 
 wTempBank:: ds 1
 wd9f1:: ds $b2
@@ -137,11 +155,13 @@ wdad0:: ds $4b
 wGameTimeSeconds:: ds 1
 wdb1c:: ds 1
 wdb1d:: ds 1
-wCurrentCharacterByte:: ds $197
+wCurrentCharacterByte:: ds 1
+wdb1f:: ds $196
 
 wdcb5:: ds 1
-wdcb6:: ds $1b
+wdcb6:: ds $1a
 
+wdcd0:: ds 1
 wdcd1:: ds 2
 wdcd3:: ds 5
 
@@ -154,5 +174,21 @@ wdce2:: ds 1
 
 ; 0 = bottom half, 1 = top half
 wTextboxPos:: ds 1
+
+wdce4:: ds 3
+wdce7:: ds 1
+wdce8:: ds 3
+
+wdceb:: ds 1
+wdcec:: ds $114
+
+wde00:: ds $16
+wde16:: ds $16
+wde2c:: ds $16
+wde42:: ds $16
+wde58:: ds $16
+wde6e:: ds $16
+wde84:: ds $16
+wde9a:: ds $16
 
 INCLUDE "hram.asm"

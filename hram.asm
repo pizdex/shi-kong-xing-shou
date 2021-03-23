@@ -4,12 +4,17 @@ hFF8C:: ds 1
 hFF8D:: ds 1
 hFF8E:: ds 1
 hFF8F:: ds 1
+
 hVBlank:: ds 1
+
 hConsoleType:: ds 1
+
 hFF92:: ds 1
 hFF93:: ds 1
+
 hJoypadPressed:: ds 1
 hJoypadDown:: ds 1
+
 hFF96:: ds 1
 hFF97:: ds 1
 hFF98:: ds 1
@@ -31,12 +36,14 @@ hFFA8:: ds 1
 hFFA9:: ds 1
 hFFAA:: ds 1
 hFFAB:: ds 1
-hFFAC:: ds 1
+hFFAC:: ds 1 ; walking animations?
 hFFAD:: ds 1
+
 hSCX:: ds 1
 hFFAF:: ds 1
 hSCY:: ds 1
 hFFB1:: ds 1
+
 hFFB2:: ds 1
 hFFB3:: ds 1
 hFFB4:: ds 1
@@ -49,7 +56,9 @@ hFFBA:: ds 1
 hFFBB:: ds 1
 hFFBC:: ds 1
 hFFBD:: ds 1
+
 hTargetBank:: ds 1
+
 hFFBF:: ds 1
 hFFC0:: ds 1
 hFFC1:: ds 1
@@ -76,7 +85,9 @@ hFFD5:: ds 1
 hFFD6:: ds 1
 hFFD7:: ds 1
 hFFD8:: ds 1
+
 hGameTimeFrames:: ds 1
+
 hFFDA:: ds 1
 hFFDB:: ds 1
 hFFDC:: ds 1

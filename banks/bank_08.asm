@@ -7,11 +7,11 @@ INCLUDE "data/text/bank08_misc.asm"
 
 Func_008_55d1:
 	ld hl, $5afe
-	call Func_03e9
+	call FillPalettes_BCPD
 	ld hl, $5afe
 	ld de, $cab0
 	ld bc, $40
-	call Func_0b30
+	call CopyBytes3
 	ret
 
 Func_008_55e4:

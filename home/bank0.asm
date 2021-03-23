@@ -17,7 +17,7 @@ _Start::
 	ld a, %11100100
 	ldh [rBGP], a
 	ld a, %00011100
-	ld [$dce7], a
+	ld [wdce7], a
 	ldh [rOBP0], a
 	ldh [rOBP1], a
 ; STAT
@@ -92,6 +92,7 @@ Func_0257:
 	jr asm_023b
 
 unkTable_025c:
+; Seems to load on each map entry
 	dba Func_005_41fb
 	dba Func_008_560c
 	dba Func_03c_40d2
@@ -203,8 +204,42 @@ CopyBytesVRAM::
 	jr nz, .copy
 	ret
 
-Func_030a:
-	dr $030a, $0348
+CopyBytesVRAM_Mirror:
+; Mirror the bits in `[hl]` and write to VRAM
+; i.e. 11110100 -> 00101111
+	ld a, [hli]
+	push bc
+; Skip if 0 or $ff
+	and a
+	jr z, .store
+	cp $ff
+	jr z, .store
+
+	ld c, 0
+REPT 8
+	srl a ; rra is better
+	rl c
+ENDR
+	jr .waitLCD
+
+.store
+	ld c, a
+
+.waitLCD
+	ldh a, [rSTAT]
+	and STATF_LCD
+	jr nz, .waitLCD
+
+; Write byte to de
+	ld a, c
+	ld [de], a
+	inc de
+	pop bc
+	dec bc
+	ld a, c
+	or b
+	jr nz, CopyBytesVRAM_Mirror
+	ret
 
 PlaceTilemap_Bank1::
 	ldh a, [hConsoleType]
@@ -291,18 +326,310 @@ PlaceTilemap::
 	ret
 
 Func_0398:
-	dr $0398, $03e9
+	ld a, %11100100
+	ldh [rBGP], a
+	ld a, %00011100
+	ld [wdce7], a
+	ldh [rOBP0], a
+	ldh [rOBP1], a
 
-Func_03e9::
-	dr $03e9, $0419
+; CGB only from here
+	ldh a, [hConsoleType]
+	cp BOOTUP_A_CGB
+	ret nz
+
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+	ld bc, unk_2b38
+	ld a, 1
+	ld [wd0b4], a
+	call Func_29c8
+	ldh a, [hFFC4]
+	and a
+	ret z
+
+	ld hl, wcc00
+	call FillPalettes_BCPD
+	ld hl, wcc40
+	call FillPalettes_OCPD
+
+	call DelayFrame
+	jp Func_0398
+
+PartialFillPalettes_BCPD:
+; Fill 24 background palettes with data from [hl] to [hl+$30]
+	di
+	call WaitVRAM_STAT2
+	ld a, BCPSF_AUTOINC
+	ldh [rBCPS], a
+	ei
+	ld b, 6 * 8
+.asm_03f4
+	di
+	call WaitVRAM_STAT2
+	ld a, [hli]
+	ldh [rBCPD], a
+	ei
+	dec b
+	jr nz, .asm_03f4
+	jr .ret
+
+.ret
+	ret
+
+FillPalettes_BCPD::
+; Fill all 32 background palettes with data from [hl] to [hl+$40]
+	di
+	call WaitVRAM_STAT2
+	ld a, BCPSF_AUTOINC
+	ldh [rBCPS], a
+	ei
+	ld b, 8 * 8
+.copy
+	di
+	call WaitVRAM_STAT2
+	ld a, [hli]
+	ldh [rBCPD], a
+	ei
+	dec b
+	jr nz, .copy
+	jr .ret
+
+.ret
+	ret
+
+FillPalettes_OCPD:
+; Fill all 32 object palettes with data from [hl] to [hl+$40]
+	di
+	call WaitVRAM_STAT2
+	ld a, OCPSF_AUTOINC
+	ldh [rOCPS], a
+	ei
+	ld b, 8 * 8
+.copy
+	di
+	call WaitVRAM_STAT2
+	ld a, [hli]
+	ldh [rOCPD], a
+	ei
+	dec b
+	jr nz, .copy
+	ret
 
 Func_0419:
-	dr $0419, $062c
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_004_4000)
+	rst Bankswitch
+	call Func_004_4000
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0426:
+	ld a, [_BANKNUM]
+	push af
+	call Func_2108
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0430:
+	ld a, [_BANKNUM]
+	push af
+	ld a, 1
+	ldh [hFFAC], a
+	ld [wdcd0], a
+	ld a, $0a
+	ldh [hFFAD], a
+	ld a, 1
+	ldh [hFFDB], a
+	ld [wdceb], a
+	ld a, $0a
+	ldh [hFFDC], a
+	call Func_0453
+	call Func_2108
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0453:
+	ld hl, wd200
+.asm_0456:
+	ld a, [hl]
+	cp $51
+	jr z, .asm_0481
+	cp $75
+	jr z, .asm_0486
+	cp $6c
+	jr z, .asm_048b
+	cp $5b
+	jr z, .asm_0490
+	cp $63
+	jr z, .asm_0495
+	cp $91
+	jr z, .asm_049a
+	cp $90
+	jr z, .asm_049f
+	cp $7e
+	jr z, .asm_04a4
+
+	ld bc, $16
+	add hl, bc
+	ld a, l
+	cp $80
+	ret nc
+	jr .asm_0456
+
+.asm_0481
+	ld de, wde00
+	jr .asm_04a9
+
+.asm_0486
+	ld de, wde16
+	jr .asm_04a9
+
+.asm_048b
+	ld de, wde2c
+	jr .asm_04a9
+
+.asm_0490
+	ld de, wde42
+	jr .asm_04a9
+
+.asm_0495
+	ld de, wde58
+	jr .asm_04a9
+
+.asm_049a
+	ld de, wde6e
+	jr .asm_04a9
+
+.asm_049f
+	ld de, wde84
+	jr .asm_04a9
+
+.asm_04a4
+	ld de, wde9a
+	jr .asm_04a9
+
+.asm_04a9:
+	push hl
+	ld bc, $16
+.copy1
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	ld a, c
+	or b
+	jr nz, .copy1
+
+	pop de
+	ld bc, unk_04d0
+	ld a, [wcd24]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $16
+.copy2
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	ld a, c
+	or b
+	jr nz, .copy2
+	ret
+
+unk_04d0:
+	dw wde00
+	dw wde00
+	dw wde00
+	dw wde16
+	dw wde00
+	dw wde2c
+	dw wde00
+	dw wde42
+	dw wde00
+	dw wde58
+	dw wde00
+	dw wde6e
+	dw wde00
+	dw wde84
+	dw wde00
+	dw wde9a
+	dw wde00
+
+Func_04f2:
+	ld a, [$dcf3]
+	ld de, $dd00
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [$dcf4]
+	ld [hl], a
+	and a
+	ret nz
+	ret
+
+Func_0506:
+	ld a, [$dcf3]
+	ld de, unk_0521
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $16
+.asm_0517
+	ld a, [hli]
+	ld [hl], 0
+	inc hl
+	dec c
+	ld a, c
+	or b
+	jr nz, .asm_0517
+	ret
+
+unk_0521:
+	dr $0521, $062c
 
 Func_062c:
-	dr $062c, $06a6
+	dr $062c, $068d
 
-LoadPalettes::
+LoadPalettes_OCPD:
+; Load b palettes from hl into rOCPD
+	ldh a, [hConsoleType]
+	cp BOOTUP_A_CGB
+	ret nz
+
+	di
+	call WaitVRAM_STAT
+	ld a, c
+	ldh [rOCPS], a
+	ei
+.load_palette
+	di
+	call WaitVRAM_STAT
+	ld a, [hli]
+	ldh [rOCPD], a
+	ei
+	dec b
+	jr nz, .load_palette
+	ret
+
+LoadPalettes_BCPD::
 ; Load b palettes from hl into rBCPD
 	ldh a, [hConsoleType]
 	cp BOOTUP_A_CGB
@@ -444,8 +771,23 @@ ClearBGMap0::
 Func_0a0a:
 	dr $0a0a, $0b30
 
-Func_0b30::
-	dr $0b30, $0b69
+CopyBytes3::
+; Copy bc bytes from hl to de
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .loop
+	ret
+
+Func_0b39:
+	dr $0b39, $0b46
+
+Func_0b46:
+	dr $0b46, $0b69
 
 Func_0b69:
 	dr $0b69, $0c17
@@ -467,8 +809,78 @@ Func_0c17:
 	push hl
 	jp Func_0b69
 
-Func_0c33::
-	dr $0c33, $105a
+Func_0c33:
+	dr $0c33, $0d52
+
+Func_0d52:
+	dr $0d52, $0d76
+
+Func_0d76:
+	cp 28
+	jr c, .asm_0d8e
+	cp 56
+	jr c, .asm_0d92
+	cp 84
+	jr c, .asm_0d96
+	cp 112
+	jr c, .asm_0d9a
+	cp 140
+	jr c, .asm_0d9e
+
+	ld a, $4c
+	rst Bankswitch
+	ret
+
+.asm_0d8e
+	ld a, $27
+	rst Bankswitch
+	ret
+
+.asm_0d92
+	ld a, $28
+	rst Bankswitch
+	ret
+
+.asm_0d96
+	ld a, $29
+	rst Bankswitch
+	ret
+
+.asm_0d9a
+	ld a, $2a
+	rst Bankswitch
+	ret
+
+.asm_0d9e
+	ld a, $4b
+	rst Bankswitch
+	ret
+
+Func_0da2::
+	ld a, [_BANKNUM]
+	push af
+	ld a, [wd9e4]
+	call Func_0d76
+	ld a, [wd9e4]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld bc, unkTable_0dc6
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $240
+	ld de, $9310
+	call CopyBytesVRAM_Mirror
+	pop af
+	rst Bankswitch
+	ret
+
+INCLUDE "data/pic_pointers.asm"
+
+unk_0f06:
+	dr $0f06, $105a
 
 ByteFill:
 ; Fill bc bytes with the value of a, starting at hl
@@ -579,7 +991,7 @@ WaitVRAM_STAT2:
 	jr WaitVRAM_STAT2
 
 CopyBytes2:
-; copy bc bytes from hl to de
+; Copy bc bytes from hl to de
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -748,13 +1160,47 @@ Func_297a:
 	dr $297a, $29c8
 
 Func_29c8:
-	dr $29c8, $29f1
+	ldh a, [hFFC4]
+	cp 1
+	jp z, .asm_29f1
+	cp 2
+	jp z, .ret
 
-Func_29f1:
-	dr $29f1, $2ab8
+	ld de, wcc80
+	push bc
+	ld c, $80
+.asm_29da:
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_29da
+
+	pop hl
+	ld de, wcc00
+	ld c, $80
+.asm_29e6
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_29e6
+
+	ld a, 1
+	ldh [hFFC4], a
+	ret
+
+.asm_29f1:
+	dr $29f1, $2ab7
+
+.ret
+	ret
 
 unk_2ab8:
-	dr $2ab8, $2bb8
+	dr $2ab8, $2b38
+
+unk_2b38:
+	dr $2b38, $2bb8
 
 SRAMTest:
 	call SRAMTest_Fast
@@ -792,7 +1238,33 @@ ClearSRAM:
 	ret
 
 Func_2be2:
-	dr $2be2, $2c03
+	push hl
+	push de
+	push bc
+	ld d, a
+	cp $53
+	jr c, .asm_2bef
+
+	ldh a, [hFFDA]
+	cp d
+	jr z, .asm_2bff
+
+.asm_2bef
+	ld a, d
+	ldh [hFFDA], a
+	ld a, [wd08f]
+	push af
+	ld a, d
+	call Func_25fb
+	call Func_25d6
+	pop af
+	rst Bankswitch
+
+.asm_2bff
+	pop bc
+	pop de
+	pop hl
+	ret
 
 Func_2c03:
 	dr $2c03, $2ff0

@@ -746,4 +746,13 @@ Func_1fb9:
 	ret
 
 Func_1fe9:
-	dr $1fe9, $262d
+	dr $1fe9, $2108
+
+Func_2108:
+	dr $2108, $25d6
+
+Func_25d6:
+	dr $25d6, $25fb
+
+Func_25fb:
+	dr $25fb, $262d
