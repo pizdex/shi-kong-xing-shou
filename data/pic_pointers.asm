@@ -1,161 +1,166 @@
-unkTable_0dc6::
-	dw $4000
-	dw $4240
-	dw $4480
-	dw $46c0
-	dw $4900
-	dw $4b40
-	dw $4d80
-	dw $4fc0
-	dw $5200
-	dw $5440
-	dw $5680
-	dw $58c0
-	dw $5b00
-	dw $5d40
-	dw $5f80
-	dw $61c0
-	dw $6400
-	dw $6640
-	dw $6880
-	dw $6ac0
-	dw $6d00
-	dw $6f40
-	dw $7180
-	dw $73c0
-	dw $7600
-	dw $7840
-	dw $7a80
-	dw $7cc0
-	dw $4000
-	dw $4240
-	dw $4480
-	dw $46c0
-	dw $4900
-	dw $4b40
-	dw unk_028_4d80
-	dw $4fc0
-	dw $5200
-	dw $5440
-	dw $5680
-	dw $58c0
-	dw $5b00
-	dw $5d40
-	dw $5f80
-	dw $61c0
-	dw $6400
-	dw $6640
-	dw $6880
-	dw $6ac0
-	dw $6d00
-	dw $6f40
-	dw $7180
-	dw $73c0
-	dw $7600
-	dw $7840
-	dw $7a80
-	dw $7cc0
-	dw $4000
-	dw $4240
-	dw $4480
-	dw $46c0
-	dw $4900
-	dw $4b40
-	dw $4d80
-	dw $4fc0
-	dw $5200
-	dw $5440
-	dw $5680
-	dw $58c0
-	dw $5b00
-	dw $5d40
-	dw $5f80
-	dw $61c0
-	dw $6400
-	dw $6640
-	dw $6880
-	dw $6ac0
-	dw $6d00
-	dw $6f40
-	dw $7180
-	dw $73c0
-	dw $7600
-	dw $7840
-	dw $7a80
-	dw $7cc0
-	dw $4000
-	dw $4240
-	dw $4480
-	dw $46c0
-	dw $4900
-	dw $4b40
-	dw $4d80
-	dw $4fc0
-	dw $5200
-	dw $5440
-	dw $5680
-	dw $58c0
-	dw $5b00
-	dw $5d40
-	dw $5f80
-	dw $61c0
-	dw $6400
-	dw $6640
-	dw $6880
-	dw $6ac0
-	dw $6d00
-	dw $6f40
-	dw $7180
-	dw $73c0
-	dw $7600
-	dw $7840
-	dw $7a80
-	dw $7cc0
-	dw $4000
-	dw $4240
-	dw $4480
-	dw $46c0
-	dw $4900
-	dw $4b40
-	dw $4d80
-	dw $4fc0
-	dw $5200
-	dw $5440
-	dw $5680
-	dw $58c0
-	dw $5b00
-	dw $5d40
-	dw $5f80
-	dw $61c0
-	dw $6400
-	dw $6640
-	dw $6880
-	dw $6ac0
-	dw $6d00
-	dw $6f40
-	dw $7180
-	dw $73c0
-	dw $7600
-	dw $7840
-	dw $7a80
-	dw $7cc0
-	dw $4000
-	dw $4240
-	dw $4480
-	dw $46c0
-	dw $4900
-	dw $4b40
-	dw $4d80
-	dw $4fc0
-	dw $5200
-	dw $5440
-	dw $5680
-	dw $58c0
-	dw $5b00
-	dw $5d40
-	dw $5f80
-	dw $61c0
-	dw $6400
-	dw $6640
-	dw $6880
-	dw $6ac0
+MonsterPicPointers::
+	dw image_27_4000 ; 000
+	dw image_27_4240 ; 001
+	dw image_27_4480 ; 002
+	dw image_27_46c0 ; 003
+	dw image_27_4900 ; 004
+	dw image_27_4b40 ; 005
+	dw image_27_4d80 ; 006
+	dw image_27_4fc0 ; 007
+	dw image_27_5200 ; 008
+	dw image_27_5440 ; 009
+	dw image_27_5680 ; 010
+	dw image_27_58c0 ; 011
+	dw image_27_5b00 ; 012
+	dw image_27_5d40 ; 013
+	dw image_27_5f80 ; 014
+	dw image_27_61c0 ; 015
+	dw image_27_6400 ; 016
+	dw image_27_6640 ; 017
+	dw image_27_6880 ; 018
+	dw image_27_6ac0 ; 019
+	dw image_27_6d00 ; 020
+	dw image_27_6f40 ; 021
+	dw image_27_7180 ; 022
+	dw image_27_73c0 ; 023
+	dw image_27_7600 ; 024
+	dw image_27_7840 ; 025
+	dw image_27_7a80 ; 026
+	dw image_27_7cc0 ; 027
+
+	dw image_28_4000 ; 028
+	dw image_28_4240 ; 029
+	dw image_28_4480 ; 030
+	dw image_28_46c0 ; 031
+	dw image_28_4900 ; 032
+	dw image_28_4b40 ; 033
+	dw image_28_4d80 ; 034
+	dw image_28_4fc0 ; 035
+	dw image_28_5200 ; 036
+	dw image_28_5440 ; 037
+	dw image_28_5680 ; 038
+	dw image_28_58c0 ; 039
+	dw image_28_5b00 ; 040
+	dw image_28_5d40 ; 041
+	dw image_28_5f80 ; 042
+	dw image_28_61c0 ; 043
+	dw image_28_6400 ; 044
+	dw image_28_6640 ; 045
+	dw image_28_6880 ; 046
+	dw image_28_6ac0 ; 047
+	dw image_28_6d00 ; 048
+	dw image_28_6f40 ; 049
+	dw image_28_7180 ; 050
+	dw image_28_73c0 ; 051
+	dw image_28_7600 ; 052
+	dw image_28_7840 ; 053
+	dw image_28_7a80 ; 054
+	dw image_28_7cc0 ; 055
+
+	dw image_29_4000 ; 056
+	dw image_29_4240 ; 057
+	dw image_29_4480 ; 058
+	dw image_29_46c0 ; 059
+	dw image_29_4900 ; 060
+	dw image_29_4b40 ; 061
+	dw image_29_4d80 ; 062
+	dw image_29_4fc0 ; 063
+	dw image_29_5200 ; 064
+	dw image_29_5440 ; 065
+	dw image_29_5680 ; 066
+	dw image_29_58c0 ; 067
+	dw image_29_5b00 ; 068
+	dw image_29_5d40 ; 069
+	dw image_29_5f80 ; 070
+	dw image_29_61c0 ; 071
+	dw image_29_6400 ; 072
+	dw image_29_6640 ; 073
+	dw image_29_6880 ; 074
+	dw image_29_6ac0 ; 075
+	dw image_29_6d00 ; 076
+	dw image_29_6f40 ; 077
+	dw image_29_7180 ; 078
+	dw image_29_73c0 ; 079
+	dw image_29_7600 ; 080
+	dw image_29_7840 ; 081
+	dw image_29_7a80 ; 082
+	dw image_29_7cc0 ; 083
+
+	dw image_2a_4000 ; 084
+	dw image_2a_4240 ; 085
+	dw image_2a_4480 ; 086
+	dw image_2a_46c0 ; 087
+	dw image_2a_4900 ; 088
+	dw image_2a_4b40 ; 089
+	dw image_2a_4d80 ; 090
+	dw image_2a_4fc0 ; 091
+	dw image_2a_5200 ; 092
+	dw image_2a_5440 ; 093
+	dw image_2a_5680 ; 094
+	dw image_2a_58c0 ; 095
+	dw image_2a_5b00 ; 096
+	dw image_2a_5d40 ; 097
+	dw image_2a_5f80 ; 098
+	dw image_2a_61c0 ; 099
+	dw image_2a_6400 ; 100
+	dw image_2a_6640 ; 101
+	dw image_2a_6880 ; 102
+	dw image_2a_6ac0 ; 103
+	dw image_2a_6d00 ; 104
+	dw image_2a_6f40 ; 105
+	dw image_2a_7180 ; 106
+	dw image_2a_73c0 ; 107
+	dw image_2a_7600 ; 108
+	dw image_2a_7840 ; 109
+	dw image_2a_7a80 ; 110
+	dw image_2a_7cc0 ; 111
+
+	dw image_4b_4000 ; 112
+	dw image_4b_4240 ; 113
+	dw image_4b_4480 ; 114
+	dw image_4b_46c0 ; 115
+	dw image_4b_4900 ; 116
+	dw image_4b_4b40 ; 117
+	dw image_4b_4d80 ; 118
+	dw image_4b_4fc0 ; 119
+	dw image_4b_5200 ; 120
+	dw image_4b_5440 ; 121
+	dw image_4b_5680 ; 122
+	dw image_4b_58c0 ; 123
+	dw image_4b_5b00 ; 124
+	dw image_4b_5d40 ; 125
+	dw image_4b_5f80 ; 126
+	dw image_4b_61c0 ; 127
+	dw image_4b_6400 ; 128
+	dw image_4b_6640 ; 129
+	dw image_4b_6880 ; 130
+	dw image_4b_6ac0 ; 131
+	dw image_4b_6d00 ; 132
+	dw image_4b_6f40 ; 133
+	dw image_4b_7180 ; 134
+	dw image_4b_73c0 ; 135
+	dw image_4b_7600 ; 136
+	dw image_4b_7840 ; 137
+	dw image_4b_7a80 ; 138
+	dw image_4b_7cc0 ; 139
+
+	dw image_4c_4000 ; 140
+	dw image_4c_4240 ; 141
+	dw image_4c_4480 ; 142
+	dw image_4c_46c0 ; 143
+	dw image_4c_4900 ; 144
+	dw image_4c_4b40 ; 145
+	dw image_4c_4d80 ; 146
+	dw image_4c_4fc0 ; 147
+	dw image_4c_5200 ; 148
+	dw image_4c_5440 ; 149
+	dw image_4c_5680 ; 150
+	dw image_4c_58c0 ; 151
+	dw image_4c_5b00 ; 152
+	dw image_4c_5d40 ; 153
+	dw image_4c_5f80 ; 154
+	dw image_4c_61c0 ; 155
+	dw image_4c_6400 ; 156
+	dw image_4c_6640 ; 157
+	dw image_4c_6880 ; 158
+	dw image_4c_6ac0 ; 159

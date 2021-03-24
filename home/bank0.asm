@@ -815,64 +815,71 @@ Func_0c33:
 Func_0d52:
 	dr $0d52, $0d76
 
-Func_0d76:
+LoadMonPicBank:
 	cp 28
-	jr c, .asm_0d8e
+	jr c, .pics1
 	cp 56
-	jr c, .asm_0d92
+	jr c, .pics2
 	cp 84
-	jr c, .asm_0d96
+	jr c, .pics3
 	cp 112
-	jr c, .asm_0d9a
+	jr c, .pics4
 	cp 140
-	jr c, .asm_0d9e
+	jr c, .pics5
 
-	ld a, $4c
+; mon >= 140
+	ld a, BANK("Pics 6")
 	rst Bankswitch
 	ret
 
-.asm_0d8e
-	ld a, $27
+.pics1
+	ld a, BANK("Pics 1")
 	rst Bankswitch
 	ret
 
-.asm_0d92
-	ld a, $28
+.pics2
+	ld a, BANK("Pics 2")
 	rst Bankswitch
 	ret
 
-.asm_0d96
-	ld a, $29
+.pics3
+	ld a, BANK("Pics 3")
 	rst Bankswitch
 	ret
 
-.asm_0d9a
-	ld a, $2a
+.pics4
+	ld a, BANK("Pics 4")
 	rst Bankswitch
 	ret
 
-.asm_0d9e
-	ld a, $4b
+.pics5
+	ld a, BANK("Pics 5")
 	rst Bankswitch
 	ret
 
 Func_0da2::
 	ld a, [_BANKNUM]
 	push af
-	ld a, [wd9e4]
-	call Func_0d76
-	ld a, [wd9e4]
+
+; Switch bank
+	ld a, [wEnemyMonSpecies]
+	call LoadMonPicBank
+
+; Get address
+	ld a, [wEnemyMonSpecies]
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld bc, unkTable_0dc6
+	ld bc, MonsterPicPointers
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+; Load mon pic into VRAM
 	ld bc, $240
 	ld de, $9310
 	call CopyBytesVRAM_Mirror
+
 	pop af
 	rst Bankswitch
 	ret

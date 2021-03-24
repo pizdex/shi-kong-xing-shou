@@ -76,7 +76,10 @@ wcbf7:: ds 7
 wcbfe:: ds 2
 wcc00:: ds $40
 wcc40:: ds $40
-wcc80:: ds $a4
+wcc80:: ds $84
+
+wcd04:: ds 1   ; OW sprite ID?
+wcd05:: ds $1f
 
 wcd24:: ds 1
 wcd25:: ds $bb
@@ -126,7 +129,15 @@ wd1b0:: ds $4b
 wd1fb:: ds 1
 	ds 4
 
-wd200:: ds $78f
+wd200:: ds $1f5
+
+; collision related
+wd3f5:: ds 1
+wd3f6:: ds 1
+wd3f7:: ds 1
+wd3f8:: ds 1
+
+wd3f9:: ds $596
 
 wd98f:: ds 2
 wd991:: ds $2f
@@ -140,7 +151,7 @@ wWY:: ds 1
 wd9e0:: ds 2
 wd9e2:: ds 1
 wd9e3:: ds 1
-wd9e4:: ds 1
+wEnemyMonSpecies:: ds 1
 wd9e5:: ds $b
 
 wTempBank:: ds 1
@@ -177,7 +188,9 @@ wTextboxPos:: ds 1
 
 wdce4:: ds 3
 wdce7:: ds 1
-wdce8:: ds 3
+wdce8:: ds 2
+
+wdcea:: ds 1 ; follower?
 
 wdceb:: ds 1
 wdcec:: ds $114
