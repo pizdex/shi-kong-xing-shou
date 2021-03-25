@@ -77,7 +77,7 @@ GetCharacterSetBase:
 
 CheckCharacter_Continue:
 	ld [wCurrentCharacterByte], a
-	call PrintCharacter_wTilemap
+	call RequestLoadCharacter_wTilemap
 
 .check_delay
 	ldh a, [hJoypadDown]
@@ -170,7 +170,7 @@ CheckCharacter_Continue:
 	ld [hli], a
 	ret
 
-PrintCharacter_wTilemap:
+RequestLoadCharacter_wTilemap:
 ; Tiles start at $8a80 with tile ID $a8
 	ld a, [wCharacterTilePos]
 	add $a8
@@ -285,11 +285,11 @@ Func_1b23:
 	dw Func_1ca9 ; $e4
 	dw PrintTwoOptionMenu     ; $e5
 	dw InterpretTwoOptionMenu ; $e6
-	dw Func_1d41 ; $e7
-	dw Func_1d67 ; $e8
-	dw Text_Init ; $e9
-	dw Func_1e0a ; $ea
-	dw Func_1e1a ; $eb
+	dw Func_1d41      ; $e7
+	dw Func_1d67      ; $e8
+	dw Text_Init      ; $e9
+	dw Func_1e0a      ; $ea
+	dw Func_1e1a      ; $eb
 	dw Text_Paragraph ; $ec
 	dw Text_NextLine  ; $ed
 	dw Text_Cont      ; $ee
@@ -357,7 +357,7 @@ Func_1ba0:
 	ld h, [hl]
 	ld l, a
 
-Func_1bc2:
+RequestLoadCharacter_Name:
 ; Used for names on textboxes
 	ld a, $0a
 	rst Bankswitch
@@ -411,12 +411,12 @@ ENDR
 	add 4
 	ld [wCharacterTilePos], a
 	pop hl
-	jp Func_1bc2
+	jp RequestLoadCharacter_Name
 
 .switch_characterset
 	call GetCharacterSetBase
 	pop hl
-	jp Func_1bc2
+	jp RequestLoadCharacter_Name
 
 .end_of_name
 	pop hl
@@ -746,10 +746,28 @@ Func_1fb9:
 	ret
 
 Func_1fe9:
-	dr $1fe9, $2108
+	dr $1fe9, $1fee
+
+Func_1fee:
+	dr $1fee, $2011
+
+Func_2011:
+	dr $2011, $20b9
+
+Func_20b9:
+	dr $20b9, $2108
 
 Func_2108:
-	dr $2108, $25d6
+	dr $2108, $22a4
+
+Func_22a4:
+	dr $22a4, $2433
+
+Func_2433:
+	dr $2433, $24be
+
+Func_24be:
+	dr $24be, $25d6
 
 Func_25d6:
 	dr $25d6, $25fb

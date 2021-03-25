@@ -1,5 +1,8 @@
 unk_00c_4000:
-	dr $30000, $32cee
+	dr $30000, $30056
+
+Func_00c_4056::
+	dr $30056, $32cee
 
 _SRAMTest::
 ; Write pattern of decreasing bytes into SRAM and verify that they were written correctly
@@ -101,7 +104,7 @@ unk_00c_6ea5:
 unk_00c_6ebe:
 	dr $32ebe, $32ed7
 
-unk_00c_6ed7:
+Func_00c_6ed7::
 	dr $32ed7, $32f22
 
 unk_00c_6f22:

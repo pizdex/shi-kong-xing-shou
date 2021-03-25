@@ -1,4 +1,4 @@
-unk_009_4000:
+Func_009_4000::
 	ld a, [$cbfb]
 	ld c, a
 	ld b, $cd

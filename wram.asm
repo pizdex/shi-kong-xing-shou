@@ -58,7 +58,9 @@ wTilemap::
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 wTilemapEnd::
 
-wca88:: ds $a8
+wca88:: ds $68
+
+wcaf0:: ds 8 * 8
 
 wcb30:: ds $a0
 
@@ -71,14 +73,20 @@ wcbf3:: ds 1
 wCharacterBGMapTransferStatus:: ds 1
 wCharacterTileTransferStatus:: ds 1
 wcbf6:: ds 1
-wcbf7:: ds 7
+wcbf7:: ds 1
+
+wcbf8:: ds 2
+wcbfa:: ds 1
+wcbfb:: ds 3
 
 wcbfe:: ds 2
 wcc00:: ds $40
 wcc40:: ds $40
-wcc80:: ds $84
+wcc80:: ds $80
 
-wcd04:: ds 1   ; OW sprite ID?
+wcd00:: ds 3
+wcd03:: ds 1 ; Facing direction?
+wcd04:: ds 1 ; OW sprite ID?
 wcd05:: ds $1f
 
 wcd24:: ds 1
@@ -112,13 +120,20 @@ wd0d3:: ds 8
 
 wGameTimeHours:: ds 1
 wGameTimeMinutes:: ds 1
-wd0dd:: ds $19
+
+	ds 2
+
+wd0df:: ds 1
+wd0e0:: ds $f
+wd0ef:: ds 1
+wd0f0:: ds 6
 
 wCharacterTileDest:: ds 2
 wd0f8:: ds 1
 wd0f9:: ds 1
 wd0fa:: ds 1
-wd0fb:: ds $2d
+wd0fb:: ds 4
+wd0ff:: ds $29
 
 wd128:: ds $78
 
@@ -155,7 +170,9 @@ wEnemyMonSpecies:: ds 1
 wd9e5:: ds $b
 
 wTempBank:: ds 1
-wd9f1:: ds $b2
+wd9f1:: ds $e
+wd9ff:: ds 1
+wda00:: ds $a3
 
 wdaa3:: ds 1
 wdaa4:: ds $2a
@@ -193,7 +210,9 @@ wdce8:: ds 2
 wdcea:: ds 1 ; follower?
 
 wdceb:: ds 1
-wdcec:: ds $114
+wdcec:: ds $14
+
+wdd00:: ds $100
 
 wde00:: ds $16
 wde16:: ds $16

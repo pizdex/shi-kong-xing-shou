@@ -39,11 +39,12 @@ rev_Check_hardware_inc : MACRO
     ENDC
 ENDM
 
-vTiles0      EQU $8000 ; $8000->$9FFF
-vTiles1      EQU vTiles0+$800
-vTiles2      EQU vTiles0+$1000
+vTiles0      EQU $8000           ; $8000->$87FF
+vTiles1      EQU vTiles0 + $800  ; $8800->$8FFF
+vTiles2      EQU vTiles0 + $1000 ; $9000->$97FF
 vBGMap0      EQU $9800 ; $9800->$9BFF
 vBGMap1      EQU $9C00 ; $9C00->$9FFF
+
 _SRAM        EQU $A000 ; $A000->$BFFF
 _RAM         EQU $C000 ; $C000->$CFFF / $C000->$DFFF
 _RAMBANK     EQU $D000 ; $D000->$DFFF

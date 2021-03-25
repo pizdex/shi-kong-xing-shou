@@ -48,7 +48,7 @@ Func_0200:
 	ld [wd9e0 + 1], a
 	ei
 	ld a, 2
-	ld [$d091], a
+	ld [wd091], a
 	call Func_262d
 
 ; Check SRAM
@@ -58,9 +58,9 @@ Func_0200:
 	ldh [hFF9B], a
 	ld a, 0
 	ldh [hFF9C], a
-	ld [$d0ff], a
-	ld [$d0df], a
-	ld [$d0ef], a
+	ld [wd0ff], a
+	ld [wd0df], a
+	ld [wd0ef], a
 	ld a, 0
 	ld [hFFBA], a
 	call Func_15e7
@@ -364,7 +364,7 @@ PartialFillPalettes_BCPD:
 	ld a, BCPSF_AUTOINC
 	ldh [rBCPS], a
 	ei
-	ld b, 6 * 8
+	ld b, 6 palettes
 .asm_03f4
 	di
 	call WaitVRAM_STAT2
@@ -385,7 +385,7 @@ FillPalettes_BCPD::
 	ld a, BCPSF_AUTOINC
 	ldh [rBCPS], a
 	ei
-	ld b, 8 * 8
+	ld b, 8 palettes
 .copy
 	di
 	call WaitVRAM_STAT2
@@ -406,7 +406,7 @@ FillPalettes_OCPD:
 	ld a, OCPSF_AUTOINC
 	ldh [rOCPS], a
 	ei
-	ld b, 8 * 8
+	ld b, 8 palettes
 .copy
 	di
 	call WaitVRAM_STAT2
@@ -527,7 +527,7 @@ Func_0453:
 	jr nz, .copy1
 
 	pop de
-	ld bc, unk_04d0
+	ld bc, .unk_04d0
 	ld a, [wcd24]
 	ld l, a
 	ld h, 0
@@ -547,7 +547,7 @@ Func_0453:
 	jr nz, .copy2
 	ret
 
-unk_04d0:
+.unk_04d0
 	dw wde00
 	dw wde00
 	dw wde00
@@ -568,7 +568,7 @@ unk_04d0:
 
 Func_04f2:
 	ld a, [$dcf3]
-	ld de, $dd00
+	ld de, wdd00
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -583,7 +583,7 @@ Func_04f2:
 
 Func_0506:
 	ld a, [$dcf3]
-	ld de, unk_0521
+	ld de, .unk_0521
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -602,53 +602,105 @@ Func_0506:
 	jr nz, .asm_0517
 	ret
 
-unk_0521:
-	dr $0521, $062c
+.unk_0521
+	dw wde00
+	dw wde16
+	dw wde2c
+	dw wde42
+	dw wde58
+	dw wde6e
+	dw wde84
+	dw wde9a
+
+Func_0531:
+	ld a, [$cd00]
+	ld b, a
+	ld a, [$cd01]
+	ld c, a
+	ld de, .unk_054f
+	ld a, [wcd03]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	add b
+	ld [$cd20], a
+	ld a, [hli]
+	add c
+	ld [$cd21], a
+	ret
+
+.unk_054f
+	db $f0, $00
+	db $10, $00
+	db $00, $10
+	db $00, $f0
+	db $fa, $ff
+	db $7f, $f5
+
+Func_055b:
+	dr $055b, $05f2
+
+Func_05f2:
+	ld a, [_BANKNUM]
+	push af
+	call Func_2108
+	call Func_22a4
+	pop af
+	rst Bankswitch
+	ret
+
+Func_05ff:
+	ld a, [_BANKNUM]
+	push af
+	call Func_2011
+	call Func_2433
+	call Func_0f6e
+	call Func_24be
+	call Func_1fee
+	call Func_19b6
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0618:
+	ld a, [_BANKNUM]
+	push af
+	call Func_26e1
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0622:
+	ld a, [_BANKNUM]
+	push af
+	call Func_20b9
+	pop af
+	rst Bankswitch
+	ret
 
 Func_062c:
-	dr $062c, $068d
-
-LoadPalettes_OCPD:
-; Load b palettes from hl into rOCPD
-	ldh a, [hConsoleType]
-	cp BOOTUP_A_CGB
-	ret nz
-
-	di
-	call WaitVRAM_STAT
-	ld a, c
-	ldh [rOCPS], a
-	ei
-.load_palette
-	di
-	call WaitVRAM_STAT
-	ld a, [hli]
-	ldh [rOCPD], a
-	ei
-	dec b
-	jr nz, .load_palette
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_009_4008)
+	rst Bankswitch
+	call Func_009_4008
+	pop af
+	rst Bankswitch
 	ret
 
-LoadPalettes_BCPD::
-; Load b palettes from hl into rBCPD
-	ldh a, [hConsoleType]
-	cp BOOTUP_A_CGB
-	ret nz
-
-	di
-	call WaitVRAM_STAT
-	ld a, c
-	ldh [rBCPS], a
-	ei
-.load_palette
-	di
-	call WaitVRAM_STAT
-	ld a, [hli]
-	ldh [rBCPD], a
-	ei
-	dec b
-	jr nz, .load_palette
+Func_0639:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_009_4000)
+	rst Bankswitch
+	call Func_009_4000
+	pop af
+	rst Bankswitch
 	ret
+
+INCLUDE "home/palettes.asm"
 
 WaitVRAM_STAT:
 	ldh a, [rSTAT]
@@ -665,7 +717,117 @@ Func_06c6:
 	ret
 
 Func_06d0:
-	dr $06d0, $07b1
+	ld a, BANK(Func_00b_417b)
+	rst Bankswitch
+	call Func_00b_417b
+	ld a, $05
+	rst Bankswitch
+	ret
+
+Func_06da:
+	ld a, [_BANKNUM]
+	push af
+	ldh a, [hFFB6]
+	rst Bankswitch
+	ld a, [wcbf8]
+	ld l, a
+	ld a, [wcbf8 + 1]
+	ld h, a
+	ld a, [hli]
+	ld [wcbfa], a
+	ld a, l
+	ld [wcbf8], a
+	ld a, h
+	ld [wcbf8 + 1], a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_06f8:
+	dr $06f8, $0733
+
+Func_0733:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_00c_6ed7)
+	rst Bankswitch
+	call Func_00c_6ed7
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0740:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_00c_4056)
+	rst Bankswitch
+	call Func_00c_4056
+	pop af
+	rst Bankswitch
+	ret
+
+Func_074d:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_00d_4019)
+	rst Bankswitch
+	call Func_00d_4019
+	pop af
+	rst Bankswitch
+	ret
+
+RequestLoadCharacter_PaperScroll:
+	ld [wCurrentCharacterByte], a
+	call DelayFrame
+	ld a, [_BANKNUM]
+	push af
+
+; Tiles start at $8a80 with tile ID $a8
+	ld a, [wCharacterTilePos]
+	add $a8
+	ld c, a
+	ld [wcbf3], a
+; [wCharacterTileDest] = $8xx0
+; xx = 'a'
+	swap a
+	ld b, a
+	and $0f
+	or $80
+	ld [wCharacterTileDest + 1], a
+	ld a, b
+	and $f0
+	ld [wCharacterTileDest], a
+
+; Get character tile source
+	ld a, [wdcd1]
+	ld e, a
+	ld a, [wdcd1 + 1]
+	ld d, a
+; hl = a * (4*8) (4 tiles, 8 bytes)
+	ld a, [wCurrentCharacterByte]
+	ld l, a
+	ld h, 0
+REPT 5
+	add hl, hl
+ENDR
+	add hl, de
+	ld a, l
+	ld [wCharacterTileSrc], a
+	ld a, h
+	ld [wCharacterTileSrc + 1], a
+	ld a, 4
+	ld [wCharacterTileCount], a
+	ld a, 1
+	ld [wCharacterTileTransferStatus], a
+	call DelayFrame
+
+	ld a, [wCharacterTilePos]
+	add 4
+	ld [wCharacterTilePos], a
+
+	pop af
+	rst Bankswitch
+	ret
 
 GetTextBGMapPointer:
 ; Calculate pointer to the next character or textbox on the BG map and return it
@@ -887,7 +1049,10 @@ Func_0da2::
 INCLUDE "data/pic_pointers.asm"
 
 unk_0f06:
-	dr $0f06, $105a
+	dr $0f06, $0f6e
+
+Func_0f6e:
+	dr $0f6e, $105a
 
 ByteFill:
 ; Fill bc bytes with the value of a, starting at hl
@@ -983,7 +1148,10 @@ Func_132b:
 	dr $132b, $15e7
 
 Func_15e7:
-	dr $15e7, $19ca
+	dr $15e7, $19b6
+
+Func_19b6:
+	dr $19b6, $19ca
 
 INCLUDE "home/text.asm"
 

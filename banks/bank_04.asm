@@ -37,7 +37,10 @@ Func_004_41e6:
 	dr $101e6, $1026d
 
 Func_004_426d:
-	dr $1026d, $13ac0
+	dr $1026d, $10337
+
+unk_004_4337::
+	dr $10337, $13ac0
 
 
 SECTION "banknum4", ROMX[$7fff], BANK[$4]

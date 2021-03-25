@@ -15,10 +15,32 @@ Func_008_55d1:
 	ret
 
 Func_008_55e4:
-	dr $215e4, $2160c
+	dr $215e4, $215f7
+
+Func_008_55f7:
+.loop
+	call DelayFrame
+	dec c
+	jr nz, .loop
+	ret
+
+Func_008_55fe:
+	ld hl, $cd00
+	ld bc, $100
+.clear
+	xor a
+	ld [hli], a
+	dec bc
+	ld a, c
+	or b
+	jr nz, .clear
+	ret
 
 Func_008_560c::
-	dr $2160c, $21ab2
+	dr $2160c, $2167a
+
+Func_008_567a:
+	dr $2167a, $21ab2
 
 ; Cutscene graphics?
 unk_008_5ab2:
