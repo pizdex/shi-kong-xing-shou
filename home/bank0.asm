@@ -418,13 +418,7 @@ FillPalettes_OCPD:
 	ret
 
 Func_0419:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_004_4000)
-	rst Bankswitch
-	call Func_004_4000
-	pop af
-	rst Bankswitch
+	homecall Func_004_4000
 	ret
 
 Func_0426:
@@ -681,23 +675,11 @@ Func_0622:
 	ret
 
 Func_062c:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_009_4008)
-	rst Bankswitch
-	call Func_009_4008
-	pop af
-	rst Bankswitch
+	homecall Func_009_4008
 	ret
 
 Func_0639:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_009_4000)
-	rst Bankswitch
-	call Func_009_4000
-	pop af
-	rst Bankswitch
+	homecall Func_009_4000
 	ret
 
 INCLUDE "home/palettes.asm"
@@ -747,33 +729,15 @@ Func_06f8:
 	dr $06f8, $0733
 
 Func_0733:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_00c_6ed7)
-	rst Bankswitch
-	call Func_00c_6ed7
-	pop af
-	rst Bankswitch
+	homecall Func_00c_6ed7
 	ret
 
 Func_0740:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_00c_4056)
-	rst Bankswitch
-	call Func_00c_4056
-	pop af
-	rst Bankswitch
+	homecall Func_00c_4056
 	ret
 
 Func_074d:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_00d_4019)
-	rst Bankswitch
-	call Func_00d_4019
-	pop af
-	rst Bankswitch
+	homecall Func_00d_4019
 	ret
 
 RequestLoadCharacter_PaperScroll:
@@ -896,13 +860,7 @@ Func_07e2:
 	ret
 
 Func_080a:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_005_4000)
-	rst Bankswitch
-	call Func_005_4000
-	pop af
-	rst Bankswitch
+	homecall Func_005_4000
 	ret
 
 Func_0817:
@@ -917,53 +875,23 @@ Func_0817:
 	ret
 
 Func_0827:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_01e_41e8)
-	rst Bankswitch
-	call Func_01e_41e8
-	pop af
-	rst Bankswitch
+	homecall Func_01e_41e8
 	ret
 
 Func_0834:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_01e_4083)
-	rst Bankswitch
-	call Func_01e_4083
-	pop af
-	rst Bankswitch
+	homecall Func_01e_4083
 	ret
 
 Func_0841:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_01e_4194)
-	rst Bankswitch
-	call Func_01e_4194
-	pop af
-	rst Bankswitch
+	homecall Func_01e_4194
 	ret
 
 Func_084e:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_01e_4125)
-	rst Bankswitch
-	call Func_01e_4125
-	pop af
-	rst Bankswitch
+	homecall Func_01e_4125
 	ret
 
 Func_085b:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_01e_4000)
-	rst Bankswitch
-	call Func_01e_4000
-	pop af
-	rst Bankswitch
+	homecall Func_01e_4000
 	ret
 
 Func_0868::
@@ -1156,13 +1084,7 @@ CopyBytes3::
 	ret
 
 Func_0b39:
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(Func_024_40fd)
-	rst Bankswitch
-	call Func_024_40fd
-	pop af
-	rst Bankswitch
+	homecall Func_024_40fd
 	ret
 
 Func_0b46:

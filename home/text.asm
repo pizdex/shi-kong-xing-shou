@@ -673,14 +673,7 @@ Func_1f70:
 	ret
 
 Func_1f8a:
-; Inefficient
-	ld a, [_BANKNUM]
-	push af
-	ld a, BANK(unk_004_4045)
-	rst Bankswitch
-	call unk_004_4045
-	pop af
-	rst Bankswitch
+	homecall Func_004_4045
 	ret
 
 Func_1f97:
