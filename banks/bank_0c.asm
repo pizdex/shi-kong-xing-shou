@@ -42,7 +42,7 @@ _SRAMTest::
 	ld bc, 14 tiles
 	call CopyBytesVRAM
 
-; Load tilemap into BG map bank 0
+; Place tilemap
 	hlbgcoord 3, 9
 	ld de, SRAMErrorTilemap
 	lb bc, 14, 1
@@ -53,20 +53,20 @@ _SRAMTest::
 	call PlaceTilemap_Bank0
 
 ; CGB only
-; Load empty tilemap into BG map bank 1
+; Place attrmap
 	hlbgcoord 3, 9
-	ld de, SRAMErrorEmptyTilemap
+	ld de, SRAMErrorAttrmap
 	lb bc, 14, 1
 	ld a, 14
 	ld [hFF92], a
 	ld a, 1
 	ld [hFF93], a
-	call PlaceTilemap_Bank1
+	call PlaceAttrmap
 
 ; CGB only
 	ld hl, SRAMErrorPalette
 	ld c, BCPSF_AUTOINC
-	ld b, 8
+	ld b, 1 palettes
 	call LoadPalettes_BCPD
 
 	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
@@ -89,14 +89,20 @@ _SRAMTest::
 SRAMErrorGFX:
 	INCBIN "gfx/sram_error.2bpp"
 
-SRAMErrorEmptyTilemap:
+SRAMErrorAttrmap:
 	ds 14, $00
 
 SRAMErrorTilemap:
-	INCBIN "gfx/sram_error.tilemap"
+	;  "T"  "E"  "S"  "T"  " "               "SRAM ERROR"
+	db $01, $02, $03, $04, $00, $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d
 
 SRAMErrorPalette:
-	INCLUDE "gfx/sram_error.pal"
+REPT 8
+	RGB 31, 31, 31
+	RGB 31, 23, 14
+	RGB 24, 13, 0
+	RGB 0, 0, 0
+ENDR
 
 unk_00c_6ea5:
 	dr $32ea5, $32ebe

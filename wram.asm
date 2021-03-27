@@ -104,7 +104,11 @@ wd082:: ds 1
 wd083:: ds 1
 wd084:: ds 1
 wTextDelayFrames:: ds 1
-wd086:: ds 9
+wd086:: ds 2
+
+wd088:: ds 2
+wd08a:: ds 1
+wd08b:: ds 4
 
 wd08f:: ds 1
 wd090:: ds 1
@@ -133,7 +137,9 @@ wd0f8:: ds 1
 wd0f9:: ds 1
 wd0fa:: ds 1
 wd0fb:: ds 4
-wd0ff:: ds $29
+wd0ff:: ds 1
+
+wd100:: ds $28 ; wTextboxAttrmap?
 
 wd128:: ds $78
 

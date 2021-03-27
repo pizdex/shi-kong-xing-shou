@@ -241,7 +241,7 @@ ENDR
 	jr nz, CopyBytesVRAM_Mirror
 	ret
 
-PlaceTilemap_Bank1::
+PlaceAttrmap::
 	ldh a, [hConsoleType]
 	cp BOOTUP_A_CGB
 	ret nz
@@ -333,11 +333,11 @@ Func_0398:
 	ldh [rOBP0], a
 	ldh [rOBP1], a
 
-; CGB only from here
 	ldh a, [hConsoleType]
 	cp BOOTUP_A_CGB
 	ret nz
 
+; CGB only from here
 	ldh a, [hFF9D]
 	inc a
 	ldh [hFF9D], a
@@ -872,20 +872,205 @@ GetTextBGMapPointer:
 	ret
 
 Func_07e2:
-	dr $07e2, $0868
+	push hl
+	ld de, wd100
+	lb bc, 20, 8
+	ld a, b
+	ldh [hFF92], a
+	ld a, c
+	ldh [hFF93], a
+	call PlaceAttrmap
+
+; Copy wTilemap textbox into VRAM
+	pop hl
+	ld a, [wTextboxPointer]
+	ld e, a
+	ld a, [wTextboxPointer + 1]
+	ld d, a
+	lb bc, 20, 8
+	ld a, b
+	ld [hFF92], a
+	ld a, c
+	ld [hFF93], a
+	call PlaceTilemap
+	ret
+
+Func_080a:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_005_4000)
+	rst Bankswitch
+	call Func_005_4000
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0817:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_005_4000)
+	rst Bankswitch
+	call Func_005_4000
+	call Func_005_4093
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0827:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_01e_41e8)
+	rst Bankswitch
+	call Func_01e_41e8
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0834:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_01e_4083)
+	rst Bankswitch
+	call Func_01e_4083
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0841:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_01e_4194)
+	rst Bankswitch
+	call Func_01e_4194
+	pop af
+	rst Bankswitch
+	ret
+
+Func_084e:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_01e_4125)
+	rst Bankswitch
+	call Func_01e_4125
+	pop af
+	rst Bankswitch
+	ret
+
+Func_085b:
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_01e_4000)
+	rst Bankswitch
+	call Func_01e_4000
+	pop af
+	rst Bankswitch
+	ret
 
 Func_0868::
-	dr $0868, $0885
+	ld a, [_BANKNUM]
+	push af
+	ld a, [wdcd8]
+	cp $3a
+	jr c, .asm_087c
+
+	ld a, BANK(Func_015_4000)
+	rst Bankswitch
+	call Func_015_4000
+	pop af
+	rst Bankswitch
+	ret
+
+.asm_087c
+	ld a, BANK(Func_01f_4000)
+	rst Bankswitch
+	call Func_01f_4000
+	pop af
+	rst Bankswitch
+	ret
 
 Func_0885::
-	dr $0885, $092e
+	dr $0885, $08a2
+
+Func_08a2::
+	dr $08a2, $08ae
+
+Func_08ae::
+	dr $08ae, $0925
+
+Func_0925::
+	ld a, [wcbfb]
+	ld c, a
+	ld b, $cd
+	jp Func_08ae
 
 Func_092e:
-	dr $092e, $096a
+	ld a, 0
+	ldh [rBGP], a
+	ldh [rOBP0], a
+	ldh [rOBP1], a
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
+	ldh [rLCDC], a
+
+	ldh a, [hConsoleType]
+	cp BOOTUP_A_CGB
+	jr nz, .exit
+
+; CGB only from here
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+	ld hl, unk_2b38
+	ld a, 0
+	ld [wd0b4], a
+	call Func_29c8
+	ldh a, [hFFC4]
+	and a
+	jr z, .exit
+
+	ld hl, wcc00
+	call FillPalettes_BCPD
+	ld hl, wcc40
+	call FillPalettes_OCPD
+
+	call DelayFrame
+	jr Func_092e
+
+.exit
+	xor a ; LCDCF_OFF
+	ldh [rLCDC], a
+	ret
 
 Func_096a::
 ; Switch intro scene?
-	dr $096a, $09d2
+	dr $096a, $09a6
+
+Func_09a6::
+.loop
+	ldh a, [hConsoleType]
+	cp BOOTUP_A_CGB
+	ret nz
+
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+	ld hl, unk_2ab8
+	ld a, 1
+	ld [wd0b4], a
+	call Func_29c8
+	ldh a, [hFFC4]
+	and a
+	jr z, .exit
+
+	ld hl, wcc00
+	call FillPalettes_BCPD
+	ld hl, wcc40
+	call FillPalettes_OCPD
+
+	call DelayFrame
+	jr .loop
+
+.exit
+	ret
 
 ClearBGMap0::
 ; Clear both banks of the BG map from address $9800 - $9c00
@@ -931,7 +1116,32 @@ ClearBGMap0::
 	ret
 
 Func_0a0a:
-	dr $0a0a, $0b30
+	dr $0a0a, $0a3e
+
+unk_0a3e:
+	dr $0a3e, $0a46
+
+Func_0a46:
+	dr $0a46, $0a8b
+
+unk_0a8b:
+	dr $0a8b, $0b1b
+
+Func_0b1b:
+	ld de, wcaf0
+	ld hl, $18
+	add hl, de
+	push hl
+	pop de
+	ld hl, unk_2c3c
+	ld c, 40
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy
+	ret
 
 CopyBytes3::
 ; Copy bc bytes from hl to de
@@ -946,13 +1156,86 @@ CopyBytes3::
 	ret
 
 Func_0b39:
-	dr $0b39, $0b46
+	ld a, [_BANKNUM]
+	push af
+	ld a, BANK(Func_024_40fd)
+	rst Bankswitch
+	call Func_024_40fd
+	pop af
+	rst Bankswitch
+	ret
 
 Func_0b46:
-	dr $0b46, $0b69
+	ld a, [_BANKNUM]
+	push af
+
+	ld a, [wd9f1]
+	rst Bankswitch
+	ld a, [wd088]
+	ld l, a
+	ld a, [wd088 + 1]
+	ld h, a
+	ld a, [hli]
+	ld [wd08a], a
+	ld a, l
+	ld [wd088], a
+	ld a, h
+	ld [wd088 + 1], a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_0b65:
+	call DelayFrame
+	push hl
 
 Func_0b69:
-	dr $0b69, $0c17
+	dr $0b69, $0b7a
+
+Func_0b7a:
+	dr $0b7a, $0b96
+
+Func_0b96:
+	ld de, unk_0ba4
+	sub $e0
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+unk_0ba4:
+	dw Func_0bc4
+	dw Func_0bc7
+	dw Func_0bec
+	dw Func_0bc4
+	dw Func_0b7a
+	dw Func_0c33
+	dw Func_0c17
+	dw Func_0c6a
+	dw Func_0c42
+	dw Func_0c51
+	dw Func_0bc4
+	dw Func_0bc4
+	dw Func_0bfe
+	dw Func_0b7a
+	dw Func_0bc4
+	dw Func_0bc4
+
+Func_0bc4:
+	jp Func_0b69
+
+Func_0bc7:
+	dr $0bc7, $0bec
+
+Func_0bec:
+	dr $0bec, $0bfe
+
+Func_0bfe:
+	dr $0bfe, $0c17
 
 Func_0c17:
 	ld a, [$d986]
@@ -972,7 +1255,16 @@ Func_0c17:
 	jp Func_0b69
 
 Func_0c33:
-	dr $0c33, $0d52
+	dr $0c33, $0c42
+
+Func_0c42:
+	dr $0c42, $0c51
+
+Func_0c51:
+	dr $0c51, $0c6a
+
+Func_0c6a:
+	dr $0c6a, $0d52
 
 Func_0d52:
 	dr $0d52, $0d76
@@ -1442,4 +1734,7 @@ Func_2be2:
 	ret
 
 Func_2c03:
-	dr $2c03, $2ff0
+	dr $2c03, $2c3c
+
+unk_2c3c:
+	dr $2c3c, $2ff0
