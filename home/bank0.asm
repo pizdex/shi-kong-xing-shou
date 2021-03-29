@@ -326,6 +326,7 @@ PlaceTilemap::
 	ret
 
 Func_0398:
+; Map fade in?
 	ld a, %11100100
 	ldh [rBGP], a
 	ld a, %00011100
@@ -706,21 +707,28 @@ Func_06d0:
 	rst Bankswitch
 	ret
 
-Func_06da:
+GetFarByte::
+; Get byte from [hFFB6]:[wcbf8] and store it in [wFarByte]
 	ld a, [_BANKNUM]
 	push af
+
+; Get bank and address
 	ldh a, [hFFB6]
 	rst Bankswitch
 	ld a, [wcbf8]
 	ld l, a
 	ld a, [wcbf8 + 1]
 	ld h, a
+
+; Get byte
 	ld a, [hli]
-	ld [wcbfa], a
+	ld [wFarByte], a
+; Store new address
 	ld a, l
 	ld [wcbf8], a
 	ld a, h
 	ld [wcbf8 + 1], a
+
 	pop af
 	rst Bankswitch
 	ret
@@ -1083,7 +1091,7 @@ CopyBytes3::
 	jr nz, .loop
 	ret
 
-Func_0b39:
+Func_0b39::
 	homecall Func_024_40fd
 	ret
 
@@ -1151,10 +1159,34 @@ Func_0bc4:
 	jp Func_0b69
 
 Func_0bc7:
-	dr $0bc7, $0bec
+	ld a, [wd9d0]
+	ld l, a
+	ld a, [wd9d0 + 1]
+	ld h, a
+	ld de, $d9ce
+	ld bc, $0204
+	ld a, $77
+	ld [$d8fe], a
+	ld a, 1
+	ld [$d1fc], a
+	ld a, 1
+	ld [$d0fd], a
+	call Func_113f
+	pop hl
+	push hl
+	jp Func_0b69
 
 Func_0bec:
-	dr $0bec, $0bfe
+	pop hl
+	call Func_1fb9
+	ret
+
+Func_0bf1:
+	ld bc, $480
+	ld hl, $8b60
+	xor a
+	call ByteFillVRAM
+	call DelayFrame
 
 Func_0bfe:
 	dr $0bfe, $0c17
@@ -1177,16 +1209,29 @@ Func_0c17:
 	jp Func_0b69
 
 Func_0c33:
-	dr $0c33, $0c42
+	ld a, [$d9e9]
+	ld d, a
+	farcall Func_01e_4266
+	pop hl
+	push hl
+	jp Func_0b69
 
 Func_0c42:
-	dr $0c42, $0c51
+	ld a, [$d9f3]
+	ld d, a
+	farcall Func_01e_4275
+	pop hl
+	push hl
+	jp Func_0b69
 
 Func_0c51:
 	dr $0c51, $0c6a
 
 Func_0c6a:
-	dr $0c6a, $0d52
+	dr $0c6a, $0c93
+
+Func_0c93:
+	dr $0c93, $0d52
 
 Func_0d52:
 	dr $0d52, $0d76
@@ -1263,10 +1308,58 @@ Func_0da2::
 INCLUDE "data/pic_pointers.asm"
 
 unk_0f06:
-	dr $0f06, $0f6e
+	dr $0f06, $0f36
+
+Func_0f36:
+	dr $0f36, $0f6e
 
 Func_0f6e:
-	dr $0f6e, $105a
+	dr $0f6e, $0fac
+
+Func_0fac:
+	ld de, wdd00
+.asm_0faf
+	ld a, [wd08e]
+	inc a
+	and $07
+	ld [wd08e], a
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hl]
+	and a
+	ret nz
+	jr .asm_0faf
+
+Func_0fc4:
+	ld de, wdd00
+.asm_0fc7
+	ld a, [wd08e]
+	dec a
+	and $07
+	ld [wd08e], a
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hl]
+	and a
+	ret nz
+	jr .asm_0fc7
+
+Func_0fdc:
+	dr $0fdc, $0fef
+
+Func_0fef:
+	dr $0fef, $1022
+
+Func_1022:
+	dr $1022, $105a
 
 ByteFill:
 ; Fill bc bytes with the value of a, starting at hl
@@ -1311,7 +1404,10 @@ Func_109a:
 	dr $109a, $10b5
 
 Func_10b5:
-	dr $10b5, $12fd
+	dr $10b5, $113f
+
+Func_113f:
+	dr $113f, $12fd
 
 SRAMTest_Fast:
 ; Check for pattern at start of SRAM
@@ -1626,7 +1722,7 @@ ClearSRAM:
 	jr nz, .clear
 	ret
 
-Func_2be2:
+Func_2be2::
 	push hl
 	push de
 	push bc

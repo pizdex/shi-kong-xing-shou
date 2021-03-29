@@ -528,10 +528,10 @@ unk_1cd0:
 	choice
 
 InterpretTwoOptionMenu:
-	call Func_1ce4
+	call .Main
 	jp Text_End.asm_1c71
 
-Func_1ce4:
+.Main:
 	ld a, [wdaa3]
 	res 3, a
 	ld [wdaa3], a

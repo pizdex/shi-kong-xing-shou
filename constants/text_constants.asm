@@ -1,3 +1,8 @@
+; Textbox location
+	const_def
+	const TEXTBOX_BOTTOM ; $00
+	const TEXTBOX_TOP    ; $01
+
 ; Names
 	const_def
 	const NAME_BLANK  ; $00

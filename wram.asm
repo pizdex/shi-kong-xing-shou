@@ -76,7 +76,7 @@ wcbf6:: ds 1
 wcbf7:: ds 1
 
 wcbf8:: ds 2
-wcbfa:: ds 1
+wFarByte:: ds 1
 wcbfb:: ds 3
 
 wcbfe:: ds 2
@@ -84,16 +84,25 @@ wcc00:: ds $40
 wcc40:: ds $40
 wcc80:: ds $80
 
-wcd00:: ds 3
-wcd03:: ds 1 ; Facing direction?
+wcd00:: ds 1 ; Distance to warp border y
+wcd01:: ds 1 ; Distance to warp border x
+
+wcd02:: ds 1
+wcd03:: ds 1 ; Facing direction
 wcd04:: ds 1 ; OW sprite ID?
 wcd05:: ds $1f
 
 wcd24:: ds 1
 wcd25:: ds $bb
 
+; Start menu
 wcde0:: ds 1
-wcde1:: ds $21f
+wcde1:: ds 1
+wcde2:: ds 1
+
+wcde3:: ds $1d
+
+wce00:: ds $200
 
 
 SECTION "WRAM1", WRAMX
@@ -104,12 +113,15 @@ wd082:: ds 1
 wd083:: ds 1
 wd084:: ds 1
 wTextDelayFrames:: ds 1
-wd086:: ds 2
+wd086:: ds 1
+wd087:: ds 1
 
 wd088:: ds 2
 wd08a:: ds 1
-wd08b:: ds 4
+wd08b:: ds 2
 
+wd08d:: ds 1 ; selected page
+wd08e:: ds 1 ; selected option
 wd08f:: ds 1
 wd090:: ds 1
 wd091:: ds 1
@@ -164,7 +176,13 @@ wd98f:: ds 2
 wd991:: ds $2f
 
 wCharacterTileSrc:: ds 2
-wd9c2:: ds $1c
+wd9c2:: ds $e
+
+wd9d0:: ds 2
+wd9d2:: ds 6
+
+wd9d8:: ds 1
+wd9d9:: ds 5
 
 wWX:: ds 1
 wWY:: ds 1
@@ -193,7 +211,9 @@ wCurrentCharacterByte:: ds 1
 wdb1f:: ds $196
 
 wdcb5:: ds 1
-wdcb6:: ds $1a
+wdcb6:: ds 5
+
+wdcbb:: ds $15
 
 wdcd0:: ds 1
 wdcd1:: ds 2
