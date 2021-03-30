@@ -1095,7 +1095,7 @@ Func_0b39::
 	homecall Func_024_40fd
 	ret
 
-Func_0b46:
+Func_0b46::
 	ld a, [_BANKNUM]
 	push af
 
@@ -1305,7 +1305,7 @@ Func_0da2::
 	rst Bankswitch
 	ret
 
-INCLUDE "data/pic_pointers.asm"
+INCLUDE "data/monsters/pic_pointers.asm"
 
 unk_0f06:
 	dr $0f06, $0f36

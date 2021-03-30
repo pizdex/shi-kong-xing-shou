@@ -58,7 +58,9 @@ wTilemap::
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 wTilemapEnd::
 
-wca88:: ds $68
+wca88:: ds $28
+
+wcab0:: ds $40
 
 wcaf0:: ds 8 * 8
 
@@ -182,7 +184,8 @@ wd9d0:: ds 2
 wd9d2:: ds 6
 
 wd9d8:: ds 1
-wd9d9:: ds 5
+wd9d9:: ds 1
+wd9da:: ds 4
 
 wWX:: ds 1
 wWY:: ds 1
