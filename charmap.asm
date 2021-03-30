@@ -366,7 +366,7 @@ NEWCHARMAP charmap1
 	charmap "興", $88
 	charmap "奮", $89
 	charmap "除", $8a
-	charmap "青", $8b
+	charmap "膏", $8b
 	charmap "萬", $8c
 	charmap "能", $8d
 	charmap "急", $8e
@@ -766,7 +766,7 @@ NEWCHARMAP charmap3
 	charmap "傑", $52
 	charmap "森", $53
 	charmap "煞", $54
-	charmap "案", $55 ; ?
+	charmap "寡", $55 ; ?
 	charmap "婦", $56
 	charmap "史", $57
 	charmap "萊", $58

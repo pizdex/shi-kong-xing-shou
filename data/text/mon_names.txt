@@ -1,0 +1,685 @@
+@org $26, $4888:
+	text "   ";
+	line;
+
+@org $26, $488d:
+	text "暴躁猴";
+	line;
+
+@org $26, $4893:
+	text "綠巨人";
+	line;
+
+@org $26, $4899:
+	text "鐵拳蛙";
+	line;
+
+@org $26, $489f:
+	text "橡皮管";
+	line;
+
+@org $26, $48a4:
+	text "金剛獸";
+	line;
+
+@org $26, $48aa:
+	text "粉紅娘";
+	line;
+
+@org $26, $48b0:
+	text "青草精";
+	line;
+
+@org $26, $48b7:
+	text "怪笑爺";
+	line;
+
+@org $26, $48bd:
+	text "機甲人";
+	line;
+
+@org $26, $48c3:
+	text "長 毛";
+	line;
+
+@org $26, $48ca:
+	text "紅";
+	forcemap " ", 0;
+	text "豬";
+	line;
+
+@org $26, $48d1:
+	text "火鳳凰";
+	line;
+
+@org $26, $48d7:
+	text "赤 鍊";
+	line;
+
+@org $26, $48de:
+	text "噴火龍";
+	line;
+
+@org $26, $48e4:
+	text "熔岩獸";
+	line;
+
+@org $26, $48ea:
+	text "赤火狐";
+	line;
+
+@org $26, $48f1:
+	text "燭 妖";
+	line;
+
+@org $26, $48f8:
+	text "焱爐妖";
+	line;
+
+@org $26, $48fd:
+	text "日 輪";
+	line;
+
+@org $26, $4904:
+	text "火眼狼";
+	line;
+
+@org $26, $490b:
+	text "河 童";
+	line;
+
+@org $26, $4912:
+	text "刺";
+	forcemap " ", 0;
+	text "錘";
+	line;
+
+@org $26, $4919:
+	text "過河龍";
+	line;
+
+@org $26, $4920:
+	text "翻江鯉";
+	line;
+
+@org $26, $4925:
+	text "水";
+	forcemap " ", 0;
+	text "妖";
+	line;
+
+@org $26, $492c:
+	text "夾面妖";
+	line;
+
+@org $26, $4931:
+	text "圓 圓";
+	line;
+
+@org $26, $4938:
+	text "金魚王";
+	line;
+
+@org $26, $493f:
+	text "食人鯊";
+	line;
+
+@org $26, $4946:
+	text "水瓶座";
+	line;
+
+@org $26, $494c:
+	text "草叢怪";
+	line;
+
+@org $26, $4953:
+	text "蘑菇群";
+	line;
+
+@org $26, $4958:
+	text "樹 精";
+	line;
+
+@org $26, $495d:
+	text "咬人果";
+	line;
+
+@org $26, $4963:
+	text "足 鐮";
+	line;
+
+@org $26, $496a:
+	text "蛇 王";
+	line;
+
+@org $26, $4971:
+	text "毒";
+	forcemap " ", 0;
+	text "菊";
+	line;
+
+@org $26, $4978:
+	text "蟲";
+	forcemap " ", 0;
+	text "精";
+	line;
+
+@org $26, $497f:
+	text "香菇精";
+	line;
+
+@org $26, $4986:
+	text "花蝴蝶";
+	line;
+
+@org $26, $498c:
+	text "獨角龍";
+	line;
+
+@org $26, $4993:
+	text "獸面鳩";
+	line;
+
+@org $26, $4999:
+	text "暗";
+	forcemap " ", 0;
+	text "蝠";
+	line;
+
+@org $26, $49a0:
+	text "沙塵暴";
+	line;
+
+@org $26, $49a7:
+	text "鳥人獸";
+	line;
+
+@org $26, $49ad:
+	text "大嘴鳥";
+	line;
+
+@org $26, $49b4:
+	text "飛天牛";
+	line;
+
+@org $26, $49ba:
+	text "機械蝙";
+	line;
+
+@org $26, $49c0:
+	text "鳥 人";
+	line;
+
+@org $26, $49c5:
+	text "翼首龍";
+	line;
+
+@org $26, $49cc:
+	text "土 沙";
+	line;
+
+@org $26, $49d3:
+	text "泥 獸";
+	line;
+
+@org $26, $49da:
+	text "四角龍";
+	line;
+
+@org $26, $49e1:
+	text "丟石怪";
+	line;
+
+@org $26, $49e8:
+	text "鬥 石";
+	line;
+
+@org $26, $49ed:
+	text "石";
+	forcemap " ", 0;
+	text "蛟";
+	line;
+
+@org $26, $49f4:
+	text "刺角獸";
+	line;
+
+@org $26, $49fa:
+	text "壁面石";
+	line;
+
+@org $26, $4a01:
+	text "機械石";
+	line;
+
+@org $26, $4a08:
+	text "泥";
+	forcemap " ", 0;
+	text "人";
+	line;
+
+@org $26, $4a0f:
+	text "紅魔人";
+	line;
+
+@org $26, $4a16:
+	text "飛";
+	forcemap " ", 0;
+	text "首";
+	line;
+
+@org $26, $4a1d:
+	text "屍 妖";
+	line;
+
+@org $26, $4a24:
+	text "閻魔人";
+	line;
+
+@org $26, $4a2b:
+	text "傑 森";
+	line;
+
+@org $26, $4a32:
+	text "豬 妖";
+	line;
+
+@org $26, $4a39:
+	text "電子腦";
+	line;
+
+@org $26, $4a3e:
+	text "黑";
+	forcemap " ", 0;
+	text "煞";
+	line;
+
+@org $26, $4a45:
+	text "黑寡婦";
+	line;
+
+@org $26, $4a4b:
+	text "史萊姆";
+	line;
+
+@org $26, $4a50:
+	text "仙";
+	forcemap " ", 0;
+	text "人";
+	line;
+
+@org $26, $4a57:
+	text "雷 神";
+	line;
+
+@org $26, $4a5c:
+	text "泥菩薩";
+	line;
+
+@org $26, $4a61:
+	text "天";
+	forcemap " ", 0;
+	text "狗";
+	line;
+
+@org $26, $4a68:
+	text "雷";
+	forcemap " ", 0;
+	text "獸";
+	line;
+
+@org $26, $4a6f:
+	text "海 神";
+	line;
+
+@org $26, $4a74:
+	text "小天使";
+	line;
+
+@org $26, $4a7a:
+	text "天";
+	forcemap " ", 0;
+	text "兵";
+	line;
+
+@org $26, $4a81:
+	text "機械雷";
+	line;
+
+@org $26, $4a88:
+	text "金光球";
+	line;
+
+@org $26, $4a8f:
+	text "藍靈犬";
+	line;
+
+@org $26, $4a96:
+	text "機械貓";
+	line;
+
+@org $26, $4a9c:
+	text "妙 虎";
+	line;
+
+@org $26, $4aa3:
+	text "寵物犬";
+	line;
+
+@org $26, $4aa9:
+	text "虎 犬";
+	line;
+
+@org $26, $4ab0:
+	text "維京人";
+	line;
+
+@org $26, $4ab6:
+	text "鬥精靈";
+	line;
+
+@org $26, $4abb:
+	text "雙面獸";
+	line;
+
+@org $26, $4ac2:
+	text "大舌蛙";
+	line;
+
+@org $26, $4ac8:
+	text "火炎怪";
+	line;
+
+@org $26, $4ace:
+	text "鸚鵡獸";
+	line;
+
+@org $26, $4ad4:
+	text "邪火怪";
+	line;
+
+@org $26, $4ada:
+	text "烈火劍";
+	line;
+
+@org $26, $4adf:
+	text "巨火岩";
+	line;
+
+@org $26, $4ae5:
+	text "火精靈";
+	line;
+
+@org $26, $4aea:
+	text "炎龍獸";
+	line;
+
+@org $26, $4af0:
+	text "風火輪";
+	line;
+
+@org $26, $4af6:
+	text "火 神";
+	line;
+
+@org $26, $4afb:
+	text "人";
+	forcemap " ", 0;
+	text "魚";
+	line;
+
+@org $26, $4b02:
+	text "雪";
+	forcemap " ", 0;
+	text "熊";
+	line;
+
+@org $26, $4b09:
+	text "章魚怪";
+	line;
+
+@org $26, $4b0f:
+	text "水";
+	forcemap " ", 0;
+	text "妖";
+	line;
+
+@org $26, $4b16:
+	text "蟹居獸";
+	line;
+
+@org $26, $4b1d:
+	text "水精靈";
+	line;
+
+@org $26, $4b22:
+	text "巨獸龜";
+	line;
+
+@org $26, $4b29:
+	text "咕嚕妖";
+	line;
+
+@org $26, $4b2e:
+	text "蚌殼獸";
+	line;
+
+@org $26, $4b34:
+	text "小綿羊";
+	line;
+
+@org $26, $4b3a:
+	text "紅螞蟻";
+	line;
+
+@org $26, $4b40:
+	text "樹 精";
+	line;
+
+@org $26, $4b45:
+	text "毛 毛";
+	line;
+
+@org $26, $4b4c:
+	text "紅毛怪";
+	line;
+
+@org $26, $4b53:
+	text "泰 山";
+	line;
+
+@org $26, $4b5a:
+	text "絨球獸";
+	line;
+
+@org $26, $4b61:
+	text "老山羊";
+	line;
+
+@org $26, $4b67:
+	text "怯膽茸";
+	line;
+
+@org $26, $4b6c:
+	text "機械鳥";
+	line;
+
+@org $26, $4b73:
+	text "飛";
+	forcemap " ", 0;
+	text "馬";
+	line;
+
+@org $26, $4b7a:
+	text "举举鳥";
+	line;
+
+@org $26, $4b80:
+	text "青 蛟";
+	line;
+
+@org $26, $4b87:
+	text "插翅兔";
+	line;
+
+@org $26, $4b8e:
+	text "天精靈";
+	line;
+
+@org $26, $4b93:
+	text "天";
+	forcemap " ", 0;
+	text "龍";
+	line;
+
+@org $26, $4b9a:
+	text "飛天妖";
+	line;
+
+@org $26, $4ba0:
+	text "比比鳥";
+	line;
+
+@org $26, $4ba6:
+	text "彩繪精";
+	line;
+
+@org $26, $4bac:
+	text "咖啡獸";
+	line;
+
+@org $26, $4bb2:
+	text "石";
+	forcemap " ", 0;
+	text "魔";
+	line;
+
+@org $26, $4bb9:
+	text "混江獸";
+	line;
+
+@org $26, $4bc0:
+	text "石 星";
+	line;
+
+@org $26, $4bc5:
+	text "滾滾糢";
+	line;
+
+@org $26, $4bca:
+	text "困途掌";
+	line;
+
+@org $26, $4bd0:
+	text "地底人";
+	line;
+
+@org $26, $4bd7:
+	text "玉玲瓏";
+	line;
+
+@org $26, $4bdd:
+	text "銷魂閣";
+	line;
+
+@org $26, $4be4:
+	text "勾魂使";
+	line;
+
+@org $26, $4beb:
+	text "木乃伊";
+	line;
+
+@org $26, $4bf1:
+	text "魔蛋獸";
+	line;
+
+@org $26, $4bf8:
+	text "布 妖";
+	line;
+
+@org $26, $4bff:
+	text "小惡魔";
+	line;
+
+@org $26, $4c05:
+	text "奪命蠍";
+	line;
+
+@org $26, $4c0c:
+	text "鏈 鼠";
+	line;
+
+@org $26, $4c13:
+	text "大頭鬼";
+	line;
+
+@org $26, $4c19:
+	text "時空獸";
+	line;
+
+@org $26, $4c1f:
+	text "音樂靈";
+	line;
+
+@org $26, $4c26:
+	text "時間獸";
+	line;
+
+@org $26, $4c2d:
+	text "時間郎";
+	line;
+
+@org $26, $4c34:
+	text "金獅王";
+	line;
+
+@org $26, $4c3b:
+	text "天";
+	forcemap " ", 0;
+	text "眼";
+	line;
+
+@org $26, $4c42:
+	text "音樂獸";
+	line;
+
+@org $26, $4c49:
+	text "天行馬";
+	line;
+
+@org $26, $4c4f:
+	text "翻天龍";
+	line;
+
+@org $26, $4c56:
+	text "   ";
+	line;
+
+@org $26, $4c5b:
+	text "狼人獸";
+	line;
+
+@org $26, $4c61:
+	text "水魔人";
+	line;
+
+@org $26, $4c68:
+	text "火魔人";
+	line;
+
+@org $26, $4c6f:
+	text "神秘獸";
+	line;
+
+@org $26, $4c76:
+	text "徽罰者";
+	line;
+
+@org $26, $4c7c:
+	text "徽罰者";
+	line;
+
+@org $26, $4c82:
+	text "雲中獸";
+	line;
