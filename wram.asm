@@ -134,7 +134,11 @@ wd0b5:: ds $1a
 
 wTextboxPointer:: ds 2
 wd0d1:: ds 2
-wd0d3:: ds 8
+wd0d3:: ds 4
+
+wMoney:: ds 3
+
+wd0da:: ds 1
 
 wGameTimeHours:: ds 1
 wGameTimeMinutes:: ds 1
@@ -164,7 +168,9 @@ wd1b0:: ds $4b
 wd1fb:: ds 1
 	ds 4
 
-wd200:: ds $1f5
+wd200:: ds $100
+
+wd300:: ds $f5
 
 ; collision related
 wd3f5:: ds 1
@@ -211,7 +217,12 @@ wGameTimeSeconds:: ds 1
 wdb1c:: ds 1
 wdb1d:: ds 1
 wCurrentCharacterByte:: ds 1
-wdb1f:: ds $196
+wdb1f:: ds $191
+
+wdcb0:: ds 1
+wdcb1:: ds 1
+wdcb2:: ds 1
+wdcb3:: ds 2
 
 wdcb5:: ds 1
 wdcb6:: ds 5

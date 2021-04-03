@@ -1458,7 +1458,124 @@ Func_132b:
 	dr $132b, $15e7
 
 Func_15e7:
-	dr $15e7, $19b6
+	dr $15e7, $1642
+
+Func_1642:
+	ld a, [wdcb0]
+	and a
+	jr z, Func_1661
+
+	cp 1
+	jp z, Func_1674
+	cp 2
+	jp z, Func_168c
+	cp 3
+	jp z, Func_16b6
+	cp 4
+	jp z, Func_16c0
+	cp 5
+	jp z, Func_16ea
+
+Func_1661:
+; 1000 money
+	ld a, $03
+	ld [wMoney + 1], a
+	ld a, $e8
+	ld [wMoney + 2], a
+
+; Init items
+	ld hl, wd300
+	ld [hl], $05
+	inc hl
+	ld [hl], 2
+	ret
+
+Func_1674:
+; 99999 money
+	ld a, $01
+	ld [wMoney], a
+	ld a, $86
+	ld [wMoney + 1], a
+	ld a, $9f
+	ld [wMoney + 2], a
+
+; Init items
+	ld hl, wd300
+	ld [hl], $05
+	inc hl
+	ld [hl], 2
+	ret
+
+Func_168c:
+; 99999 money
+	ld a, $01
+	ld [wMoney], a
+	ld a, $86
+	ld [wMoney + 1], a
+	ld a, $9f
+	ld [wMoney + 2], a
+
+; Init items
+	ld hl, wd300
+	ld [hl], $05
+	inc hl
+	ld [hl], 2
+	inc hl
+	ld [hl], $26
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], $26
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], $27
+	inc hl
+	ld [hl], 99
+	ret
+
+Func_16b6:
+	call ClearSRAM
+	xor a
+	ld [rRAMG], a
+	jp Func_1661
+
+Func_16c0:
+; 99999 money
+	ld a, $01
+	ld [wMoney], a
+	ld a, $86
+	ld [wMoney + 1], a
+	ld a, $9f
+	ld [wMoney + 2], a
+
+; Init items
+	ld hl, wd300
+	ld [hl], $05
+	inc hl
+	ld [hl], 2
+	inc hl
+	ld [hl], $26
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], $26
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], $27
+	inc hl
+	ld [hl], 99
+	ret
+
+Func_16ea:
+	call ClearSRAM
+	xor a
+	ld [rRAMG], a
+	jp Func_1661
+
+Func_16f4:
+	dr $16f4, $19b6
 
 Func_19b6:
 	dr $19b6, $19ca

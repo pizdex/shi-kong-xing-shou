@@ -1451,7 +1451,7 @@ NEWCHARMAP charmap6
 	charmap "配", $56
 	charmap "舉", $57
 	charmap "典", $58
-	charmap "實", $59 ; ?
+	charmap "賓", $59 ; ?
 	charmap "廳", $5a
 	charmap "艘", $5b
 	charmap "朝", $5c
@@ -1678,7 +1678,7 @@ NEWCHARMAP charmap7
 	charmap "x", $56
 	charmap "谷", $57
 	charmap "班", $58
-	charmap "單", $59 ; ?
+	charmap "輩", $59 ; ?
 	charmap "笛", $5a
 	charmap "糊", $5b
 	charmap "沿", $5c
