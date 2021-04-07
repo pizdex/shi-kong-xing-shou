@@ -20,7 +20,16 @@ Func_01e_4275::
 	dr $78275, $787fb
 
 Func_01e_47fb:
-	dr $787fb, $799cc
+	dr $787fb, $79829
+
+text_1e_5829:
+	line
+
+text_1e_582a:
+	dr $7982a, $79898
+
+text_1e_5898:
+	dr $79898, $799cc
 
 unk_01e_59cc:
 	dr $799cc, $79aa0

@@ -82,9 +82,12 @@ wFarByte:: ds 1
 wcbfb:: ds 3
 
 wcbfe:: ds 2
-wcc00:: ds $40
-wcc40:: ds $40
-wcc80:: ds $80
+
+; eight 4-color palettes each
+wBGPals1:: ds 8 palettes
+wOBPals1:: ds 8 palettes
+wBGPals2:: ds 8 palettes
+wOBPals2:: ds 8 palettes
 
 wcd00:: ds 1 ; Distance to warp border y
 wcd01:: ds 1 ; Distance to warp border x
@@ -92,7 +95,10 @@ wcd01:: ds 1 ; Distance to warp border x
 wcd02:: ds 1
 wcd03:: ds 1 ; Facing direction
 wcd04:: ds 1 ; OW sprite ID?
-wcd05:: ds $1f
+wcd05:: ds $1b
+
+wcd20:: ds 1
+wcd21:: ds 3
 
 wcd24:: ds 1
 wcd25:: ds $bb
@@ -154,7 +160,8 @@ wCharacterTileDest:: ds 2
 wd0f8:: ds 1
 wd0f9:: ds 1
 wd0fa:: ds 1
-wd0fb:: ds 4
+wd0fb:: ds 2
+wd0fd:: ds 2
 wd0ff:: ds 1
 
 wd100:: ds $28 ; wTextboxAttrmap?
@@ -166,9 +173,12 @@ wd1a8:: ds 8
 wd1b0:: ds $4b
 
 wd1fb:: ds 1
-	ds 4
+wd1fc:: ds 1
+	ds 3
 
-wd200:: ds $100
+wd200:: ds $84
+
+wd284:: ds $7c
 
 wd300:: ds $f5
 
@@ -178,17 +188,24 @@ wd3f6:: ds 1
 wd3f7:: ds 1
 wd3f8:: ds 1
 
-wd3f9:: ds $596
+wd3f9:: ds $505
 
+wd8fe:: ds $88
+
+wd986:: ds 9
 wd98f:: ds 2
 wd991:: ds $2f
 
 wCharacterTileSrc:: ds 2
-wd9c2:: ds $e
+wd9c2:: ds $c
+
+wd9ce:: ds 2
 
 wd9d0:: ds 2
-wd9d2:: ds 6
+wd9d2:: ds 4
 
+wd9d6:: ds 1
+wd9d7:: ds 1
 wd9d8:: ds 1
 wd9d9:: ds 1
 wd9da:: ds 4
@@ -200,10 +217,12 @@ wd9e0:: ds 2
 wd9e2:: ds 1
 wd9e3:: ds 1
 wEnemyMonSpecies:: ds 1
-wd9e5:: ds $b
+wd9e5:: ds 4
+wd9e9:: ds 7
 
 wTempBank:: ds 1
-wd9f1:: ds $e
+wd9f1:: ds 2
+wd9f3:: ds $c
 wd9ff:: ds 1
 wda00:: ds $a3
 
@@ -231,7 +250,8 @@ wdcbb:: ds $15
 
 wdcd0:: ds 1
 wdcd1:: ds 2
-wdcd3:: ds 5
+wdcd3:: ds 2
+wdcd5:: ds 3
 
 wdcd8:: ds 1
 wdcd9:: ds 7
@@ -250,9 +270,14 @@ wdce8:: ds 2
 wdcea:: ds 1 ; follower?
 
 wdceb:: ds 1
-wdcec:: ds $14
+wdcec:: ds 7
 
-wdd00:: ds $100
+wdcf3:: ds 1
+wdcf4:: ds $c
+
+wdd00:: ds $b0
+
+wddb0:: ds $50
 
 wde00:: ds $16
 wde16:: ds $16
@@ -261,6 +286,8 @@ wde42:: ds $16
 wde58:: ds $16
 wde6e:: ds $16
 wde84:: ds $16
-wde9a:: ds $16
+wde9a:: ds $165
+
+wdfff:: ds 1
 
 INCLUDE "hram.asm"

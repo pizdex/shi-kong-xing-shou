@@ -210,3 +210,422 @@
 	cont "我還是買下一個";
 	line "防衛軍團好了!";
 	done;
+
+@org $0e, $5023:
+	init $12, $26; # TEMP
+	text "OH~";
+	line "BABY~";
+	line;
+	para "巴洛特有什麼事";
+	line "情呢?";
+	para "咦?";
+	cont "天才機械發明家";
+	line "?";
+	para "他叫雷歐博士，";
+	cont "住在隔壁的";
+	line "科技城啊!";
+	para "巴洛特想和我一";
+	line "起去嗎?";
+	para "什麼?";
+	cont "你說不用麻煩了";
+	line "?";
+	para "OH~";
+	line "BABY~";
+	line;
+	para "你還是這麼害羞";
+	line "。";
+	para "我雖然高貴，";
+	cont "但很樂意照顧像";
+	line "你這種孤兒唷!";
+	done;
+
+@org $0e, $50f6:
+	init $12, $26; # TEMP
+	text "OH~";
+	line "BABY~";
+	line "";
+	para "巴洛特有什麼事";
+	line "情呢?";
+	para "咦?";
+	cont "天才機械發明家";
+	line "?";
+	para "他叫雷歐博士，";
+	cont "住在隔壁的科技";
+	line "城啊!";
+	done;
+
+@org $0e, $5154:
+	init $00, $1f; # TEMP
+	text "是巴洛特啊~";
+	para "啊啊啊!!!";
+	para "快把那隻星獸帶";
+	line "出去!";
+	para "我才剛洗好了地";
+	line "毯，";
+	cont "又被你弄髒了!";
+	done;
+
+@org $0e, $519f:
+	init $09, $09; # TEMP
+	text "嗚~~";
+	line "嗚汪汪汪!";
+	done;
+
+@org $0e, $51b1:
+	init $00, $1f; # TEMP
+	text "啊啊啊啊啊啊!";
+	para "不⋯⋯";
+	line "不要咬我⋯⋯!";
+	para "快⋯快出去!";
+	done;
+
+@org $0e, $51dd:
+	init $00, $15; # TEMP
+	text "你是來找芳芳的";
+	line "嗎?";
+	para "芳~芳~!";
+	cont "妳朋友來找你唷";
+	line "~";
+	done;
+
+@org $0e, $520e:
+	init $00, $18; # TEMP
+	text "賽亞是一個很棒";
+	line "的天文科學家。";
+	para "在我們天文科學";
+	line "界，";
+	cont "他算是個天才吧";
+	line "!";
+	para "只是脾氣古怪了";
+	line "一點⋯⋯";
+	done;
+
+@org $0e, $5267:
+	init $13, $1a; # TEMP
+	text "你是來找我一起";
+	line "玩的嗎?";
+	para "好~高~興~";
+	done;
+
+@org $0e, $528c:
+	init $00, $15; # TEMP
+	text "流星雨過後，";
+	cont "賽亞就神视的失";
+	line "蹤了。";
+	para "天文台也毀了⋯";
+	para "巴洛特啊~";
+	line "要振作唷!";
+	done;
+
+@org $0e, $52d0:
+	init $14, $25; # TEMP
+	text "受傷了嗎";
+	forcemap "?", 1;
+	para "如果受傷的話，";
+	cont "只要進去這個α";
+	line "射線放射器裡，";
+	cont "一下下~";
+	line "就會復原喲!";
+	para "要是受傷了，";
+	line "就來找妮可吧!";
+	done;
+
+@org $0e, $5333:
+	init $01, $00; # TEMP
+	text "學校的門關起來";
+	line "了!";
+	done;
+
+@org $0e, $5347:
+	init $00, $12; # TEMP
+	text "從流星雨過後，";
+	cont "有時候可以在道";
+	line "路上看到星獸。";
+	para "只要將牠們的體";
+	line "力減弱後，";
+	cont "使用這個膠票，";
+	cont "就可以將牠們捉";
+	line "起來了!";
+	para "啊!就在那邊⋯";
+	line "不要跑!!";
+	done;
+
+@org $0e, $53c0:
+	init $00, $1d; # TEMP
+	text "我查過歷史大事";
+	line "記，";
+	cont "上面記載著~";
+	para "一百多年前，";
+	cont "地球曾陷入危機";
+	line "。";
+	para "那個時候~";
+	para "有八名科學家，";
+	cont "一起研究出了不";
+	line "起的發明。";
+	cont "拯救了地球呢!";
+	done;
+
+@org $0e, $5437:
+	init $00, $1e; # TEMP
+	text "哇!!!!";
+	para "不要跟爸爸說，";
+	cont "我偷捉星獸的事";
+	line "情唷!";
+	para "你也有星獸嗎?";
+	line "較量一下吧!";
+	done;
+
+@org $0e, $547a:
+	init $00, $1e; # TEMP
+	text "好厲害。";
+	para "約定好了，";
+	cont "不可以跟我爸爸";
+	line "講峨!";
+	done;
+
+@org $0e, $54a2:
+	init $00, $1e; # TEMP
+	text "遜!";
+	done;
+
+@org $0e, $54aa:
+	init $01, $2d; # TEMP
+	text "奇怪?";
+	para "這裡怎麼會這麼";
+	line "昏暗?";
+	para "怎麼回事?";
+	done;
+
+@org $0e, $54ce:
+	init $00, $1f; # TEMP
+	text "唉呀~";
+	cont "怎麼會停電了呢";
+	line "?";
+	para "電一停的話，";
+	cont "什麼事情都做不";
+	line "了!";
+	para "就連電燈都不亮";
+	line "了!";
+	done;
+
+@org $0e, $5518:
+	init $00, $1b; # TEMP
+	text "就在不久前，";
+	line "突然就停電了!";
+	para "到底是怎麼回事";
+	line "?";
+	para "發電塔故障了嗎";
+	line "?";
+	done;
+
+@org $0e, $5555:
+	init $00, $16; # TEMP
+	text "哎唷唷~";
+	line "痛死了!";
+	para "黑漆漆的看不清";
+	line "楚~";
+	cont "這把老骨頭都快";
+	line "要撞散了。";
+	done;
+
+@org $0e, $5592:
+	init $00, $19; # TEMP
+	text "前陣子來了二個";
+	line "自稱閃電隊的人";
+	cont "要和我們比賽高";
+	line "速賽車，";
+	cont "賭金是三千萬。";
+	para "這對製造高速賽";
+	line "車的科技城來說";
+	cont "是項污辱!";
+	para "為了慎重起見，";
+	cont "我們派出了本城";
+	line "最引以自豪的";
+	cont "機械科學家~";
+	line "雷歐。";
+	para "真不敢相信，";
+	line "居然輸了!";
+	para "哎呀~";
+	cont "要怎麼籌出三千";
+	line "萬!";
+	done;
+
+@org $0e, $5666:
+	init $00, $17; # TEMP
+	text "這裡是全世界最";
+	line "大的製作高速賽";
+	line "車的城市。";
+	para "前陣子和二個外";
+	line "地人比賽，";
+	cont "居然輸了!";
+	para "還虧我們派出了";
+	line "最強的機械科學";
+	line "家~雷歐應戰!";
+	para "就這樣，";
+	cont "科技城輸了三千";
+	line "萬!";
+	done;
+
+@org $0e, $56f4:
+	init $00, $1c; # TEMP
+	text "衝呀!";
+	para "我的高速賽車~";
+	line "長腳龜一號!";
+	para "只要那些壞人再";
+	line "來的話，";
+	cont "我就用這個打敗";
+	line "他";
+	forcemap "們", 3;
+	text "!";
+	done;
+
+@org $0e, $5740:
+	init $00, $21; # TEMP
+	text "嗚~嗚~";
+	line "好黑峨!";
+	para "人家好怕啊!";
+	line "";
+	para "嗚~~嗚~";
+	done;
+
+@org $0e, $576d:
+	init $00, $1f; # TEMP
+	text "很久很久之前~";
+	para "雷歐的曾祖父，";
+	cont "和其他七名科學";
+	line "家，";
+	cont "曾經拯救過地球";
+	line "。";
+	para "所以城裡的人都";
+	line "尊敬他。";
+	para "但這次的賽車比";
+	line "賽，";
+	cont "雷歐卻輸得很誇";
+	line "張!";
+	para "我們會不會太高";
+	line "估他了?";
+	done;
+
+@org $0e, $5806:
+	init $00, $16; # TEMP
+	text "這裡是科技城的";
+	line "廢鐵集中場。";
+	para "別看這些破破爛";
+	line "爛的東西，";
+	cont "這些全是我的寶";
+	line "貝!";
+	done;
+
+@org $0e, $584c:
+	init $00, $19; # TEMP
+	text "雷歐博士已經上";
+	line "了年紀，";
+	cont "又沒有小孩子。";
+	para "所以製造了一隻";
+	line "叫巴克的機器人";
+	para "是我的錯覺嗎?";
+	para "每次一看到巴克";
+	line "，";
+	cont "就覺得他很憂鬱";
+	line "⋯⋯";
+	done;
+
+@org $0e, $58bd:
+	init $00, $16; # TEMP
+	text "科技城是座窒內";
+	line "都市，";
+	cont "照明的設備都需";
+	line "要電力來驅動。";
+	para "可是，";
+	cont "為了要防止類似";
+	line "這種形情發生，";
+	cont "電力塔內設有特";
+	line "殊防範措施啊!";
+	para "真是奇怪⋯";
+	done;
+
+@org $0e, $592f:
+	init $00, $12; # TEMP
+	text "雷歐代表科技城";
+	line "和閃電隊賽車，";
+	cont "輸了三千萬!";
+	para "為了籌這三千萬";
+	line "，";
+	cont "真是急死人了!";
+	para "早知道就不應該";
+	line "派雷歐上場的⋯";
+	done;
+
+@org $0e, $5992:
+	init $00, $1d; # TEMP
+	text "哼!";
+	para "小毛用他的長腳";
+	line "龜一號欺負人家";
+	para "人家才不要!!";
+	para "爸爸~";
+	cont "好不好啦~";
+	line "爸爸~";
+	para "幫人家改裝這台";
+	line "粉紅豬三號啦!";
+	done;
+
+@org $0e, $59f6:
+	init $00, $13; # TEMP
+	text "要大家湊這三千";
+	line "萬，";
+	cont "真是開玩笑!";
+	para "把這個藏起來~";
+	para "荳荳!";
+	line "那個也是!";
+	para "呀!!";
+	cont "你看到了什麼嗎";
+	line "?";
+	para "我什麼都沒有做";
+	line "唷!";
+	done;
+
+@org $0e, $5a5a:
+	init $00, $1b; # TEMP
+	text "真是傷腦筋，";
+	line "莫名的停電。";
+	cont "看不到星獸的後";
+	line "續新聞報導了。";
+	para "話說回來了，";
+	cont "博特到電塔修理";
+	line "了那麼久，";
+	cont "怎麼還沒有回來";
+	line "呢?";
+	done;
+
+@org $0e, $5ac1:
+	init $1d, $1a; # TEMP
+	text "媽媽?";
+	para "荳荳這台光速美";
+	line "少女初號機，";
+	cont "要不要藏起來?";
+	para "荳荳的光速美少";
+	line "女初號機，";
+	cont "價值9456億";
+	line "喲!";
+	done;
+
+@org $0e, $5b18:
+	init $00, $13; # TEMP
+	text "不‧用!";
+	done;
+
+@org $0e, $5b22:
+	init $1d, $1a; # TEMP
+	text "荳‧荳‧要‧藏";
+	line "‧起‧來‧啦!";
+	done;
+
+@org $0e, $5b43:
+	init $00, $16; # TEMP
+	text "城裡停電了，";
+	cont "我兒子~博特到";
+	line "發電塔修去了!";
+	para "去了好久，";
+	line "都沒有回來!";
+	para "真是擔心啊⋯⋯";
+	done;

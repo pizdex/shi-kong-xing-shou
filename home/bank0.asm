@@ -3,7 +3,7 @@ _Start::
 	ldh [hConsoleType], a
 
 ; Set stack
-	ld sp, $dfff
+	ld sp, wdfff
 
 ; Scroll
 	xor a
@@ -67,8 +67,8 @@ Func_0200:
 	ld a, $12
 	ld [wd0fa], a
 
-asm_023b:
-	ld bc, $cab0
+Func_023b:
+	ld bc, wcab0
 	xor a
 	ldh [hFFC4], a
 	call Func_092e
@@ -89,7 +89,7 @@ asm_023b:
 
 Func_0257:
 	call Func_15e7
-	jr asm_023b
+	jr Func_023b
 
 unkTable_025c:
 ; Seems to load on each map entry
@@ -142,7 +142,8 @@ DelayFrame::
 	ldh [hVBlank], a
 	ret
 
-Func_02cc:
+FarCopyBytes_vTiles0:
+; Copy bc bytes from [wTempBank]:[wd98f] to vTiles0
 	ld a, [_BANKNUM]
 	push af
 
@@ -325,10 +326,13 @@ PlaceTilemap::
 	ldh [rVBK], a
 	ret
 
-Func_0398:
-; Map fade in?
+Func_0398::
+; Map/intro fade in
+
+; Load default background palette
 	ld a, %11100100
 	ldh [rBGP], a
+; Load default object palette
 	ld a, %00011100
 	ld [wdce7], a
 	ldh [rOBP0], a
@@ -350,37 +354,37 @@ Func_0398:
 	and a
 	ret z
 
-	ld hl, wcc00
-	call FillPalettes_BCPD
-	ld hl, wcc40
-	call FillPalettes_OCPD
+	ld hl, wBGPals1
+	call CopyBackgroundPalettes
+	ld hl, wOBPals1
+	call CopyObjectPalettes
 
 	call DelayFrame
 	jp Func_0398
 
-PartialFillPalettes_BCPD:
-; Fill 24 background palettes with data from [hl] to [hl+$30]
+PartialCopyBackgroundPalettes:
+; Copy data from [hl] to [hl+$30] to the first 24 background palettes
 	di
 	call WaitVRAM_STAT2
 	ld a, BCPSF_AUTOINC
 	ldh [rBCPS], a
 	ei
 	ld b, 6 palettes
-.asm_03f4
+.copy
 	di
 	call WaitVRAM_STAT2
 	ld a, [hli]
 	ldh [rBCPD], a
 	ei
 	dec b
-	jr nz, .asm_03f4
-	jr .ret
+	jr nz, .copy
+	jr .ret ; ???
 
 .ret
 	ret
 
-FillPalettes_BCPD::
-; Fill all 32 background palettes with data from [hl] to [hl+$40]
+CopyBackgroundPalettes::
+; Copy data from [hl] to [hl+$40] to all 32 background palettes
 	di
 	call WaitVRAM_STAT2
 	ld a, BCPSF_AUTOINC
@@ -400,8 +404,8 @@ FillPalettes_BCPD::
 .ret
 	ret
 
-FillPalettes_OCPD:
-; Fill all 32 object palettes with data from [hl] to [hl+$40]
+CopyObjectPalettes:
+; Copy data from [hl] to [hl+$40] to all 32 object palettes
 	di
 	call WaitVRAM_STAT2
 	ld a, OCPSF_AUTOINC
@@ -562,7 +566,7 @@ Func_0453:
 	dw wde00
 
 Func_04f2:
-	ld a, [$dcf3]
+	ld a, [wdcf3]
 	ld de, wdd00
 	ld l, a
 	ld h, 0
@@ -570,14 +574,14 @@ Func_04f2:
 	add hl, hl
 	add hl, hl
 	add hl, de
-	ld a, [$dcf4]
+	ld a, [wdcf4]
 	ld [hl], a
 	and a
 	ret nz
 	ret
 
 Func_0506:
-	ld a, [$dcf3]
+	ld a, [wdcf3]
 	ld de, .unk_0521
 	ld l, a
 	ld h, 0
@@ -608,9 +612,9 @@ Func_0506:
 	dw wde9a
 
 Func_0531:
-	ld a, [$cd00]
+	ld a, [wcd00]
 	ld b, a
-	ld a, [$cd01]
+	ld a, [wcd01]
 	ld c, a
 	ld de, .unk_054f
 	ld a, [wcd03]
@@ -620,10 +624,10 @@ Func_0531:
 	add hl, de
 	ld a, [hli]
 	add b
-	ld [$cd20], a
+	ld [wcd20], a
 	ld a, [hli]
 	add c
-	ld [$cd21], a
+	ld [wcd21], a
 	ret
 
 .unk_054f
@@ -963,10 +967,10 @@ Func_092e:
 	and a
 	jr z, .exit
 
-	ld hl, wcc00
-	call FillPalettes_BCPD
-	ld hl, wcc40
-	call FillPalettes_OCPD
+	ld hl, wBGPals1
+	call CopyBackgroundPalettes
+	ld hl, wOBPals1
+	call CopyObjectPalettes
 
 	call DelayFrame
 	jr Func_092e
@@ -997,10 +1001,10 @@ Func_09a6::
 	and a
 	jr z, .exit
 
-	ld hl, wcc00
-	call FillPalettes_BCPD
-	ld hl, wcc40
-	call FillPalettes_OCPD
+	ld hl, wBGPals1
+	call CopyBackgroundPalettes
+	ld hl, wOBPals1
+	call CopyObjectPalettes
 
 	call DelayFrame
 	jr .loop
@@ -1120,10 +1124,39 @@ Func_0b65:
 	push hl
 
 Func_0b69:
-	dr $0b69, $0b7a
+; Text routine used for menu options and things
+	pop hl
+	ld a, [hli]
+	push hl
+	cp $f0
+	jp nc, Func_0c8d
+	cp $e0
+	jp nc, Func_0b96
+	jp Func_0c93
+
+Func_0b79:
+	ret
 
 Func_0b7a:
-	dr $0b7a, $0b96
+	ld a, [wd9d6]
+	and a
+	jr z, .asm_0b94
+
+	xor a
+	ld [wd9d6], a
+	pop hl
+	ld a, [wdcd3]
+	ld l, a
+	ld a, [wdcd3 + 1]
+	ld h, a
+	ldh a, [hFFD4]
+	rst Bankswitch
+	push hl
+	jp Func_0b69
+
+.asm_0b94
+	pop hl
+	ret
 
 Func_0b96:
 	ld de, unk_0ba4
@@ -1163,14 +1196,14 @@ Func_0bc7:
 	ld l, a
 	ld a, [wd9d0 + 1]
 	ld h, a
-	ld de, $d9ce
+	ld de, wd9ce
 	ld bc, $0204
 	ld a, $77
-	ld [$d8fe], a
+	ld [wd8fe], a
 	ld a, 1
-	ld [$d1fc], a
+	ld [wd1fc], a
 	ld a, 1
-	ld [$d0fd], a
+	ld [wd0fd], a
 	call Func_113f
 	pop hl
 	push hl
@@ -1189,27 +1222,37 @@ Func_0bf1:
 	call DelayFrame
 
 Func_0bfe:
-	dr $0bfe, $0c17
+	call Func_1fb9
+	ld bc, $480
+	ld hl, $8b60
+	xor a
+	call ByteFillVRAM
+	call DelayFrame
+	xor a
+	ld [wCharacterTilePos], a
+	pop hl
+	push hl
+	jp Func_0b69
 
 Func_0c17:
-	ld a, [$d986]
+	ld a, [wd986]
 	and a
 	jr nz, .asm_0c22
-	ld a, [$d9e2]
+	ld a, [wd9e2]
 	jr .asm_0c25
 
 .asm_0c22
-	ld a, [$d9e3]
+	ld a, [wd9e3]
 
 .asm_0c25
-	ld [$d9d8], a
+	ld [wd9d8], a
 	farcall unk_026_4000
 	pop hl
 	push hl
 	jp Func_0b69
 
 Func_0c33:
-	ld a, [$d9e9]
+	ld a, [wd9e9]
 	ld d, a
 	farcall Func_01e_4266
 	pop hl
@@ -1217,7 +1260,7 @@ Func_0c33:
 	jp Func_0b69
 
 Func_0c42:
-	ld a, [$d9f3]
+	ld a, [wd9f3]
 	ld d, a
 	farcall Func_01e_4275
 	pop hl
@@ -1228,7 +1271,10 @@ Func_0c51:
 	dr $0c51, $0c6a
 
 Func_0c6a:
-	dr $0c6a, $0c93
+	dr $0c6a, $0c8d
+
+Func_0c8d:
+	dr $0c8d, $0c93
 
 Func_0c93:
 	dr $0c93, $0d52
@@ -1391,9 +1437,9 @@ Func_106f:
 	jp Func_28d0
 
 Func_1072:
-	ld a, [$d9de]
+	ld a, [wWX]
 	ldh [rSCX], a
-	ld a, [$d9df]
+	ld a, [wWY]
 	ldh [rSCY], a
 	jp Func_28d0
 
@@ -1768,25 +1814,27 @@ Func_29c8:
 	cp 2
 	jp z, .ret
 
-	ld de, wcc80
+; wBGPals2 copy
+	ld de, wBGPals2
 	push bc
 	ld c, $80
-.asm_29da:
+.copy1
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_29da
+	jr nz, .copy1
 
+; wBGPals1 copy
 	pop hl
-	ld de, wcc00
+	ld de, wBGPals1
 	ld c, $80
-.asm_29e6
+.copy2
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_29e6
+	jr nz, .copy2
 
 	ld a, 1
 	ldh [hFFC4], a
@@ -1869,7 +1917,98 @@ Func_2be2::
 	ret
 
 Func_2c03:
-	dr $2c03, $2c3c
+	ld hl, wce00
+	ld de, $a0
+	add hl, de
+	ld de, .unk_2c1b
+.get_length:
+	ld a, [de]
+	cp $ff
+	ret z
+; get length
+	ld b, a
+	inc de
+	ld a, [de]
+	inc de
+.copy_byte
+	ld [hli], a
+	dec b
+	jr nz, .copy_byte
+	jr .get_length
+
+.unk_2c1b:
+	db $01, $06
+	db $07, $06
+	db $48, $06
+	db $10, $07
+	db $ff
+
+unk_2c24:
+	dr $2c24, $2c3c
 
 unk_2c3c:
-	dr $2c3c, $2ff0
+	dr $2c3c, $2ca4
+
+Func_2ca4:
+	ld de, wd284
+	ld hl, .unk_2cb8
+.asm_2caa
+	ld a, [hl]
+	ld [de], a
+	inc hl
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc hl
+	inc de
+	dec c
+	ld a, c
+	or b
+	jr nz, .asm_2caa
+	ret
+
+.unk_2cb8:
+	dr $2cb8, $2d08
+
+Func_2d08:
+	ld de, wddb0
+	ld hl, .unk_2d16
+.copy
+	ld a, [hli]
+	cp $ff
+	ret z
+	ld [de], a
+	inc de
+	jr .copy
+
+.unk_2d16:
+	dr $2d16, $2d42
+
+Func_2d42:
+	ld de, wd300
+	ld hl, .unk_2d50
+.copy
+	ld a, [hli]
+	cp $ff
+	ret z
+	ld [de], a
+	inc de
+	jr .copy
+
+.unk_2d50:
+	dr $2d50, $2e04
+
+Func_2e04:
+	dr $2e04, $2e13
+
+Func_2e13:
+	dr $2e13, $2e38
+
+Func_2e38:
+	dr $2e38, $2e56
+
+Func_2e56:
+	dr $2e56, $2ea0
+
+unk_2ea0:
+	dr $2ea0, $2ff0

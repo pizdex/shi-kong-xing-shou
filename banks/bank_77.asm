@@ -45,6 +45,7 @@ Func_077_4424:
 	ld [wdcb1], a
 	ld a, c
 	ld [wdcb2], a
+; Limit combo to 8 inputs
 	ld a, [wdcb1]
 	cp 8
 	ret c

@@ -7,7 +7,7 @@ INCLUDE "data/text/bank08_misc.asm"
 
 Func_008_55d1:
 	ld hl, $5afe
-	call FillPalettes_BCPD
+	call CopyBackgroundPalettes
 	ld hl, $5afe
 	ld de, $cab0
 	ld bc, $40

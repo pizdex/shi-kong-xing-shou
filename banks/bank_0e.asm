@@ -3,10 +3,10 @@ unk_00e_4000:
 
 INCLUDE "data/text/bank0e_misc.asm"
 
-unkText_00e_5023:
-	dr $39023, $39bdd
+text_0e_5b91:
+	dr $39b91, $39bdd
 
-unkText_00e_5bdd:
+text_0e_5bdd:
 	text_init $14, $25 ; TEMP
 	db $f3, $0c
 	db $f1, $58
@@ -18,10 +18,13 @@ unkText_00e_5bdd:
 	line
 	text "?", 1
 	line
-	db $e5
+	getchoice $1cc5; # TEMP
 
-unkText_00e_5bf3:
-	dr $39bf3, $3be69
+text_0e_5bf5:
+	dr $39bf5, $39c24
+
+text_0e_5c24:
+	dr $39c24, $3be69
 
 unk_00e_7e69:
 	dr $3be69, $3bf30

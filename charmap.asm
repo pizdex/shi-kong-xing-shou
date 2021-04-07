@@ -1073,7 +1073,7 @@ NEWCHARMAP charmap4
 	charmap "孤", $a2
 	charmap "蹤", $a3
 	charmap "振", $a4
-	charmap "振", $a5
+	; charmap "振", $a5 ; duplicate (hopefully never used)
 	charmap "路", $a6
 	charmap "捉", $a7
 	charmap "邊", $a8
@@ -1122,7 +1122,7 @@ NEWCHARMAP charmap4
 	charmap "紀", $d3
 	charmap "克", $d4
 	charmap "覺", $d5
-	charmap "愛", $d6 ; ?
+	charmap "憂", $d6 ; ?
 	charmap "鬱", $d7
 	charmap "驅", $d8
 	charmap "形", $d9
