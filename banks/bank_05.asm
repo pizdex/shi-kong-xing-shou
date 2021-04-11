@@ -28,26 +28,26 @@ Func_005_4bc1:
 
 	ldh a, [hJoypadDown]
 	bit D_DOWN_F, a
-	jr nz, .asm_4c18
+	jr nz, .down
 	bit D_UP_F, a
-	jr nz, .asm_4c19
+	jr nz, .up
 	bit D_LEFT_F, a
-	jr nz, .asm_4c1a
+	jr nz, .left
 	bit D_RIGHT_F, a
-	jr nz, .asm_4c1b
+	jr nz, .right
 
 	jr .asm_4c1c
 
-.asm_4c18:
+.down:
 	add hl, de
 
-.asm_4c19:
+.up:
 	add hl, de
 
-.asm_4c1a:
+.left:
 	add hl, de
 
-.asm_4c1b:
+.right:
 	add hl, de
 
 .asm_4c1c:
@@ -56,9 +56,9 @@ Func_005_4bc1:
 	ld a, [hli]
 	ldh [hFFA7], a
 	ld a, [hli]
-	ld [$d1f9], a
+	ld [wd1f9], a
 	ld a, [hli]
-	ld [$d1fa], a
+	ld [wd1fa], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -97,7 +97,51 @@ Func_005_4f3d:
 	ret
 
 Func_005_4f48:
-	dr $14f48, $15cf0
+	dr $14f48, $150a5
+
+Func_005_50a5:
+	farcall Func_02d_5086
+	xor a
+	ld [wd987], a
+	ld hl, wd876
+	ld a, l
+	ld [wd984], a
+	ld a, h
+	ld [wd984 + 1], a
+	ld a, [hl]
+	ld [wEnemyMonSpecies], a
+
+	ld bc, wd200
+	ld e, 0
+.asm_50c3:
+	ld hl, 2
+	add hl, bc
+	ld a, [hli]
+	or [hl]
+	jr nz, .asm_50d8
+
+	ld hl, $16
+	add hl, bc
+	inc e
+	ld a, l
+	cp $80
+	ret nc
+
+	ld c, l
+	ld b, h
+	jr .asm_50c3
+
+.asm_50d8:
+	ld a, e
+	ld [wd983], a
+	ld a, c
+	ld [wd981], a
+	ld a, b
+	ld [wd982], a
+	ret
+
+Func_005_50e5:
+	dr $150e5, $15cf0
 
 
 SECTION "banknum5", ROMX[$7fff], BANK[$5]

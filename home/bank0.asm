@@ -907,12 +907,14 @@ Func_085b:
 	ret
 
 Func_0868::
+; Load face pic bank
 	ld a, [_BANKNUM]
 	push af
-	ld a, [wdcd8]
-	cp $3a
+	ld a, [wTextFaceID]
+	cp 58
 	jr c, .asm_087c
 
+; [wTextFaceID] >= 58
 	ld a, BANK(Func_015_4000)
 	rst Bankswitch
 	call Func_015_4000
@@ -1171,22 +1173,22 @@ Func_0b96:
 	jp hl
 
 unk_0ba4:
-	dw Func_0bc4
-	dw Func_0bc7
-	dw Func_0bec
-	dw Func_0bc4
-	dw Func_0b7a
-	dw Func_0c33
-	dw Func_0c17
-	dw Func_0c6a
-	dw Func_0c42
-	dw Func_0c51
-	dw Func_0bc4
-	dw Func_0bc4
-	dw Func_0bfe
-	dw Func_0b7a
-	dw Func_0bc4
-	dw Func_0bc4
+	dw Func_0bc4 ; $e0
+	dw Func_0bc7 ; $e1
+	dw Func_0bec ; $e2
+	dw Func_0bc4 ; $e3
+	dw Func_0b7a ; $e4
+	dw Func_0c33 ; $e5
+	dw Func_0c17 ; $e6
+	dw Func_0c6a ; $e7
+	dw Func_0c42 ; $e8
+	dw Func_0c51 ; $e9
+	dw Func_0bc4 ; $ea
+	dw Func_0bc4 ; $eb
+	dw Func_0bfe ; $ec
+	dw Func_0b7a ; $ed
+	dw Func_0bc4 ; $ee
+	dw Func_0bc4 ; $ef
 
 Func_0bc4:
 	jp Func_0b69

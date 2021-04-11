@@ -1,118 +1,125 @@
-# TODO: Automatically set bank after 9 characters to remove forcemap for this section only.
-
-@org $1e, $5aa0:
+@org $1e, $5829:
 	line;
 
-@org $1e, $5aa1:
-	text "可收服怪獸的高科技";
-	forcemap "膠", 1;
-	text "票。";
+@org $1e, $582a:
+	text "請選擇道具種類。";
 	line;
 
-@org $1e, $5ab2:
-	text "以很高的速度，收服";
+@org $1e, $5836:
+	text "此處無法使用。";
+	line;
+
+@org $1e, $5841:
+	text "此怪";
+	forcemap "獸", 1;
+	text "無法使用。";
+	line;
+
+@org $1e, $584f:
+	text "技巧已滿，要忘記舊的技巧嗎?";
+	line;
+
+@org $1e, $585f:
+	text "要忘記哪一項技巧?";
+	line;
+
+@org $1e, $586c:
+	text "確定要忘記嗎?";
+	line;
+
+@org $1e, $5875:
+	text "裝備完成";
+	line;
+
+@org $1e, $587d:
+	text "你的錢不夠";
+	line;
+
+@org $1e, $5888:
+	text "買幾個呢?";
+	line;
+
+@org $1e, $5890:
+	text "賣幾個呢?";
+	line;
+
+@org $1e, $5898:
+	text "請選擇服務項目~";
+	line;
+
+@org $1e, $58a5:
+	text "選擇要查看的怪獸";
+	line;
+
+@org $1e, $58b1:
+	text "確定要存放這隻怪獸嗎?";
+	line;
+
+@org $1e, $58c1:
+	text "已成功的存放在盒子裡了。";
+	done;
+
+@org $1e, $58d4:
+	text "對不起!你這個盒子已經裝不下了!";
+	done;
+
+@org $1e, $58f0:
+	text "確定要領出嗎?";
+	line;
+
+@org $1e, $58fb:
+	text "已成功的領出了!";
+	done;
+
+@org $1e, $5907:
+	text "對不起!你身上的隊伍已滿!";
+	done;
+
+@org $1e, $591f:
+	text "確定要換盒子嗎?";
+	line;
+
+@org $1e, $592c:
+	text "更換盒子後會自動存檔，確定要更換嗎?";
+	line;
+
+@org $1e, $5947:
+	text "成功的換了盒子，並且存檔完成。";
+	done;
+
+@org $1e, $595f:
+	text "確定要將這隻怪獸放生嗎?";
+	line;
+
+@org $1e, $5971:
+	text "被放生了!";
+	done;
+
+@org $1e, $597a:
+	text "此怪獸不能放生";
+	forcemap "!", 1;
+	text "!";
+	done;
+
+@org $1e, $598b:
+	text "盒子裡沒有";
 	forcemap "怪", 1;
-	text "獸的膠票。";
+	text "獸";
+	forcemap "!", 1;
+	done;
+
+@org $1e, $599b:
+	text "請選擇要領出的怪獸。";
 	line;
 
-@org $1e, $5ac6:
-	text "能以很高的機率收服";
-	forcemap "怪", 1;
-	text "獸。";
+@org $1e, $59a9:
+	text "請選擇要換的盒子。";
 	line;
 
-@org $1e, $5ad7:
-	text "一定可以收服怪獸的強力膠票。";
+@org $1e, $59b7:
+	text "選擇要放生的怪獸。";
 	line;
 
-@org $1e, $5aec:
-	text "巴利樹的果實，可回";
-	forcemap "復", 1;
-	text "體力30點。";
-	line;
-
-@org $1e, $5b04:
-	text "方便的隨身包，可回";
-	forcemap "復", 1;
-	text "體力50點。";
-	line;
-
-@org $1e, $5b1b:
-	text "有強力的回復效果，";
-	forcemap "回", 1;
-	text "復體力100點。";
-	line;
-
-@org $1e, $5b34:
-	text "超高濃縮而成的蔡劑";
-	forcemap "，", 1;
-	text "回復體力200點";
-	line;
-
-@org $1e, $5b4d:
-	text "以百種蔡草所提煉的";
-	forcemap "，", 1;
-	text "回復體力20％。";
-	line;
-
-@org $1e, $5b66:
-	text "內含強力療效的針劑";
-	forcemap "，", 1;
-	text "回復體力50％";
-	line;
-
-@org $1e, $5b7e:
-	text "傳說中的幻之蔡，回";
-	forcemap "復", 1;
-	text "所有的體力。";
-	line;
-
-@org $1e, $5b97:
-	text "解除中毒狀態。";
-	line;
-
-@org $1e, $5ba2:
-	text "解除麻痺狀態。";
-	line;
-
-@org $1e, $5bad:
-	text "解除睡眠狀態。";
-	line;
-
-@org $1e, $5bb8:
-	text "解除燒傷狀態。";
-	line;
-
-@org $1e, $5bc3:
-	text "解除涷傷狀態。";
-	line;
-
-@org $1e, $5bce:
-	text "解除所有狀態。";
-	line;
-
-@org $1e, $5bd7:
-	text "使怪獸復活，並回復";
-	forcemap "2", 1;
-	text "0％的體力。";
-	line;
-
-@org $1e, $5bee:
-	text "使怪獸復活，並回復";
-	forcemap "5", 1;
-	text "0％的體力。";
-	line;
-
-@org $1e, $5c05:
-	text "使怪獸復活，並回復";
-	forcemap "所", 1;
-	text "有體力。";
-	line;
-
-@org $1e, $5c1a:
-	text "回復單項技能點數10點。";
-	line;
-
-@org $1e, $5c2c:
-	text "全數回復單項技能點數。";
-	line;
+@org $1e, $59c4:
+	text "無法寄放!";
+	done;

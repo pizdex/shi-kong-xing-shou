@@ -611,7 +611,7 @@ NEWCHARMAP charmap2
 	charmap "七", $9a
 	charmap "八", $9b
 	charmap "白", $9c
-	charmap "偑", $9d ; ?
+	charmap "猦", $9d
 	charmap "始", $9e
 	charmap "繼", $9f
 	charmap "續", $a0
@@ -1234,8 +1234,8 @@ NEWCHARMAP charmap5
 	charmap "M", $60
 	charmap "K", $61
 	charmap "C", $62
-	charmap "log", $63
-	charmap "ln", $64
+	charmap "-", $63 ; (temp) log
+	charmap "+", $64 ; (temp) ln
 	charmap "訓", $65
 	charmap "及", $66
 	charmap "姐", $67
@@ -1891,7 +1891,7 @@ NEWCHARMAP charmap8
 	charmap "倫", $48
 	charmap "焕", $49 ; ?
 	charmap "踏", $4a
-	charmap "賴", $4b ; ?
+	charmap "籟", $4b ; ?
 	charmap "潑", $4c
 	charmap "違", $4d
 	charmap "背", $4e
@@ -1989,7 +1989,7 @@ NEWCHARMAP charmap8
 	charmap "弟", $aa
 	charmap "薄", $ab
 	charmap "透", $ac
-	charmap "頓", $ad ; ?
+	charmap "頰", $ad
 	charmap "遭", $ae
 	charmap "卵", $af
 	charmap "川", $b0

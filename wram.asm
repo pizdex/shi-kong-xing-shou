@@ -75,7 +75,7 @@ wcbf3:: ds 1
 wCharacterBGMapTransferStatus:: ds 1
 wCharacterTileTransferStatus:: ds 1
 wcbf6:: ds 1
-wcbf7:: ds 1
+wTextNameID:: ds 1
 
 wcbf8:: ds 2
 wFarByte:: ds 1
@@ -101,7 +101,9 @@ wcd20:: ds 1
 wcd21:: ds 3
 
 wcd24:: ds 1
-wcd25:: ds $bb
+wcd25:: ds $2b
+
+wcd50:: ds $90
 
 ; Start menu
 wcde0:: ds 1
@@ -170,8 +172,10 @@ wd128:: ds $78
 
 wd1a0:: ds 8
 wd1a8:: ds 8
-wd1b0:: ds $4b
+wd1b0:: ds $49
 
+wd1f9:: ds 1
+wd1fa:: ds 1
 wd1fb:: ds 1
 wd1fc:: ds 1
 	ds 3
@@ -188,13 +192,24 @@ wd3f6:: ds 1
 wd3f7:: ds 1
 wd3f8:: ds 1
 
-wd3f9:: ds $505
+wd3f9:: ds $47d
 
-wd8fe:: ds $88
+wd876:: ds 1
+wd877:: ds $87
 
-wd986:: ds 9
+wd8fe:: ds $83
+
+wd981:: ds 1
+wd982:: ds 1
+wd983:: ds 1
+wd984:: ds 2
+
+wd986:: ds 1
+wd987:: ds 8
 wd98f:: ds 2
-wd991:: ds $2f
+wd991:: ds $2e
+
+wd9bf:: ds 1
 
 wCharacterTileSrc:: ds 2
 wd9c2:: ds $c
@@ -246,14 +261,17 @@ wdcb3:: ds 2
 wdcb5:: ds 1
 wdcb6:: ds 5
 
-wdcbb:: ds $15
+wdcbb:: ds $d
+
+wdcc8:: ds 2
+wdcca:: ds 6
 
 wdcd0:: ds 1
 wdcd1:: ds 2
 wdcd3:: ds 2
 wdcd5:: ds 3
 
-wdcd8:: ds 1
+wTextFaceID:: ds 1 ; NPC ID?
 wdcd9:: ds 7
 
 wCharacterTilePos:: ds 1

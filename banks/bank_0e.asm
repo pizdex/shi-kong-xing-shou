@@ -18,15 +18,14 @@ text_0e_5bdd:
 	line
 	text "?", 1
 	line
-	getchoice $1cc5; # TEMP
+	getchoice $1cc5 ; # TEMP
 
 text_0e_5bf5:
 	dr $39bf5, $39c24
 
-text_0e_5c24:
-	dr $39c24, $3be69
+INCLUDE "data/text/bank0e_misc2.asm"
 
-unk_00e_7e69:
+unk_0e_7e69:
 	dr $3be69, $3bf30
 
 

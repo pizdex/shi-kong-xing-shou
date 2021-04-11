@@ -296,11 +296,13 @@ Func_1b23:
 	dw Func_1fe9      ; $ef
 
 Text_Init:
+; Save name and face of person
 	pop hl
 	ld a, [hli]
-	ld [wcbf7], a
+	ld [wTextNameID], a
 	ld a, [hli]
-	ld [wdcd8], a
+	ld [wTextFaceID], a
+
 	push hl
 	ld a, [_BANKNUM]
 	push af
@@ -329,6 +331,7 @@ Text_Init:
 	ld [wd0d1], a
 	ld a, h
 	ld [wd0d1 + 1], a
+
 	xor a
 	ld [wCharacterTilemapPos], a
 	ld [wTextLine], a
@@ -751,7 +754,32 @@ Func_20b9:
 	dr $20b9, $2108
 
 Func_2108:
-	dr $2108, $22a4
+	ldh a, [hFFAC]
+	and a
+	jr z, .asm_211f
+
+	ld a, [wdcd0]
+	and a
+	jr nz, .asm_211c
+
+	ldh a, [hFFAD]
+	inc a
+	ldh [hFFAD], a
+	cp 5
+	jr c, .asm_211f
+
+.asm_211c
+	call Func_2123
+
+.asm_211f
+	call Func_21bb
+	ret
+
+Func_2123:
+	dr $2123, $21bb
+
+Func_21bb:
+	dr $21bb, $22a4
 
 Func_22a4:
 	dr $22a4, $2433
