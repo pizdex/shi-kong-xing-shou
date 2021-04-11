@@ -1,5 +1,5 @@
 @org $08, $4651:
-	init $09, $08;
+	init NAME_09, $08;
 	text "汪汪~汪~";
 	done;
 
@@ -15,7 +15,7 @@
 	done;
 
 @org $08, $46a4:
-	init $09, $08;
+	init NAME_09, $08;
 	text "汪~汪汪~";
 	done;
 
@@ -107,7 +107,7 @@
 	done;
 
 @org $08, $4911:
-	init $12, $26; # TEMP
+	init NAME_12, $26; # TEMP
 	text "OH~";
 	line "BABY~";
 	para "我今天到朋友家";
@@ -133,7 +133,7 @@
 	done;
 
 @org $08, $49cc:
-	init $09, $08; # TEMP
+	init NAME_09, $08; # TEMP
 	text "嗚~~汪汪汪!";
 	done;
 
@@ -162,7 +162,7 @@
 	done;
 
 @org $08, $4a87:
-	init $13, $1a; # TEMP
+	init NAME_13, $1a; # TEMP
 	text "你是來找我一起";
 	line "玩的嗎?";
 	para "好~高~興~";
@@ -183,7 +183,7 @@
 	done;
 
 @org $08, $4b14:
-	init $14, $25; # TEMP
+	init NAME_14, $25; # TEMP
 	text "受傷了嗎";
 	forcemap "?", 1;
 	para "如果受傷的話，";
@@ -219,7 +219,7 @@
 	done;
 
 @org $08, $4bbb:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "是巴洛特呀!";
 	para "⋯⋯⋯⋯⋯";
 	done;
@@ -230,14 +230,14 @@
 	done;
 
 @org $08, $4bdc:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "喧~";
 	para "不要說話~";
 	para "過來~";
 	done;
 
 @org $08, $4bf3:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "自從你媽媽病逝";
 	line "後，";
 	cont "就沒有像這樣仔";
@@ -251,7 +251,7 @@
 	done;
 
 @org $08, $4c2e:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "不要多話。";
 	para "看看今夜的星空";
 	line "。";
@@ -268,7 +268,7 @@
 	done;
 
 @org $08, $4c8c:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "⋯⋯⋯";
 	para "終於來了嗎?";
 	para "時機似乎太早了";
@@ -281,7 +281,7 @@
 	done;
 
 @org $08, $4cbd:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "⋯⋯⋯⋯";
 	done;
 
@@ -294,7 +294,7 @@
 	done;
 
 @org $08, $4cf4:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "起床了嗎?";
 	line "";
 	para "該上學了。";
@@ -302,7 +302,7 @@
 	done;
 
 @org $08, $4d0b:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "等等~巴洛特!";
 	done;
 
@@ -313,7 +313,7 @@
 	done;
 
 @org $08, $4d2d:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "先吃完早餐吧。";
 	done;
 
@@ -325,7 +325,7 @@
 	done;
 
 @org $08, $4d56:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "⋯⋯";
 	para "巴洛特~";
 	para "關於那個⋯⋯";
@@ -337,7 +337,7 @@
 	done;
 
 @org $08, $4d77:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "⋯⋯沒什麼。";
 	para "上學去吧。";
 	done;
@@ -359,13 +359,13 @@
 	done;
 
 @org $08, $4e04:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "⋯⋯";
 	para "上學去吧。";
 	done;
 
 @org $08, $4e15:
-	init $09, $08; # TEMP
+	init NAME_09, $08; # TEMP
 	text "汪汪~汪汪!";
 	done;
 
@@ -434,7 +434,7 @@
 	done;
 
 @org $08, $4fa8:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "早啊~巴洛特。";
 	para "快點進教窒，";
 	line "就要上課了。";
@@ -446,7 +446,7 @@
 	done;
 
 @org $08, $5001:
-	init $16, $16; # TEMP
+	init NAME_16, $16; # TEMP
 	text "巴洛特，早安。";
 	para "怎麼一大早，";
 	cont "就露出這種心情";
@@ -454,7 +454,7 @@
 	done;
 
 @org $08, $5039:
-	init $00, $1e; # TEMP
+	init NAME_BLANK, $1e; # TEMP
 	text "今天要上的是植";
 	line "物課。";
 	para "所以我帶了白老";
@@ -462,7 +462,7 @@
 	done;
 
 @org $08, $506b:
-	init $00, $21; # TEMP
+	init NAME_BLANK, $21; # TEMP
 	text "人家今天的便當";
 	line "，";
 	cont "很好~很好吃峨";
@@ -472,7 +472,7 @@
 	done;
 
 @org $08, $50a3:
-	init $12, $26; # TEMP
+	init NAME_12, $26; # TEMP
 	text "OH~";
 	line "BABY~";
 	para "巴洛特~";
@@ -483,13 +483,13 @@
 	done;
 
 @org $08, $50e8:
-	init $01, $2c; # TEMP
+	init NAME_BALLOT, $2c; # TEMP
 	text "很好~了不起!";
 	para "我要上課了。";
 	done;
 
 @org $08, $5105:
-	init $12, $26; # TEMP
+	init NAME_12, $26; # TEMP
 	text "OH~NO~";
 	para "巴洛特不要說出";
 	line "，";
@@ -507,12 +507,12 @@
 	done;
 
 @org $08, $5188:
-	init $01, $2c; # TEMP
+	init NAME_BALLOT, $2c; # TEMP
 	text "沒有興趣。";
 	done;
 
 @org $08, $5195:
-	init $12, $26; # TEMP
+	init NAME_12, $26; # TEMP
 	text "OH~";
 	line "BABY~";
 	para "難得巴洛特這麼";
@@ -524,7 +524,7 @@
 	done;
 
 @org $08, $51e5:
-	init $13, $1a; # TEMP
+	init NAME_13, $1a; # TEMP
 	text "巴洛特!";
 	para "莫老師來了。";
 	para "快回位置坐好。";
@@ -535,7 +535,7 @@
 	done;
 
 @org $08, $522e:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "巴洛特!";
 	para "老師都已經來了";
 	line "，";
@@ -545,14 +545,14 @@
 	done;
 
 @org $08, $5267:
-	init $13, $1a; # TEMP
+	init NAME_13, $1a; # TEMP
 	text "快回位置坐好。";
 	para "你的位置就在最";
 	line "右上方的座位。";
 	done;
 
 @org $08, $5291:
-	init $12, $26; # TEMP
+	init NAME_12, $26; # TEMP
 	text "OH~";
 	line "BABY~";
 	para "上課了，";
@@ -563,7 +563,7 @@
 	done;
 
 @org $08, $52d0:
-	init $00, $1e; # TEMP
+	init NAME_BLANK, $1e; # TEMP
 	text "上⋯上⋯";
 	line "上課⋯課了。";
 	para "巴‧巴巴洛特⋯";
@@ -572,7 +572,7 @@
 	done;
 
 @org $08, $5306:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "大家都知道吧?";
 	para "晚上會有一場很";
 	line "壯觀的流星雨。";
@@ -581,7 +581,7 @@
 	done;
 
 @org $08, $5346:
-	init $12, $26; # TEMP
+	init NAME_12, $26; # TEMP
 	text "OH~";
 	line "BABY~";
 	para "爸爸還特地買了";
@@ -591,14 +591,14 @@
 	done;
 
 @org $08, $5387:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "很⋯很好⋯⋯";
 	para "誰知道這個流星";
 	line "雨的詳細資料?";
 	done;
 
 @org $08, $53af:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "弗烈茲星系流星";
 	line "雨，";
 	cont "離上次流星雨事";
@@ -608,7 +608,7 @@
 	done;
 
 @org $08, $53ef:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "完全正確!!";
 	para "為了獎勵大家，";
 	cont "今天就提早下課";
@@ -623,13 +623,13 @@
 	done;
 
 @org $08, $5468:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "不行~!";
 	para "絕對不行。";
 	done;
 
 @org $08, $547e:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "我不曉得什麼事";
 	line "，";
 	cont "讓先生這麼生氣";
@@ -641,24 +641,24 @@
 	done;
 
 @org $08, $54d2:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "不行~";
 	para "就是今晚不行!";
 	done;
 
 @org $08, $54eb:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "⋯⋯";
 	para "真是不可理諭!";
 	done;
 
 @org $08, $5500:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "爸⋯你怎麼了!";
 	done;
 
 @org $08, $550e:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "巴洛特!!";
 	line "你千萬要記住!";
 	para "今天晚上!";
@@ -673,23 +673,23 @@
 	done;
 
 @org $08, $557d:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "怎麼回事?";
 	done;
 
 @org $08, $558a:
-	init $11, $11; # TEMP
+	init NAME_11, $11; # TEMP
 	text "⋯⋯⋯";
 	done;
 
 @org $08, $5592:
-	init $15, $24; # TEMP
+	init NAME_15, $24; # TEMP
 	text "各位同學，";
 	line "下課了!";
 	done;
 
 @org $08, $55a7:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "不行~";
 	line "要趕快去天文台";
 	para "找爸爸回家";

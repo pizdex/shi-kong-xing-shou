@@ -271,7 +271,7 @@ wdcd1:: ds 2
 wdcd3:: ds 2
 wdcd5:: ds 3
 
-wTextFaceID:: ds 1 ; NPC ID?
+wTextFaceID:: ds 1
 wdcd9:: ds 7
 
 wCharacterTilePos:: ds 1

@@ -1,11 +1,11 @@
 @org $0f, $4691:
-	init $21, $31; # TEMP
+	init NAME_21, $31; # TEMP
 	text "喵嗚~嗚。";
 	para "zZ~zZ~";
 	done;
 
 @org $0f, $46aa:
-	init $01, $2b; # TEMP
+	init NAME_BALLOT, $2b; # TEMP
 	text "不行!";
 	para "整個入口都被貓";
 	line "怪擋住了!";
@@ -14,13 +14,13 @@
 	done;
 
 @org $0f, $46e3:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "什麼?貓怪?";
 	para "該怎麼辦才好⋯";
 	done;
 
 @org $0f, $46fe:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "有了!";
 	para "使用老鼠來吸引";
 	line "牠的注意力!";
@@ -29,7 +29,7 @@
 	done;
 
 @org $0f, $473b:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "真叫人生氣!";
 	para "在不得已的情況";
 	line "下，";
@@ -42,7 +42,7 @@
 	done;
 
 @org $0f, $479e:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "槽糕~";
 	para "我一直認為，";
 	cont "製做發條的機械";
@@ -57,12 +57,12 @@
 	done;
 
 @org $0f, $4808:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "我知道了!";
 	done;
 
 @org $0f, $4813:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "要做成機械老鼠";
 	line "，";
 	cont "得找到發條才行";
@@ -70,7 +70,7 @@
 	done;
 
 @org $0f, $4838:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "發條?";
 	para "雷歐博士要的嗎";
 	line "?";
@@ -86,7 +86,7 @@
 	done;
 
 @org $0f, $48ae:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "對了!";
 	line "就是發條嘛!";
 	para "我忘了放哪裡了";

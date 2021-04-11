@@ -1,5 +1,5 @@
 @org $0e, $5c24:
-	init $1b, $4c; # TEMP
+	init NAME_1B, $4c; # TEMP
 	text "怎麼辦~";
 	para "怎麼辦~";
 	para "流星雨打斷了回";
@@ -14,7 +14,7 @@
 	done;
 
 @org $0e, $5c9e:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "唉~";
 	line "都是我的錯~";
 	para "讓科技城輸了三";
@@ -24,7 +24,7 @@
 	done;
 
 @org $0e, $5ce0:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "雷歐博士，";
 	cont "你就是伊隼人所";
 	line "說的，";
@@ -35,7 +35,7 @@
 	done;
 
 @org $0e, $5d33:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "設計圖⋯";
 	line "放著吧~";
 	para "我代表著科技城";
@@ -51,7 +51,7 @@
 	done;
 
 @org $0e, $5dae:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "你是指設計圖嗎";
 	line "?";
 	para "我不是說過，";
@@ -70,20 +70,20 @@
 	done;
 
 @org $0e, $5e40:
-	init $00, $27; # TEMP
+	init NAME_BLANK, $27; # TEMP
 	text "峨~呵呵呵!";
 	para "峨峨峨~";
 	line "呵呵呵呵!";
 	done;
 
 @org $0e, $5e5d:
-	init $00, $28; # TEMP
+	init NAME_BLANK, $28; # TEMP
 	text "怎麼樣?";
 	line "賴帳的傢伙?";
 	done;
 
 @org $0e, $5e73:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "他們又來了!";
 	para "我沒有面子再見";
 	line "其他村人了!";
@@ -95,7 +95,7 @@
 	done;
 
 @org $0e, $5ebb:
-	init $00, $28; # TEMP
+	init NAME_BLANK, $28; # TEMP
 	text "比賽的承諾~";
 	line "三千萬!";
 	para "在下這就來取了";
@@ -103,13 +103,13 @@
 	done;
 
 @org $0e, $5ee0:
-	init $1d, $1a; # TEMP
+	init NAME_1D, $1a; # TEMP
 	text "爸爸?";
 	line "他們是誰啊?";
 	done;
 
 @org $0e, $5ef5:
-	init $00, $27; # TEMP
+	init NAME_BLANK, $27; # TEMP
 	text "峨~呵呵呵~";
 	para "我聽到了!";
 	para "你在問我們是誰";
@@ -117,7 +117,7 @@
 	done;
 
 @org $0e, $5f1f:
-	init $00, $27; # TEMP
+	init NAME_BLANK, $27; # TEMP
 	text "既然你們問起了";
 	line "~";
 	cont "那我就仁慈的告";
@@ -125,41 +125,41 @@
 	done;
 
 @org $0e, $5f4b:
-	init $00, $28; # TEMP
+	init NAME_BLANK, $28; # TEMP
 	text "來自銀河系裡的";
 	line "正義使者!";
 	done;
 
 @org $0e, $5f67:
-	init $00, $27; # TEMP
+	init NAME_BLANK, $27; # TEMP
 	text "穿梭於黑夜的";
 	line "浪漫勇士!";
 	done;
 
 @org $0e, $5f7e:
-	init $00, $28; # TEMP
+	init NAME_BLANK, $28; # TEMP
 	text "貫徹愛‧正義‧";
 	line "勇氣的真理!";
 	done;
 
 @org $0e, $5f99:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "拉琪!";
 	done;
 
 @org $0e, $5fa2:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "庫魯!";
 	done;
 
 @org $0e, $5fab:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "閃‧電‧隊~";
 	line "~誕生!!";
 	done;
 
 @org $0e, $5fc0:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "還不打算交出三";
 	line "千萬嗎?";
 	para "現在只是停一下";
@@ -170,7 +170,7 @@
 	done;
 
 @org $0e, $6015:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "峨~呵呵呵~";
 	para "就是這個鈕!";
 	cont "只要輕輕按一下";
@@ -180,13 +180,13 @@
 	done;
 
 @org $0e, $6055:
-	init $00, $1b; # TEMP
+	init NAME_BLANK, $1b; # TEMP
 	text "千萬不要這麼做";
 	line "!";
 	done;
 
 @org $0e, $6068:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "你們‧贏‧才怪";
 	line "!";
 	para "雷歐博士‧出了";
@@ -196,7 +196,7 @@
 	done;
 
 @org $0e, $60a4:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "在下認得你!";
 	para "你不就是那個手";
 	line "下敗將~";
@@ -205,14 +205,14 @@
 	done;
 
 @org $0e, $60d9:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "胡說!";
 	para "再比‧雷歐博士";
 	line "‧一定贏!";
 	done;
 
 @org $0e, $60f7:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "峨峨~呵呵呵!";
 	para "沒有那個的話，";
 	cont "再比幾次都是一";
@@ -230,7 +230,7 @@
 	done;
 
 @org $0e, $6188:
-	init $00, $1b; # TEMP
+	init NAME_BLANK, $1b; # TEMP
 	text "雷歐又要和閃電";
 	line "隊比賽一次了!";
 	para "唉~";
@@ -241,18 +241,18 @@
 	done;
 
 @org $0e, $61da:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "再比賽‧雷歐博";
 	line "士‧贏‧一定!";
 	done;
 
 @org $0e, $61f6:
-	init $0a, $0a; # TEMP
+	init NAME_0A, $0a; # TEMP
 	text "恰比~恰比比~";
 	done;
 
 @org $0e, $6205:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "再比賽一次嗎?";
 	cont "實在沒有太大的";
 	line "把握⋯";
@@ -271,26 +271,26 @@
 	done;
 
 @org $0e, $6292:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "巴克‧拿‧";
 	line "彩虹水晶!";
 	done;
 
 @org $0e, $62aa:
-	init $01, $2d; # TEMP
+	init NAME_BALLOT, $2d; # TEMP
 	text "為什麼彩虹水晶";
 	line "會停産?";
 	done;
 
 @org $0e, $62c5:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "我也不清楚⋯";
 	para "水晶村就這樣莫";
 	line "名停産彩虹水晶";
 	done;
 
 @org $0e, $62ef:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "這其中一定有問";
 	line "題!";
 	para "我一定要弄清楚";
@@ -298,17 +298,17 @@
 	done;
 
 @org $0e, $6314:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "巴克‧一起去!";
 	done;
 
 @org $0e, $6324:
-	init $00, $1e; # TEMP
+	init NAME_BLANK, $1e; # TEMP
 	text "這裡是水晶村。";
 	done;
 
 @org $0e, $6336:
-	init $00, $12; # TEMP
+	init NAME_BLANK, $12; # TEMP
 	text "唉~就這樣莫名";
 	line "奇妙的失業了⋯";
 	para "水晶礦區莫名奇";
@@ -320,7 +320,7 @@
 	done;
 
 @org $0e, $638b:
-	init $00, $14; # TEMP
+	init NAME_BLANK, $14; # TEMP
 	text "閃電集團將礦區";
 	line "給封閉了起來。";
 	cont "並把所有的礦工";
@@ -332,7 +332,7 @@
 	done;
 
 @org $0e, $63de:
-	init $00, $1d; # TEMP
+	init NAME_BLANK, $1d; # TEMP
 	text "偷偷告訴你唷!";
 	para "那個閃電集團，";
 	cont "好像有個视密的";
@@ -344,7 +344,7 @@
 	done;
 
 @org $0e, $6434:
-	init $00, $19; # TEMP
+	init NAME_BLANK, $19; # TEMP
 	text "村裡的男人都失";
 	line "業了!";
 	cont "都是那個可惡的";
@@ -352,7 +352,7 @@
 	done;
 
 @org $0e, $6466:
-	init $00, $1c; # TEMP
+	init NAME_BLANK, $1c; # TEMP
 	text "如果使用彩虹水";
 	line "晶，";
 	cont "當成高速賽車的";
@@ -362,7 +362,7 @@
 	done;
 
 @org $0e, $64ad:
-	init $00, $20; # TEMP
+	init NAME_BLANK, $20; # TEMP
 	text "這次不能忘記⋯";
 	cont "不然頭目就⋯";
 	para "趁沒有人看的時";
@@ -372,14 +372,14 @@
 	done;
 
 @org $0e, $64f7:
-	init $00, $20; # TEMP
+	init NAME_BLANK, $20; # TEMP
 	text "呀!!!";
 	para "你怎麼在這裡!";
 	line "走開!";
 	done;
 
 @org $0e, $6515:
-	init $00, $15; # TEMP
+	init NAME_BLANK, $15; # TEMP
 	text "哎~";
 	para "老公都失業了⋯";
 	cont "像這種豐盛的午";
@@ -389,7 +389,7 @@
 	done;
 
 @org $0e, $6550:
-	init $00, $1b; # TEMP
+	init NAME_BLANK, $1b; # TEMP
 	text "聽說科技城的";
 	line "雷歐，";
 	cont "和閃電隊賽車輸";
@@ -403,45 +403,45 @@
 	done;
 
 @org $0e, $65b8:
-	init $00, $1e; # TEMP
+	init NAME_BLANK, $1e; # TEMP
 	text "爸爸的口袋裡，";
 	cont "有一顆七彩的水";
 	line "晶耶!";
 	done;
 
 @org $0e, $65de:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "水晶?";
 	para "給巴克‧雷歐博";
 	line "士‧要!";
 	done;
 
 @org $0e, $65fc:
-	init $00, $1e; # TEMP
+	init NAME_BLANK, $1e; # TEMP
 	text "不~要!";
 	done;
 
 @org $0e, $6607:
-	init $00, $20; # TEMP
+	init NAME_BLANK, $20; # TEMP
 	text "站住!";
 	para "這裡是閃電隊的";
 	line "地盤，快走!";
 	done;
 
 @org $0e, $662c:
-	init $01, $2d; # TEMP
+	init NAME_BALLOT, $2d; # TEMP
 	text "壁櫥裡有個洞!";
 	para "打開了!!";
 	done;
 
 @org $0e, $6647:
-	init $20, $30; # TEMP
+	init NAME_20, $30; # TEMP
 	text "輸、入、密、碼";
 	line "?";
 	done;
 
 @org $0e, $665b:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "巴洛特‧巴克‧";
 	line "試試。";
 	para "巴克‧要‧隊伍";
@@ -449,19 +449,19 @@
 	done;
 
 @org $0e, $6689:
-	init $01, $2d; # TEMP
+	init NAME_BALLOT, $2d; # TEMP
 	text "壁櫥裡有個洞!";
 	para "打開了!!";
 	done;
 
 @org $0e, $66a4:
-	init $20, $30; # TEMP
+	init NAME_20, $30; # TEMP
 	text "輸、入、密、碼";
 	line "?";
 	done;
 
 @org $0e, $66b8:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "巴克‧解碼。";
 	para "¢2#×°£";
 	line "MKC-+3";
@@ -470,12 +470,12 @@
 	done;
 
 @org $0e, $66eb:
-	init $20, $30; # TEMP
+	init NAME_20, $30; # TEMP
 	text "正確~正確。";
 	done;
 
 @org $0e, $66fa:
-	init $22, $32; # TEMP
+	init NAME_22, $32; # TEMP
 	text "你們是誰?";
 	para "侵入视密基地的";
 	line "傢伙，";
@@ -484,7 +484,7 @@
 	done;
 
 @org $0e, $672d:
-	init $22, $32; # TEMP
+	init NAME_22, $32; # TEMP
 	text "可惡!";
 	line "這裡失守了嗎?";
 	para "雖然對不起頭目";
@@ -493,14 +493,14 @@
 	done;
 
 @org $0e, $676a:
-	init $22, $32; # TEMP
+	init NAME_22, $32; # TEMP
 	text "不行~";
 	cont "得趕快徹退才行";
 	line "!";
 	done;
 
 @org $0e, $6784:
-	init $22, $32; # TEMP
+	init NAME_22, $32; # TEMP
 	text "你們是誰?";
 	para "讓開!";
 	cont "不要擋住我徹退";
@@ -508,7 +508,7 @@
 	done;
 
 @org $0e, $67ae:
-	init $22, $32; # TEMP
+	init NAME_22, $32; # TEMP
 	text "可惡!";
 	para "雖然被打敗了，";
 	cont "但你還是阻止不";
@@ -516,7 +516,7 @@
 	done;
 
 @org $0e, $67e0:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "這一定就是彩虹";
 	line "水晶了!";
 	para "雷歐博士有了這";
@@ -526,12 +526,12 @@
 	done;
 
 @org $0e, $6821:
-	init $01, $2a; # TEMP
+	init NAME_BALLOT, $2a; # TEMP
 	text "得到彩虹水晶。";
 	done;
 
 @org $0e, $6832:
-	init $00, $12; # TEMP
+	init NAME_BLANK, $12; # TEMP
 	text "閃電集團莫名奇";
 	line "妙的跑光了!";
 	para "又可以恢復工作";
@@ -542,7 +542,7 @@
 	done;
 
 @org $0e, $6882:
-	init $00, $14; # TEMP
+	init NAME_BLANK, $14; # TEMP
 	text "霸佔水晶礦坑的";
 	line "閃電集團消失了";
 	para "這真是個天大的";
@@ -550,7 +550,7 @@
 	done;
 
 @org $0e, $68b3:
-	init $00, $19; # TEMP
+	init NAME_BLANK, $19; # TEMP
 	text "前幾天經過科技";
 	line "城的發電塔，";
 	cont "結果發現了一隻";
@@ -559,7 +559,7 @@
 	done;
 
 @org $0e, $68f4:
-	init $00, $15; # TEMP
+	init NAME_BLANK, $15; # TEMP
 	text "哈哈哈~";
 	para "老公又有工作了";
 	line "!";
@@ -568,7 +568,7 @@
 	done;
 
 @org $0e, $6923:
-	init $00, $1e; # TEMP
+	init NAME_BLANK, $1e; # TEMP
 	text "爸爸的口袋裡，";
 	cont "有一顆七彩的水";
 	line "晶耶!";
@@ -578,7 +578,7 @@
 	done;
 
 @org $0e, $6967:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "這不是彩虹水晶";
 	line "嗎?";
 	para "真是太好了!";
@@ -588,17 +588,17 @@
 	done;
 
 @org $0e, $69a6:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "⋯⋯⋯";
 	done;
 
 @org $0e, $69ae:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "⋯⋯⋯";
 	done;
 
 @org $0e, $69b6:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "完成了!";
 	para "真‧黃金鳳凰號";
 	line "!";
@@ -608,13 +608,13 @@
 	done;
 
 @org $0e, $69ef:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "嗯，一定可以的";
 	line "。";
 	done;
 
 @org $0e, $6a00:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "⋯⋯⋯";
 	para "有了上次輸了的";
 	line "陰影⋯";
@@ -626,12 +626,12 @@
 	done;
 
 @org $0e, $6a52:
-	init $01, $2a; # TEMP
+	init NAME_BALLOT, $2a; # TEMP
 	text "得到鳳凰號!";
 	done;
 
 @org $0e, $6a61:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "⋯⋯⋯";
 	para "有了上次輸了的";
 	line "陰影⋯";
@@ -643,13 +643,13 @@
 	done;
 
 @org $0e, $6ab3:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "峨~呵呵呵~";
 	para "你們終於來了。";
 	done;
 
 @org $0e, $6acf:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "在下還以為，";
 	cont "你們夾著尾巴逃";
 	line "走了!";
@@ -658,7 +658,7 @@
 	done;
 
 @org $0e, $6b0b:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "峨峨峨峨~";
 	line "呵呵呵呵!";
 	para "三千萬就要到手";
@@ -668,7 +668,7 @@
 	done;
 
 @org $0e, $6b3f:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "還是不甘心敗在";
 	line "在下的手中嗎?";
 	para "反正再幾次都一";
@@ -676,7 +676,7 @@
 	done;
 
 @org $0e, $6b6f:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "峨~呵呵呵~";
 	para "我就展現高貴的";
 	line "耐心，";
@@ -685,13 +685,13 @@
 	done;
 
 @org $0e, $6ba5:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "在下⋯輸了?";
 	para "不⋯不可能!";
 	done;
 
 @org $0e, $6bbd:
-	init $00, $1b; # TEMP
+	init NAME_BLANK, $1b; # TEMP
 	text "萬歲!";
 	para "雷歐的鳳凰號果";
 	line "然贏了!";
@@ -701,7 +701,7 @@
 	done;
 
 @org $0e, $6c02:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "哈哈哈~";
 	para "那三千萬的賭金";
 	line "，";
@@ -709,7 +709,7 @@
 	done;
 
 @org $0e, $6c29:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "⋯巴克‧不能‧";
 	line "笑⋯⋯";
 	para "巴克⋯⋯想⋯⋯";
@@ -717,7 +717,7 @@
 	done;
 
 @org $0e, $6c51:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "慢⋯慢⋯慢⋯";
 	line "慢著著著著!!";
 	para "我還有最後的終";
@@ -726,7 +726,7 @@
 	done;
 
 @org $0e, $6c92:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "在下真是佩服拉";
 	line "琪的智慧。";
 	para "只要輕輕這麼一";
@@ -735,7 +735,7 @@
 	done;
 
 @org $0e, $6cc8:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "沒‧有‧錯!";
 	para "峨~呵呵呵呵~";
 	para "就會『磅』的一";
@@ -746,7 +746,7 @@
 	done;
 
 @org $0e, $6d1a:
-	init $00, $19; # TEMP
+	init NAME_BLANK, $19; # TEMP
 	text "雷歐博士終於打";
 	line "敗了閃電隊!";
 	para "我們之前都錯怪";
@@ -754,14 +754,14 @@
 	done;
 
 @org $0e, $6d47:
-	init $00, $17; # TEMP
+	init NAME_BLANK, $17; # TEMP
 	text "這裡是全世界最";
 	line "大的製作高速賽";
 	line "車的城市。";
 	done;
 
 @org $0e, $6d70:
-	init $00, $1f; # TEMP
+	init NAME_BLANK, $1f; # TEMP
 	text "很久很久之前，";
 	cont "雷歐的曾祖父和";
 	line "其他七名科學家";
@@ -772,14 +772,14 @@
 	done;
 
 @org $0e, $6dc7:
-	init $00, $12; # TEMP
+	init NAME_BLANK, $12; # TEMP
 	text "雷歐博士果然是";
 	line "世界第一的機械";
 	line "發明家。";
 	done;
 
 @org $0e, $6dec:
-	init $00, $13; # TEMP
+	init NAME_BLANK, $13; # TEMP
 	text "槽糕⋯";
 	para "我的水藍鑽石項";
 	line "鍊，";
@@ -787,7 +787,7 @@
 	done;
 
 @org $0e, $6e16:
-	init $1d, $1a; # TEMP
+	init NAME_1D, $1a; # TEMP
 	text "荳荳這台光速美";
 	line "少女初號機，";
 	cont "找到一個藍色石";
@@ -800,13 +800,13 @@
 	done;
 
 @org $0e, $6e80:
-	init $00, $13; # TEMP
+	init NAME_BLANK, $13; # TEMP
 	text "慢⋯慢‧著!";
 	cont "哇!!!!!";
 	done;
 
 @org $0e, $6e99:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "哈哈哈~";
 	para "果然打敗了閃電";
 	line "隊!";
@@ -822,13 +822,13 @@
 	done;
 
 @org $0e, $6f19:
-	init $21, $31; # TEMP
+	init NAME_21, $31; # TEMP
 	text "喵嗚~嗚。";
 	para "zZ~zZ~";
 	done;
 
 @org $0e, $6f32:
-	init $01, $2c; # TEMP
+	init NAME_BALLOT, $2c; # TEMP
 	text "不行!";
 	para "整個入口都被貓";
 	line "怪擋住了!";
@@ -837,13 +837,13 @@
 	done;
 
 @org $0e, $6f6b:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "什麼?貓怪?";
 	para "該怎麼辦才好⋯";
 	done;
 
 @org $0e, $6f86:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "有了!";
 	para "使用老鼠來吸引";
 	line "牠的注意力!";
@@ -852,7 +852,7 @@
 	done;
 
 @org $0e, $6fc3:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "真叫人生氣!";
 	para "在不得已的情況";
 	line "下，";
@@ -865,7 +865,7 @@
 	done;
 
 @org $0e, $7026:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "槽糕~";
 	para "我一直認為，";
 	cont "製做發條的機械";
@@ -880,12 +880,12 @@
 	done;
 
 @org $0e, $7090:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "我知道了!";
 	done;
 
 @org $0e, $709b:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "要做成機械老鼠";
 	line "，";
 	cont "得找到發條才行";
@@ -893,7 +893,7 @@
 	done;
 
 @org $0e, $70c0:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "發條?";
 	para "雷歐博士要的嗎";
 	line "?";
@@ -909,7 +909,7 @@
 	done;
 
 @org $0e, $7136:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "對了!";
 	line "就是發條嘛!";
 	para "我忘了放哪裡了";
@@ -920,7 +920,7 @@
 	done;
 
 @org $0e, $717b:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "發條?";
 	para "我忘了放哪裡了";
 	line "⋯⋯";
@@ -929,12 +929,12 @@
 	done;
 
 @org $0e, $71b4:
-	init $01, $2a; # TEMP
+	init NAME_BALLOT, $2a; # TEMP
 	text "得到了發條!";
 	done;
 
 @org $0e, $71c3:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "沒有錯!";
 	para "這就是我想要的";
 	line "發條⋯";
@@ -946,7 +946,7 @@
 	done;
 
 @org $0e, $7217:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "這就是發條老鼠";
 	line "。";
 	done;
@@ -960,13 +960,13 @@
 	done;
 
 @org $0e, $726f:
-	init $01, $2a; # TEMP
+	init NAME_BALLOT, $2a; # TEMP
 	text "得到了發條老鼠";
 	line "!";
 	done;
 
 @org $0e, $7283:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "有了發條老鼠，";
 	cont "應該就可以引開";
 	line "發電塔的貓怪了";
@@ -977,26 +977,26 @@
 	done;
 
 @org $0e, $72ce:
-	init $21, $31; # TEMP
+	init NAME_21, $31; # TEMP
 	text "喵嗚~喵~";
 	para "嗚嗚~";
 	done;
 
 @org $0e, $72e2:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "乖貓咪~";
 	para "快點走開唷~";
 	done;
 
 @org $0e, $72fa:
-	init $01, $2d; # TEMP
+	init NAME_BALLOT, $2d; # TEMP
 	text "啊!";
 	para "發條的動力用完";
 	line "了⋯";
 	done;
 
 @org $0e, $7316:
-	init $21, $31; # TEMP
+	init NAME_21, $31; # TEMP
 	text "嗚~喵吼喵吼吼";
 	line "!";
 	para "(可惡!)";
@@ -1004,17 +1004,17 @@
 	done;
 
 @org $0e, $733f:
-	init $23, $17; # TEMP
+	init NAME_23, $17; # TEMP
 	text "嗚峨嗚~嗚~";
 	done;
 
 @org $0e, $734f:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "大权?怎麼了?";
 	done;
 
 @org $0e, $735f:
-	init $23, $17; # TEMP
+	init NAME_23, $17; # TEMP
 	text "真是感謝。";
 	para "科技城停電後，";
 	cont "我就趕來詢視情";
@@ -1025,27 +1025,27 @@
 	done;
 
 @org $0e, $73b0:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "峨~呵呵呵!";
 	para "有了三千萬，";
 	line "我們的夢想就⋯";
 	done;
 
 @org $0e, $73d4:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "跟在下想的，";
 	line "一點都沒錯。";
 	para "這樣一來⋯⋯";
 	done;
 
 @org $0e, $73f9:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "你你⋯你⋯你";
 	line "⋯你怎麼來的?";
 	done;
 
 @org $0e, $740e:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "可惡!";
 	para "你是來破壞在下";
 	line "的夢想的嗎?";
@@ -1054,7 +1054,7 @@
 	done;
 
 @org $0e, $744b:
-	init $1e, $27; # TEMP
+	init NAME_1E, $27; # TEMP
 	text "可可⋯可";
 	line "⋯可惡!";
 	para "你⋯你你⋯們給";
@@ -1062,7 +1062,7 @@
 	done;
 
 @org $0e, $7478:
-	init $1f, $28; # TEMP
+	init NAME_1F, $28; # TEMP
 	text "這次在下就放了";
 	line "你!";
 	cont "要記住在下的恩";
@@ -1073,17 +1073,17 @@
 	done;
 
 @org $0e, $74c4:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "真是⋯⋯⋯";
 	done;
 
 @org $0e, $74cf:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "這個開關是⋯⋯";
 	done;
 
 @org $0e, $74de:
-	init $00, $1f; # TEMP
+	init NAME_BLANK, $1f; # TEMP
 	text "啊!";
 	line "電力又回復了?";
 	para "第一次覺得，";
@@ -1092,7 +1092,7 @@
 	done;
 
 @org $0e, $7511:
-	init $00, $1b; # TEMP
+	init NAME_BLANK, $1b; # TEMP
 	text "原來電力塔早就";
 	line "被閃電隊佔領了";
 	para "這次能回復電力";
@@ -1102,7 +1102,7 @@
 	done;
 
 @org $0e, $7550:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "好⋯好刺眼⋯⋯";
 	para "眼晴好不容易習";
 	line "慣了黑暗，";
@@ -1112,7 +1112,7 @@
 	done;
 
 @org $0e, $7597:
-	init $00, $19; # TEMP
+	init NAME_BLANK, $19; # TEMP
 	text "果然需要雷歐出";
 	line "馬，";
 	cont "才能打敗閃電隊";
@@ -1122,7 +1122,7 @@
 	done;
 
 @org $0e, $75d8:
-	init $00, $17; # TEMP
+	init NAME_BLANK, $17; # TEMP
 	text "你聽過加爾企業";
 	line "嗎?";
 	para "那可是二大知名";
@@ -1134,7 +1134,7 @@
 	done;
 
 @org $0e, $762c:
-	init $00, $21; # TEMP
+	init NAME_BLANK, $21; # TEMP
 	text "嗚~嗚~";
 	para "電燈又亮了，";
 	cont "人家又要上學了";
@@ -1143,7 +1143,7 @@
 	done;
 
 @org $0e, $765d:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "這裡是科技城的";
 	line "廢鐵集中場。";
 	para "別看這些破破爛";
@@ -1153,7 +1153,7 @@
 	done;
 
 @org $0e, $76a3:
-	init $00, $12; # TEMP
+	init NAME_BLANK, $12; # TEMP
 	text "前陣子的流星雨";
 	line "，";
 	cont "打壞了通往多魯";
@@ -1162,7 +1162,7 @@
 	done;
 
 @org $0e, $76dc:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "就是你救了博特";
 	line "嗎?";
 	para "實在是非常的感";
@@ -1174,18 +1174,18 @@
 	done;
 
 @org $0e, $7723:
-	init $00, $16; # TEMP
+	init NAME_BLANK, $16; # TEMP
 	text "真是相當的感謝";
 	line "。";
 	done;
 
 @org $0e, $7736:
-	init $23, $17; # TEMP
+	init NAME_23, $17; # TEMP
 	text "非常的感謝您。";
 	done;
 
 @org $0e, $7746:
-	init $19, $22; # TEMP
+	init NAME_19, $22; # TEMP
 	text "電力又回復了，";
 	cont "一大堆帳要補登";
 	line "記⋯";
@@ -1195,7 +1195,7 @@
 	done;
 
 @org $0e, $7781:
-	init $1b, $4c; # TEMP
+	init NAME_1B, $4c; # TEMP
 	text "博士終於做好了";
 	line "反重力裝置了!";
 	para "身為加爾企業採";
@@ -1205,7 +1205,7 @@
 	done;
 
 @org $0e, $77d3:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "啊啊啊啊啊!!";
 	para "巴洛特啊!";
 	line "你來的剛剛好!";
@@ -1214,12 +1214,12 @@
 	done;
 
 @org $0e, $7809:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "了不起的發現?";
 	done;
 
 @org $0e, $781b:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "我看了你的設計";
 	line "圖，";
 	cont "這可是不得了的";
@@ -1233,7 +1233,7 @@
 	done;
 
 @org $0e, $788a:
-	init $01, $2b; # TEMP
+	init NAME_BALLOT, $2b; # TEMP
 	text "這是爸爸唯一留";
 	line "下的東西⋯⋯";
 	para "我一直在想，";
@@ -1244,7 +1244,7 @@
 	done;
 
 @org $0e, $78d6:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "是這樣啊!";
 	para "⋯⋯⋯⋯這是什";
 	line "麼?";
@@ -1257,7 +1257,7 @@
 	done;
 
 @org $0e, $792c:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "就是這個!";
 	line "『動力晶片』!";
 	cont "這是核";
@@ -1283,7 +1283,7 @@
 	done;
 
 @org $0e, $7a00:
-	init $01, $2d; # TEMP
+	init NAME_BALLOT, $2d; # TEMP
 	text "動力晶片?";
 	para "爸爸一定也想解";
 	line "開這個謎團。";
@@ -1293,7 +1293,7 @@
 	done;
 
 @org $0e, $7a3f:
-	init $1b, $4c; # TEMP
+	init NAME_1B, $4c; # TEMP
 	text "這個晶片?";
 	para "我好像在董事長";
 	line "那裡，";
@@ -1311,7 +1311,7 @@
 	done;
 
 @org $0e, $7ad8:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "你不是想找到你";
 	line "爸爸嗎?";
 	cont "我們就來做個分";
@@ -1324,7 +1324,7 @@
 	done;
 
 @org $0e, $7b3a:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "巴洛特~";
 	line "慢著慢著!";
 	para "先不要急著走。";
@@ -1342,17 +1342,17 @@
 	done;
 
 @org $0e, $7bcb:
-	init $01, $2a; # TEMP
+	init NAME_BALLOT, $2a; # TEMP
 	text "得到了追蹤器!";
 	done;
 
 @org $0e, $7bda:
-	init $01, $2a; # TEMP
+	init NAME_BALLOT, $2a; # TEMP
 	text "得到了PDA!";
 	done;
 
 @org $0e, $7be9:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "巴克~";
 	para "你也跟著巴洛特";
 	line "吧!";
@@ -1361,13 +1361,13 @@
 	done;
 
 @org $0e, $7c1d:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "博士‧巴克‧";
 	line "巴克⋯";
 	done;
 
 @org $0e, $7c32:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "我知道你在想什";
 	line "麼!";
 	para "等你回來~";
@@ -1377,12 +1377,12 @@
 	done;
 
 @org $0e, $7c75:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "博士‧真的?";
 	done;
 
 @org $0e, $7c82:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "就這樣改一改⋯";
 	para "就是這裡⋯";
 	para "⋯⋯⋯";
@@ -1396,13 +1396,13 @@
 	done;
 
 @org $0e, $7ce9:
-	init $01, $2a; # TEMP
+	init NAME_BALLOT, $2a; # TEMP
 	text "巴克&機械鳥";
 	line "加入隊伍!";
 	done;
 
 @org $0e, $7d01:
-	init $18, $2f; # TEMP
+	init NAME_18, $2f; # TEMP
 	text "星獸‧機械鳥加";
 	line "入隊伍。";
 	para "如果將巴克置於";
@@ -1414,7 +1414,7 @@
 	done;
 
 @org $0e, $7d5d:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "去吧~";
 	para "到加爾企業，";
 	cont "尋找乘下的七個";
@@ -1422,7 +1422,7 @@
 	done;
 
 @org $0e, $7d8b:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "去吧~";
 	para "到加爾企業，";
 	cont "尋找乘下的七個";
@@ -1430,13 +1430,13 @@
 	done;
 
 @org $0e, $7db9:
-	init $01, $2b; # TEMP
+	init NAME_BALLOT, $2b; # TEMP
 	text "這個洞⋯";
 	line "該怎麼通過呢?";
 	done;
 
 @org $0e, $7dd1:
-	init $02, $01; # TEMP
+	init NAME_BUCK, $01; # TEMP
 	text "巴洛特‧巴克‧";
 	line "換‧在排頭。";
 	para "機械鳥‧飛‧地";
@@ -1444,7 +1444,7 @@
 	done;
 
 @org $0e, $7dff:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "不行~";
 	cont "我們去找伊隼人";
 	line "問天才機械發明";
@@ -1452,13 +1452,13 @@
 	done;
 
 @org $0e, $7e33:
-	init $1c, $29; # TEMP
+	init NAME_1C, $29; # TEMP
 	text "如果沒有水晶村";
 	cont "的彩虹水晶的話";
 	cont "一定贏不了的。";
 	done;
 
 @org $0e, $7e60:
-	init $01, $00; # TEMP
+	init NAME_BALLOT, $00; # TEMP
 	text "來吧!";
 	done;

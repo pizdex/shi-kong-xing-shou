@@ -1,93 +1,93 @@
 NamePointers::
-	dw BlankName
-	dw BallotName
-	dw BuckName
-	dw NinaName
-	dw ClaudeName
-	dw HelenName
-	dw LanteName
-	dw RandtName
-	dw MittName
-	dw text_0a_46ef
-	dw text_0a_46f6
-	dw text_0a_46fd
-	dw text_0a_4703
-	dw text_0a_4709
-	dw text_0a_470e
-	dw text_0a_4715
-	dw text_0a_471b
-	dw text_0a_4720
-	dw text_0a_4727
-	dw text_0a_472e
-	dw text_0a_4735
-	dw text_0a_473c
-	dw text_0a_4742
-	dw text_0a_4749
-	dw text_0a_4750
-	dw text_0a_4757
-	dw text_0a_475e
-	dw text_0a_4765
-	dw text_0a_476c
-	dw text_0a_4773
-	dw text_0a_477a
-	dw text_0a_4781
-	dw text_0a_4788
-	dw text_0a_478e
-	dw text_0a_4795
-	dw text_0a_479c
-	dw text_0a_47a3
-	dw text_0a_47aa
-	dw text_0a_47b1
-	dw text_0a_47b7
-	dw text_0a_47bd
-	dw text_0a_47c3
-	dw text_0a_47ca
-	dw text_0a_47d3
-	dw text_0a_47da
-	dw text_0a_47e1
-	dw text_0a_47e8
-	dw text_0a_47ef
-	dw text_0a_47f6
-	dw text_0a_47fd
-	dw text_0a_4804
-	dw text_0a_480a
-	dw text_0a_4811
-	dw text_0a_4818
-	dw text_0a_481f
-	dw text_0a_4826
-	dw text_0a_482d
-	dw text_0a_4834
-	dw text_0a_483b
-	dw text_0a_4842
-	dw text_0a_4849
-	dw text_0a_4850
-	dw text_0a_4857
-	dw text_0a_485e
-	dw text_0a_4865
-	dw text_0a_486b
-	dw text_0a_4872
-	dw text_0a_4878
-	dw text_0a_487f
-	dw text_0a_4886
-	dw text_0a_488c
-	dw text_0a_4893
-	dw text_0a_489a
-	dw text_0a_48a1
-	dw text_0a_48a7
-	dw text_0a_48ae
-	dw text_0a_48b5
-	dw text_0a_48bc
-	dw text_0a_48c3
-	dw text_0a_48ca
-	dw text_0a_48d1
-	dw text_0a_48d7
-	dw text_0a_48de
-	dw text_0a_48e5
-	dw text_0a_48eb
-	dw text_0a_48f2
-	dw text_0a_48f9
-	dw text_0a_4900
-	dw text_0a_4907
-	dw text_0a_490e
-	dw text_0a_4915
-	dw text_0a_491c
+	dw BlankName    ; $00
+	dw BallotName   ; $01
+	dw BuckName     ; $02
+	dw NinaName     ; $03
+	dw ClaudeName   ; $04
+	dw HelenName    ; $05
+	dw LanteName    ; $06
+	dw RandtName    ; $07
+	dw MittName     ; $08
+	dw text_0a_46ef ; $09
+	dw text_0a_46f6 ; $0a
+	dw text_0a_46fd ; $0b
+	dw text_0a_4703 ; $0c
+	dw text_0a_4709 ; $0d
+	dw text_0a_470e ; $0e
+	dw text_0a_4715 ; $0f
+	dw text_0a_471b ; $10
+	dw text_0a_4720 ; $11
+	dw text_0a_4727 ; $12
+	dw text_0a_472e ; $13
+	dw text_0a_4735 ; $14
+	dw text_0a_473c ; $15
+	dw text_0a_4742 ; $16
+	dw text_0a_4749 ; $17
+	dw text_0a_4750 ; $18
+	dw text_0a_4757 ; $19
+	dw text_0a_475e ; $1a
+	dw text_0a_4765 ; $1b
+	dw text_0a_476c ; $1c
+	dw text_0a_4773 ; $1d
+	dw text_0a_477a ; $1e
+	dw text_0a_4781 ; $1f
+	dw text_0a_4788 ; $20
+	dw text_0a_478e ; $21
+	dw text_0a_4795 ; $22
+	dw text_0a_479c ; $23
+	dw text_0a_47a3 ; $24
+	dw text_0a_47aa ; $25
+	dw text_0a_47b1 ; $26
+	dw text_0a_47b7 ; $27
+	dw text_0a_47bd ; $28
+	dw text_0a_47c3 ; $29
+	dw text_0a_47ca ; $2a
+	dw text_0a_47d3 ; $2b
+	dw text_0a_47da ; $2c
+	dw text_0a_47e1 ; $2d
+	dw text_0a_47e8 ; $2e
+	dw text_0a_47ef ; $2f
+	dw text_0a_47f6 ; $30
+	dw text_0a_47fd ; $31
+	dw text_0a_4804 ; $32
+	dw text_0a_480a ; $33
+	dw text_0a_4811 ; $34
+	dw text_0a_4818 ; $35
+	dw text_0a_481f ; $36
+	dw text_0a_4826 ; $37
+	dw text_0a_482d ; $38
+	dw text_0a_4834 ; $39
+	dw text_0a_483b ; $3a
+	dw text_0a_4842 ; $3b
+	dw text_0a_4849 ; $3c
+	dw text_0a_4850 ; $3d
+	dw text_0a_4857 ; $3e
+	dw text_0a_485e ; $3f
+	dw text_0a_4865 ; $40
+	dw text_0a_486b ; $41
+	dw text_0a_4872 ; $42
+	dw text_0a_4878 ; $43
+	dw text_0a_487f ; $44
+	dw text_0a_4886 ; $45
+	dw text_0a_488c ; $46
+	dw text_0a_4893 ; $47
+	dw text_0a_489a ; $48
+	dw text_0a_48a1 ; $49
+	dw text_0a_48a7 ; $4a
+	dw text_0a_48ae ; $4b
+	dw text_0a_48b5 ; $4c
+	dw text_0a_48bc ; $4d
+	dw text_0a_48c3 ; $4e
+	dw text_0a_48ca ; $4f
+	dw text_0a_48d1 ; $50
+	dw text_0a_48d7 ; $51
+	dw text_0a_48de ; $52
+	dw text_0a_48e5 ; $53
+	dw text_0a_48eb ; $54
+	dw text_0a_48f2 ; $55
+	dw text_0a_48f9 ; $56
+	dw text_0a_4900 ; $57
+	dw text_0a_4907 ; $58
+	dw text_0a_490e ; $59
+	dw text_0a_4915 ; $5a
+	dw text_0a_491c ; $5b
