@@ -68,3 +68,20 @@ else
 	db TX_CONT, \1
 endc
 ENDM
+
+
+; Menu text commands
+
+	const_def $e4
+
+	const MENUTX_END ; $e4
+menu_done: MACRO
+	db MENUTX_END
+ENDM
+
+	const_next $ed
+
+	const MENUTX_END2 ; $ed
+menu_done2: MACRO
+	db MENUTX_END2
+ENDM

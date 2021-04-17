@@ -483,7 +483,7 @@ NEWCHARMAP charmap2
 	charmap "宮", $1a
 	charmap "載", $1b
 	charmap "著", $1c
-	charmap "视", $1d
+	charmap "祕", $1d
 	charmap "密", $1e
 	charmap "~", $1f
 	charmap "沈", $20

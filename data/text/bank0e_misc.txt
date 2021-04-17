@@ -36,7 +36,7 @@
 	para "為了預防那一天";
 	line "的來臨，";
 	cont "再不快解開圖中";
-	line "的视密，";
+	line "的祕密，";
 	cont "恐怕就⋯⋯";
 	done;
 
@@ -52,9 +52,9 @@
 @org $0e, $4bfb:
 	init NAME_BALLOT, $00; # TEMP
 	text "爸爸一定想解開";
-	line "設計圖中的视密";
+	line "設計圖中的祕密";
 	para "我如果能解開圖";
-	line "中的视密的話，";
+	line "中的祕密的話，";
 	cont "就可以知道爸爸";
 	line "的下落了。";
 	para "可是這圖⋯⋯";
@@ -69,7 +69,7 @@
 	cont "是位天才的機械";
 	line "發明家。";
 	para "他一定可以知道";
-	line "圖中的视密吧!";
+	line "圖中的祕密吧!";
 	para "雖然很不願意，";
 	cont "但還是必需找一";
 	line "趟伊隼人。";
@@ -310,7 +310,7 @@
 @org $0e, $528c:
 	init NAME_BLANK, $15; # TEMP
 	text "流星雨過後，";
-	cont "賽亞就神视的失";
+	cont "賽亞就神祕的失";
 	line "蹤了。";
 	para "天文台也毀了⋯";
 	para "巴洛特啊~";

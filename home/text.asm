@@ -44,7 +44,7 @@ CheckCharacter::
 	cp $f0
 	jp nc, .SwitchCharacterSet
 	cp $e0
-	jp nc, Func_1b23
+	jp nc, CheckCharacter_Commands
 	jp CheckCharacter_Continue
 
 .SwitchCharacterSet:
@@ -265,8 +265,8 @@ ENDR
 	ld [wCharacterTilePos], a
 	ret
 
-Func_1b23:
-	ld de, .table_1b31
+CheckCharacter_Commands:
+	ld de, .commands
 	sub $e0
 	ld l, a
 	ld h, 0
@@ -277,7 +277,7 @@ Func_1b23:
 	ld l, a
 	jp hl
 
-.table_1b31:
+.commands
 	dw Text_Init ; $e0
 	dw Func_1c2c ; $e1 sign?
 	dw Text_End  ; $e2
@@ -783,15 +783,3 @@ Func_21bb:
 
 Func_22a4:
 	dr $22a4, $2433
-
-Func_2433:
-	dr $2433, $24be
-
-Func_24be:
-	dr $24be, $25d6
-
-Func_25d6:
-	dr $25d6, $25fb
-
-Func_25fb:
-	dr $25fb, $262d

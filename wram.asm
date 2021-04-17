@@ -142,7 +142,9 @@ wd0b5:: ds $1a
 
 wTextboxPointer:: ds 2
 wd0d1:: ds 2
-wd0d3:: ds 4
+wd0d3:: ds 1
+wd0d4:: ds 1 ; step counter
+wd0d5:: ds 2
 
 wMoney:: ds 3
 

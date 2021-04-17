@@ -335,12 +335,12 @@
 	init NAME_BLANK, $1d; # TEMP
 	text "偷偷告訴你唷!";
 	para "那個閃電集團，";
-	cont "好像有個视密的";
+	cont "好像有個祕密的";
 	line "基地!";
 	para "這是我偷聽到的";
 	line "!";
 	para "裡面應該有很大";
-	line "的视密!";
+	line "的祕密!";
 	done;
 
 @org $0e, $6434:
@@ -477,7 +477,7 @@
 @org $0e, $66fa:
 	init NAME_22, $32; # TEMP
 	text "你們是誰?";
-	para "侵入视密基地的";
+	para "侵入祕密基地的";
 	line "傢伙，";
 	cont "要給你們一點教";
 	line "訓!";
@@ -721,7 +721,7 @@
 	text "慢⋯慢⋯慢⋯";
 	line "慢著著著著!!";
 	para "我還有最後的終";
-	line "極视密武器!";
+	line "極祕密武器!";
 	para "就是這個按鈕!";
 	done;
 

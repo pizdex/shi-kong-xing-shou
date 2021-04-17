@@ -57,7 +57,7 @@ Func_0200:
 	ld a, 3
 	ldh [hFF9B], a
 	ld a, 0
-	ldh [hFF9C], a
+	ldh [hFF9B + 1], a
 	ld [wd0ff], a
 	ld [wd0df], a
 	ld [wd0ef], a
@@ -1125,21 +1125,21 @@ Func_0b65:
 	call DelayFrame
 	push hl
 
-Func_0b69:
-; Text routine used for menu options and things
+Menu_CheckCharacter:
+; Text routine used for menus, battles and other things
 	pop hl
 	ld a, [hli]
 	push hl
 	cp $f0
-	jp nc, Func_0c8d
+	jp nc, Menu_GetCharacterSetBase
 	cp $e0
-	jp nc, Func_0b96
-	jp Func_0c93
+	jp nc, Menu_CheckCharacter_Commands
+	jp Menu_CheckCharacter_Continue
 
 Func_0b79:
 	ret
 
-Func_0b7a:
+MenuText_Done:
 	ld a, [wd9d6]
 	and a
 	jr z, .asm_0b94
@@ -1154,14 +1154,14 @@ Func_0b7a:
 	ldh a, [hFFD4]
 	rst Bankswitch
 	push hl
-	jp Func_0b69
+	jp Menu_CheckCharacter
 
 .asm_0b94
 	pop hl
 	ret
 
-Func_0b96:
-	ld de, unk_0ba4
+Menu_CheckCharacter_Commands:
+	ld de, .commands
 	sub $e0
 	ld l, a
 	ld h, 0
@@ -1172,26 +1172,26 @@ Func_0b96:
 	ld l, a
 	jp hl
 
-unk_0ba4:
-	dw Func_0bc4 ; $e0
-	dw Func_0bc7 ; $e1
-	dw Func_0bec ; $e2
-	dw Func_0bc4 ; $e3
-	dw Func_0b7a ; $e4
-	dw Func_0c33 ; $e5
-	dw Func_0c17 ; $e6
-	dw Func_0c6a ; $e7
-	dw Func_0c42 ; $e8
-	dw Func_0c51 ; $e9
-	dw Func_0bc4 ; $ea
-	dw Func_0bc4 ; $eb
-	dw Func_0bfe ; $ec
-	dw Func_0b7a ; $ed
-	dw Func_0bc4 ; $ee
-	dw Func_0bc4 ; $ef
+.commands
+	dw MenuText_Skip ; $e0
+	dw Func_0bc7     ; $e1
+	dw Func_0bec     ; $e2
+	dw MenuText_Skip ; $e3
+	dw MenuText_Done ; $e4
+	dw Func_0c33     ; $e5
+	dw Func_0c17     ; $e6
+	dw Func_0c6a     ; $e7
+	dw Func_0c42     ; $e8
+	dw Func_0c51     ; $e9
+	dw MenuText_Skip ; $ea
+	dw MenuText_Skip ; $eb
+	dw Func_0bfe     ; $ec
+	dw MenuText_Done ; $ed
+	dw MenuText_Skip ; $ee
+	dw MenuText_Skip ; $ef
 
-Func_0bc4:
-	jp Func_0b69
+MenuText_Skip:
+	jp Menu_CheckCharacter
 
 Func_0bc7:
 	ld a, [wd9d0]
@@ -1209,7 +1209,7 @@ Func_0bc7:
 	call Func_113f
 	pop hl
 	push hl
-	jp Func_0b69
+	jp Menu_CheckCharacter
 
 Func_0bec:
 	pop hl
@@ -1234,7 +1234,7 @@ Func_0bfe:
 	ld [wCharacterTilePos], a
 	pop hl
 	push hl
-	jp Func_0b69
+	jp Menu_CheckCharacter
 
 Func_0c17:
 	ld a, [wd986]
@@ -1251,7 +1251,7 @@ Func_0c17:
 	farcall unk_026_4000
 	pop hl
 	push hl
-	jp Func_0b69
+	jp Menu_CheckCharacter
 
 Func_0c33:
 	ld a, [wd9e9]
@@ -1259,7 +1259,7 @@ Func_0c33:
 	farcall Func_01e_4266
 	pop hl
 	push hl
-	jp Func_0b69
+	jp Menu_CheckCharacter
 
 Func_0c42:
 	ld a, [wd9f3]
@@ -1267,7 +1267,7 @@ Func_0c42:
 	farcall Func_01e_4275
 	pop hl
 	push hl
-	jp Func_0b69
+	jp Menu_CheckCharacter
 
 Func_0c51:
 	dr $0c51, $0c6a
@@ -1275,10 +1275,10 @@ Func_0c51:
 Func_0c6a:
 	dr $0c6a, $0c8d
 
-Func_0c8d:
+Menu_GetCharacterSetBase:
 	dr $0c8d, $0c93
 
-Func_0c93:
+Menu_CheckCharacter_Continue:
 	dr $0c93, $0d52
 
 Func_0d52:
@@ -1629,6 +1629,24 @@ Func_19b6:
 	dr $19b6, $19ca
 
 INCLUDE "home/text.asm"
+
+Func_2433:
+	dr $2433, $24be
+
+Func_24be:
+	dr $24be, $24d1
+
+Func_24d1:
+	dr $24d1, $24e6
+
+Func_24e6:
+	dr $24e6, $25d6
+
+Func_25d6:
+	dr $25d6, $25fb
+
+Func_25fb:
+	dr $25fb, $262d
 
 Func_262d:
 	dr $262d, $26d1

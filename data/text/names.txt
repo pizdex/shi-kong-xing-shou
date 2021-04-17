@@ -271,7 +271,7 @@
 	line;
 
 @org $0a, $485e:
-	text "神视獸";
+	text "神祕獸";
 	line;
 
 @org $0a, $4865:

@@ -24,7 +24,7 @@ unk_00b_4250:
 	dw Func_00b_4340
 	dw Func_00b_4344
 	dw Func_00b_4391
-	dw $43a9
+	dw Func_00b_43a9
 	dw $43bd
 	dw $440c
 	dw $442f
@@ -33,7 +33,7 @@ unk_00b_4250:
 	dw $449c
 	dw $44ab
 	dw $4505
-	dw $451d
+	dw Func_00b_451d
 	dw $4537
 	dw $455f
 	dw $456c
@@ -140,7 +140,7 @@ unk_00b_4250:
 	dw $5f5e
 	dw $5f69
 	dw $5ff6
-	dw $6004
+	dw Func_00b_6004
 
 Func_00b_4340:
 	call GetFarByte
@@ -150,7 +150,10 @@ Func_00b_4344:
 	dr $2c344, $2c391
 
 Func_00b_4391:
-	dr $2c391, $2c3fc
+	dr $2c391, $2c3a9
+
+Func_00b_43a9:
+	dr $2c3a9, $2c3fc
 
 Func_00b_43fc:
 	ld a, TEXTBOX_TOP
@@ -165,7 +168,24 @@ Func_00b_43fc:
 	ret
 
 Func_00b_440c:
-	dr $2c40c, $2c5e1
+	dr $2c40c, $2c51d
+
+Func_00b_451d:
+	call GetFarByte
+	ld a, [wFarByte]
+	ldh [hFF9B], a
+	call GetFarByte
+	ld a, [wFarByte]
+	ldh [hFF9B + 1], a
+; Enable map switch
+	ld a, 1
+	ld [hFFBF], a
+	xor a
+	ld [wFarByte], a
+	ret
+
+Func_00b_4537:
+	dr $2c537, $2c5e1
 
 Func_00b_45e1:
 	call GetFarByte
@@ -185,7 +205,10 @@ Func_00b_45e1:
 	ret
 
 Func_00b_45ff:
-	dr $2c5ff, $2e06f
+	dr $2c5ff, $2e004
+
+Func_00b_6004:
+	dr $2e004, $2e06f
 
 Func_00b_606f:
 	dr $2e06f, $2f1e0
