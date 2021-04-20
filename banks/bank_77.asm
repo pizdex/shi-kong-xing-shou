@@ -7,8 +7,7 @@ unk_077_4311:
 unk_077_4322:
 	dr $1dc322, $1dc3fc
 
-unk_077_43fc:
-; Cheat codes
+CheatCode_InputList:
 	db D_UP, A_BUTTON, A_BUTTON, D_UP, B_BUTTON, B_BUTTON, SELECT, SELECT          ; 1
 	db D_DOWN, D_DOWN, D_LEFT, D_RIGHT, SELECT, A_BUTTON, SELECT, B_BUTTON         ; 2
 	db D_LEFT, D_LEFT, D_RIGHT, D_RIGHT, D_UP, D_UP, D_DOWN, D_DOWN                ; 3
@@ -24,7 +23,7 @@ Func_077_4424:
 	ld c, a
 .asm_442c:
 ; Find base address (c*8 + de)
-	ld de, unk_077_43fc
+	ld de, CheatCode_InputList
 	ld l, c
 	ld h, 0
 	add hl, hl

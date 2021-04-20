@@ -1,4 +1,4 @@
-unk_026_4000::
+Func_026_4000::
 	dr $98000, $98888
 
 INCLUDE "data/text/mon_names.asm"

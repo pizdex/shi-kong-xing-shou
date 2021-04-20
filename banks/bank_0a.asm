@@ -27,7 +27,7 @@ Func_00a_4000::
 	call CopyBytesVRAM
 
 	call DelayFrame
-	farcall unk_00d_4000
+	farcall Func_00d_4000
 
 ; Inefficient
 	ld hl, wd1a0
@@ -55,7 +55,7 @@ Func_00a_405b:
 	jr nz, .clear
 	ret
 
-unk_00a_4063::
+Func_00a_4063::
 	dr $28063, $280b3
 
 Func_00a_40b3::

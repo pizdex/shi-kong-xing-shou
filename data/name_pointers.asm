@@ -8,7 +8,7 @@ NamePointers::
 	dw LanteName    ; $06
 	dw RandtName    ; $07
 	dw MittName     ; $08
-	dw text_0a_46ef ; $09
+	dw SnowyName    ; $09
 	dw text_0a_46f6 ; $0a
 	dw text_0a_46fd ; $0b
 	dw text_0a_4703 ; $0c

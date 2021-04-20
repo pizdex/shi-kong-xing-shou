@@ -57,7 +57,7 @@ Func_0200:
 	ld a, 3
 	ldh [hFF9B], a
 	ld a, 0
-	ldh [hFF9B + 1], a
+	ldh [hFF9C], a
 	ld [wd0ff], a
 	ld [wd0df], a
 	ld [wd0ef], a
@@ -93,39 +93,39 @@ Func_0257:
 
 unkTable_025c:
 ; Seems to load on each map entry
-	dba Func_005_41fb
-	dba Func_008_560c
-	dba Func_03c_40d2
-	dba Func_03c_4343
-	dba Func_01b_4000
-	dba Func_05d_4000
-	dba Func_04e_4943
-	dba Func_055_4000
-	dba Func_01a_4000
-	dba Func_061_4000
-	dba Func_05c_55e7
-	dba Func_061_5d22
-	dba Func_05e_401c
-	dba Func_05f_4000
-	dba Func_05b_4000
-	dba Func_04e_46e5
-	dba Func_062_4000
-	dba Func_04e_4637
-	dba Func_077_4000
-	dba Func_067_4000
-	dba Func_067_506e
-	dba Func_067_51f5
-	dba Func_062_5df3
-	dba Func_03c_40d2
-	dba Func_03c_40d2
-	dba Func_062_5f9c
-	dba Func_03c_4c74
-	dba Func_07a_401f
-	dba Func_07a_4188
-	dba Func_06f_4000
-	dba Func_070_4000
-	dba Func_071_4000
-	dba Func_071_5a49
+	dba Func_005_41fb   ; $00
+	dba Func_008_560c   ; $01
+	dba Func_03c_40d2   ; $02
+	dba Func_03c_4343   ; $03
+	dba Func_01b_4000   ; $04
+	dba Func_05d_4000   ; $05
+	dba Func_04e_4943   ; $06
+	dba Func_055_4000   ; $07
+	dba Func_01a_4000   ; $08
+	dba Func_061_4000   ; $09
+	dba Func_05c_55e7   ; $0a
+	dba Func_061_5d22   ; $0b
+	dba Func_05e_401c   ; $0c
+	dba Func_05f_4000   ; $0d
+	dba Func_05b_4000   ; $0e
+	dba Func_04e_46e5   ; $0f
+	dba Func_062_4000   ; $10
+	dba Func_04e_4637   ; $11
+	dba Func_077_4000   ; $12
+	dba Func_067_4000   ; $13
+	dba Func_067_506e   ; $14
+	dba Func_067_51f5   ; $15
+	dba Func_062_5df3   ; $16
+	dba Func_03c_40d2   ; $17
+	dba Func_03c_40d2   ; $18
+	dba Debug_SoundTest ; $19
+	dba Func_03c_4c74   ; $1a
+	dba Func_07a_401f   ; $1b
+	dba Func_07a_4188   ; $1c
+	dba Func_06f_4000   ; $1d
+	dba Func_070_4000   ; $1e
+	dba Func_071_4000   ; $1f
+	dba Func_071_5a49   ; $20
 
 DelayFrame::
 ; Wastes cycles until the VBlank interrupt occurs, where hVBlank is set to 1
@@ -189,10 +189,10 @@ CopyBytesVRAM::
 	push bc
 	ld c, a
 
-.wait
+.waitLCD
 	ldh a, [rSTAT]
 	and STATF_LCD
-	jr nz, .wait
+	jr nz, .waitLCD
 
 ; Copy byte
 	ld a, c
@@ -520,7 +520,7 @@ Func_0453:
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c
+	dec c ; dec bc
 	ld a, c
 	or b
 	jr nz, .copy1
@@ -540,7 +540,7 @@ Func_0453:
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c
+	dec c ; dec bc
 	ld a, c
 	or b
 	jr nz, .copy2
@@ -595,7 +595,7 @@ Func_0506:
 	ld a, [hli]
 	ld [hl], 0
 	inc hl
-	dec c
+	dec c ; dec bc
 	ld a, c
 	or b
 	jr nz, .asm_0517
@@ -639,7 +639,90 @@ Func_0531:
 	db $7f, $f5
 
 Func_055b:
-	dr $055b, $05f2
+	ld a, [wd0c9]
+	ld [wcd01], a
+	ld a, [wd0ca]
+	ld [wcd00], a
+	ld a, 1
+	ld [wcd02], a
+	ldh [hFFAC], a
+	ld [wdcd0], a
+	ld a, $0a
+	ldh [hFFAD], a
+	ld a, [wd0e3]
+	ld [wcd03], a
+	ld a, [wd0e4]
+	and a
+	jr z, .asm_058a
+
+	ld a, [wd0e4]
+	ld [wcd04], a
+	jp .asm_05e9
+
+.asm_058a
+	ld a, [wd9dd]
+	cp 3
+	jr nz, .asm_05a0
+	ld hl, wdd18
+	ld a, [hl]
+	cp $80
+	jr nz, .asm_05a0
+
+	ld a, $36
+	ld [wcd04], a
+	jr .asm_05a7
+
+.asm_05a0
+	ld a, [wd9dd]
+	add a
+	ld [wcd04], a
+
+.asm_05a7
+	ld a, [wdcea]
+	and a
+	jr z, .asm_05e9
+
+	cp 2
+	jr z, .asm_05b8
+
+	ld a, 1
+	ld [wcd24], a
+	jr .asm_05ca
+
+.asm_05b8
+	ld a, [wd9dd]
+	and a
+	jr z, .asm_05c5
+
+	add a
+	inc a
+	ld [wcd24], a
+	jr .asm_05ca
+
+.asm_05c5
+	ld a, $10
+	ld [wcd24], a
+
+.asm_05ca
+	ld a, [wcd03]
+	ld [wcd23], a
+	ld [wdcec], a
+	call Func_0531
+	ld a, 1
+	ld [wcd22], a
+	ldh [hFFDB], a
+	ld [wdceb], a
+	ld a, $0a
+	ldh [hFFDC], a
+	ld a, 8
+	ld [wcd26], a
+
+.asm_05e9
+	call Func_2108
+	call Func_22a4
+	pop af
+	rst Bankswitch
+	ret
 
 Func_05f2:
 	ld a, [_BANKNUM]
@@ -1028,6 +1111,7 @@ ClearBGMap0::
 	ldh a, [rSTAT]
 	bit 1, a ; STATF_BUSY
 	jr nz, .clear_bank1
+; clear byte
 	xor a
 	ld [hli], a
 	dec bc
@@ -1047,6 +1131,7 @@ ClearBGMap0::
 	ldh a, [rSTAT]
 	bit 1, a ; STATF_BUSY
 	jr nz, .clear_bank0
+; clear byte
 	xor a
 	ld [hli], a
 	dec bc
@@ -1248,7 +1333,7 @@ Func_0c17:
 
 .asm_0c25
 	ld [wd9d8], a
-	farcall unk_026_4000
+	farcall Func_026_4000
 	pop hl
 	push hl
 	jp Menu_CheckCharacter
@@ -1503,10 +1588,238 @@ SRAMTest_Fast:
 	ret
 
 Func_132b:
-	dr $132b, $15e7
+	call Func_05ff
+	ret
+
+Func_132f:
+	push hl
+	push de
+	ld hl, wd200
+.asm_1334
+	ld a, [hl]
+	and a
+	jr z, .asm_1346
+	ld de, $16
+	add hl, de
+	ld a, l
+	cp $80
+	jr c, .asm_1334
+
+	ld a, 1
+	pop de
+	pop hl
+	ret
+
+.asm_1346
+	xor a
+	push hl
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Func_134c:
+	ld a, [_BANKNUM]
+	push af
+	ld a, [wd0f1]
+	rst Bankswitch
+	call CopyBytesVRAM
+	pop af
+	rst Bankswitch
+	ret
+
+Func_135a:
+	ld a, [_BANKNUM]
+	push af
+	ld a, $0c
+	rst Bankswitch
+	call CopyBytesVRAM
+	pop af
+	rst Bankswitch
+	ret
+
+Func_1367:
+	dr $1367, $13fe
+
+Func_13fe:
+	ld de, .unk_141c
+	ldh a, [hFF9A]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ldh a, [hFF9B]
+	ld l, a
+	ld h, 0
+	add hl, de
+	ldh a, [hFFDA]
+	cp [hl]
+	ret z
+
+	ld a, [hl]
+	and a
+	ret z
+
+	call Func_2be2
+	ret
+
+.unk_141c
+	dw .unk_142c
+	dw .unk_1462
+	dw .unk_1498
+	dw .unk_14bc
+	dw .unk_14e0
+	dw .unk_1546
+	dw .unk_156e
+	dw .unk_159b
+
+.unk_142c
+	dr $142c, $1462
+
+.unk_1462
+	dr $1462, $1498
+
+.unk_1498
+	dr $1498, $14bc
+
+.unk_14bc
+	dr $14bc, $14e0
+
+.unk_14e0
+	dr $14e0, $1546
+
+.unk_1546
+	dr $1546, $156e
+
+.unk_156e
+	dr $156e, $159b
+
+.unk_159b
+	dr $159b, $15a8
+
+Func_15a8:
+	push hl
+
+.copy:
+	ld a, e
+	push bc
+	ld c, a
+	di
+
+.waitLCD1
+	ldh a, [rSTAT]
+	bit 1, a ; STATF_BUSY
+	jr nz, .waitLCD1
+
+; write byte
+	ld a, c
+	ld [hl], a
+
+.waitLCD2
+	ldh a, [rSTAT]
+	bit 1, a ; STATF_BUSY
+	jr nz, .waitLCD2
+
+	ei
+; Verify that byte was written
+	ld a, [hl]
+	cp c
+	jr nz, .copy
+
+; Keep x coordinate if we are still on the same row (x < BG_MAP_WIDTH)
+; Zero if x = BG_MAP_WIDTH after increment
+	ld a, l
+	inc a
+	and BG_MAP_WIDTH - 1
+	ld b, a
+; Make sure that the lower byte of the VRAM address becomes one of these in the event that x is BG_MAP_WIDTH
+	ld a, l
+	and $00 | $20 | $40 | $60 | $80 | $a0 | $c0 | $e0
+	or b
+	ld l, a
+
+	pop bc
+	dec b
+	jr nz, .copy
+
+; Move to next row
+	pop hl
+	push bc
+	ld bc, BG_MAP_WIDTH
+	add hl, bc
+; Still in BG map 0? ($9800 - $9c00)
+	ld a, h
+	cp HIGH(vBGMap1)
+	jr c, .next_row
+; If not, fix it
+	ld h, HIGH(vBGMap0)
+
+.next_row
+	pop bc
+	ldh a, [hFF92]
+	ld b, a
+	dec c
+	jr nz, Func_15a8
+
+	ld a, 0
+	ldh [rVBK], a
+	ret
 
 Func_15e7:
-	dr $15e7, $1642
+	ld de, .unk_15f6
+	ld a, [hFFBA]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+.unk_15f6
+	dw Func_1620
+	dw Func_1730
+	dw Func_1730
+	dw Func_1900
+	dw Func_16f4
+	dw Func_1712
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+	dw Func_1730
+
+Func_1620:
+	ld hl, wdd00
+	ld [hl], $01
+	ld a, $04
+	ldh [hFF9B], a
+	ld a, $01
+	ldh [hFF9C], a
+	ld a, $01
+	ldh [hFFD6], a
+	ld a, $08
+	ld [hFFB6], a
+	ld hl, wcbf8
+	ld [hl], $00
+	inc hl
+	ld [hl], $40
+	call Func_1642
+	ret
 
 Func_1642:
 	ld a, [wdcb0]
@@ -1583,6 +1896,7 @@ Func_168c:
 	ret
 
 Func_16b6:
+; Broken
 	call ClearSRAM
 	xor a
 	ld [rRAMG], a
@@ -1617,16 +1931,293 @@ Func_16c0:
 	ret
 
 Func_16ea:
+; Broken
 	call ClearSRAM
 	xor a
 	ld [rRAMG], a
 	jp Func_1661
 
 Func_16f4:
-	dr $16f4, $19b6
+	ld a, $01
+	ldh [hFF9A], a
+	ld a, $04
+	ldh [hFF9B], a
+	ld a, $01
+	ldh [hFF9C], a
+	ld a, $01
+	ldh [hFFD6], a
+	ld a, $0e
+	ld [hFFB6], a
+	ld hl, wcbf8
+	ld [hl], $05
+	inc hl
+	ld [hl], $40
+	ret
+
+Func_1712:
+	ld a, $04
+	ldh [hFF9A], a
+	ld a, $43
+	ldh [hFF9B], a
+	ld a, $01
+	ldh [hFF9C], a
+	ld a, $01
+	ldh [hFFD6], a
+	ld a, $55
+	ld [hFFB6], a
+	ld hl, wcbf8
+	ld [hl], $ef
+	inc hl
+	ld [hl], $53
+	ret
+
+Func_1730:
+	ld bc, $009a
+	call Func_2e13
+	ld bc, $0007
+	call Func_2e04
+
+; wow...
+	ld a, $ff
+	ld [wdaa0], a
+	ld a, $ff
+	ld [wdaa1], a
+	ld a, $ff
+	ld [wdaa2], a
+	ld a, $f7
+	ld [wdaa3], a
+	ld a, $ff
+	ld [wdaa4], a
+	ld a, $ff
+	ld [wdaa5], a
+	ld a, $77
+	ld [wdaa6], a
+	ld a, $ff
+	ld [wdaa7], a
+	ld a, $ff
+	ld [wdaa8], a
+	ld a, $1f
+	ld [wdaa9], a
+	ld a, $fc
+	ld [wdaaa], a
+	ld a, $ff
+	ld [wdaab], a
+	ld a, $fe
+	ld [wdaac], a
+	ld a, $ff
+	ld [wdaad], a
+	ld a, $3f
+	ld [wdaae], a
+	ld a, $ff
+	ld [wdaaf], a
+	ld a, $ff
+	ld [wdab0], a
+	ld a, $ff
+	ld [wdab1], a
+	ld a, $ff
+	ld [wdab2], a
+	ld a, $ff
+	ld [wdab3], a
+	ld a, $f7
+	ld [wdab4], a
+	ld a, $03
+	ld [wdab5], a
+	ld a, $00
+	ld [wdab6], a
+	ld a, $00
+	ld [wdab7], a
+	ld a, $00
+	ld [wdab8], a
+
+	ld a, $1a
+	ld [hFFBA], a
+	ld a, $0c
+	ldh [hFF9B], a
+	ld a, $03
+	ldh [hFF9C], a
+	ld a, $06
+	ldh [hFF9A], a
+
+	ld a, $01
+	ld [wdcbb], a
+
+; Money = 99990
+	ld a, $01
+	ld [wMoney], a
+	ld a, $86
+	ld [wMoney + 1], a
+	ld a, $96
+	ld [wMoney + 2], a
+
+	ld bc, $0018
+	call Func_2ca4
+	call Func_2d08
+	call Debug_GiveItems
+
+	ld bc, wd200
+	ld hl, $0016
+	add hl, bc
+	push hl
+	pop bc
+	ld a, $8a
+	ld [bc], a
+	ld hl, $0001
+	add hl, bc
+	ld [hl], $5a
+	ld hl, $0005
+	add hl, bc
+	ld [hl], $10
+	ld hl, $0002
+	add hl, bc
+	ld [hl], $05
+	ld hl, $0014
+	add hl, bc
+	ld [hl], $12
+	inc hl
+	ld [hl], $14
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $85
+	inc hl
+	ld [hl], $0c
+	inc hl
+	ld [hl], $0c
+
+	ld bc, wd200
+	ld hl, $002c
+	add hl, bc
+	push hl
+	pop bc
+	ld a, $72
+	ld [bc], a
+	ld hl, $0001
+	add hl, bc
+	ld [hl], $5a
+	ld hl, $0005
+	add hl, bc
+	ld [hl], $10
+	ld hl, $0002
+	add hl, bc
+	ld [hl], $55
+	ld hl, $0014
+	add hl, bc
+	ld [hl], $12
+	inc hl
+	ld [hl], $14
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $2c
+	inc hl
+	ld [hl], $0c
+	inc hl
+	ld [hl], $0c
+
+	ld bc, wd200
+	ld hl, $0042
+	add hl, bc
+	push hl
+	pop bc
+	ld a, $05
+	ld [bc], a
+	ld hl, $0001
+	add hl, bc
+	ld [hl], $5a
+	ld hl, $0005
+	add hl, bc
+	ld [hl], $10
+	ld hl, $0002
+	add hl, bc
+	ld [hl], $55
+	ld hl, $0014
+	add hl, bc
+	ld [hl], $12
+	inc hl
+	ld [hl], $14
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $2c
+	inc hl
+	ld [hl], $0c
+	inc hl
+	ld [hl], $0c
+
+	ld bc, wd200
+	ld hl, $0058
+	add hl, bc
+	push hl
+	pop bc
+	ld a, $78
+	ld [bc], a
+	ld hl, $0001
+	add hl, bc
+	ld [hl], $5a
+	ld hl, $0005
+	add hl, bc
+	ld [hl], $10
+	ld hl, $0002
+	add hl, bc
+	ld [hl], $55
+	ld hl, $0014
+	add hl, bc
+	ld [hl], $12
+	inc hl
+	ld [hl], $14
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $2c
+	inc hl
+	ld [hl], $0c
+	inc hl
+	ld [hl], $0c
+
+	ld bc, wd200
+	ld hl, $006e
+	add hl, bc
+	push hl
+	pop bc
+	ld a, $31
+	ld [bc], a
+	ld hl, $0001
+	add hl, bc
+	ld [hl], $5a
+	ld hl, $0005
+	add hl, bc
+	ld [hl], $10
+	ld hl, $0002
+	add hl, bc
+	ld [hl], $55
+	ld hl, $0014
+	add hl, bc
+	ld [hl], $12
+	inc hl
+	ld [hl], $14
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $2c
+	inc hl
+	ld [hl], $0c
+	inc hl
+	ld [hl], $0c
+	ret
+
+unk_18ea:
+	ds $16, 0
+
+Func_1900:
+; Debug code?
+	dr $1900, $19b6
 
 Func_19b6:
-	dr $19b6, $19ca
+	ld a, [wd0ef]
+	and a
+	jr z, .asm_19c3
+
+	farcall Func_00b_5273
+	ret
+
+.asm_19c3
+	farcall Func_00d_4000
+	ret
 
 INCLUDE "home/text.asm"
 
@@ -1634,22 +2225,132 @@ Func_2433:
 	dr $2433, $24be
 
 Func_24be:
-	dr $24be, $24d1
+	call Func_257c
+	call Func_24d1
+	call Func_24e6
+	call Func_2529
+	call Func_26e1
+	call Func_254a
+	ret
 
 Func_24d1:
-	dr $24d1, $24e6
+	ld a, [wd0f4]
+	and a
+	ret z
+	cp 5
+	ret z
+
+	homecall Func_01e_41bf
+	ret
 
 Func_24e6:
-	dr $24e6, $25d6
+	ld a, [hFF9A]
+	cp 1
+	ret nz
+
+	ld a, [hFF9B]
+	cp $23
+	jr z, .asm_2504
+	cp $24
+	jr z, .asm_2504
+	cp $25
+	jr z, .asm_2504
+	cp $26
+	jr z, .asm_2504
+	cp $27
+	jr z, .asm_2504
+	ret
+
+.asm_2504
+	ld a, [wd0f4]
+	cp 1
+	jr z, .asm_251c
+	cp 2
+	jr z, .asm_251c
+	cp 3
+	jr z, .asm_251c
+	cp 4
+	jr z, .asm_251c
+	cp 5
+	jr z, .asm_251c
+	ret
+
+.asm_251c
+	homecall Func_01e_4194
+	ret
+
+Func_2529:
+	dr $2529, $254a
+
+Func_254a:
+	dr $254a, $257c
+
+Func_257c:
+	dr $257c, $259b
+
+Func_259b:
+	call Func_0a0a
+	call Func_0b1b
+	ret
+
+Func_25a2:
+	call Func_0a0a
+	call Func_0a46
+	ret
+
+Func_25a9:
+	dr $25a9, $25d6
 
 Func_25d6:
-	dr $25d6, $25fb
+	dr $25d6, $25f5
+
+Func_25f5:
+	dr $25f5, $25fb
 
 Func_25fb:
-	dr $25fb, $262d
+	dr $25fb, $2612
+
+Func_2612:
+jr_000_2612:
+	push hl
+	ld hl, wdae2
+	bit 0, [hl]
+	jr z, .asm_261e
+
+	cp $53
+	jr c, .asm_262b
+
+.asm_261e
+	ld hl, wdae3
+	ld l, [hl]
+	ld [hl], a
+	ld l, $e3
+	ld a, [hl]
+	cp $eb
+	jr nc, .asm_262b
+
+	inc [hl]
+
+.asm_262b
+	pop hl
+	ret
 
 Func_262d:
-	dr $262d, $26d1
+	call Func_25f5
+	ld a, [wd08f]
+	push af
+	ld a, [wd091]
+	rst Bankswitch
+	call $4006
+	pop af
+	rst Bankswitch
+	ret
+
+Func_263e:
+	dr $263e, $2691
+
+unk_2691:
+	ds $40, 0
 
 WaitVRAM_STAT2:
 ; Copy of WaitVRAM_STAT
@@ -1671,7 +2372,26 @@ CopyBytes2:
 	ret
 
 Func_26e1:
-	dr $26e1, $279e
+	dr $26e1, $278b
+
+Func_278b:
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ld a, e
+	add $17
+	ld e, a
+	ld a, d
+	adc 0
+	ld d, a
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ret
 
 INCLUDE "home/joypad.asm"
 
@@ -1867,10 +2587,14 @@ Func_29c8:
 	ret
 
 unk_2ab8:
-	dr $2ab8, $2b38
+REPT $40
+	dw $0000
+ENDR
 
 unk_2b38:
-	dr $2b38, $2bb8
+REPT $40
+	dw $7fff
+ENDR
 
 SRAMTest:
 	call SRAMTest_Fast
@@ -1941,11 +2665,11 @@ Func_2c03:
 	ld de, $a0
 	add hl, de
 	ld de, .unk_2c1b
-.get_length:
+.get_length
 	ld a, [de]
 	cp $ff
 	ret z
-; get length
+; Store length in b
 	ld b, a
 	inc de
 	ld a, [de]
@@ -1956,7 +2680,7 @@ Func_2c03:
 	jr nz, .copy_byte
 	jr .get_length
 
-.unk_2c1b:
+.unk_2c1b
 	db $01, $06
 	db $07, $06
 	db $48, $06
@@ -1973,22 +2697,59 @@ Func_2ca4:
 	ld de, wd284
 	ld hl, .unk_2cb8
 .asm_2caa
+REPT 2
 	ld a, [hl]
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [hl]
-	ld [de], a
-	inc hl
-	inc de
-	dec c
+ENDR
+	dec c ; should be dec bc
 	ld a, c
 	or b
 	jr nz, .asm_2caa
 	ret
 
-.unk_2cb8:
-	dr $2cb8, $2d08
+.unk_2cb8
+	db $01, $01
+	db $02, $01
+	db $03, $01
+	db $04, $01
+	db $05, $01
+	db $06, $01
+	db $07, $01
+	db $08, $01
+	db $09, $01
+	db $0a, $01
+	db $0b, $01
+	db $0c, $01
+	db $0d, $01
+	db $0e, $01
+	db $0f, $01
+	db $10, $01
+	db $11, $01
+	db $12, $01
+	db $13, $01
+	db $14, $01
+	db $15, $01
+	db $16, $01
+	db $17, $01
+	db $18, $01
+	db $19, $01
+	db $1a, $01
+	db $1b, $01
+	db $1c, $01
+	db $1d, $01
+	db $1e, $01
+	db $1f, $01
+	db $20, $01
+	db $21, $01
+	db $22, $01
+	db $23, $01
+	db $24, $01
+	db $25, $01
+	db $26, $01
+	db $27, $01
+	db $28, $01
 
 Func_2d08:
 	ld de, wddb0
@@ -2001,12 +2762,35 @@ Func_2d08:
 	inc de
 	jr .copy
 
-.unk_2d16:
-	dr $2d16, $2d42
+.unk_2d16
+	db $01, $01
+	db $02, $01
+	db $03, $01
+	db $04, $01
+	db $05, $01
+	db $06, $01
+	db $07, $01
+	db $08, $01
+	db $09, $01
+	db $0a, $01
+	db $0f, $01
+	db $ff, $ff
 
-Func_2d42:
+.unk_2d2e ; unused
+	db $0d, $03
+	db $0e, $03
+	db $0f, $03
+	db $10, $03
+	db $11, $03
+	db $12, $03
+	db $13, $03
+	db $14, $03
+	db $15, $03
+	db $ff, $ff
+
+Debug_GiveItems:
 	ld de, wd300
-	ld hl, .unk_2d50
+	ld hl, .item_data
 .copy
 	ld a, [hli]
 	cp $ff
@@ -2015,20 +2799,213 @@ Func_2d42:
 	inc de
 	jr .copy
 
-.unk_2d50:
-	dr $2d50, $2e04
+.item_data
+	db ITEM_04, 99
+	db ITEM_26, 50
+	db ITEM_26, 99
+	db ITEM_27, 99
+	db TM13, 1
+	db TM33, 1
+	db $ff, $ff
+
+.item_data2 ; unused
+	db ITEM_08, 12
+	db ITEM_09, 12
+	db ITEM_0a, 12
+	db ITEM_0b, 12
+	db ITEM_0c, 12
+	db ITEM_0d, 12
+	db ITEM_0e, 12
+	db ITEM_0f, 12
+	db ITEM_10, 12
+	db ITEM_11, 12
+	db ITEM_12, 12
+	db ITEM_13, 12
+	db ITEM_14, 12
+	db ITEM_15, 12
+	db ITEM_16, 12
+	db ITEM_17, 12
+	db ITEM_18, 12
+	db ITEM_19, 12
+	db ITEM_1a, 12
+	db ITEM_1b, 12
+	db ITEM_1c, 12
+	db ITEM_1d, 12
+	db ITEM_1e, 12
+	db ITEM_1f, 12
+	db ITEM_20, 12
+	db ITEM_21, 12
+	db ITEM_22, 12
+	db ITEM_23, 12
+	db ITEM_24, 12
+	db ITEM_25, 12
+	db ITEM_26, 12
+	db ITEM_27, 12
+	db TM01, 12
+	db TM02, 12
+	db TM03, 12
+	db TM04, 12
+	db TM05, 12
+	db TM06, 12
+	db TM07, 12
+	db TM08, 12
+	db TM09, 12
+	db TM10, 12
+	db TM11, 12
+	db TM12, 12
+	db TM13, 12
+	db TM14, 12
+	db TM15, 12
+	db TM16, 12
+	db TM17, 12
+	db TM18, 12
+	db TM19, 12
+	db TM20, 12
+	db TM21, 12
+	db TM22, 12
+	db TM23, 12
+	db TM24, 12
+	db TM25, 12
+	db TM26, 12
+	db TM27, 12
+	db TM28, 12
+	db TM29, 12
+	db TM30, 12
+	db TM31, 12
+	db TM32, 12
+	db TM33, 12
+	db TM34, 12
+	db TM35, 12
+	db TM36, 12
+	db TM37, 12
+	db TM38, 12
+	db TM39, 12
+	db TM40, 12
+	db TM41, 12
+	db TM42, 12
+	db TM43, 12
+	db TM44, 12
+	db TM45, 12
+	db TM46, 12
+	db TM47, 12
+	db TM48, 12
+	db TM49, 12
+	db TM50, 12
+	db $ff, $ff
 
 Func_2e04:
-	dr $2e04, $2e13
+	ld hl, wdd00
+.asm_2e07
+	ld [hl], $01
+	dec c ; dec bc
+	ld a, c
+	or b
+	ret z
+
+	ld de, 8
+	add hl, de
+	jr .asm_2e07
 
 Func_2e13:
-	dr $2e13, $2e38
+	ld de, wde00
+	ld hl, unk_2f40
+.copy1
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c ; dec bc
+	ld a, c
+	or b
+	jr nz, .copy1
+
+	ld de, wd200
+	ld hl, wde00
+	ld bc, $16
+.copy2
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c ; dec bc
+	ld a, c
+	or b
+	jr nz, .copy2
+
+	ld a, 2
+	ld [wdcea], a
+	ret
 
 Func_2e38:
-	dr $2e38, $2e56
+	ld de, wdb20
+.asm_2e3b:
+	ld hl, unk_2f40
+	ld bc, $13
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c ; dec bc
+	ld a, c
+	or b
+	and a
+	jr nz, .copy
+
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $14
+	ret nc
+	jr .asm_2e3b
 
 Func_2e56:
-	dr $2e56, $2ea0
+	ld de, wd7cb
+	ld hl, unk_2ea0
+	ld bc, $9e
+.copy1
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c ; dec bc
+	ld a, c
+	or b
+	jr nz, .copy1
+
+	ld bc, $0000
+.asm_2e6a
+	ld de, wdd00
+	ld l, c
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld [hl], $01
+	inc bc
+	ld a, c
+	cp 8
+	jr c, .asm_2e6a
+
+	ld de, wde00
+	ld hl, unk_2f40
+	ld bc, $b0
+.copy2
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy2
+
+	ld a, $9f
+	ld [wd0d6], a
+	ld a, $89
+	ld [wd0d5], a
+	ld a, $06
+	ld [wd0da], a
+	ld a, $02
+	ld [wdcea], a
+	ret
 
 unk_2ea0:
-	dr $2ea0, $2ff0
+	dr $2ea0, $2f40
+
+unk_2f40:
+	dr $2f40, $2ff0

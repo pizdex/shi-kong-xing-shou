@@ -40,7 +40,7 @@
 	text "米 特";
 	line;
 
-@org $0a, $46ef:
+@org $0a, $46ef (SnowyName):
 	text "小";
 	forcemap " ", 0;
 	text "白";

@@ -6,13 +6,13 @@
 @org $1e, $5aa1:
 	text "可收服怪獸的高科技";
 	forcemap "膠", 1;
-	text "票。";
+	text "囊。";
 	line;
 
 @org $1e, $5ab2:
 	text "以很高的速度，收服";
 	forcemap "怪", 1;
-	text "獸的膠票。";
+	text "獸的膠囊。";
 	line;
 
 @org $1e, $5ac6:
@@ -22,7 +22,7 @@
 	line;
 
 @org $1e, $5ad7:
-	text "一定可以收服怪獸的強力膠票。";
+	text "一定可以收服怪獸的強力膠囊。";
 	line;
 
 @org $1e, $5aec:

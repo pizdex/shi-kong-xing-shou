@@ -346,7 +346,7 @@ NEWCHARMAP charmap1
 	charmap "驗", $74
 	charmap "值", $75
 	charmap "膠", $76
-	charmap "票", $77 ; ?
+	charmap "囊", $77
 	charmap "極", $78
 	charmap "品", $79
 	charmap "利", $7a

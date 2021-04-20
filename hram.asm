@@ -22,7 +22,8 @@ hFF98:: ds 1
 hFF99:: ds 1
 hFF9A:: ds 1
 
-hFF9B:: ds 2
+hFF9B:: ds 1
+hFF9C:: ds 1
 hFF9D:: ds 1
 hFF9E:: ds 1
 hFF9F:: ds 1

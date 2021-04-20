@@ -14,7 +14,7 @@
 	const NAME_LANTE  ; $06
 	const NAME_RANDT  ; $07
 	const NAME_MITT   ; $08
-	const NAME_09     ; $09
+	const NAME_SNOWY  ; $09
 	const NAME_0A     ; $0a
 	const NAME_0B     ; $0b
 	const NAME_0C     ; $0c

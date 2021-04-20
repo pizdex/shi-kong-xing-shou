@@ -176,7 +176,7 @@ Func_00b_451d:
 	ldh [hFF9B], a
 	call GetFarByte
 	ld a, [wFarByte]
-	ldh [hFF9B + 1], a
+	ldh [hFF9C], a
 ; Enable map switch
 	ld a, 1
 	ld [hFFBF], a
@@ -205,7 +205,10 @@ Func_00b_45e1:
 	ret
 
 Func_00b_45ff:
-	dr $2c5ff, $2e004
+	dr $2c5ff, $2d273
+
+Func_00b_5273::
+	dr $2d273, $2e004
 
 Func_00b_6004:
 	dr $2e004, $2e06f

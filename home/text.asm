@@ -346,12 +346,13 @@ Func_1ba0:
 	call ByteFillVRAM
 	call DelayFrame
 
-	ld a, $0a
+; Load name
+	ld a, BANK(NamePointers)
 	rst Bankswitch
 	xor a
 	ld [wCharacterTilePos], a
 	ld de, NamePointers
-	ld a, [$cbf7]
+	ld a, [wTextNameID]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -432,15 +433,15 @@ Func_1c2c:
 	ld a, [_BANKNUM]
 	push af
 ; Switch
-	ld a, BANK(unk_00a_4063)
+	ld a, BANK(Func_00a_4063)
 	rst Bankswitch
-	call unk_00a_4063 ; load place name
+	call Func_00a_4063 ; load place name
 	call DelayFrame
 	call Func_00a_40b3
 ; Switch
-	ld a, BANK(unk_004_4024)
+	ld a, BANK(Func_004_4024)
 	rst Bankswitch
-	call unk_004_4024
+	call Func_004_4024
 ; Restore old bank
 	pop af
 	rst Bankswitch
@@ -470,7 +471,7 @@ Func_1c2c:
 Text_End:
 	call Func_1fb9
 
-.asm_1c71:
+Text_EndCont:
 	ld a, [_BANKNUM]
 	push af
 	ld a, BANK(Func_00a_4178)
@@ -488,7 +489,7 @@ Text_End:
 	ret
 
 Func_1c8b:
-	ld hl, $cbd0
+	ld hl, wcbd0
 	ld c, $20
 	xor a
 .asm_1c91
@@ -498,10 +499,24 @@ Func_1c8b:
 	ret
 
 Func_1c96:
-	dr $1c96, $1ca9
+	call Func_0817
+	pop hl
+	call $421a
+	ld a, [wcbfe]
+	ld l, a
+	ld a, [wcbfe + 1]
+	ld h, a
+	push hl
+	jp CheckCharacter
 
 Func_1ca9:
-	dr $1ca9, $1cb6
+	pop hl
+	ld a, [wdcd3]
+	ld l, a
+	ld a, [wdcd3 + 1]
+	ld h, a
+	push hl
+	jp CheckCharacter
 
 PrintTwoOptionMenu:
 	pop hl
@@ -532,7 +547,7 @@ unk_1cd0:
 
 InterpretTwoOptionMenu:
 	call .Main
-	jp Text_End.asm_1c71
+	jp Text_EndCont
 
 .Main:
 	ld a, [wdaa3]
@@ -601,16 +616,59 @@ InterpretTwoOptionMenu:
 	ret
 
 Func_1d41:
-	dr $1d41, $1d67
+	pop hl
+	ld a, l
+	ld [wdcd3], a
+	ld a, h
+	ld [wdcd3 + 1], a
+	ld hl, .unk_1d59
+	ld a, l
+	ld [wcbfe], a
+	ld a, h
+	ld [wcbfe + 1], a
+	push hl
+	jp CheckCharacter
+
+.unk_1d59:
+	db $f0, $00
+	db $f2, $4d
+	db $f0, $00
+	db $f2, $51
+	db $f0, $00
+	db $f1, $49, $4a
+	db $e8
 
 Func_1d67:
-	dr $1d67, $1e0a
+; Buy sell cancel menu
+	call Func_1d6d
+	jp Text_EndCont
+
+Func_1d6d:
+; Buy sell cancel menu for real
+	dr $1d6d, $1e07
+
+Func_1e07:
+	jp CheckCharacter
 
 Func_1e0a:
-	dr $1e0a, $1e1a
+	pop hl
+	call $6e4d
+	ld a, [wcbfe]
+	ld l, a
+	ld a, [wcbfe + 1]
+	ld h, a
+	push hl
+	jp CheckCharacter
 
 Func_1e1a:
-	dr $1e1a, $1e2a
+	pop hl
+	call $6de3
+	ld a, [wcbfe]
+	ld l, a
+	ld a, [wcbfe + 1]
+	ld h, a
+	push hl
+	jp CheckCharacter
 
 Text_Paragraph:
 	call Func_1fb9
@@ -623,7 +681,23 @@ Text_Paragraph:
 	jp CheckCharacter
 
 Func_1e40:
-	dr $1e40, $1e5b
+; Clear tilemap textbox
+	ld a, [wd0d1]
+	ld l, a
+	ld a, [wd0d1 + 1]
+	ld h, a
+	lb bc, 4, 14
+	ld de, 6
+.clear
+	ld a, $a0
+	ld [hli], a
+	dec c
+	jr nz, .clear
+	add hl, de
+	ld c, 14
+	dec b
+	jr nz, .clear
+	ret
 
 Text_NextLine:
 	xor a
@@ -672,7 +746,7 @@ Func_1f70:
 	inc hl
 	ld [hl], $98
 	inc hl
-	ld [hl], 3
+	ld [hl], $03
 	ret
 
 Func_1f8a:
@@ -742,13 +816,45 @@ Func_1fb9:
 	ret
 
 Func_1fe9:
-	dr $1fe9, $1fee
+	xor a
+	ldh [hFFBC], a
+	pop hl
+	ret
 
 Func_1fee:
-	dr $1fee, $2011
+	ldh a, [hFFB6]
+	rst Bankswitch
+	ld a, [wd0cd]
+	ld l, a
+	ld a, [wd0cd + 1]
+	ld h, a
+	ld de, wda00
+.asm_1ffc
+	ld a, [hl]
+	cp $88
+	jr z, .asm_200f
+
+	ld a, $ff
+	ld [de], a
+	inc de
+	ld c, $0b
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy
+	jr .asm_1ffc
+
+.asm_200f
+	ld [de], a
+	ret
 
 Func_2011:
-	dr $2011, $20b9
+	dr $2011, $209e
+
+unk_209e:
+	dr $209e, $20b9
 
 Func_20b9:
 	dr $20b9, $2108
@@ -782,4 +888,63 @@ Func_21bb:
 	dr $21bb, $22a4
 
 Func_22a4:
-	dr $22a4, $2433
+	dr $22a4, $2363
+
+Func_2363:
+	ld a, [wdb1f]
+	cp $14
+	jr c, .asm_239f
+	cp $2e
+	jr c, .asm_2390
+	cp $53
+	jr c, .asm_2381
+
+	ld a, BANK(unk_060_4000)
+	rst Bankswitch
+	ld de, unk_060_4000
+	ld a, [wdb1f]
+	sub $53
+	ld [wdb1f], a
+	ret
+
+.asm_2381
+	ld a, BANK(unk_014_4000)
+	rst Bankswitch
+	ld de, unk_014_4000
+	ld a, [wdb1f]
+	sub $2e
+	ld [wdb1f], a
+	ret
+
+.asm_2390
+	ld a, BANK(unk_022_4000)
+	rst Bankswitch
+	ld de, unk_022_4000
+	ld a, [wdb1f]
+	sub $14
+	ld [wdb1f], a
+	ret
+
+.asm_239f
+	ld a, BANK(unk_004_48e7)
+	rst Bankswitch
+	ld de, unk_004_48e7
+	ret
+
+Func_23a6:
+	ldh a, [hFFBF]
+	and a
+	ret nz
+	ld a, [wd1f1]
+	inc a
+	ld [wd1f1], a
+	cp 7
+	ret nz
+
+	xor a
+	ld [wd1f1], a
+	homecall Func_01c_4000
+	ret
+
+unk_23c5:
+	dr $23c5, $2433

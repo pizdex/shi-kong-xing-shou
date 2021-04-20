@@ -98,10 +98,13 @@ wcd04:: ds 1 ; OW sprite ID?
 wcd05:: ds $1b
 
 wcd20:: ds 1
-wcd21:: ds 3
-
+wcd21:: ds 1
+wcd22:: ds 1
+wcd23:: ds 1
 wcd24:: ds 1
-wcd25:: ds $2b
+wcd25:: ds 1
+wcd26:: ds 1
+wcd27:: ds $29
 
 wcd50:: ds $90
 
@@ -138,13 +141,18 @@ wd091:: ds 1
 wd092:: ds $22
 
 wd0b4:: ds 1
-wd0b5:: ds $1a
+wd0b5:: ds $14
 
+wd0c9:: ds 1
+wd0ca:: ds 3
+
+wd0cd:: ds 2
 wTextboxPointer:: ds 2
 wd0d1:: ds 2
 wd0d3:: ds 1
 wd0d4:: ds 1 ; step counter
-wd0d5:: ds 2
+wd0d5:: ds 1
+wd0d6:: ds 1
 
 wMoney:: ds 3
 
@@ -156,9 +164,15 @@ wGameTimeMinutes:: ds 1
 	ds 2
 
 wd0df:: ds 1
-wd0e0:: ds $f
+wd0e0:: ds 3
+wd0e3:: ds 1
+wd0e4:: ds $b
 wd0ef:: ds 1
-wd0f0:: ds 6
+wd0f0:: ds 1
+wd0f1:: ds 1
+wd0f2:: ds 2
+wd0f4:: ds 1
+wd0f5:: ds 1
 
 wCharacterTileDest:: ds 2
 wd0f8:: ds 1
@@ -174,7 +188,10 @@ wd128:: ds $78
 
 wd1a0:: ds 8
 wd1a8:: ds 8
-wd1b0:: ds $49
+wd1b0:: ds $41
+
+wd1f1:: ds 1
+wd1f2:: ds 7
 
 wd1f9:: ds 1
 wd1fa:: ds 1
@@ -186,6 +203,7 @@ wd200:: ds $84
 
 wd284:: ds $7c
 
+; Items (ID, Quantity)
 wd300:: ds $f5
 
 ; collision related
@@ -194,7 +212,9 @@ wd3f6:: ds 1
 wd3f7:: ds 1
 wd3f8:: ds 1
 
-wd3f9:: ds $47d
+wd3f9:: ds $3d2
+
+wd7cb:: ds $ab
 
 wd876:: ds 1
 wd877:: ds $87
@@ -225,7 +245,8 @@ wd9d6:: ds 1
 wd9d7:: ds 1
 wd9d8:: ds 1
 wd9d9:: ds 1
-wd9da:: ds 4
+wd9da:: ds 3
+wd9dd:: ds 1
 
 wWX:: ds 1
 wWY:: ds 1
@@ -241,19 +262,48 @@ wTempBank:: ds 1
 wd9f1:: ds 2
 wd9f3:: ds $c
 wd9ff:: ds 1
-wda00:: ds $a3
+wda00:: ds $a0
 
+wdaa0:: ds 1
+wdaa1:: ds 1
+wdaa2:: ds 1
 wdaa3:: ds 1
-wdaa4:: ds $2a
+wdaa4:: ds 1
+wdaa5:: ds 1
+wdaa6:: ds 1
+wdaa7:: ds 1
+wdaa8:: ds 1
+wdaa9:: ds 1
+wdaaa:: ds 1
+wdaab:: ds 1
+wdaac:: ds 1
+wdaad:: ds 1
+wdaae:: ds 1
+wdaaf:: ds 1
+wdab0:: ds 1
+wdab1:: ds 1
+wdab2:: ds 1
+wdab3:: ds 1
+wdab4:: ds 1
+wdab5:: ds 1
+wdab6:: ds 1
+wdab7:: ds 1
+wdab8:: ds 1
+
+wdab9:: ds $15
 
 wTextBGMapPointer:: ds 2
-wdad0:: ds $4b
+wdad0:: ds $12
+
+wdae2:: ds 1
+wdae3:: ds $38
 
 wGameTimeSeconds:: ds 1
 wdb1c:: ds 1
 wdb1d:: ds 1
 wCurrentCharacterByte:: ds 1
-wdb1f:: ds $191
+wdb1f:: ds 1
+wdb20:: ds $190
 
 wdcb0:: ds 1
 wdcb1:: ds 1
@@ -295,7 +345,9 @@ wdcec:: ds 7
 wdcf3:: ds 1
 wdcf4:: ds $c
 
-wdd00:: ds $b0
+wdd00:: ds $18
+
+wdd18:: ds $98
 
 wddb0:: ds $50
 

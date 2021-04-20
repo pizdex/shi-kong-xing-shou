@@ -4,8 +4,7 @@ Func_062_4000::
 Func_062_5df3::
 	dr $189df3, $189f9c
 
-Func_062_5f9c::
-; Sound test
+Debug_SoundTest::
 	dr $189f9c, $18a029
 
 Func_062_6029:
