@@ -1,8 +1,9 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Home", ROM0
-
 INCLUDE "home/header.asm"
+
+
+SECTION "Home", ROM0
 
 INCLUDE "home/bank0.asm"
