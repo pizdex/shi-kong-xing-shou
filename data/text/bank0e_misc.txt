@@ -101,7 +101,7 @@
 	done;
 
 @org $0e, $4d42:
-	init NAME_09, $09; # TEMP
+	init NAME_SNOWY, $09; # TEMP
 	text "嗚汪~汪~";
 	done;
 
@@ -266,7 +266,7 @@
 	done;
 
 @org $0e, $519f:
-	init NAME_09, $09; # TEMP
+	init NAME_SNOWY, $09; # TEMP
 	text "嗚~~";
 	line "嗚汪汪汪!";
 	done;

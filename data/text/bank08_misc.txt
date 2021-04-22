@@ -1,5 +1,5 @@
 @org $08, $4651:
-	init NAME_09, $08;
+	init NAME_SNOWY, $08;
 	text "汪汪~汪~";
 	done;
 
@@ -15,7 +15,7 @@
 	done;
 
 @org $08, $46a4:
-	init NAME_09, $08;
+	init NAME_SNOWY, $08;
 	text "汪~汪汪~";
 	done;
 
@@ -133,7 +133,7 @@
 	done;
 
 @org $08, $49cc:
-	init NAME_09, $08; # TEMP
+	init NAME_SNOWY, $08; # TEMP
 	text "嗚~~汪汪汪!";
 	done;
 
@@ -365,7 +365,7 @@
 	done;
 
 @org $08, $4e15:
-	init NAME_09, $08; # TEMP
+	init NAME_SNOWY, $08; # TEMP
 	text "汪汪~汪汪!";
 	done;
 

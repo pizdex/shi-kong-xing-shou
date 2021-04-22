@@ -50,7 +50,9 @@ wc0a0:: ds $10
 
 wBGMapBufferPointers:: ds $38
 
-wc0e8:: ds $838
+wc0e8:: ds $18
+
+wc100:: ds $820
 
 ; c920
 wTilemap::
@@ -104,7 +106,9 @@ wcd23:: ds 1
 wcd24:: ds 1
 wcd25:: ds 1
 wcd26:: ds 1
-wcd27:: ds $29
+wcd27:: ds $19
+
+wcd40:: ds $10
 
 wcd50:: ds $90
 
@@ -115,7 +119,9 @@ wcde2:: ds 1
 
 wcde3:: ds $1d
 
-wce00:: ds $200
+wce00:: ds $100
+
+wcf00:: ds $100
 
 
 SECTION "WRAM1", WRAMX
@@ -138,13 +144,34 @@ wd08e:: ds 1 ; selected option
 wd08f:: ds 1
 wd090:: ds 1
 wd091:: ds 1
-wd092:: ds $22
+wd092:: ds $e
 
+wd0a0:: ds 2
+wd0a2:: ds 2
+wd0a4:: ds 2
+wd0a6:: ds 2
+wd0a8:: ds 2
+wd0aa:: ds 2
+wd0ac:: ds 2
+wd0ae:: ds 2
+
+wd0b0:: ds 2
+wd0b2:: ds 2
 wd0b4:: ds 1
-wd0b5:: ds $14
+wd0b5:: ds 5
+
+wd0ba:: ds 2
+wd0bc:: ds 6
+
+wd0c2:: ds 1
+wd0c3:: ds 1
+
+wd0c4:: ds 2
+wd0c6:: ds 3
 
 wd0c9:: ds 1
-wd0ca:: ds 3
+wd0ca:: ds 1
+wd0cb:: ds 2
 
 wd0cd:: ds 2
 wTextboxPointer:: ds 2
@@ -214,7 +241,9 @@ wd3f8:: ds 1
 
 wd3f9:: ds $3d2
 
-wd7cb:: ds $ab
+wd7cb:: ds $9f
+
+wd86a:: ds $c
 
 wd876:: ds 1
 wd877:: ds $87
@@ -227,7 +256,9 @@ wd983:: ds 1
 wd984:: ds 2
 
 wd986:: ds 1
-wd987:: ds 8
+wd987:: ds 2
+wd989:: ds 1
+wd98a:: ds 5
 wd98f:: ds 2
 wd991:: ds $2e
 
@@ -239,7 +270,8 @@ wd9c2:: ds $c
 wd9ce:: ds 2
 
 wd9d0:: ds 2
-wd9d2:: ds 4
+wd9d2:: ds 2
+wd9d4:: ds 2
 
 wd9d6:: ds 1
 wd9d7:: ds 1
@@ -260,7 +292,11 @@ wd9e9:: ds 7
 
 wTempBank:: ds 1
 wd9f1:: ds 2
-wd9f3:: ds $c
+wd9f3:: ds 6
+wd9f9:: ds 1
+wd9fa:: ds 1
+wd9fb:: ds 3
+wd9fe:: ds 1
 wd9ff:: ds 1
 wda00:: ds $a0
 
@@ -303,7 +339,10 @@ wdb1c:: ds 1
 wdb1d:: ds 1
 wCurrentCharacterByte:: ds 1
 wdb1f:: ds 1
-wdb20:: ds $190
+wdb20:: ds $17e
+
+wdc9e:: ds 1
+wdc9f:: ds $11
 
 wdcb0:: ds 1
 wdcb1:: ds 1

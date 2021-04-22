@@ -5,7 +5,7 @@ FIX  := rgbfix
 MD5  := md5sum -c
 PYTHON := python3
 
-ASMFLAGS :=
+ASMFLAGS := -hL
 
 SCANINC := tools/scan_includes
 
@@ -45,7 +45,7 @@ clean:
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 define DEP
 $1: $2 $$(shell tools/scan_includes $2)
-	$$(ASM) $$(ASMFLAGS) -L -o $$@ $$<
+	$$(ASM) $$(ASMFLAGS) -o $$@ $$<
 endef
 
 # Build tools when building the rom.
