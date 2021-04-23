@@ -6,8 +6,8 @@ _hl_::
 
 SECTION "rst20", ROM0[$0020]
 Bankswitch::
-	ld [$d08f], a
-	ld [$2000], a
+	ld [wd08f], a
+	ld [rROMB0], a
 	ret
 
 SECTION "rst30", ROM0[$0030]
@@ -40,10 +40,10 @@ Func_00b0:
 	push af
 	di
 	ld de, Func_00ca
-	ld hl, $c000
+	ld hl, wc000
 	ld bc, $20
 	call CopyBytes
-	jp $c000
+	jp wc000
 
 CopyBytes::
 ; Copy bc bytes from de to hl

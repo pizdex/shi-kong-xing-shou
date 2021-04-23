@@ -1710,7 +1710,7 @@ Func_0c51:
 	ld a, $b6
 	ld [wd08b], a
 	ld a, $c2
-	ld [wd08b + 1], a
+	ld [wd08c], a
 	xor a
 	ld [wCharacterTilePos], a
 	call Func_0b65
@@ -1742,7 +1742,59 @@ Menu_GetCharacterSetBase:
 	jp Menu_CheckCharacter
 
 Menu_CheckCharacter_Continue:
-	dr $0c93, $0cfa
+	ld [wCurrentCharacterByte], a
+	ld a, [wCharacterTilePos]
+	ld c, a
+	ld a, [wd08b]
+	add c
+	ld c, a
+	ld [wcbf3], a
+	swap a
+	ld b, a
+	and $0f
+	cp $08
+	jr nc, .asm_0caf
+	or $90
+	jr .asm_0cb1
+
+.asm_0caf
+	or $80
+
+.asm_0cb1:
+	ld [wCharacterTileDest + 1], a
+	ld a, b
+	and $f0
+	ld [wCharacterTileDest], a
+	ld a, [wdcd1]
+	ld e, a
+	ld a, [wdcd1 + 1]
+	ld d, a
+	ld a, [wCurrentCharacterByte]
+	ld l, a
+	ld h, 0
+REPT 5
+	add hl, hl
+ENDR
+	add hl, de
+	ld a, l
+	ld [wCharacterTileSrc], a
+	ld a, h
+	ld [wCharacterTileSrc + 1], a
+	ld a, 4
+	ld [wCharacterTileCount], a
+	ld a, 1
+	ld [wCharacterTileTransferStatus], a
+	call DelayFrame
+	ld a, [wd08c]
+	ld c, a
+	ld a, [wCharacterTilePos]
+	add 4
+	ld [wCharacterTilePos], a
+	cp c
+	jp c, Menu_CheckCharacter
+	xor a
+	ld [wCharacterTilePos], a
+	jp Menu_CheckCharacter
 
 Func_0cfa:
 	ld a, [_BANKNUM]
@@ -2275,12 +2327,12 @@ Func_10eb:
 	jp Func_28d0
 
 Func_1107:
-	ld a, [$d9ab]
+	ld a, [wd9ab]
 	ldh [rSCX], a
-	ld a, [$d9ac]
+	ld a, [wd9ac]
 	ldh [rSCY], a
 	di
-	ld a, [$d990]
+	ld a, [wd990]
 	ldh [rLYC], a
 	ei
 	ld hl, wd9e0
@@ -2295,7 +2347,7 @@ Func_1123:
 	ld a, [hSCY]
 	ldh [rSCY], a
 	di
-	ld a, [$d98c]
+	ld a, [wd98c]
 	ldh [rLYC], a
 	ei
 	ld hl, wd9e0
@@ -2337,13 +2389,158 @@ Func_1159:
 	ret
 
 Func_117b:
-	dr $117b, $11b3
+	push hl
+	push de
+	push bc
+	push af
+	ld a, [wd9af]
+	ld b, a
+	ld a, [wd986]
+	and a
+	jr nz, .asm_1197
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_119d
+
+.asm_118f
+	ld de, wd93c
+	ld a, [wd987]
+	jr .asm_11a3
+
+.asm_1197
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_118f
+
+.asm_119d
+	ld de, wd900
+	ld a, [wd983]
+
+.asm_11a3
+	add a
+	ld l, a
+	add a
+	add a
+	add l
+	add b
+	ld l, a
+	ld h, 0
+	add hl, de
+	pop af
+	ld [hl], a
+	pop bc
+	pop de
+	pop hl
+	ret
 
 Func_11b3:
-	dr $11b3, $11e9
+	push hl
+	push de
+	push bc
+	ld a, [wd9af]
+	ld b, a
+	ld a, [wd986]
+	and a
+	jr nz, .asm_11ce
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_11d4
+
+.asm_11c6
+	ld de, wd93c
+	ld a, [wd987]
+	jr .asm_11da
+
+.asm_11ce
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_11c6
+
+.asm_11d4
+	ld de, wd900
+	ld a, [wd983]
+
+.asm_11da
+	add a
+	ld l, a
+	add a
+	add a
+	add l
+	add b
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld a, [hl]
+	pop bc
+	pop de
+	pop hl
+	ret
 
 Func_11e9:
-	dr $11e9, $123a
+	push hl
+	push de
+	push bc
+	push af
+	ld a, [wd9af]
+	ld b, a
+	ld a, [wd986]
+	and a
+	jr nz, .asm_1205
+
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_120b
+
+.asm_11fd
+	ld de, wd93c
+	ld a, [wd987]
+	jr .asm_1211
+
+.asm_1205
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_11fd
+
+.asm_120b
+	ld de, wd900
+	ld a, [wd983]
+
+.asm_1211
+	add a
+	ld l, a
+	add a
+	add a
+	add l
+	add b
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	pop af
+	add b
+	ld [hl], a
+	ld a, [wd9af]
+	cp 4
+	jr nc, .asm_1236
+
+	ld a, [hl]
+	cp $0e
+	jr nc, .asm_1234
+	cp $07
+	jr nc, .asm_1236
+
+	ld [hl], $07
+	jr .asm_1236
+
+.asm_1234
+	ld [hl], $0d
+
+.asm_1236
+	pop bc
+	pop de
+	pop hl
+	ret
 
 Func_123a:
 	push bc
@@ -2377,13 +2574,85 @@ Func_123a:
 	ret
 
 Func_125b:
-	dr $125b, $128e
+	push hl
+	push de
+	push bc
+	ld a, [wd9af]
+	ld c, a
+	ld b, 0
+	ld a, [wd986]
+	and a
+	jr nz, .asm_127a
+
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_1280
+
+.asm_1270
+	ld a, [wd984]
+	ld l, a
+	ld a, [wd984 + 1]
+	ld h, a
+	jr .asm_1288
+
+.asm_127a
+	ld a, [wd9b2]
+	and a
+	jr nz, .asm_1270
+
+.asm_1280
+	ld a, [wd981]
+	ld l, a
+	ld a, [wd982]
+	ld h, a
+
+.asm_1288
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	pop de
+	pop hl
+	ret
 
 Func_128e:
-	dr $128e, $12bd
+	ld a, [wd981]
+	ld c, a
+	ld a, [wd982]
+	ld b, a
+	ld hl, 2
+	add hl, bc
+	ld a, [hli]
+	ld [wd998], a
+	ld a, [hli]
+	ld [wd999], a
+	xor a
+	ld [wd9d7], a
+	homecall Func_025_4110
+	ldh a, [hFFCB]
+	ld [wd99a], a
+	ldh a, [hFFCC]
+	ld [wd99b], a
+	ret
 
 Func_12bd:
-	dr $12bd, $12e6
+	ld a, [wd984]
+	ld c, a
+	ld a, [wd984 + 1]
+	ld b, a
+	ld hl, 2
+	add hl, bc
+	ld a, [hli]
+	ld [wd998], a
+	ld a, [hli]
+	ld [wd999], a
+	xor a
+	ld [wd9d7], a
+	farcall Func_025_4101
+	ldh a, [hFFCB]
+	ld [wd99a], a
+	ldh a, [hFFCC]
+	ld [wd99b], a
+	ret
 
 Func_12e6:
 	ld bc, wdb20
@@ -2667,28 +2936,70 @@ Func_13fe:
 	dw .unk_159b
 
 .unk_142c
-	dr $142c, $1462
+	db $00, $59, $65, $65, $59, $59, $59, $59
+	db $59, $65, $65, $65, $5e, $5e, $5e, $5e
+	db $5e, $5e, $5e, $71, $72, $67, $67, $67
+	db $67, $67, $67, $72, $6e, $6f, $6f, $6f
+	db $6f, $6f, $69, $66, $66, $66, $66, $66
+	db $5b, $5a, $65, $66, $64, $60, $60, $60
+	db $60, $60, $60, $60, $71, $72
 
 .unk_1462
-	dr $1462, $1498
+	db $00, $5b, $65, $65, $5b, $5b, $5b, $5b
+	db $59, $65, $65, $65, $5e, $5e, $5e, $5e
+	db $5e, $5e, $5e, $71, $72, $67, $67, $67
+	db $67, $67, $67, $72, $6e, $6f, $6f, $6f
+	db $6f, $6f, $69, $66, $66, $66, $66, $66
+	db $63, $5a, $65, $66, $64, $60, $60, $60
+	db $60, $60, $60, $60, $71, $72
 
 .unk_1498
-	dr $1498, $14bc
+	db $00, $5e, $59, $66, $66, $66, $61, $61
+	db $60, $69, $69, $69, $69, $69, $5e, $5e
+	db $5e, $5e, $59, $59, $59, $59, $59, $61
+	db $6d, $72, $71, $5e, $5e, $5e, $5e, $5e
+	db $5e, $72, $71, $5b
 
 .unk_14bc
-	dr $14bc, $14e0
+	db $00, $5d, $5d, $5d, $5f, $5f, $5f, $67
+	db $67, $59, $5e, $68, $68, $68, $68, $72
+	db $70, $70, $5b, $5b, $5b, $60, $61, $67
+	db $67, $67, $67, $67, $67, $72, $71, $5d
+	db $5f, $5b, $5b, $5b
 
 .unk_14e0
-	dr $14e0, $1546
+	db $00, $64, $64, $64, $64, $64, $5b, $5b
+	db $5b, $5b, $5b, $6e, $59, $59, $63, $64
+	db $63, $59, $59, $59, $5e, $60, $5b, $5c
+	db $5c, $5c, $60, $60, $60, $60, $63, $5e
+	db $63, $66, $66, $66, $66, $6e, $5e, $5e
+	db $6d, $6d, $62, $67, $6e, $6e, $6e, $6e
+	db $6e, $72, $71, $6e, $5e, $5e, $5e, $5e
+	db $71, $72, $6e, $6e, $6e, $6e, $6e, $6e
+	db $72, $71, $65, $65, $59, $6e, $6e, $6e
+	db $6e, $6e, $6e, $72, $71, $6e, $5a, $63
+	db $5c, $5c, $5c, $69, $69, $6d, $5e, $5e
+	db $5e, $5e, $5e, $5e, $72, $71, $62, $67
+	db $5a, $5a, $5a, $5a, $70, $70
 
 .unk_1546
-	dr $1546, $156e
+	db $00, $5a, $5a, $66, $66, $66, $66, $5c
+	db $64, $64, $64, $64, $64, $64, $64, $5c
+	db $5c, $5c, $5c, $5c, $5c, $5c, $63, $63
+	db $63, $66, $66, $5c, $5b, $5c, $5c, $5c
+	db $5c, $72, $71, $65, $65, $65, $65, $5c
 
 .unk_156e
-	dr $156e, $159b
+	db $00, $68, $68, $61, $61, $61, $61, $61
+	db $5b, $64, $60, $5a, $6e, $63, $5b, $60
+	db $60, $60, $60, $60, $60, $60, $60, $60
+	db $70, $70, $70, $70, $72, $71, $63, $63
+	db $62, $5f, $6e, $6e, $6e, $6e, $6e, $6e
+	db $71, $72, $5f, $61, $69
 
 .unk_159b
-	dr $159b, $15a8
+	db $00, $5f, $59, $6e, $5c, $6d, $63, $67
+	db $59, $60, $5e, $5e, $5e
 
 Func_15a8:
 	push hl
@@ -3039,33 +3350,33 @@ Func_1730:
 	ld a, $96
 	ld [wMoney + 2], a
 
-	ld bc, $0018
+	ld bc, $18
 	call Func_2ca4
 	call Func_2d08
 	call Debug_GiveItems
 
 	ld bc, wd200
-	ld hl, $0016
+	ld hl, $16
 	add hl, bc
 	push hl
 	pop bc
 	ld a, $8a
 	ld [bc], a
-	ld hl, $0001
+	ld hl, 1
 	add hl, bc
 	ld [hl], $5a
-	ld hl, $0005
+	ld hl, 5
 	add hl, bc
 	ld [hl], $10
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld [hl], $05
-	ld hl, $0014
+	ld hl, $14
 	add hl, bc
 	ld [hl], $12
 	inc hl
 	ld [hl], $14
-	ld hl, $0007
+	ld hl, 7
 	add hl, bc
 	ld [hl], $85
 	inc hl
@@ -3074,27 +3385,27 @@ Func_1730:
 	ld [hl], $0c
 
 	ld bc, wd200
-	ld hl, $002c
+	ld hl, $2c
 	add hl, bc
 	push hl
 	pop bc
 	ld a, $72
 	ld [bc], a
-	ld hl, $0001
+	ld hl, 1
 	add hl, bc
 	ld [hl], $5a
-	ld hl, $0005
+	ld hl, 5
 	add hl, bc
 	ld [hl], $10
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld [hl], $55
-	ld hl, $0014
+	ld hl, $14
 	add hl, bc
 	ld [hl], $12
 	inc hl
 	ld [hl], $14
-	ld hl, $0007
+	ld hl, 7
 	add hl, bc
 	ld [hl], $2c
 	inc hl
@@ -3103,27 +3414,27 @@ Func_1730:
 	ld [hl], $0c
 
 	ld bc, wd200
-	ld hl, $0042
+	ld hl, $42
 	add hl, bc
 	push hl
 	pop bc
 	ld a, $05
 	ld [bc], a
-	ld hl, $0001
+	ld hl, 1
 	add hl, bc
 	ld [hl], $5a
-	ld hl, $0005
+	ld hl, 5
 	add hl, bc
 	ld [hl], $10
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld [hl], $55
-	ld hl, $0014
+	ld hl, $14
 	add hl, bc
 	ld [hl], $12
 	inc hl
 	ld [hl], $14
-	ld hl, $0007
+	ld hl, 7
 	add hl, bc
 	ld [hl], $2c
 	inc hl
@@ -3132,27 +3443,27 @@ Func_1730:
 	ld [hl], $0c
 
 	ld bc, wd200
-	ld hl, $0058
+	ld hl, $58
 	add hl, bc
 	push hl
 	pop bc
 	ld a, $78
 	ld [bc], a
-	ld hl, $0001
+	ld hl, 1
 	add hl, bc
 	ld [hl], $5a
-	ld hl, $0005
+	ld hl, 5
 	add hl, bc
 	ld [hl], $10
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld [hl], $55
-	ld hl, $0014
+	ld hl, $14
 	add hl, bc
 	ld [hl], $12
 	inc hl
 	ld [hl], $14
-	ld hl, $0007
+	ld hl, 7
 	add hl, bc
 	ld [hl], $2c
 	inc hl
@@ -3161,27 +3472,27 @@ Func_1730:
 	ld [hl], $0c
 
 	ld bc, wd200
-	ld hl, $006e
+	ld hl, $6e
 	add hl, bc
 	push hl
 	pop bc
 	ld a, $31
 	ld [bc], a
-	ld hl, $0001
+	ld hl, 1
 	add hl, bc
 	ld [hl], $5a
-	ld hl, $0005
+	ld hl, 5
 	add hl, bc
 	ld [hl], $10
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld [hl], $55
-	ld hl, $0014
+	ld hl, $14
 	add hl, bc
 	ld [hl], $12
 	inc hl
 	ld [hl], $14
-	ld hl, $0007
+	ld hl, 7
 	add hl, bc
 	ld [hl], $2c
 	inc hl
@@ -3726,14 +4037,14 @@ CopyBytes2:
 Func_26e1:
 	ldh a, [hFFB2]
 	rst Bankswitch
-	ld hl, $c740
+	ld hl, wc740
 	ld a, l
 	ld [wd0b2], a
 	ld a, h
 	ld [wd0b2 + 1], a
-	ld a, [$d0a0]
+	ld a, [wd0a0]
 	ld l, a
-	ld a, [$d0a1]
+	ld a, [wd0a0 + 1]
 	ld h, a
 	ld b, 5
 .asm_26f9
@@ -4340,341 +4651,3 @@ unk_2c3c:
 
 unk_2c64:
 	ds $40, 0
-
-Func_2ca4:
-	ld de, wd284
-	ld hl, .unk_2cb8
-.asm_2caa
-REPT 2
-	ld a, [hl]
-	ld [de], a
-	inc hl
-	inc de
-ENDR
-	dec c ; should be dec bc
-	ld a, c
-	or b
-	jr nz, .asm_2caa
-	ret
-
-.unk_2cb8
-	db $01, $01
-	db $02, $01
-	db $03, $01
-	db $04, $01
-	db $05, $01
-	db $06, $01
-	db $07, $01
-	db $08, $01
-	db $09, $01
-	db $0a, $01
-	db $0b, $01
-	db $0c, $01
-	db $0d, $01
-	db $0e, $01
-	db $0f, $01
-	db $10, $01
-	db $11, $01
-	db $12, $01
-	db $13, $01
-	db $14, $01
-	db $15, $01
-	db $16, $01
-	db $17, $01
-	db $18, $01
-	db $19, $01
-	db $1a, $01
-	db $1b, $01
-	db $1c, $01
-	db $1d, $01
-	db $1e, $01
-	db $1f, $01
-	db $20, $01
-	db $21, $01
-	db $22, $01
-	db $23, $01
-	db $24, $01
-	db $25, $01
-	db $26, $01
-	db $27, $01
-	db $28, $01
-
-Func_2d08:
-	ld de, wddb0
-	ld hl, .unk_2d16
-.copy
-	ld a, [hli]
-	cp $ff
-	ret z
-	ld [de], a
-	inc de
-	jr .copy
-
-.unk_2d16
-	db $01, $01
-	db $02, $01
-	db $03, $01
-	db $04, $01
-	db $05, $01
-	db $06, $01
-	db $07, $01
-	db $08, $01
-	db $09, $01
-	db $0a, $01
-	db $0f, $01
-	db $ff, $ff
-
-.unk_2d2e ; unused
-	db $0d, $03
-	db $0e, $03
-	db $0f, $03
-	db $10, $03
-	db $11, $03
-	db $12, $03
-	db $13, $03
-	db $14, $03
-	db $15, $03
-	db $ff, $ff
-
-Debug_GiveItems:
-	ld de, wd300
-	ld hl, .item_data
-.copy
-	ld a, [hli]
-	cp $ff
-	ret z
-	ld [de], a
-	inc de
-	jr .copy
-
-.item_data
-	db ITEM_04, 99
-	db ITEM_26, 50
-	db ITEM_26, 99
-	db ITEM_27, 99
-	db TM13, 1
-	db TM33, 1
-	db $ff, $ff
-
-.item_data2 ; unused
-	db ITEM_08, 12
-	db ITEM_09, 12
-	db ITEM_0a, 12
-	db ITEM_0b, 12
-	db ITEM_0c, 12
-	db ITEM_0d, 12
-	db ITEM_0e, 12
-	db ITEM_0f, 12
-	db ITEM_10, 12
-	db ITEM_11, 12
-	db ITEM_12, 12
-	db ITEM_13, 12
-	db ITEM_14, 12
-	db ITEM_15, 12
-	db ITEM_16, 12
-	db ITEM_17, 12
-	db ITEM_18, 12
-	db ITEM_19, 12
-	db ITEM_1a, 12
-	db ITEM_1b, 12
-	db ITEM_1c, 12
-	db ITEM_1d, 12
-	db ITEM_1e, 12
-	db ITEM_1f, 12
-	db ITEM_20, 12
-	db ITEM_21, 12
-	db ITEM_22, 12
-	db ITEM_23, 12
-	db ITEM_24, 12
-	db ITEM_25, 12
-	db ITEM_26, 12
-	db ITEM_27, 12
-	db TM01, 12
-	db TM02, 12
-	db TM03, 12
-	db TM04, 12
-	db TM05, 12
-	db TM06, 12
-	db TM07, 12
-	db TM08, 12
-	db TM09, 12
-	db TM10, 12
-	db TM11, 12
-	db TM12, 12
-	db TM13, 12
-	db TM14, 12
-	db TM15, 12
-	db TM16, 12
-	db TM17, 12
-	db TM18, 12
-	db TM19, 12
-	db TM20, 12
-	db TM21, 12
-	db TM22, 12
-	db TM23, 12
-	db TM24, 12
-	db TM25, 12
-	db TM26, 12
-	db TM27, 12
-	db TM28, 12
-	db TM29, 12
-	db TM30, 12
-	db TM31, 12
-	db TM32, 12
-	db TM33, 12
-	db TM34, 12
-	db TM35, 12
-	db TM36, 12
-	db TM37, 12
-	db TM38, 12
-	db TM39, 12
-	db TM40, 12
-	db TM41, 12
-	db TM42, 12
-	db TM43, 12
-	db TM44, 12
-	db TM45, 12
-	db TM46, 12
-	db TM47, 12
-	db TM48, 12
-	db TM49, 12
-	db TM50, 12
-	db $ff, $ff
-
-Func_2e04:
-	ld hl, wdd00
-.asm_2e07
-	ld [hl], $01
-	dec c ; dec bc
-	ld a, c
-	or b
-	ret z
-
-	ld de, 8
-	add hl, de
-	jr .asm_2e07
-
-Func_2e13:
-	ld de, wde00
-	ld hl, unk_2f40
-.copy1
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c ; dec bc
-	ld a, c
-	or b
-	jr nz, .copy1
-
-	ld de, wd200
-	ld hl, wde00
-	ld bc, $16
-.copy2
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c ; dec bc
-	ld a, c
-	or b
-	jr nz, .copy2
-
-	ld a, 2
-	ld [wdcea], a
-	ret
-
-Func_2e38:
-	ld de, wdb20
-.asm_2e3b:
-	ld hl, unk_2f40
-	ld bc, $13
-.copy
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c ; dec bc
-	ld a, c
-	or b
-	and a
-	jr nz, .copy
-
-	ld a, [wdcf3]
-	inc a
-	ld [wdcf3], a
-	cp $14
-	ret nc
-	jr .asm_2e3b
-
-Func_2e56:
-; Debug code
-	ld de, wd7cb
-	ld hl, .unk_2ea0
-	ld bc, $9e
-.copy1
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c ; dec bc
-	ld a, c
-	or b
-	jr nz, .copy1
-
-	ld bc, $0000
-.asm_2e6a
-	ld de, wdd00
-	ld l, c
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, de
-	ld [hl], 1
-	inc bc
-	ld a, c
-	cp 8
-	jr c, .asm_2e6a
-
-	ld de, wde00
-	ld hl, unk_2f40
-	ld bc, $b0
-.copy2
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .copy2
-
-	ld a, $9f
-	ld [wd0d6], a
-	ld a, $89
-	ld [wd0d5], a
-	ld a, $06
-	ld [wd0da], a
-	ld a, $02
-	ld [wdcea], a
-	ret
-
-.unk_2ea0
-; Dex values (1 is seen, 2 is caught)
-	db $01, $01, $01, $01, $01, $02, $02, $02 ; 01
-	db $02, $02, $02, $01, $01, $01, $01, $01 ; 02
-	db $02, $02, $02, $02, $02, $01, $01, $01 ; 03
-	db $01, $01, $02, $02, $02, $02, $02, $01 ; 04
-	db $01, $01, $01, $01, $02, $02, $02, $02 ; 05
-	db $02, $01, $01, $01, $01, $01, $02, $02 ; 06
-	db $02, $02, $02, $01, $01, $01, $01, $01 ; 07
-	db $02, $02, $02, $02, $02, $01, $01, $01 ; 08
-	db $01, $01, $02, $02, $02, $02, $02, $01 ; 09
-	db $01, $01, $01, $01, $02, $02, $02, $02 ; 10
-	db $02, $01, $01, $01, $01, $01, $02, $02 ; 11
-	db $02, $02, $02, $01, $01, $01, $01, $01 ; 12
-	db $02, $02, $02, $02, $02, $01, $01, $01 ; 13
-	db $01, $01, $02, $02, $02, $02, $02, $01 ; 14
-	db $01, $01, $01, $01, $02, $02, $02, $02 ; 15
-	db $02, $01, $01, $01, $01, $01, $02, $02 ; 16
-	db $02, $02, $02, $01, $01, $01, $01, $01 ; 17
-	db $02, $02, $02, $02, $02, $01, $01, $01 ; 18
-	db $01, $01, $02, $02, $02, $02, $02, $02 ; 19
-	db $02, $02, $01, $01, $01, $01, $01, $01 ; 20?
-
-unk_2f40:
-	INCBIN "data/unk_2f40.bin"

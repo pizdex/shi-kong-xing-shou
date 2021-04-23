@@ -645,7 +645,109 @@ Func_1d67:
 
 Func_1d6d:
 ; Buy sell cancel menu for real
-	dr $1d6d, $1e07
+
+; Init position
+	ld a, [wdaa4]
+	res 0, a
+	res 1, a
+	ld [wdaa4], a
+	call Func_1f70
+	ld hl, wcde0
+	inc hl
+	ld [hl], $30
+	xor a
+	ldh [hVBlank], a
+	ldh [hJoypadPressed], a
+
+.CheckJoypad:
+	call Func_1f97
+	call Func_1f8a
+	call DelayFrame
+; check left
+	ldh a, [hJoypadPressed]
+	bit D_LEFT_F, a
+	jr z, .check_right
+
+; skip if already on option 0
+	ld a, [wdaa4]
+	and %11
+	jr z, .check_a
+; check if on option 1 or 2
+	bit 1, a
+	jr z, .left_option1
+
+; on option 2
+	ld a, [wdaa4] ; waste
+	set 0, a
+	res 1, a
+	ld [wdaa4], a
+	jr .asm_1dd4
+
+.left_option1
+	ld a, [wdaa4] ; waste
+	res 0, a
+	ld [wdaa4], a
+	jr .asm_1dd4
+
+.check_right
+	ldh a, [hJoypadPressed]
+	bit D_RIGHT_F, a
+	jr z, .check_a
+
+; skip if already on option 2
+	ld a, [wdaa4]
+	bit 1, a
+	jr nz, .check_a
+; check if on option 0 or 1
+	bit 0, a
+	jr nz, .right_option1
+
+; option 0
+	set 0, a
+	ld [wdaa4], a
+	jr .asm_1dd4
+
+.right_option1
+	set 1, a
+	res 0, a
+	ld [wdaa4], a
+
+.asm_1dd4:
+	ld a, [wdaa4]
+	and %11
+; a = a * $20
+REPT 5
+	add a
+ENDR
+	add $30
+	ld hl, wcde0
+	inc hl
+	ld [hl], a
+
+.check_a
+	ldh a, [hJoypadPressed]
+	bit A_BUTTON_F, a
+	jr z, .loop
+
+; pressed a
+	ld hl, wcde0
+	inc hl
+	ld a, [hl]
+	cp $40
+	jr z, .exit
+
+	ld a, [wdaa3]
+	set 3, a
+	ld [wdaa3], a
+	jr .exit
+
+.loop
+	jr .CheckJoypad ; waste
+
+.exit
+	call Func_1fb1
+	call Func_1f8a
+	ret
 
 Func_1e07:
 	jp CheckCharacter
@@ -719,16 +821,163 @@ Func_1e6e:
 	jp CheckCharacter
 
 Func_1e7b:
-	dr $1e7b, $1ee4
+	ld hl, $050d
+	ld a, [wTextboxPos]
+	and a
+	jr z, .asm_1e87
+
+	ld hl, $0503
+.asm_1e87
+	call GetTextBGMapPointer
+	ld e, l
+	ld d, h
+	ld hl, wBGMapBufferPointers
+	ld bc, $020e
+	call Func_1efe
+	ld a, [wd0d1]
+	ld l, a
+	ld a, [wd0d1 + 1]
+	ld h, a
+	call Func_1ee4
+	ld a, $1c
+	ld [hFFA5], a
+	ld a, $01
+	ld [wcbf6], a
+	call DelayFrame
+	ld hl, $050f
+	ld a, [wTextboxPos]
+	and a
+	jr z, .asm_1eb9
+
+	ld hl, $0505
+.asm_1eb9
+	call GetTextBGMapPointer
+	ld e, l
+	ld d, h
+	ld hl, wBGMapBufferPointers
+	ld bc, $020e
+	call Func_1efe
+	ld a, [wd0d1]
+	ld l, a
+	ld a, [wd0d1 + 1]
+	ld h, a
+	ld de, $0028
+	add hl, de
+	call Func_1ee4
+	ld a, $1c
+	ld [hFFA5], a
+	ld a, $01
+	ld [wcbf6], a
+	call DelayFrame
+	ret
 
 Func_1ee4:
-	dr $1ee4, $1efe
+	ld de, wd128
+	lb bc, 2, 14
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy
+	ld a, l
+	add 6
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld c, 14
+	dec b
+	jr nz, .copy
+	ret
 
 Func_1efe:
-	dr $1efe, $1f24
+	push bc
+	push de
+.asm_1f00:
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	ld a, e
+	inc a
+	and $1f
+	ld b, a
+	ld a, e
+	and $e0
+	or b
+	ld e, a
+	dec c
+	jr nz, .asm_1f00
+
+	pop de
+	ld a, $20
+	add e
+	ld e, a
+	jr nc, .asm_1f1f
+
+	inc d
+	ld a, d
+	and $03
+	or $98
+	ld d, a
+.asm_1f1f
+	pop bc
+	dec b
+	jr nz, Func_1efe
+	ret
 
 Func_1f24:
-	dr $1f24, $1f6a
+	ld a, [wd0d1]
+	ld l, a
+	ld a, [wd0d1 + 1]
+	ld h, a
+	push hl
+	ld de, $28
+	add hl, de
+	pop de
+	push hl
+	lb bc, 2, 14
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy
+	ld a, e
+	add 6
+	ld e, a
+	ld a, d
+	adc 0
+	ld d, a
+	ld a, l
+	add 6
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld c, 14
+	dec b
+	jr nz, .copy
+
+	pop de
+	lb bc, 2, 14
+.clear
+	ld a, $a0
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .clear
+	ld a, e
+	add 6
+	ld e, a
+	ld a, d
+	adc 0
+	ld d, a
+	ld c, 14
+	dec b
+	jr nz, .clear
+	ret
 
 Text_Cont:
 	call Func_1fb9
@@ -857,13 +1106,173 @@ Func_1fee:
 	ret
 
 Func_2011:
-	dr $2011, $209e
+	ld de, unk_209e
+	ldh a, [hFF9A]
+	ld l, a
+	ld c, a
+	ld b, 0
+	ld h, 0
+	add hl, hl
+	add hl, bc
+	add hl, de
+	ld a, [hli]
+	rst Bankswitch
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ldh a, [hFF9B]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, hFFB2
+REPT 4
+	ld a, [hli]
+	ld [de], a
+	inc de
+ENDR
+	ld a, [hli]
+	ld [wd0cb], a
+	ld a, [hli]
+	ld [wd0cb + 1], a
+	ld bc, $0c
+	ldh a, [hFF9C]
+	and a
+	jr z, .asm_2052
+
+.asm_204e
+	add hl, bc
+	dec a
+	jr nz, .asm_204e
+
+.asm_2052
+	ld a, [wd9d2]
+	and a
+	jr z, .asm_205e
+
+	ld a, [hli]
+	ld a, [hli]
+	ld a, [hli]
+	ld a, [hli]
+	jr .asm_206c
+
+.asm_205e
+	ld a, [hli]
+	ldh [hFF96], a
+	ld a, [hli]
+	ldh [hFF97], a
+	ld a, [hli]
+	ld [wd0c9], a
+	ld a, [hli]
+	ld [wd0ca], a
+
+.asm_206c
+	ld de, hFFB6
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	inc de
+	ld a, [hli]
+	inc de
+	ld a, [hli]
+	inc de
+	ld a, [hli]
+	ld [wd0cd], a
+	ld a, [hli]
+	ld [wd0cd + 1], a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, wdf00
+.asm_2086
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp $ff
+	ret z
+
+REPT 5
+	ld a, [hli]
+	ld [de], a
+	inc de
+ENDR
+	jr .asm_2086
+	ret ; ?
 
 unk_209e:
-	dr $209e, $20b9
+	db $07, $00, $40, $07, $0f, $43, $10, $00
+	db $40, $10, $7b, $48, $52, $00, $40, $63
+	db $00, $40, $69, $00, $40, $69, $83, $48
+	db $10, $00, $40
 
 Func_20b9:
-	dr $20b9, $2108
+	ldh a, [hFFB2]
+	rst Bankswitch
+	push de
+	ldh a, [hFF97]
+	add c
+	ld c, a
+	ld hl, wc100
+	ld a, [hFF98]
+	ld e, a
+	ld d, 0
+	ld a, c
+	and a
+	jr z, .asm_20d2
+
+.asm_20ce
+	add hl, de
+	dec c
+	jr nz, .asm_20ce
+
+.asm_20d2
+	pop de
+	ld a, d
+	ld c, a
+	ld d, 0
+	ldh a, [hFF96]
+	add e
+	ld e, a
+	add hl, de
+	ld a, [wd0a2]
+	ld e, a
+	ld a, [wd0a2 + 1]
+	ld d, a
+	ld a, [hl]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, b
+	and a
+	jr z, .asm_20f1
+
+	inc hl
+	inc hl
+.asm_20f1
+	ld a, c
+	and a
+	jr z, .asm_20f6
+
+	inc hl
+.asm_20f6
+	ld a, [wd0b0]
+	ld e, a
+	ld a, [wd0b0 + 1]
+	ld d, a
+	ld a, [hl]
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld a, [hl]
+	ld [wd0c8], a
+	ret
 
 Func_2108:
 	ldh a, [hFFAC]
@@ -888,19 +1297,400 @@ Func_2108:
 	ret
 
 Func_2123:
-	dr $2123, $21bb
+	xor a
+	ldh [hFFAD], a
+	ld [wdcd0], a
+	ld hl, wcd07
+	ld a, 1
+	sub [hl]
+	ld [hl], a
+
+.asm_2130:
+	ld a, [wcd04]
+	ld [wdb1f], a
+	call Func_2363
+	ld a, [wdb1f]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd03]
+	add a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd05]
+	add a
+	ld e, a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	cp $ff
+	jr nz, .asm_216d
+	ld a, h
+	cp $ff
+	jr nz, .asm_216d
+
+	xor a
+	ld [wcd05], a
+	ld [wd3f4], a
+	ldh [hFFAD], a
+	ldh [hFFAC], a
+	ret
+
+.asm_216d:
+	ld a, l
+	cp $ee
+	jr nz, .asm_2182
+	ld a, h
+	cp $ee
+	jr nz, .asm_2182
+
+	xor a
+	ld [wcd05], a
+	ld [wd3f4], a
+	ldh [hFFAD], a
+	jr .asm_2130
+
+.asm_2182:
+	ld a, [wcd06]
+	swap a
+	ld e, a
+	ld a, [wcd07]
+	and a
+	jr z, .asm_2192
+
+	ld a, $40
+	add e
+	ld e, a
+.asm_2192
+	ld d, $80
+	ld bc, $40
+	call CopyBytesVRAM
+	ld hl, wcd05
+	inc [hl]
+	ld a, [hl]
+	cp 1
+	jr nc, .asm_21a7
+	xor a
+	ld [wd3f4], a
+
+.asm_21a7
+	ldh a, [hFFA7]
+	and a
+	ret nz
+	ld a, [hl]
+	bit 0, a
+	ret z
+
+	xor a
+	ld [wcd05], a
+	ld [wd3f4], a
+	ldh [hFFAD], a
+	ldh [hFFAC], a
+	ret
 
 Func_21bb:
-	dr $21bb, $224e
+	ld a, [wdcea]
+	and a
+	jp z, Func_224e
+	ldh a, [hFFDB]
+	and a
+	jp z, Func_224e
+
+	ld a, [wdceb]
+	and a
+	jr nz, .asm_21d8
+
+	ldh a, [hFFDC]
+	inc a
+	ldh [hFFDC], a
+	cp 5
+	jp c, Func_224e
+
+.asm_21d8
+	xor a
+	ldh [hFFDC], a
+	ld [wdceb], a
+	ld hl, wcd27
+	ld a, 1
+	sub [hl]
+	ld [hl], a
+
+.asm_21e5
+	ld a, [wcd24]
+	ld [wdb1f], a
+	call Func_2363
+	ld a, [wdb1f]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd23]
+	add a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd25]
+	add a
+	ld e, a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	cp $ff
+	jr nz, .asm_221f
+	ld a, h
+	cp $ff
+	jr nz, .asm_221f
+
+	xor a
+	ld [wcd25], a
+	ldh [hFFDC], a
+	ldh [hFFDB], a
+	ret
+
+.asm_221f
+	ld a, l
+	cp $ee
+	jr nz, .asm_2231
+	ld a, h
+	cp $ee
+	jr nz, .asm_2231
+
+	xor a
+	ld [wcd25], a
+	ldh [hFFDC], a
+	jr .asm_21e5
+
+.asm_2231
+	ld a, [wcd26]
+	swap a
+	ld e, a
+	ld a, [wcd27]
+	and a
+	jr z, .asm_2241
+
+	ld a, $40
+	add e
+	ld e, a
+
+.asm_2241
+	ld d, $80
+	ld bc, $40
+	call CopyBytesVRAM
+	ld hl, wcd25
+	inc [hl]
+	ret
 
 Func_224e:
-	dr $224e, $22a4
+	ld bc, wcd40
+.asm_2251:
+	ld hl, $0d
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_2293
+	dec [hl]
+	ld a, [hl]
+	and a
+	jr nz, .asm_2293
+
+	ld hl, 3
+	ld de, wd9fa
+	add hl, bc
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, 1
+	sub [hl]
+	ld [hl], a
+	ld [wd9fe], a
+	ld hl, $0d
+	add hl, bc
+	ld [hl], $14
+	push bc
+	call Func_22f6
+	pop bc
+	ld hl, 3
+	ld de, wd9fa
+	add hl, bc
+	ld c, 4
+.copy
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec c
+	jr nz, .copy
+	ret
+
+.asm_2293:
+	ld hl, $20
+	add hl, bc
+	ld a, l
+	cp $e0
+	jr nc, .asm_22a0
+
+	ld b, h
+	ld c, l
+	jr .asm_2251
+
+.asm_22a0
+	call Func_23a6
+	ret
 
 Func_22a4:
-	dr $22a4, $22f6
+	ld bc, wcd40
+.asm_22a7:
+	ld hl, $0d
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_22ea
+	dec [hl]
+	ld a, [hl]
+	and a
+	jr nz, .asm_22ea
+
+	ld hl, 3
+	ld de, wd9fa
+	add hl, bc
+REPT 4
+	ld a, [hli]
+	ld [de], a
+	inc de
+ENDR
+	ld a, 1
+	sub [hl]
+	ld [hl], a
+	ld [wd9fe], a
+	ld hl, $0d
+	add hl, bc
+	ld [hl], $0a
+	push bc
+	call Func_22f6
+	pop bc
+	push bc
+	ld hl, 3
+	ld de, wd9fa
+	add hl, bc
+	ld c, 4
+.copy
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec c
+	jr nz, .copy
+
+	pop bc
+.asm_22ea:
+	ld hl, $20
+	add hl, bc
+	ld a, l
+	cp $e0
+	ret nc
+
+	ld b, h
+	ld c, l
+	jr .asm_22a7
 
 Func_22f6:
-	dr $22f6, $2363
+	ld a, [wd9fb]
+	ld [wdb1f], a
+	call Func_2363
+	ld a, [wdb1f]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd9fa]
+	add a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd9fc]
+	add a
+	ld e, a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	cp $ff
+	jr nz, .asm_2332
+	ld a, h
+	cp $ff
+	jr nz, .asm_2332
+
+	xor a
+	ld [wd9fc], a
+	ld hl, $0d
+	add hl, bc
+	ld [hl], 0
+	ret
+
+.asm_2332:
+	ld a, l
+	cp $ee
+	jr nz, .asm_2341
+	ld a, h
+	cp $ee
+	jr nz, .asm_2341
+
+	xor a
+	ld [wd9fc], a
+	ret
+
+.asm_2341
+	ld a, [wd9fd]
+	swap a
+	ld e, a
+	or $80
+	ld d, a
+	ld a, e
+	and $f0
+	ld e, a
+	ld a, [wd9fe]
+	and a
+	jr z, .asm_2358
+
+	ld a, $40
+	add e
+	ld e, a
+
+.asm_2358
+	ld bc, $40
+	call CopyBytesVRAM
+	ld hl, wd9fc
+	inc [hl]
+	ret
 
 Func_2363:
 	ld a, [wdb1f]

@@ -3,6 +3,7 @@ INCLUDE "constants.asm"
 
 SECTION "WRAM", WRAM0
 
+wc000::
 wVirtualOAM::
 wVirtualOAMSprite00:: sprite_oam_struct wVirtualOAMSprite00
 wVirtualOAMSprite01:: sprite_oam_struct wVirtualOAMSprite01
@@ -52,7 +53,9 @@ wBGMapBufferPointers:: ds $38
 
 wc0e8:: ds $18
 
-wc100:: ds $820
+wc100:: ds $640
+
+wc740:: ds $1e0
 
 ; c920
 wTilemap::
@@ -97,7 +100,10 @@ wcd01:: ds 1 ; Distance to warp border x
 wcd02:: ds 1
 wcd03:: ds 1 ; Facing direction
 wcd04:: ds 1 ; OW sprite ID?
-wcd05:: ds $1b
+wcd05:: ds 1
+wcd06:: ds 1
+wcd07:: ds 1
+wcd08:: ds $18
 
 wcd20:: ds 1
 wcd21:: ds 1
@@ -137,7 +143,8 @@ wd087:: ds 1
 
 wd088:: ds 2
 wd08a:: ds 1
-wd08b:: ds 2
+wd08b:: ds 1
+wd08c:: ds 1
 
 wd08d:: ds 1 ; selected page
 wd08e:: ds 1 ; selected option
@@ -167,8 +174,9 @@ wd0c2:: ds 1
 wd0c3:: ds 1
 
 wd0c4:: ds 2
-wd0c6:: ds 3
+wd0c6:: ds 2
 
+wd0c8:: ds 1
 wd0c9:: ds 1
 wd0ca:: ds 1
 wd0cb:: ds 2
@@ -231,7 +239,9 @@ wd200:: ds $84
 wd284:: ds $7c
 
 ; Items (ID, Quantity)
-wd300:: ds $f5
+wd300:: ds $f4
+
+wd3f4:: ds 1
 
 ; collision related
 wd3f5:: ds 1
@@ -248,19 +258,39 @@ wd86a:: ds $c
 wd876:: ds 1
 wd877:: ds $87
 
-wd8fe:: ds $83
+wd8fe:: ds 2
+
+wd900:: ds $3c
+
+wd93c:: ds $45
 
 wd981:: ds 1
 wd982:: ds 1
 wd983:: ds 1
 wd984:: ds 2
-
 wd986:: ds 1
 wd987:: ds 2
 wd989:: ds 1
-wd98a:: ds 5
-wd98f:: ds 2
-wd991:: ds $2e
+wd98a:: ds 2
+wd98c:: ds 3
+wd98f:: ds 1
+wd990:: ds 1
+wd991:: ds 7
+
+wd998:: ds 1
+wd999:: ds 1
+wd99a:: ds 1
+wd99b:: ds 1
+wd99c:: ds $f
+
+wd9ab:: ds 1
+wd9ac:: ds 1
+wd9ad:: ds 2
+
+wd9af:: ds 3
+
+wd9b2:: ds 1
+wd9b3:: ds $c
 
 wd9bf:: ds 1
 
@@ -295,7 +325,9 @@ wd9f1:: ds 2
 wd9f3:: ds 6
 wd9f9:: ds 1
 wd9fa:: ds 1
-wd9fb:: ds 3
+wd9fb:: ds 1
+wd9fc:: ds 1
+wd9fd:: ds 1
 wd9fe:: ds 1
 wd9ff:: ds 1
 wda00:: ds $a0
@@ -304,7 +336,7 @@ wdaa0:: ds 1
 wdaa1:: ds 1
 wdaa2:: ds 1
 wdaa3:: ds 1
-wdaa4:: ds 1
+wdaa4:: ds 1 ; shop menu
 wdaa5:: ds 1
 wdaa6:: ds 1
 wdaa7:: ds 1
@@ -397,7 +429,9 @@ wde42:: ds $16
 wde58:: ds $16
 wde6e:: ds $16
 wde84:: ds $16
-wde9a:: ds $165
+wde9a:: ds $66
+
+wdf00:: ds $ff
 
 wdfff:: ds 1
 
