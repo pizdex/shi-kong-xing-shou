@@ -148,7 +148,7 @@ Func_0419:
 	homecall Func_004_4000
 	ret
 
-Func_0426:
+Func_0426::
 	ld a, [_BANKNUM]
 	push af
 	call Func_2108
@@ -508,7 +508,7 @@ Func_06c6:
 	rst Bankswitch
 	ret
 
-Func_06d0:
+Func_06d0::
 	ld a, BANK(Func_00b_417b)
 	rst Bankswitch
 	call Func_00b_417b
@@ -516,8 +516,8 @@ Func_06d0:
 	rst Bankswitch
 	ret
 
-GetFarByte::
-; Get byte from [hFFB6]:[wcbf8] and store it in [wFarByte]
+GetScriptByte::
+; Get byte from [hFFB6]:[wcbf8] and store it in [wScriptByte]
 	ld a, [_BANKNUM]
 	push af
 
@@ -531,7 +531,7 @@ GetFarByte::
 
 ; Get byte
 	ld a, [hli]
-	ld [wFarByte], a
+	ld [wScriptByte], a
 ; Store new address
 	ld a, l
 	ld [wcbf8], a
@@ -716,7 +716,7 @@ Func_080a:
 	homecall Func_005_4000
 	ret
 
-Func_0817:
+Func_0817::
 	ld a, [_BANKNUM]
 	push af
 	ld a, BANK(Func_005_4000)
@@ -3075,7 +3075,7 @@ Func_1900:
 	ld [wMoney + 2], a
 	ret
 
-Func_19b6:
+Func_19b6::
 	ld a, [wd0ef]
 	and a
 	jr z, .asm_19c3

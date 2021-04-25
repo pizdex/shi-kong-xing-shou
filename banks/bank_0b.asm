@@ -4,7 +4,7 @@ unk_00b_4000:
 Func_00b_417b::
 	call Func_00b_606f
 	ld de, unk_00b_4250
-	ld a, [wFarByte]
+	ld a, [wScriptByte]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -13,47 +13,45 @@ Func_00b_417b::
 	ld h, [hl]
 	ld l, a
 	jp hl
-
-Func_00b_418d:
-	ret
+	ret ; ?
 
 unk_00b_418e:
 	dr $2c18e, $2c250
 
 unk_00b_4250:
-	dw Func_00b_4340
-	dw Func_00b_4344
-	dw Func_00b_4391
-	dw Func_00b_43a9
-	dw $43bd
-	dw $440c
-	dw $442f
-	dw $4454
-	dw $4480
-	dw $449c
-	dw $44ab
-	dw $4505
-	dw Func_00b_451d
-	dw $4537
-	dw $455f
-	dw $456c
-	dw $4587
-	dw $4591
-	dw $45a9
-	dw $45b0
-	dw Func_00b_45e1
-	dw Func_00b_45ff
-	dw $4683
-	dw $46a1
-	dw $46c3
-	dw $46ff
-	dw $4750
-	dw $4781
-	dw $4796
-	dw $47aa
-	dw $47f1
-	dw $4811
-	dw $481e
+	dw Func_00b_4340 ; $00
+	dw Func_00b_4344 ; $01
+	dw Func_00b_4391 ; $02
+	dw Func_00b_43a9 ; $03
+	dw Func_00b_43bd ; $04
+	dw Func_00b_440c ; $05
+	dw Func_00b_442f ; $06
+	dw Func_00b_4454 ; $07
+	dw Func_00b_4480 ; $08
+	dw Func_00b_449c ; $09
+	dw Func_00b_44ab ; $0a
+	dw Func_00b_4505 ; $0b
+	dw Func_00b_451d ; $0c
+	dw Func_00b_4537 ; $0d
+	dw Func_00b_455f ; $0e
+	dw Func_00b_456c ; $0f
+	dw Func_00b_4587 ; $10
+	dw Func_00b_4591 ; $11
+	dw Func_00b_45a9 ; $12
+	dw Func_00b_45b0 ; $13
+	dw Func_00b_45e1 ; $14
+	dw Func_00b_45ff ; $15
+	dw Func_00b_4683 ; $16
+	dw Func_00b_46a1 ; $17
+	dw Func_00b_46c3 ; $18
+	dw Func_00b_46ff ; $19
+	dw Func_00b_4750 ; $1a
+	dw Func_00b_4781 ; $1b
+	dw Func_00b_4796 ; $1c
+	dw Func_00b_47aa ; $1d
+	dw Func_00b_47f1 ; $1e
+	dw Func_00b_4811 ; $1f
+	dw Func_00b_481e ; $20
 	dw $496f
 	dw $498c
 	dw $49a7
@@ -143,7 +141,7 @@ unk_00b_4250:
 	dw Func_00b_6004
 
 Func_00b_4340:
-	call GetFarByte
+	call GetScriptByte
 	ret
 
 Func_00b_4344:
@@ -153,7 +151,10 @@ Func_00b_4391:
 	dr $2c391, $2c3a9
 
 Func_00b_43a9:
-	dr $2c3a9, $2c3fc
+	dr $2c3a9, $2c3bd
+
+Func_00b_43bd:
+	dr $2c3bd, $2c3fc
 
 Func_00b_43fc:
 	ld a, TEXTBOX_TOP
@@ -168,31 +169,100 @@ Func_00b_43fc:
 	ret
 
 Func_00b_440c:
-	dr $2c40c, $2c51d
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wcd03], a
+	ld a, 0
+	ld [wcd05], a
+	ld a, 1
+	ld [hFFAC], a
+	ld [wdcd0], a
+	ld a, 6
+	ld [hFFAD], a
+	xor a
+	ld [wScriptByte], a
+	call Func_0426
+	ret
+
+Func_00b_442f:
+	dr $2c42f, $2c454
+
+Func_00b_4454:
+	dr $2c454, $2c480
+
+Func_00b_4480:
+	dr $2c480, $2c49c
+
+Func_00b_449c:
+	xor a
+	ldh [hFFD6], a
+	ldh [hFFA7], a
+	ld [wd0f0], a
+	call Func_0817
+	call Func_19b6
+	ret
+
+Func_00b_44ab:
+	dr $2c4ab, $2c505
+
+Func_00b_4505:
+	dr $2c505, $2c51d
 
 Func_00b_451d:
-	call GetFarByte
-	ld a, [wFarByte]
+	call GetScriptByte
+	ld a, [wScriptByte]
 	ldh [hFF9B], a
-	call GetFarByte
-	ld a, [wFarByte]
+	call GetScriptByte
+	ld a, [wScriptByte]
 	ldh [hFF9C], a
 ; Enable map switch
 	ld a, 1
 	ld [hFFBF], a
 	xor a
-	ld [wFarByte], a
+	ld [wScriptByte], a
 	ret
 
 Func_00b_4537:
-	dr $2c537, $2c5e1
+	dr $2c537, $2c55f
+
+Func_00b_455f:
+	dr $2c55f, $2c56c
+
+Func_00b_456c:
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcc8], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcc8 + 1], a
+; Next command
+	ld a, $10
+	ld [wScriptByte], a
+	xor a
+	ldh [hFFA7], a
+	ret
+
+Func_00b_4587:
+	call Func_00b_60dd
+	call Func_00b_61d6
+	call Func_0426
+	ret
+
+Func_00b_4591:
+	dr $2c591, $2c5a9
+
+Func_00b_45a9:
+	dr $2c5a9, $2c5b0
+
+Func_00b_45b0:
+	dr $2c5b0, $2c5e1
 
 Func_00b_45e1:
-	call GetFarByte
-	ld a, [wFarByte]
+	call GetScriptByte
+	ld a, [wScriptByte]
 	ld [wcbfe], a
-	call GetFarByte
-	ld a, [wFarByte]
+	call GetScriptByte
+	ld a, [wScriptByte]
 	ld [wcbfe + 1], a
 
 	call Func_00b_43fc
@@ -201,11 +271,49 @@ Func_00b_45e1:
 	ld a, 1
 	ldh [hFFBC], a
 	xor a
-	ld [wFarByte], a
+	ld [wScriptByte], a
 	ret
 
 Func_00b_45ff:
-	dr $2c5ff, $2d273
+	dr $2c5ff, $2c683
+
+Func_00b_4683:
+	dr $2c683, $2c6a1
+
+Func_00b_46a1:
+	dr $2c6a1, $2c6c3
+
+Func_00b_46c3:
+	dr $2c6c3, $2c6ff
+
+Func_00b_46ff:
+	dr $2c6ff, $2c750
+
+Func_00b_4750:
+	dr $2c750, $2c781
+
+Func_00b_4781:
+	dr $2c781, $2c796
+
+Func_00b_4796:
+	dr $2c796, $2c7aa
+
+Func_00b_47aa:
+	dr $2c7aa, $2c7f1
+
+Func_00b_47f1:
+	dr $2c7f1, $2c811
+
+Func_00b_4811:
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ldh [hFFBA], a
+	xor a
+	ld [wScriptByte], a
+	ret
+
+Func_00b_481e:
+	dr $2c81e, $2d273
 
 Func_00b_5273::
 	dr $2d273, $2e004
@@ -214,7 +322,13 @@ Func_00b_6004:
 	dr $2e004, $2e06f
 
 Func_00b_606f:
-	dr $2e06f, $2f1e0
+	dr $2e06f, $2e0dd
+
+Func_00b_60dd:
+	dr $2e0dd, $2e1d6
+
+Func_00b_61d6:
+	dr $2e1d6, $2f1e0
 
 
 SECTION "banknumb", ROMX[$7fff], BANK[$b]

@@ -83,7 +83,7 @@ wcbf6:: ds 1
 wTextNameID:: ds 1
 
 wcbf8:: ds 2
-wFarByte:: ds 1
+wScriptByte:: ds 1
 wcbfb:: ds 3
 
 wcbfe:: ds 2
