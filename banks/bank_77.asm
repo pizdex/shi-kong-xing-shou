@@ -1,11 +1,59 @@
 Func_077_4000::
 	dr $1dc000, $1dc311
 
-unk_077_4311:
-	dr $1dc311, $1dc322
+Func_077_4311:
+	ld bc, $80
+.asm_4314
+	ld hl, $0000
+.asm_4317
+	inc hl
+	ld a, h
+	or l
+	jr nz, .asm_4317
+	dec bc
+	cp 0
+	jr nz, .asm_4314
+	ret
 
-unk_077_4322:
-	dr $1dc322, $1dc3fc
+Func_077_4322:
+	ld hl, wd300
+	ld [hl], ITEM_04
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], ITEM_04
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], ITEM_17
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], ITEM_26
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], ITEM_26
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], ITEM_26
+	inc hl
+	ld [hl], 99
+	inc hl
+	ld [hl], ITEM_27
+	inc hl
+	ld [hl], 20
+
+; 5000 money
+	ld a, $13
+	ld [wMoney + 1], a
+	ld a, $88
+	ld [wMoney + 2], a
+	ret
+
+Func_077_4359:
+	dr $1dc359, $1dc3fc
 
 CheatCode_InputList:
 	db D_UP, A_BUTTON, A_BUTTON, D_UP, B_BUTTON, B_BUTTON, SELECT, SELECT          ; 1

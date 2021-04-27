@@ -82,9 +82,11 @@ wCharacterTileTransferStatus:: ds 1
 wcbf6:: ds 1
 wTextNameID:: ds 1
 
-wcbf8:: ds 2
+wScriptPos:: ds 2
 wScriptByte:: ds 1
-wcbfb:: ds 3
+wcbfb:: ds 1
+wcbfc:: ds 1
+wcbfd:: ds 1
 
 wcbfe:: ds 2
 

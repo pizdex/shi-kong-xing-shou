@@ -54,7 +54,7 @@ Func_0200:
 ; Check SRAM
 	call SRAMTest
 
-	ld a, 3
+	ld a, $03
 	ldh [hFF9B], a
 	ld a, 0
 	ldh [hFF9C], a
@@ -517,16 +517,16 @@ Func_06d0::
 	ret
 
 GetScriptByte::
-; Get byte from [hFFB6]:[wcbf8] and store it in [wScriptByte]
+; Get byte from [wScriptBank]:[wScriptPos] and store it in [wScriptByte]
 	ld a, [_BANKNUM]
 	push af
 
 ; Get bank and address
-	ldh a, [hFFB6]
+	ldh a, [wScriptBank]
 	rst Bankswitch
-	ld a, [wcbf8]
+	ld a, [wScriptPos]
 	ld l, a
-	ld a, [wcbf8 + 1]
+	ld a, [wScriptPos + 1]
 	ld h, a
 
 ; Get byte
@@ -534,15 +534,15 @@ GetScriptByte::
 	ld [wScriptByte], a
 ; Store new address
 	ld a, l
-	ld [wcbf8], a
+	ld [wScriptPos], a
 	ld a, h
-	ld [wcbf8 + 1], a
+	ld [wScriptPos + 1], a
 
 	pop af
 	rst Bankswitch
 	ret
 
-Func_06f8:
+Func_06f8::
 	ld a, [_BANKNUM]
 	push af
 
@@ -929,6 +929,7 @@ Func_092e:
 	jr Func_092e
 
 .exit
+; Warning: LCD disabled outside of VBlank here
 	xor a ; LCDCF_OFF
 	ldh [rLCDC], a
 	ret
@@ -2359,7 +2360,7 @@ Func_13b7:
 Func_13d5:
 	ld a, [_BANKNUM]
 	push af
-	ldh a, [hFFB6]
+	ldh a, [wScriptBank]
 	rst Bankswitch
 	ld a, [wd0cd]
 	ld l, a
@@ -2598,16 +2599,17 @@ Func_1620:
 	ld [hl], $01
 	ld a, $04
 	ldh [hFF9B], a
-	ld a, $01
+	ld a, 1
 	ldh [hFF9C], a
-	ld a, $01
+	ld a, 1
 	ldh [hFFD6], a
-	ld a, $08
-	ld [hFFB6], a
-	ld hl, wcbf8
-	ld [hl], $00
+
+	ld a, BANK(Script_008_4000)
+	ld [wScriptBank], a
+	ld hl, wScriptPos
+	ld [hl], LOW(Script_008_4000)
 	inc hl
-	ld [hl], $40
+	ld [hl], HIGH(Script_008_4000)
 	call Func_1642
 	ret
 
@@ -2728,37 +2730,39 @@ Func_16ea:
 	jp Func_1661
 
 Func_16f4:
-	ld a, $01
+	ld a, 1
 	ldh [hFF9A], a
 	ld a, $04
 	ldh [hFF9B], a
-	ld a, $01
+	ld a, 1
 	ldh [hFF9C], a
-	ld a, $01
+	ld a, 1
 	ldh [hFFD6], a
-	ld a, $0e
-	ld [hFFB6], a
-	ld hl, wcbf8
-	ld [hl], $05
+
+	ld a, BANK(Script_00e_4005)
+	ld [wScriptBank], a
+	ld hl, wScriptPos
+	ld [hl], LOW(Script_00e_4005)
 	inc hl
-	ld [hl], $40
+	ld [hl], HIGH(Script_00e_4005)
 	ret
 
 Func_1712:
-	ld a, $04
+	ld a, 4
 	ldh [hFF9A], a
 	ld a, $43
 	ldh [hFF9B], a
-	ld a, $01
+	ld a, 1
 	ldh [hFF9C], a
-	ld a, $01
+	ld a, 1
 	ldh [hFFD6], a
-	ld a, $55
-	ld [hFFB6], a
-	ld hl, wcbf8
-	ld [hl], $ef
+
+	ld a, BANK(Script_055_53ef)
+	ld [wScriptBank], a
+	ld hl, wScriptPos
+	ld [hl], LOW(Script_055_53ef)
 	inc hl
-	ld [hl], $53
+	ld [hl], HIGH(Script_055_53ef)
 	ret
 
 Func_1730:
@@ -2823,9 +2827,9 @@ Func_1730:
 	ld [hFFBA], a
 	ld a, $0c
 	ldh [hFF9B], a
-	ld a, $03
+	ld a, 3
 	ldh [hFF9C], a
-	ld a, $06
+	ld a, 6
 	ldh [hFF9A], a
 
 	ld a, $01
@@ -3054,7 +3058,7 @@ Func_1900:
 
 	ld a, 0
 	ld [hFFBA], a
-	ld a, 1
+	ld a, $01
 	ldh [hFF9B], a
 	ld a, 0
 	ldh [hFF9C], a

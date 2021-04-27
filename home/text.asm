@@ -13,7 +13,7 @@ Func_19ca:
 	ret
 
 .type1
-	ldh a, [hFFB6]
+	ldh a, [wScriptBank]
 	jr .select_bank
 
 .type2
@@ -1077,7 +1077,7 @@ Func_1fe9:
 	ret
 
 Func_1fee:
-	ldh a, [hFFB6]
+	ldh a, [wScriptBank]
 	rst Bankswitch
 	ld a, [wd0cd]
 	ld l, a
@@ -1171,7 +1171,7 @@ ENDR
 	ld [wd0ca], a
 
 .asm_206c
-	ld de, hFFB6
+	ld de, wScriptBank
 	ld a, [hli]
 	ld [de], a
 	inc de

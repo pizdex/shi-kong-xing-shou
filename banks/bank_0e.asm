@@ -1,5 +1,8 @@
 unk_00e_4000:
-	dr $38000, $38abe
+	dr $38000, $38005
+
+Script_00e_4005::
+	dr $38005, $38abe
 
 INCLUDE "data/text/bank0e_misc.asm"
 

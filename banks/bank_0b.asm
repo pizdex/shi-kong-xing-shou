@@ -1,5 +1,38 @@
 unk_00b_4000:
-	dr $2c000, $2c17b
+	dr $2c000, $2c13c
+
+unk_00b_413c::
+	db LEFT, $ff
+
+unk_00b_413e::
+	db RIGHT, $ff
+
+unk_00b_4140::
+	db RIGHT, RIGHT, $ff
+
+unk_00b_4143::
+	db LEFT, DOWN, DOWN, RIGHT, $ff
+
+unk_00b_4148::
+	db DOWN, RIGHT, $ff
+
+unk_00b_414b::
+	db DOWN, LEFT, $ff
+
+unk_00b_414e::
+	db LEFT, DOWN, $ff
+
+unk_00b_4151::
+	db LEFT, UP, $ff
+
+unk_00b_4154::
+	db DOWN, LEFT, UP, $ff
+
+unk_00b_4158::
+	db RIGHT, DOWN, DOWN, LEFT, $ff
+
+unk_00b_415d:
+	dr $2c15d, $2c17b
 
 Func_00b_417b::
 	call Func_00b_606f
@@ -16,142 +49,188 @@ Func_00b_417b::
 	ret ; ?
 
 unk_00b_418e:
-	dr $2c18e, $2c250
+	dr $2c18e, $2c191
+
+unk_00b_4191::
+	db DOWN, $ff
+
+unk_00b_4193::
+	dr $2c193, $2c250
 
 unk_00b_4250:
-	dw Func_00b_4340 ; $00
-	dw Func_00b_4344 ; $01
-	dw Func_00b_4391 ; $02
-	dw Func_00b_43a9 ; $03
-	dw Func_00b_43bd ; $04
-	dw Func_00b_440c ; $05
-	dw Func_00b_442f ; $06
-	dw Func_00b_4454 ; $07
-	dw Func_00b_4480 ; $08
-	dw Func_00b_449c ; $09
-	dw Func_00b_44ab ; $0a
-	dw Func_00b_4505 ; $0b
-	dw Func_00b_451d ; $0c
-	dw Func_00b_4537 ; $0d
-	dw Func_00b_455f ; $0e
-	dw Func_00b_456c ; $0f
-	dw Func_00b_4587 ; $10
-	dw Func_00b_4591 ; $11
-	dw Func_00b_45a9 ; $12
-	dw Func_00b_45b0 ; $13
-	dw Func_00b_45e1 ; $14
-	dw Func_00b_45ff ; $15
-	dw Func_00b_4683 ; $16
-	dw Func_00b_46a1 ; $17
-	dw Func_00b_46c3 ; $18
-	dw Func_00b_46ff ; $19
-	dw Func_00b_4750 ; $1a
-	dw Func_00b_4781 ; $1b
-	dw Func_00b_4796 ; $1c
-	dw Func_00b_47aa ; $1d
-	dw Func_00b_47f1 ; $1e
-	dw Func_00b_4811 ; $1f
-	dw Func_00b_481e ; $20
-	dw $496f
-	dw $498c
-	dw $49a7
-	dw $49db
-	dw $4a48
-	dw $4a55
-	dw $4a6e
-	dw $4a86
-	dw $4a9a
-	dw $4aaa
-	dw $4acb
-	dw $4afc
-	dw $4b2f
-	dw $4b73
-	dw $4b91
-	dw $4bc4
-	dw $4bef
-	dw $4c1b
-	dw $4c5f
-	dw $4ca3
-	dw $4cc5
-	dw $4cde
-	dw $4cee
-	dw $4dea
-	dw $4df5
-	dw $4e0d
-	dw $4e39
-	dw $4ea0
-	dw $4ede
-	dw $4f2f
-	dw $4f48
-	dw $4f99
-	dw $4fb4
-	dw $4fe7
-	dw $502c
-	dw $50cd
-	dw $50d8
-	dw $5118
-	dw $5141
-	dw $516b
-	dw $5198
-	dw $5235
-	dw $52c1
-	dw $52e1
-	dw $52f0
-	dw $5332
-	dw $536a
-	dw $53ad
-	dw $5415
-	dw $545e
-	dw $546a
-	dw $548c
-	dw $54c8
-	dw $5506
-	dw $552d
-	dw $5537
-	dw $5562
-	dw $55b7
-	dw $55fe
-	dw $5630
-	dw $566a
-	dw $569a
-	dw $56a8
-	dw $5895
-	dw $58a2
-	dw $58ad
-	dw $58cd
-	dw $590a
-	dw $5929
-	dw $593a
-	dw $595e
-	dw $5999
-	dw $5a09
-	dw $5a18
-	dw $5abd
-	dw $5ae1
-	dw $5af7
-	dw $5b76
-	dw $5db7
-	dw $5e8d
-	dw $5e9b
-	dw $5ea9
-	dw $5ee7
-	dw $5f5e
-	dw $5f69
-	dw $5ff6
-	dw Func_00b_6004
+	dw Script_Continue ; $00
+	dw Func_00b_4344   ; $01
+	dw Func_00b_4391   ; $02
+	dw Func_00b_43a9   ; $03
+	dw Func_00b_43bd   ; $04
+	dw Func_00b_440c   ; $05
+	dw Func_00b_442f   ; $06
+	dw Func_00b_4454   ; $07
+	dw Func_00b_4480   ; $08
+	dw Func_00b_449c   ; $09
+	dw Func_00b_44ab   ; $0a
+	dw Func_00b_4505   ; $0b
+	dw Func_00b_451d   ; $0c
+	dw Func_00b_4537   ; $0d
+	dw Func_00b_455f   ; $0e
+	dw Func_00b_456c   ; $0f
+	dw Func_00b_4587   ; $10
+	dw Func_00b_4591   ; $11
+	dw Func_00b_45a9   ; $12
+	dw Func_00b_45b0   ; $13
+	dw Func_00b_45e1   ; $14
+	dw Func_00b_45ff   ; $15
+	dw Func_00b_4683   ; $16
+	dw Func_00b_46a1   ; $17
+	dw Func_00b_46c3   ; $18
+	dw Func_00b_46ff   ; $19
+	dw Func_00b_4750   ; $1a
+	dw Func_00b_4781   ; $1b
+	dw Func_00b_4796   ; $1c
+	dw Func_00b_47aa   ; $1d
+	dw Func_00b_47f1   ; $1e
+	dw Func_00b_4811   ; $1f
+	dw Func_00b_481e   ; $20
+	dw Func_00b_496f   ; $21
+	dw Func_00b_498c   ; $22
+	dw Func_00b_49a7   ; $23
+	dw Func_00b_49db   ; $24
+	dw Func_00b_4a48   ; $25
+	dw Func_00b_4a55   ; $26
+	dw Func_00b_4a6e   ; $27
+	dw Func_00b_4a86   ; $28
+	dw Func_00b_4a9a   ; $29
+	dw Func_00b_4aaa   ; $2a
+	dw Func_00b_4acb   ; $2b
+	dw Func_00b_4afc   ; $2c
+	dw Func_00b_4b2f   ; $2d
+	dw Func_00b_4b73   ; $2e
+	dw Func_00b_4b91   ; $2f
+	dw Func_00b_4bc4   ; $30
+	dw Func_00b_4bef   ; $31
+	dw Func_00b_4c1b   ; $32
+	dw Func_00b_4c5f   ; $33
+	dw Func_00b_4ca3   ; $34
+	dw Func_00b_4cc5   ; $35
+	dw Func_00b_4cde   ; $36
+	dw Func_00b_4cee   ; $37
+	dw Func_00b_4dea   ; $38
+	dw Func_00b_4df5   ; $39
+	dw Func_00b_4e0d   ; $3a
+	dw Func_00b_4e39   ; $3b
+	dw Func_00b_4ea0   ; $3c
+	dw Func_00b_4ede   ; $3d
+	dw Func_00b_4f2f   ; $3e
+	dw Func_00b_4f48   ; $3f
+	dw Func_00b_4f99   ; $40
+	dw Func_00b_4fb4   ; $41
+	dw Func_00b_4fe7   ; $42
+	dw Func_00b_502c   ; $43
+	dw Func_00b_50cd   ; $44
+	dw Func_00b_50d8   ; $45
+	dw Func_00b_5118   ; $46
+	dw Func_00b_5141   ; $47
+	dw Func_00b_516b   ; $48
+	dw Func_00b_5198   ; $49
+	dw Func_00b_5235   ; $4a
+	dw Func_00b_52c1   ; $4b
+	dw Func_00b_52e1   ; $4c
+	dw Func_00b_52f0   ; $4d
+	dw Func_00b_5332   ; $4e
+	dw Func_00b_536a   ; $4f
+	dw Func_00b_53ad   ; $50
+	dw Func_00b_5415   ; $51
+	dw Func_00b_545e   ; $52
+	dw Func_00b_546a   ; $53
+	dw Func_00b_548c   ; $54
+	dw Func_00b_54c8   ; $55
+	dw Func_00b_5506   ; $56
+	dw Func_00b_552d   ; $57
+	dw Func_00b_5537   ; $58
+	dw Func_00b_5562   ; $59
+	dw Func_00b_55b7   ; $5a
+	dw Func_00b_55fe   ; $5b
+	dw Func_00b_5630   ; $5c
+	dw Func_00b_566a   ; $5d
+	dw Func_00b_569a   ; $5e
+	dw Func_00b_56a8   ; $5f
+	dw Func_00b_5895   ; $60
+	dw Func_00b_58a2   ; $61
+	dw Func_00b_58ad   ; $62
+	dw Func_00b_58cd   ; $63
+	dw Func_00b_590a   ; $64
+	dw Func_00b_5929   ; $65
+	dw Func_00b_593a   ; $66
+	dw Func_00b_595e   ; $67
+	dw Func_00b_5999   ; $68
+	dw Func_00b_5a09   ; $69
+	dw Func_00b_5a18   ; $6a
+	dw Func_00b_5abd   ; $6b
+	dw Func_00b_5ae1   ; $6c
+	dw Func_00b_5af7   ; $6d
+	dw Func_00b_5b76   ; $6e
+	dw Func_00b_5db7   ; $6f
+	dw Func_00b_5e8d   ; $70
+	dw Func_00b_5e9b   ; $71
+	dw Func_00b_5ea9   ; $72
+	dw Func_00b_5ee7   ; $73
+	dw Func_00b_5f5e   ; $74
+	dw Func_00b_5f69   ; $75
+	dw Func_00b_5ff6   ; $76
+	dw Func_00b_6004   ; $77
 
-Func_00b_4340:
+Script_Continue:
 	call GetScriptByte
 	ret
 
 Func_00b_4344:
-	dr $2c344, $2c391
+	call Func_00b_4369
+	call GetScriptByte
+	ld a, [wcbfb]
+	ld c, a
+	ld b, $cd
+	ld hl, 3
+	add hl, bc
+	ld a, [wScriptByte]
+	ld [hli], a
+	inc hl
+	ld [hl], 0
+	ld hl, $0d
+	add hl, bc
+	ld [hl], 1
+	xor a
+	ld [wScriptByte], a
+	call Func_06f8
+	ret
+
+Func_00b_4369:
+	dr $2c369, $2c391
 
 Func_00b_4391:
-	dr $2c391, $2c3a9
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wcbfc], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wcbfd], a
+	ld a, 3
+	ld [wScriptByte], a
+	ret
 
 Func_00b_43a9:
-	dr $2c3a9, $2c3bd
+; Delay?
+	ld hl, wcbfc
+	ldh a, [hFF9D]
+	and [hl]
+	ret nz
+	ld a, [wcbfd]
+	dec a
+	ld [wcbfd], a
+	ret nz
+
+	xor a
+	ld [wScriptByte], a
+	ret
 
 Func_00b_43bd:
 	dr $2c3bd, $2c3fc
@@ -275,7 +354,76 @@ Func_00b_45e1:
 	ret
 
 Func_00b_45ff:
-	dr $2c5ff, $2c683
+; Display emote
+	ld a, $44
+	call Func_2be2
+	call Func_00b_4369
+	call GetScriptByte
+	ld bc, wd1a0
+.asm_460d
+	ld hl, 2
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_461d
+
+	ld hl, 8
+	add hl, bc
+	ld c, l
+	ld b, h
+	jr .asm_460d
+
+.asm_461d
+	ld hl, 3
+	add hl, bc
+	ld a, [wScriptByte]
+	ld [hli], a
+	ld a, [wcbfb]
+	ld e, a
+	ld [hl], a
+	ld d, $cd
+	ld hl, unk_00b_466b
+	ld a, [wScriptByte]
+	cp $06
+	jr z, .asm_4650
+
+.asm_4636
+	add a
+	add a
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [de]
+	add [hl]
+	ld [bc], a
+	inc hl
+	inc de
+	inc bc
+	ld a, [de]
+	add [hl]
+	ld [bc], a
+	inc bc
+	inc hl
+	ld a, [hl]
+	ld [bc], a
+	xor a
+	ld [wScriptByte], a
+	ret
+
+.asm_4650
+	ld hl, unk_00b_465b
+	ld a, [wcd03]
+	sub $0e
+	jr .asm_4636
+	ret ; ?
+
+unk_00b_465b:
+	dr $2c65b, $2c66b
+
+unk_00b_466b:
+	dr $2c66b, $2c683
 
 Func_00b_4683:
 	dr $2c683, $2c6a1
@@ -313,10 +461,274 @@ Func_00b_4811:
 	ret
 
 Func_00b_481e:
-	dr $2c81e, $2d273
+	dr $2c81e, $2c96f
+	
+Func_00b_496f:
+	dr $2c96f, $2c98c
+
+Func_00b_498c:
+	dr $2c98c, $2c9a7
+
+Func_00b_49a7:
+	dr $2c9a7, $2c9db
+
+Func_00b_49db:
+	dr $2c9db, $2ca48
+
+Func_00b_4a48:
+	dr $2ca48, $2ca55
+
+Func_00b_4a55:
+	dr $2ca55, $2ca6e
+
+Func_00b_4a6e:
+	dr $2ca6e, $2ca86
+
+Func_00b_4a86:
+	dr $2ca86, $2ca9a
+
+Func_00b_4a9a:
+	dr $2ca9a, $2caaa
+
+Func_00b_4aaa:
+	dr $2caaa, $2cacb
+
+Func_00b_4acb:
+	dr $2cacb, $2cafc
+
+Func_00b_4afc:
+	dr $2cafc, $2cb2f
+
+Func_00b_4b2f:
+	dr $2cb2f, $2cb73
+
+Func_00b_4b73:
+	dr $2cb73, $2cb91
+
+Func_00b_4b91:
+	dr $2cb91, $2cbc4
+
+Func_00b_4bc4:
+	dr $2cbc4, $2cbef
+
+Func_00b_4bef:
+	dr $2cbef, $2cc1b
+
+Func_00b_4c1b:
+	dr $2cc1b, $2cc5f
+
+Func_00b_4c5f:
+	dr $2cc5f, $2cca3
+
+Func_00b_4ca3:
+	dr $2cca3, $2ccc5
+
+Func_00b_4cc5:
+	dr $2ccc5, $2ccde
+
+Func_00b_4cde:
+	dr $2ccde, $2ccee
+
+Func_00b_4cee:
+	dr $2ccee, $2cdea
+
+Func_00b_4dea:
+	dr $2cdea, $2cdf5
+
+Func_00b_4df5:
+	dr $2cdf5, $2ce0d
+
+Func_00b_4e0d:
+	dr $2ce0d, $2ce39
+
+Func_00b_4e39:
+	dr $2ce39, $2cea0
+
+Func_00b_4ea0:
+	dr $2cea0, $2cede
+
+Func_00b_4ede:
+	dr $2cede, $2cf2f
+
+Func_00b_4f2f:
+	dr $2cf2f, $2cf48
+
+Func_00b_4f48:
+	dr $2cf48, $2cf99
+
+Func_00b_4f99:
+	dr $2cf99, $2cfb4
+
+Func_00b_4fb4:
+	dr $2cfb4, $2cfe7
+
+Func_00b_4fe7:
+	dr $2cfe7, $2d02c
+
+Func_00b_502c:
+	dr $2d02c, $2d0cd
+
+Func_00b_50cd:
+	dr $2d0cd, $2d0d8
+
+Func_00b_50d8:
+	dr $2d0d8, $2d118
+
+Func_00b_5118:
+	dr $2d118, $2d141
+
+Func_00b_5141:
+	dr $2d141, $2d16b
+
+Func_00b_516b:
+	dr $2d16b, $2d198
+
+Func_00b_5198:
+	dr $2d198, $2d235
+
+Func_00b_5235:
+	dr $2d235, $2d273
 
 Func_00b_5273::
-	dr $2d273, $2e004
+	dr $2d273, $2d2c1
+
+Func_00b_52c1:
+	dr $2d2c1, $2d2e1
+
+Func_00b_52e1:
+	dr $2d2e1, $2d2f0
+
+Func_00b_52f0:
+	dr $2d2f0, $2d332
+
+Func_00b_5332:
+	dr $2d332, $2d36a
+
+Func_00b_536a:
+	dr $2d36a, $2d3ad
+
+Func_00b_53ad:
+	dr $2d3ad, $2d415
+
+Func_00b_5415:
+	dr $2d415, $2d45e
+
+Func_00b_545e:
+	dr $2d45e, $2d46a
+
+Func_00b_546a:
+	dr $2d46a, $2d48c
+
+Func_00b_548c:
+	dr $2d48c, $2d4c8
+
+Func_00b_54c8:
+	dr $2d4c8, $2d506
+
+Func_00b_5506:
+	dr $2d506, $2d52d
+
+Func_00b_552d:
+	dr $2d52d, $2d537
+
+Func_00b_5537:
+	dr $2d537, $2d562
+
+Func_00b_5562:
+	dr $2d562, $2d5b7
+
+Func_00b_55b7:
+	dr $2d5b7, $2d5fe
+
+Func_00b_55fe:
+	dr $2d5fe, $2d630
+
+Func_00b_5630:
+	dr $2d630, $2d66a
+
+Func_00b_566a:
+	dr $2d66a, $2d69a
+
+Func_00b_569a:
+; Follower
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcea], a
+	xor a
+	ld [wScriptByte], a
+	ret
+
+Func_00b_56a8:
+	dr $2d6a8, $2d895
+
+Func_00b_5895:
+	dr $2d895, $2d8a2
+
+Func_00b_58a2:
+	dr $2d8a2, $2d8ad
+
+Func_00b_58ad:
+	dr $2d8ad, $2d8cd
+
+Func_00b_58cd:
+	dr $2d8cd, $2d90a
+
+Func_00b_590a:
+	dr $2d90a, $2d929
+
+Func_00b_5929:
+	dr $2d929, $2d93a
+
+Func_00b_593a:
+	dr $2d93a, $2d95e
+
+Func_00b_595e:
+	dr $2d95e, $2d999
+
+Func_00b_5999:
+	dr $2d999, $2da09
+
+Func_00b_5a09:
+	dr $2da09, $2da18
+
+Func_00b_5a18:
+	dr $2da18, $2dabd
+
+Func_00b_5abd:
+	dr $2dabd, $2dae1
+
+Func_00b_5ae1:
+	dr $2dae1, $2daf7
+
+Func_00b_5af7:
+	dr $2daf7, $2db76
+
+Func_00b_5b76:
+	dr $2db76, $2ddb7
+
+Func_00b_5db7:
+	dr $2ddb7, $2de8d
+
+Func_00b_5e8d:
+	dr $2de8d, $2de9b
+
+Func_00b_5e9b:
+	dr $2de9b, $2dea9
+
+Func_00b_5ea9:
+	dr $2dea9, $2dee7
+
+Func_00b_5ee7:
+	dr $2dee7, $2df5e
+
+Func_00b_5f5e:
+	dr $2df5e, $2df69
+
+Func_00b_5f69:
+	dr $2df69, $2dff6
+
+Func_00b_5ff6:
+	dr $2dff6, $2e004
 
 Func_00b_6004:
 	dr $2e004, $2e06f
@@ -325,7 +737,38 @@ Func_00b_606f:
 	dr $2e06f, $2e0dd
 
 Func_00b_60dd:
-	dr $2e0dd, $2e1d6
+	ldh a, [hFFA7]
+	and a
+	ret nz
+
+	ld a, [wdcc8]
+	ld l, a
+	ld a, [wdcc8 + 1]
+	ld h, a
+	ld a, [hli]
+	cp $ff
+	jr nz, .asm_60f5
+
+	xor a
+	ld [wScriptByte], a
+	ldh [hFFA7], a
+	ret
+
+.asm_60f5
+	inc a
+	ld [hFFA7], a
+	ld a, l
+	ld [wdcc8], a
+	ld a, h
+	ld [wdcc8 + 1], a
+	ld a, $10
+	ld [hFFA6], a
+	ld a, 1
+	ldh [hFFAC], a
+	ret
+
+Func_00b_610b:
+	dr $2e10b, $2e1d6
 
 Func_00b_61d6:
 	dr $2e1d6, $2f1e0

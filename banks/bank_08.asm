@@ -1,50 +1,54 @@
-unk_008_4000:
+Script_008_4000::
 	scr_face FACE_UP
 	scr_text House_CutsceneText1
 	scr_face FACE_LEFT
-	db $0f, $3c, $41
+	scr_move unk_00b_413c
 	scr_face FACE_UP
 	scr_face FACE_RIGHT
-	db $0f, $3e, $41
+	scr_move unk_00b_413e
 	scr_face FACE_UP
 	scr_text House_CutsceneText2
-	db $15, $00, $02, $02, $03, $20
+	scr_emote 0, EMOTE_HEART
+	scr_delay 3, 32
 	scr_face FACE_DOWN
 	scr_text text_08_456d
 	scr_text text_08_458a
 	scr_text text_08_45a5
 	scr_face FACE_LEFT
-	db $0f, $3c, $41
-	db $0f, $3c, $41
+	scr_move unk_00b_413c
+	scr_move unk_00b_413c
 	scr_face FACE_DOWN
-	db $0f, $91, $41
+	scr_move unk_00b_4191
 	scr_text text_08_45cc
-	db $02, $03, $07
-	db $15, $00, $00, $02, $03, $20
+	scr_delay 3, 7
+	scr_emote 0, EMOTE_EXCLAMATION
+	scr_delay 3, 32
 	scr_face FACE_LEFT
-	db $0f, $3c, $41
-	db $0f, $3c, $41
-	db $0f, $3c, $41
+	scr_move unk_00b_413c
+	scr_move unk_00b_413c
+	scr_move unk_00b_413c
 	scr_face FACE_DOWN
-	db $0f, $91, $41
+	scr_move unk_00b_4191
 	scr_text text_08_45db
-	db $02, $03, $07, $15, $00, $03, $02, $03, $20
+	scr_delay 3, 7
+	scr_emote 0, EMOTE_QUESTION
+	scr_delay 3, 32
 	scr_text text_08_45f0
-	db $0f, $91, $41
-	db $0f, $91, $41
-	db $0f, $91, $41
-	db $0f, $91, $41
-; outside
-	db $5e, $01
+	scr_move unk_00b_4191
+	scr_move unk_00b_4191
+	scr_move unk_00b_4191
+	scr_move unk_00b_4191
+	scr_5e $01 ; follower
 	scr_face FACE_LEFT
-	db $0c, $01, $08
+	scr_setmap $01, $08 ; map switch
+; outside
 	scr_face FACE_RIGHT
 	scr_text text_08_4651
 	scr_text text_08_465e
 	scr_text text_08_46a4
 	scr_face FACE_LEFT
-	db $1f, $01
-	db $09
+	scr_1f $01 ; story flags?
+	scr_end
 
 unk_008_4082:
 	dr $20082, $20542
