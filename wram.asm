@@ -105,7 +105,12 @@ wcd04:: ds 1 ; OW sprite ID?
 wcd05:: ds 1
 wcd06:: ds 1
 wcd07:: ds 1
-wcd08:: ds $18
+wcd08:: ds 3
+wcd0b:: ds 1
+wcd0c:: ds 6
+wcd12:: ds 1
+wcd13:: ds 1
+wcd14:: ds $c
 
 wcd20:: ds 1
 wcd21:: ds 1
@@ -406,7 +411,8 @@ wdce2:: ds 1
 ; 0 = bottom half, 1 = top half
 wTextboxPos:: ds 1
 
-wdce4:: ds 3
+wdce4:: ds 1
+wdce5:: ds 2
 wdce7:: ds 1
 wdce8:: ds 2
 

@@ -51,7 +51,94 @@ Script_008_4000::
 	scr_end
 
 unk_008_4082:
-	dr $20082, $20542
+	dr $20082, $2008a
+
+Script_008_408a:
+	scr_0a wdaa0, 0, .script_4113 ; check bit 0?
+	scr_setmap $0a, $01
+	scr_face FACE_UP
+	scr_01 $02, $02
+	scr_move unk_00b_4193
+	scr_move unk_00b_4193
+	scr_text text_08_4b8b
+	scr_delay $03, $07
+	scr_move unk_00b_4193
+	scr_move unk_00b_4193
+	scr_face FACE_LEFT
+	scr_move unk_00b_413c
+	scr_text text_08_4b9f
+	scr_delay $03, $07
+	scr_emote $00, EMOTE_ANGER
+	scr_delay $03, $20
+	scr_move unk_00b_413c
+	scr_move unk_00b_413c
+	scr_text text_08_4baf
+	scr_emote $02, EMOTE_EXCLAMATION
+	scr_delay $03, $20
+	scr_01 $02, $00
+	scr_text text_08_4bbb
+	scr_text text_08_4bd2
+	scr_text text_08_4bdc
+	scr_move unk_00b_413c
+	scr_move unk_00b_413c
+	scr_face FACE_UP
+	scr_06 $02, $00
+	scr_text text_08_4bf3
+	scr_text text_08_4c1d
+	scr_text text_08_4c2e
+	scr_face FACE_LEFT
+; Cutscene
+	scr_01 $02, $02
+	scr_setmap $2c, $00
+	scr_0d $454f
+	scr_text text_08_4c4c
+	scr_text text_08_4c8c
+	scr_text text_08_4cb5
+	scr_text text_08_4cbd
+	scr_5e $00
+	scr_setmap $04, $02
+	scr_face FACE_DOWN
+	scr_01 $02, $01
+	scr_text text_08_4cc6
+	scr_0b wdaa0, 0 ; set bit 0?
+	scr_end
+
+.script_4113
+	scr_setmap $0a, $00
+	scr_end
+
+Script_008_4117:
+	dr $20117, $20137
+
+Script_008_4137:
+	scr_0a wdaa0, 0, .script_414d
+; No entry
+	scr_text text_08_4b77
+	scr_face FACE_DOWN
+	scr_move unk_00b_4191
+	scr_44
+	scr_06 $01, $02
+	scr_01 $01, FACE_DOWN ; snowy faces down
+	scr_end
+
+.script_414d
+	scr_setmap $09, $00
+	scr_end
+
+Script_008_4151:
+	dr $20151, $20285
+
+Script_008_4285:
+	scr_text text_08_55a7
+	scr_face FACE_UP
+	scr_move unk_00b_4193
+	scr_44
+	scr_06 $01, $01
+	scr_01 $01, FACE_UP
+	scr_end
+
+Script_008_4295:
+	dr $20295, $20542
 
 INCLUDE "data/text/ballots_house_intro.asm"
 

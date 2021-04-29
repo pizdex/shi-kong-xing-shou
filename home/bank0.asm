@@ -488,7 +488,7 @@ Func_062c:
 	homecall Func_009_4008
 	ret
 
-Func_0639:
+Func_0639::
 	homecall Func_009_4000
 	ret
 

@@ -55,7 +55,10 @@ unk_00b_4191::
 	db DOWN, $ff
 
 unk_00b_4193::
-	dr $2c193, $2c250
+	db UP, $ff
+
+unk_00b_4195::
+	dr $2c195, $2c250
 
 unk_00b_4250:
 	dw Script_Continue ; $00
@@ -204,7 +207,28 @@ Func_00b_4344:
 	ret
 
 Func_00b_4369:
-	dr $2c369, $2c391
+	call GetScriptByte
+	ld a, [wScriptByte]
+	cp $88
+	jr z, .asm_437f
+	cp $99
+	jr z, .asm_4386
+	swap a
+	sla a
+	ld [wcbfb], a
+	ret
+
+.asm_437f
+	ld a, [wcd0b]
+	ld [wcbfb], a
+	ret
+
+.asm_4386
+	ld a, [wdce5]
+	swap a
+	sla a
+	ld [wcbfb], a
+	ret
 
 Func_00b_4391:
 	call GetScriptByte
@@ -264,10 +288,33 @@ Func_00b_440c:
 	ret
 
 Func_00b_442f:
-	dr $2c42f, $2c454
+	call Func_00b_4369
+	call GetScriptByte
+	ld a, [wcbfb]
+	ld c, a
+	ld b, $cd
+	ld hl, $08
+	add hl, bc
+	ld a, [wScriptByte]
+	ld [hl], a
+	ld hl, $10
+	add hl, bc
+	ld [hl], a
+	ld hl, $0f
+	add hl, bc
+	ld [hl], $02
+	ld a, $07
+	ld [wScriptByte], a
+	ret
 
 Func_00b_4454:
-	dr $2c454, $2c480
+	call Func_0639
+	call Func_00b_445e
+	call Func_0426
+	ret
+
+Func_00b_445e:
+	dr $2c45e, $2c480
 
 Func_00b_4480:
 	dr $2c480, $2c49c
@@ -282,10 +329,79 @@ Func_00b_449c:
 	ret
 
 Func_00b_44ab:
-	dr $2c4ab, $2c505
+	call Func_00b_44e2
+	bit 0, b
+	jr nz, .asm_44c9
+
+	ld hl, wScriptPos
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, 2
+	add hl, de
+	ld a, l
+	ld [wScriptPos], a
+	ld a, h
+	ld [wScriptPos + 1], a
+	xor a
+	ld [wScriptByte], a
+	ret
+
+.asm_44c9
+	call GetScriptByte
+	ld a, [wScriptByte]
+	push af
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wScriptPos + 1], a
+	pop af
+	ld [wScriptPos], a
+	xor a
+	ld [wScriptByte], a
+	ret
+
+Func_00b_44e2:
+	call GetScriptByte
+	ld a, [wScriptByte]
+	push af
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld h, a
+	pop af
+	ld l, a
+	push hl
+	call GetScriptByte
+	pop hl
+	ld a, [hl]
+	ld b, a
+	ld a, [wScriptByte]
+	ld c, a
+	and a
+	ret z
+.asm_44ff
+	rrc b
+	dec c
+	jr nz, .asm_44ff
+	ret
 
 Func_00b_4505:
-	dr $2c505, $2c51d
+	call Func_00b_44e2
+	set 0, b
+	ld a, [wScriptByte]
+	ld c, a
+	and a
+	jr z, .asm_4516
+.asm_4511
+	rlc b
+	dec c
+	jr nz, .asm_4511
+
+.asm_4516
+	ld a, b
+	ld [hl], a
+	xor a
+	ld [wScriptByte], a
+	ret
 
 Func_00b_451d:
 	call GetScriptByte
@@ -302,7 +418,18 @@ Func_00b_451d:
 	ret
 
 Func_00b_4537:
-	dr $2c537, $2c55f
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcc8], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcc8 + 1], a
+	ld a, $0e
+	ld [wScriptByte], a
+	ret
+
+unk_00b_454f:
+	dr $2c54f, $2c55f
 
 Func_00b_455f:
 	dr $2c55f, $2c56c
@@ -569,7 +696,11 @@ Func_00b_502c:
 	dr $2d02c, $2d0cd
 
 Func_00b_50cd:
-	dr $2d0cd, $2d0d8
+	xor a
+	ld [wcd13], a
+	ld [wcd12], a
+	ld [wScriptByte], a
+	ret
 
 Func_00b_50d8:
 	dr $2d0d8, $2d118
