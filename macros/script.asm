@@ -19,7 +19,16 @@ scr_delay: MACRO
 	db \2 ; delay
 ENDM
 
-	const_def $05
+	const script_03 ; $03
+scr_03: MACRO
+	db script_03
+ENDM
+
+	const script_04 ; $04
+scr_04: MACRO
+	db script_04
+	dw \1
+ENDM
 
 	const script_face ; $05
 scr_face: MACRO
@@ -34,24 +43,33 @@ scr_06: MACRO
 	db \2
 ENDM
 
-	const_def $09
+	const script_07 ; $07
+scr_07: MACRO
+	db script_07
+ENDM
+
+	const script_08 ; $08
+scr_08: MACRO
+	db script_08
+	db \1
+ENDM
 
 	const script_end ; $09
 scr_end: MACRO
 	db script_end
 ENDM
 
-	const script_0a ; $0a
-scr_0a: MACRO
-	db script_0a
+	const script_checkbit ; $0a
+scr_checkbit: MACRO
+	db script_checkbit
 	dw \1
 	db \2
 	dw \3
 ENDM
 
-	const script_0b ; $0b
-scr_0b: MACRO
-	db script_0b
+	const script_setbit ; $0b
+scr_setbit: MACRO
+	db script_setbit
 	dw \1
 	db \2
 ENDM
@@ -69,12 +87,20 @@ scr_0d: MACRO
 	dw \1
 ENDM
 
-	const_def $0f
+	const script_0e ; $0e
+scr_0e: MACRO
+	db script_0e
+ENDM
 
 	const script_move ; $0f
 scr_move: MACRO
 	db script_move
 	dw \1 ; movement data
+ENDM
+
+	const script_10 ; $10
+scr_10: MACRO
+	db script_10
 ENDM
 
 	const_def $14
@@ -92,12 +118,42 @@ scr_emote: MACRO
 	db \2 ; emote
 ENDM
 
+	const_def $1c
+
+	const script_1c ; $1c
+scr_1c: MACRO
+	db script_1c
+	db \1
+ENDM
+
 	const_def $1f
 
 	const script_1f ; $1f
 scr_1f: MACRO
 	db script_1f
 	db \1
+ENDM
+
+	const_def $34
+
+	const script_34 ; $34
+scr_34: MACRO
+	db script_34
+	db \1
+	db \2
+	db \3
+ENDM
+
+	const_def $36
+
+	const script_36 ; $36
+scr_36: MACRO
+	db script_36
+ENDM
+
+	const script_37 ; $37
+scr_37: MACRO
+	db script_37
 ENDM
 
 	const_def $44

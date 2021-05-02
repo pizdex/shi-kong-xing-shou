@@ -296,9 +296,9 @@
 @org $08, $4cf4:
 	init NAME_11, $11; # TEMP
 	text "起床了嗎?";
-	line "";
+	line;
 	para "該上學了。";
-	line "";
+	line;
 	done;
 
 @org $08, $4d0b:

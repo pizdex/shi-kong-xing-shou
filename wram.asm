@@ -105,7 +105,9 @@ wcd04:: ds 1 ; OW sprite ID?
 wcd05:: ds 1
 wcd06:: ds 1
 wcd07:: ds 1
-wcd08:: ds 3
+wcd08:: ds 1
+wcd09:: ds 1
+wcd0a:: ds 1
 wcd0b:: ds 1
 wcd0c:: ds 6
 wcd12:: ds 1
@@ -230,7 +232,9 @@ wd128:: ds $78
 
 wd1a0:: ds 8
 wd1a8:: ds 8
-wd1b0:: ds $41
+wd1b0:: ds $32
+
+wd1e2:: ds $f
 
 wd1f1:: ds 1
 wd1f2:: ds 7

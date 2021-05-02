@@ -55,7 +55,7 @@
 	text "你是指設計圖嗎";
 	line "?";
 	para "我不是說過，";
-	line "";
+	line;
 	cont "就這樣放著嗎?";
 	para "唉~";
 	cont "我不是機械天才";

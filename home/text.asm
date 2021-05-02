@@ -1084,24 +1084,24 @@ Func_1fee:
 	ld a, [wd0cd + 1]
 	ld h, a
 	ld de, wda00
-.asm_1ffc
+.read_byte
 	ld a, [hl]
-	cp $88
-	jr z, .asm_200f
+	cp $88 ; terminator
+	jr z, .exit
 
 	ld a, $ff
 	ld [de], a
 	inc de
-	ld c, $0b
+	ld c, 11
 .copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
 	jr nz, .copy
-	jr .asm_1ffc
+	jr .read_byte
 
-.asm_200f
+.exit
 	ld [de], a
 	ret
 

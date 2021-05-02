@@ -243,7 +243,7 @@
 	init NAME_12, $26; # TEMP
 	text "OH~";
 	line "BABY~";
-	line "";
+	line;
 	para "巴洛特有什麼事";
 	line "情呢?";
 	para "咦?";
@@ -484,7 +484,7 @@
 	text "嗚~嗚~";
 	line "好黑峨!";
 	para "人家好怕啊!";
-	line "";
+	line;
 	para "嗚~~嗚~";
 	done;
 

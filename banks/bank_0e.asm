@@ -1,8 +1,17 @@
-unk_00e_4000:
-	dr $38000, $38005
+Script_00e_4000:
+	scr_end
+
+Script_00e_4001:
+	scr_setmap $2d, $01 ; TEMP
+	scr_end
 
 Script_00e_4005::
-	dr $38005, $38abe
+	scr_face FACE_DOWN
+	scr_text text_0e_4abe
+	scr_end
+
+Script_00e_400b:
+	dr $3800b, $38abe
 
 INCLUDE "data/text/bank0e_misc.asm"
 

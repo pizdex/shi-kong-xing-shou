@@ -67,7 +67,7 @@ Func_0200:
 	ld a, $12
 	ld [wd0fa], a
 
-Func_023b:
+Func_023b::
 	ld bc, wcab0
 	xor a
 	ldh [hFFC4], a

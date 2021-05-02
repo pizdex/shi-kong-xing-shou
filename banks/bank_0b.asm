@@ -36,7 +36,7 @@ unk_00b_415d:
 
 Func_00b_417b::
 	call Func_00b_606f
-	ld de, unk_00b_4250
+	ld de, ScriptCommandTable
 	ld a, [wScriptByte]
 	ld l, a
 	ld h, 0
@@ -60,8 +60,9 @@ unk_00b_4193::
 unk_00b_4195::
 	dr $2c195, $2c250
 
-unk_00b_4250:
-	dw Script_Continue ; $00
+ScriptCommandTable:
+; Entries correspond to script_* constants (see macros/script.asm)
+	dw Script_continue ; $00
 	dw Func_00b_4344   ; $01
 	dw Func_00b_4391   ; $02
 	dw Func_00b_43a9   ; $03
@@ -71,8 +72,8 @@ unk_00b_4250:
 	dw Func_00b_4454   ; $07
 	dw Func_00b_4480   ; $08
 	dw Func_00b_449c   ; $09
-	dw Func_00b_44ab   ; $0a
-	dw Func_00b_4505   ; $0b
+	dw Script_checkbit ; $0a
+	dw Script_setbit   ; $0b
 	dw Func_00b_451d   ; $0c
 	dw Func_00b_4537   ; $0d
 	dw Func_00b_455f   ; $0e
@@ -182,7 +183,7 @@ unk_00b_4250:
 	dw Func_00b_5ff6   ; $76
 	dw Func_00b_6004   ; $77
 
-Script_Continue:
+Script_continue:
 	call GetScriptByte
 	ret
 
@@ -257,7 +258,36 @@ Func_00b_43a9:
 	ret
 
 Func_00b_43bd:
-	dr $2c3bd, $2c3fc
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wcbfe], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wcbfe + 1], a
+	ld a, 1
+	ldh [hFFBC], a
+	call Func_00b_43fc
+	xor a
+	ld [wScriptByte], a
+	ld a, [wcbfb]
+	ld c, a
+	ld b, $cd
+	ld hl, 3
+	add hl, bc
+	ld a, [wcd03]
+	srl a
+	ld a, 0
+	rla
+	ld e, a
+	ld a, 1
+	sub e
+	ld e, a
+	ld a, [wcd03]
+	and $0e
+	add e
+	ld [hl], a
+	call Func_06f8
+	ret
 
 Func_00b_43fc:
 	ld a, TEXTBOX_TOP
@@ -314,10 +344,50 @@ Func_00b_4454:
 	ret
 
 Func_00b_445e:
-	dr $2c45e, $2c480
+	ld a, [wd1e2]
+	and a
+	ret z
+
+	ld hl, wcd00
+	ld a, [wcd08]
+	cp [hl]
+	jr z, .asm_4472
+	jr c, .asm_4471
+
+	inc [hl]
+	jr .asm_4472
+
+.asm_4471
+	dec [hl]
+
+.asm_4472
+	ld hl, wcd01
+	ld a, [wcd09]
+	cp [hl]
+	ret z
+	jr c, .asm_447e
+	inc [hl]
+	ret
+
+.asm_447e
+	dec [hl]
+	ret
 
 Func_00b_4480:
-	dr $2c480, $2c49c
+	call Func_00b_4369
+	ld a, [wcbfb]
+	ld c, a
+	ld b, $cd
+	ld a, [bc]
+	ld [wcd08], a
+	inc bc
+	ld a, [bc]
+	ld [wcd09], a
+	ld a, 1
+	ld [wd1e2], a
+	xor a
+	ld [wScriptByte], a
+	ret
 
 Func_00b_449c:
 	xor a
@@ -328,7 +398,7 @@ Func_00b_449c:
 	call Func_19b6
 	ret
 
-Func_00b_44ab:
+Script_checkbit:
 	call Func_00b_44e2
 	bit 0, b
 	jr nz, .asm_44c9
@@ -384,7 +454,7 @@ Func_00b_44e2:
 	jr nz, .asm_44ff
 	ret
 
-Func_00b_4505:
+Script_setbit:
 	call Func_00b_44e2
 	set 0, b
 	ld a, [wScriptByte]
@@ -432,7 +502,11 @@ unk_00b_454f:
 	dr $2c54f, $2c55f
 
 Func_00b_455f:
-	dr $2c55f, $2c56c
+	call DelayFrame
+	call Func_00b_653d
+	call Func_00b_6229
+	call Func_00b_625c
+	ret
 
 Func_00b_456c:
 	call GetScriptByte
@@ -571,7 +645,20 @@ Func_00b_4781:
 	dr $2c781, $2c796
 
 Func_00b_4796:
-	dr $2c796, $2c7aa
+	call Func_00b_4369
+
+Func_00b_4799:
+	ld a, [wcbfb]
+	ld l, a
+	ld h, $cd
+	ld c, $20
+	xor a
+.clear
+	ld [hli], a
+	dec c
+	jr nz, .clear
+	ld [wScriptByte], a
+	ret
 
 Func_00b_47aa:
 	dr $2c7aa, $2c7f1
@@ -648,16 +735,48 @@ Func_00b_4c5f:
 	dr $2cc5f, $2cca3
 
 Func_00b_4ca3:
-	dr $2cca3, $2ccc5
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wd0fa], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ldh [hFF9B], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ldh [hFF9C], a
+	ld a, $01
+	ldh [hFFBF], a
+	xor a
+	ld [wScriptByte], a
+	ret
 
 Func_00b_4cc5:
 	dr $2ccc5, $2ccde
 
 Func_00b_4cde:
-	dr $2ccde, $2ccee
+	ld a, $59
+	call Func_2be2
+	farcall Func_039_4892
+	xor a
+	ld [wScriptByte], a
+	ret
 
 Func_00b_4cee:
-	dr $2ccee, $2cdea
+	ld a, $29
+	call Func_2be2
+	call Func_00b_4dc5
+	call Func_00b_4dc5
+	call Func_00b_4dc5
+	call Func_00b_4d04
+	xor a
+	ld [wScriptByte], a
+	ret
+
+Func_00b_4d04:
+	dr $2cd04, $2cdc5
+
+Func_00b_4dc5:
+	dr $2cdc5, $2cdea
 
 Func_00b_4dea:
 	dr $2cdea, $2cdf5
@@ -669,7 +788,58 @@ Func_00b_4e0d:
 	dr $2ce0d, $2ce39
 
 Func_00b_4e39:
-	dr $2ce39, $2cea0
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcc8], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcc8 + 1], a
+	farcall Func_02d_507b
+	ld a, $01
+	ld [hFFD3], a
+	xor a
+	ld [$d3fe], a
+	ld [wScriptByte], a
+	ld a, $0c
+	ld [$d3ff], a
+	xor a
+	ld [wd987], a
+	ld hl, wd876
+	ld a, l
+	ld [wd984], a
+	ld a, h
+	ld [wd984 + 1], a
+	ld a, [hl]
+	ld [wEnemyMonSpecies], a
+	ld bc, wd200
+	ld e, 0
+.asm_4e7a:
+	ld hl, 2
+	add hl, bc
+	ld a, [hli]
+	or [hl]
+	jr nz, .asm_4e90
+
+	ld hl, $16
+	add hl, bc
+	inc e
+	ld a, l
+	cp $80
+	jr nc, .asm_4e90
+
+	ld c, l
+	ld b, h
+	jr .asm_4e7a
+
+.asm_4e90
+	ld a, c
+	ld [wd981], a
+	ld a, b
+	ld [wd982], a
+	ld a, e
+	ld [wd983], a
+	call DelayFrame
+	ret
 
 Func_00b_4ea0:
 	dr $2cea0, $2cede
@@ -902,8 +1072,16 @@ Func_00b_610b:
 	dr $2e10b, $2e1d6
 
 Func_00b_61d6:
-	dr $2e1d6, $2f1e0
+	dr $2e1d6, $2e229
 
+Func_00b_6229:
+	dr $2e229, $2e25c
+
+Func_00b_625c:
+	dr $2e25c, $2e53d
+
+Func_00b_653d:
+	dr $2e53d, $2f1e0
 
 SECTION "banknumb", ROMX[$7fff], BANK[$b]
 	db $b
