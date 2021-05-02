@@ -473,7 +473,7 @@ text_08_452d:
 text_08_4537:
 	dr $20537, $20542
 
-INCLUDE "data/text/ballots_house_intro.asm"
+INCLUDE "data/english_text/ballots_house_intro.asm"
 INCLUDE "data/text/bank08_misc.asm"
 
 Func_008_55d1:

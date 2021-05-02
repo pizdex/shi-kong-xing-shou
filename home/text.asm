@@ -41,8 +41,13 @@ CheckCharacter::
 	ld a, [hli]
 	push hl
 
-	cp $f0
-	jp nc, .SwitchCharacterSet
+	; cp $f0
+	nop
+	nop
+	; jp nc, .SwitchCharacterSet
+	nop
+	nop
+	nop
 	cp $e0
 	jp nc, CheckCharacter_Commands
 	jp CheckCharacter_Continue
@@ -121,7 +126,7 @@ CheckCharacter_Continue:
 	add l
 	ld l, a
 	ld a, [wCharacterTilemapPos]
-	add a
+	nop ; add a
 	add h
 	ld h, a
 	call GetTextBGMapPointer
@@ -197,7 +202,7 @@ RequestLoadCharacter_wTilemap:
 
 ; Initial starting position for tile 1
 	ld a, [wCharacterTilemapPos]
-	add a ; 2 tiles wide
+	nop ; add a ; 2 tiles wide
 	ld e, a
 
 ; Line to print text on (line 0 or line 1)
@@ -218,47 +223,58 @@ RequestLoadCharacter_wTilemap:
 ; Tile 1
 	ld [hl], c
 ; Tile 2
-	inc c
-	add hl, de
-	ld [hl], c
+	nop ; inc c
+	nop ; add hl, de
+	nop ; ld [hl], c
 ; Tile 3
-	inc c
+	nop ; inc c
 	pop hl
-	inc hl
-	ld [hl], c
+	nop ; inc hl
+	nop ; ld [hl], c
 ; Tile 4
-	inc c
-	add hl, de
-	ld [hl], c
+	nop ; inc c
+	nop ; add hl, de
+	nop ; ld [hl], c
 
 ; Get character tile source
-	ld a, [wdcd1]
-	ld e, a
-	ld a, [wdcd1 + 1]
-	ld d, a
+;	ld a, [wdcd1]
+	nop
+	nop
+	nop
+	nop ; ld e, a
+;	ld a, [wdcd1 + 1]
+;	nop
+;	nop
+;	nop
+	nop ; ld d, a
 ; hl = a * (4*8) (4 tiles, 8 bytes)
 	ld a, [wCurrentCharacterByte]
 	ld l, a
 	ld h, 0
-REPT 5
+	ld de, English_Character_Set
+REPT 3
 	add hl, hl
 ENDR
+	nop
+	nop
 	add hl, de
 	ld a, l
 	ld [wCharacterTileSrc], a
 	ld a, h
 	ld [wCharacterTileSrc + 1], a
-	ld a, 4
+	ld a, 1
 	ld [wCharacterTileCount], a
 	ld a, 1
 	ld [wCharacterTileTransferStatus], a
 	call DelayFrame
 
 	ld a, [wCharacterTilePos]
-	add 4
+	; add 4
+	inc a
+	nop
 	ld [wCharacterTilePos], a
-	; 7 characters max per line
-	cp 8 * 7
+	; 14 characters max per line
+	cp 8 * 14
 	ret c
 
 	xor a
@@ -367,8 +383,12 @@ RequestLoadCharacter_Name:
 	rst Bankswitch
 	ld a, [hli]
 	push hl
-	cp $f0
-	jr nc, .switch_characterset
+	; cp $f0
+	nop
+	nop
+	; jr nc, .switch_characterset
+	nop
+	nop
 	cp TX_LINE
 	jr z, .end_of_name
 
@@ -389,30 +409,32 @@ RequestLoadCharacter_Name:
 	ld [wCharacterTileDest], a
 
 ; Get character tile source
-	ld a, [wdcd1]
-	ld e, a
-	ld a, [wdcd1 + 1]
-	ld d, a
+	ld a, $3f
+	ld [hTargetBank], a
+	ld de, English_Character_Set
+
 ; hl = a * (4*8) (4 tiles, 8 bytes)
 	ld a, [wCurrentCharacterByte]
 	ld l, a
 	ld h, 0
-REPT 5
+REPT 3
 	add hl, hl
 ENDR
+	nop
+	nop
 	add hl, de
 	ld a, l
 	ld [wCharacterTileSrc], a
 	ld a, h
 	ld [wCharacterTileSrc + 1], a
-	ld a, 4
+	ld a, 1
 	ld [wCharacterTileCount], a
 	ld a, 1
 	ld [wCharacterTileTransferStatus], a
 	call DelayFrame
 
 	ld a, [wCharacterTilePos]
-	add 4
+	add 1
 	ld [wCharacterTilePos], a
 	pop hl
 	jp RequestLoadCharacter_Name
@@ -1373,6 +1395,7 @@ Func_2123:
 .asm_2192
 	ld d, $80
 	ld bc, $40
+	; sometimes tries to write to inaccessible VRAM
 	call CopyBytesVRAM
 	ld hl, wcd05
 	inc [hl]

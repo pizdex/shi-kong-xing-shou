@@ -8,6 +8,11 @@ else
 endc
 ENDM
 
+text2: MACRO
+	setcharmap english
+	db \1
+ENDM
+
 
 ; Text commands
 

@@ -3710,9 +3710,9 @@ PrintCharacter:
 	ld a, [wcbf3]
 ; Each character occupies four tiles
 REPT 3
-	pop bc
-	ld [bc], a
-	inc a
+	nop ; pop bc
+	nop ; ld [bc], a
+	nop ; inc a
 ENDR
 	pop bc
 	ld [bc], a

@@ -1,3 +1,88 @@
+NEWCHARMAP english
+	charmap " ", $00
+	charmap "A", $01
+	charmap "B", $02
+	charmap "C", $03
+	charmap "D", $04
+	charmap "E", $05
+	charmap "F", $06
+	charmap "G", $07
+	charmap "H", $08
+	charmap "I", $09
+	charmap "J", $0a
+	charmap "K", $0b
+	charmap "L", $0c
+	charmap "M", $0d
+	charmap "N", $0e
+	charmap "O", $0f
+	charmap "P", $10
+	charmap "Q", $11
+	charmap "R", $12
+	charmap "S", $13
+	charmap "T", $14
+	charmap "U", $15
+	charmap "V", $16
+	charmap "W", $17
+	charmap "X", $18
+	charmap "Y", $19
+	charmap "Z", $1a
+	charmap "(", $1b
+	charmap ")", $1c
+	charmap ":", $1d
+	charmap ";", $1e
+	charmap "[", $1f
+	charmap "]", $20
+	charmap "a", $21
+	charmap "b", $22
+	charmap "c", $23
+	charmap "d", $24
+	charmap "e", $25
+	charmap "f", $26
+	charmap "g", $27
+	charmap "h", $28
+	charmap "i", $29
+	charmap "j", $2a
+	charmap "k", $2b
+	charmap "l", $2c
+	charmap "m", $2d
+	charmap "n", $2e
+	charmap "o", $2f
+	charmap "p", $30
+	charmap "q", $31
+	charmap "r", $32
+	charmap "s", $33
+	charmap "t", $34
+	charmap "u", $35
+	charmap "v", $36
+	charmap "w", $37
+	charmap "x", $38
+	charmap "y", $39
+	charmap "z", $3a
+	charmap "'d", $3b
+	charmap "'l", $3c
+	charmap "'s", $3d
+	charmap "'t", $3e
+	charmap "'v", $3f
+
+	charmap "0", $40
+	charmap "1", $41
+	charmap "2", $42
+	charmap "3", $43
+	charmap "4", $44
+	charmap "5", $45
+	charmap "6", $46
+	charmap "7", $47
+	charmap "8", $48
+	charmap "9", $49
+
+	charmap "?", $4a
+	charmap "!", $4b
+	charmap ".", $4d
+	charmap "/", $4e
+	charmap ",", $4f
+
+	charmap "'m",$84
+
 NEWCHARMAP charmap0
 ; 40:4000
 	charmap " ", $00

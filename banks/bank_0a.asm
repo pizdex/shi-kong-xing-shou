@@ -112,7 +112,7 @@ Func_00a_45ce:
 	ret
 
 INCLUDE "data/name_pointers.asm"
-INCLUDE "data/text/names.asm"
+INCLUDE "data/english_text/names.asm"
 
 
 SECTION "banknum0a", ROMX[$7fff], BANK[$0a]
