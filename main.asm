@@ -191,7 +191,7 @@ SECTION "bank26", ROMX, BANK[$26]
 INCLUDE "banks/bank_26.asm"
 
 
-INCLUDE "gfx/pics.asm"
+INCLUDE "data/monsters/pics.asm"
 
 
 SECTION "bank2b", ROMX, BANK[$2b]

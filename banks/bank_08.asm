@@ -496,7 +496,7 @@ Func_008_55f7:
 	ret
 
 Func_008_55fe:
-	ld hl, $cd00
+	ld hl, wcd00
 	ld bc, $100
 .clear
 	xor a
@@ -511,11 +511,76 @@ Func_008_560c::
 	dr $2160c, $2167a
 
 Func_008_567a:
-	dr $2167a, $21ab2
+	dr $2167a, $21a70
+
+Func_008_5a70:
+	ld de, unk_008_5ab2
+	ld a, [wdcf4]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	hlbgcoord 0, 8
+	lb bc, $14, $02
+	ld a, $02
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld a, [wdcf4]
+	inc a
+	ld [wdcf4], a
+	cp 6
+	jr nc, .asm_5aa2
+
+	ld a, 8
+	ld [wdcf5], a
+	ret
+
+.asm_5aa2
+	xor a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcf5], a
+	ld a, 1
+	ld [hFFBF], a
+	ret
+
+unk_008_5ab2:
+	dw unk_008_6f4e
+	dw unk_008_6f76
+	dw unk_008_6f9e
+	dw unk_008_6fc6
+	dw unk_008_6fee
+	dw unk_008_6fee
 
 ; Cutscene graphics?
-unk_008_5ab2:
-	dr $21ab2, $23fff
+unk_008_5abe:
+	dr $21abe, $22f4e
+
+; Cutscene text tilemaps
+unk_008_6f4e:
+	dr $22f4e, $22f76
+
+unk_008_6f76:
+	dr $22f76, $22f9e
+
+unk_008_6f9e:
+	dr $22f9e, $22fc6
+
+unk_008_6fc6:
+	dr $22fc6, $22fee
+
+unk_008_6fee:
+	dr $22fee, $23016
+
+unk_008_7016:
+	dr $23016, $23fff
 
 SECTION "banknum8", ROMX[$7fff], BANK[$8]
 	db $8

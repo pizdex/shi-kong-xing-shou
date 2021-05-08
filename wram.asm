@@ -426,7 +426,9 @@ wdceb:: ds 1
 wdcec:: ds 7
 
 wdcf3:: ds 1
-wdcf4:: ds $c
+wdcf4:: ds 1
+wdcf5:: ds 1
+wdcf6:: ds 10
 
 wdd00:: ds $18
 
