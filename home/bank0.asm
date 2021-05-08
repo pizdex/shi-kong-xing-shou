@@ -1509,7 +1509,7 @@ Func_0fef:
 	ldh [rVBK], a
 	ret
 
-Func_1022:
+Func_1022::
 	ldh a, [hConsoleType]
 	cp BOOTUP_A_CGB
 	ret nz
