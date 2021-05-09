@@ -1,6 +1,6 @@
 SECTION "Debug", ROM0[$2ca4]
 
-Func_2ca4:
+Func_2ca4::
 	ld de, wd284
 	ld hl, .unk_2cb8
 .asm_2caa
@@ -58,7 +58,7 @@ ENDR
 	db $27, $01
 	db $28, $01
 
-Func_2d08:
+Func_2d08::
 	ld de, wddb0
 	ld hl, .unk_2d16
 .copy
@@ -95,7 +95,7 @@ Func_2d08:
 	db $15, $03
 	db $ff, $ff
 
-Debug_GiveItems:
+Debug_GiveItems::
 	ld de, wd300
 	ld hl, .item_data
 .copy
@@ -200,7 +200,7 @@ Debug_GiveItems:
 	db TM50, 12
 	db $ff, $ff
 
-Func_2e04:
+Func_2e04::
 	ld hl, wdd00
 .asm_2e07
 	ld [hl], $01
@@ -213,7 +213,7 @@ Func_2e04:
 	add hl, de
 	jr .asm_2e07
 
-Func_2e13:
+Func_2e13::
 	ld de, wde00
 	ld hl, unk_2f40
 .copy1
@@ -241,9 +241,9 @@ Func_2e13:
 	ld [wdcea], a
 	ret
 
-Func_2e38:
+Func_2e38::
 	ld de, wdb20
-.asm_2e3b:
+.asm_2e3b
 	ld hl, unk_2f40
 	ld bc, $13
 .copy
@@ -263,7 +263,7 @@ Func_2e38:
 	ret nc
 	jr .asm_2e3b
 
-Func_2e56:
+Func_2e56::
 ; Debug code
 	ld de, wd7cb
 	ld hl, .unk_2ea0
@@ -335,5 +335,5 @@ Func_2e56:
 	db $01, $01, $02, $02, $02, $02, $02, $02 ; 19
 	db $02, $02, $01, $01, $01, $01, $01, $01 ; 20?
 
-unk_2f40:
+unk_2f40::
 	INCBIN "data/unk_2f40.bin"

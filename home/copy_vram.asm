@@ -1,4 +1,4 @@
-FarCopyBytes_vTiles0:
+FarCopyBytes_vTiles0::
 ; Copy bc bytes from [wTempBank]:[wd98f] to vTiles0
 	ld a, [_BANKNUM]
 	push af
@@ -24,7 +24,7 @@ FarCopyBytes_vTiles0:
 	rst Bankswitch
 	ret
 
-FarCopyBytesVRAM:
+FarCopyBytesVRAM::
 ; Copy bc bytes from [wTempBank]:hl to de
 	ld a, [_BANKNUM]
 	push af
@@ -61,7 +61,7 @@ CopyBytesVRAM::
 	jr nz, .copy
 	ret
 
-CopyBytesVRAM_Mirror:
+CopyBytesVRAM_Mirror::
 ; Mirror the bits in `[hl]` and write to VRAM
 ; i.e. 11110100 -> 00101111
 	ld a, [hli]
@@ -218,7 +218,7 @@ FadeInPalette::
 	call DelayFrame
 	jp FadeInPalette
 
-PartialCopyBackgroundPalettes:
+PartialCopyBackgroundPalettes::
 ; Copy data from [hl] to [hl+$30] to the first 24 background palettes
 	di
 	call WaitVRAM_STAT2
@@ -260,7 +260,7 @@ CopyBackgroundPalettes::
 .ret
 	ret
 
-CopyObjectPalettes:
+CopyObjectPalettes::
 ; Copy data from [hl] to [hl+$40] to all 32 object palettes
 	di
 	call WaitVRAM_STAT2

@@ -45,7 +45,7 @@ VBlank::
 	pop af
 	reti
 
-GameTimer:
+GameTimer::
 ; Increment the game timer by one frame.
 ; Doesn't work properly due to: 
 ; 1. Frame counter capped to 26, even though the gameboy is 60 fps

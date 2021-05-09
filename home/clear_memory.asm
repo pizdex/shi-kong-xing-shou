@@ -1,4 +1,4 @@
-ClearMemory:
+ClearMemory::
 	push hl
 	push de
 	push bc

@@ -4,16 +4,18 @@ LCD::
 	push bc
 	push de
 	push hl
+
+; run LCD routine pointer
 	ld a, [wd9e0]
 	ld l, a
 	ld a, [wd9e0 + 1]
 	ld h, a
 	or l
 	and a
-	jr z, Func_28d0
+	jr z, Finish_LCD
 	jp hl
 
-Func_28d0:
+Finish_LCD::
 	pop hl
 	pop de
 	pop bc
