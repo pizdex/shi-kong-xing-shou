@@ -123,9 +123,25 @@ wcd25:: ds 1
 wcd26:: ds 1
 wcd27:: ds $19
 
-wcd40:: ds $10
+wcd40:: ds 1
+wcd41:: ds 1
+wcd42:: ds 1
+wcd43:: ds 1
+wcd44:: ds 1
 
-wcd50:: ds $90
+wcd45:: ds 11
+
+wcd50:: ds 1
+wcd51:: ds 1
+wcd52:: ds 1
+wcd53:: ds 1
+wcd54:: ds 1
+wcd55:: ds 1
+wcd56:: ds 1
+wcd57:: ds 1
+wcd58:: ds 1
+
+	ds $87
 
 ; Start menu
 wcde0:: ds 1
@@ -428,8 +444,16 @@ wdcec:: ds 7
 wdcf3:: ds 1
 wdcf4:: ds 1
 wdcf5:: ds 1
-wdcf6:: ds 10
-
+wdcf6:: ds 1
+wdcf7:: ds 1
+wdcf8:: ds 1
+wdcf9:: ds 1
+wdcfa:: ds 1
+wdcfb:: ds 1
+wdcfc:: ds 1
+wdcfd:: ds 1
+wdcfe:: ds 1
+wdcff:: ds 1
 wdd00:: ds $18
 
 wdd18:: ds $98

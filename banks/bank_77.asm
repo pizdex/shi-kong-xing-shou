@@ -1,18 +1,409 @@
-Func_077_4000::
-	dr $1dc000, $1dc311
+Intro_VastFame::
+; Vast Fame logo screen
+	call ClearBGMap0
 
-Func_077_4311:
-	ld bc, $80
-.asm_4314
-	ld hl, $0000
-.asm_4317
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcfb], a
+	ld [wdce8], a
+	ld [wdcf6], a
+	ld [wdcfc], a
+	ld [wdcf5], a
+	ld [wdcf7], a
+	ld [wdcf8], a
+	ld [wcd40], a
+	ld [wcd41], a
+
+	ld hl, vBGMap0
+	ld de, VastFameTilemap
+	ld bc, $1412
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+
+	ld hl, vBGMap0
+	ld de, unk_077_6e97
+	ld bc, $1412
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+	ld hl, unk_077_7167
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+	ld hl, VastFameGFX
+
+	ld de, vTiles2
+	ld bc, $03e0
+	call CopyBytesVRAM
+
+	ld a, $c7
+	ldh [rLCDC], a
+
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+
+	call Intro_Delay
+
+	ld bc, wcab0
+	xor a
+	ldh [hFFC4], a
+	call FadeOutPalette
+
+Intro:
+	call ClearBGMap0
+
+	ld a, BGM_6d
+	call PlaySound
+
+	ld hl, vBGMap0
+	ld de, unk_077_5577
+	ld bc, $1412
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+
+	ld hl, vBGMap0
+	ld de, unk_077_540f
+	ld bc, $1412
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+	ld hl, unk_077_5337
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, unk_077_537f
+	ld de, wcaf0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, unk_077_56df
+	ld de, vTiles2
+	ld bc, $0170
+	call CopyBytesVRAM
+
+	ld hl, unk_077_584f
+	ld de, vTiles0
+	ld bc, $0400
+	call CopyBytesVRAM
+
+	call Func_077_52a6
+
+	ld a, $c7
+	ldh [rLCDC], a
+
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+
+Intro_StartingScreen:
+	call DelayFrame
+	call Func_077_4d06
+
+; increase screen counter
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+
+; screen skip
+	ldh a, [hFFBF]
+	and a
+	jr nz, Intro_CharacterCastScreen
+
+	call Func_077_523f
+	call Func_077_4b70
+	call Func_077_4bf8
+	jp Intro_StartingScreen
+
+Intro_CharacterCastScreen:
+	ld bc, wcab0
+	xor a
+	ldh [hFFC4], a
+
+	call FadeOutPalette
+	call ClearBGMap0
+	call Func_077_5289
+	call Func_077_5297
+
+	ld a, BGM_6d
+	call PlaySound
+
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcfb], a
+	ld [wdce8], a
+	ld [wdcf5], a
+
+.NewScreen:
+	call Func_077_4943
+	call Func_077_52a6
+	ld a, $e7
+	ldh [rLCDC], a
+	ld hl, $cab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+
+.Loop:
+	call DelayFrame
+	call Func_077_4e10
+
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+
+	ldh a, [hFFBF]
+	and a
+	jr nz, .SkipToTitle
+
+	call Func_077_523f
+
+; Intro state manager
+	ld a, [wdcf5]
+	cp 1
+	jr z, .character_slide_up
+	cp 2
+	jr z, .goto_next_screen
+	cp 3
+	jr z, .begin_screen
+	cp 4
+	jr z, .slide_text_up
+
+; slide character right (BG layer)
+	call Func_077_4856
+	jp .Loop
+
+.SkipToTitle
+	ld bc, wcab0
+	xor a
+	ldh [hFFC4], a
+	call Func_096a
+	jp TitleScreen
+
+.character_slide_up
+; Window layer
+	call Func_077_48d9
+	jp .Loop
+
+.slide_text_up
+; Sprite layer
+	call Func_077_48bc
+	jp .Loop
+
+.goto_next_screen
+	ld a, [wdce8]
+	inc a
+	ld [wdce8], a
+	cp 8
+	jr c, .asm_077_41be
+	xor a
+	ld [wdce8], a
+	ld a, 1
+	ld [hFFBF], a
+	ld c, $40
+	call Func_077_5282
+	jp .Loop
+
+.asm_077_41be
+	ld c, $40
+	call Func_077_5282
+	ld a, 0
+	ld [wdcf5], a
+	ld bc, $cab0
+	xor a
+	ldh [hFFC4], a
+	call Func_096a
+	call ClearBGMap0
+	call Func_077_52a6
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcfb], a
+	ld [wdcf5], a
+	jp .NewScreen
+
+.begin_screen
+	call Func_077_4943
+	ld a, 1
+	ld [wdcf5], a
+	jp .Loop
+
+TitleScreen:
+	call ClearBGMap0
+
+	ld a, BGM_6f
+	call PlaySound
+
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdce8], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcfb], a
+	ld [wdcf5], a
+
+	ld hl, vBGMap0
+	ld de, unk_077_6d2f
+	ld bc, $1412
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+
+	ld hl, vBGMap0
+	ld de, unk_077_6bc7
+	ld bc, $1412
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+	ld hl, unk_077_6b37
+	ld de, $cab0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, unk_077_6b7f
+	ld de, $caf0
+	ld bc, $40
+	call CopyBytes3
+
+	ld a, $76
+	ld [wTempBank], a
+	ld hl, $4000
+	ld de, $9000
+	ld bc, $0800
+	call FarCopyBytesVRAM
+
+	ld a, $76
+	ld [wTempBank], a
+	ld hl, $4800
+	ld de, $8800
+	ld bc, $0800
+	call FarCopyBytesVRAM
+
+	ld a, $76
+	ld [wTempBank], a
+	ld hl, $4fa0
+	ld de, $8000
+	ld bc, $0800
+	call FarCopyBytesVRAM
+
+	call Func_077_5289
+	ld a, 8
+	ld [wcd43], a
+	ld a, $10
+	ld [wcd42], a
+	ld a, 1
+	ld [wcd44], a
+	ld a, $81
+	ld [wcd45], a
+	ld a, $40
+	ld [wcd56], a
+	ld a, $68
+	ld [wcd55], a
+	ld a, 2
+	ld [wcd57], a
+	ld a, $82
+	ld [wcd58], a
+	call Func_077_4667
+	ld a, $c7
+	ldh [rLCDC], a
+	ld hl, $cab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+
+asm_077_42ce:
+	call DelayFrame
+	call Func_077_4667
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+	ldh a, [hFFBF]
+	and a
+	jr nz, asm_077_4307
+	call Func_077_4525
+	call Func_077_45fa
+	call Func_077_45b4
+	call Func_077_456e
+	ld a, [wdcf5]
+	cp 1
+	jr z, asm_077_42fb
+	cp 2
+	jr z, asm_077_4301
+	call Func_077_4482
+	jp asm_077_42ce
+
+asm_077_42fb:
+	call Func_077_43d6
+	jp asm_077_42ce
+
+asm_077_4301:
+	call Func_077_4359
+	jp asm_077_42ce
+
+asm_077_4307:
+	xor a
+	ldh [hFFBF], a
+	ld [wd0fa], a
+	jp Func_023b
+	ret
+
+Intro_Delay:
+	ld bc, $80 ; ??
+.do_delay
+	ld hl, 0
+.loop
 	inc hl
 	ld a, h
 	or l
-	jr nz, .asm_4317
+	jr nz, .loop
 	dec bc
 	cp 0
-	jr nz, .asm_4314
+	jr nz, .do_delay
 	ret
 
 Func_077_4322:
@@ -53,7 +444,10 @@ Func_077_4322:
 	ret
 
 Func_077_4359:
-	dr $1dc359, $1dc3fc
+	dr $1dc359, $1dc3d6
+
+Func_077_43d6:
+	dr $1dc3d6, $1dc3fc
 
 CheatCode_InputList:
 	db D_UP, A_BUTTON, A_BUTTON, D_UP, B_BUTTON, B_BUTTON, SELECT, SELECT          ; 1
@@ -130,10 +524,110 @@ Func_077_4482:
 	dr $1dc482, $1dc49c
 
 Func_077_449c:
-	dr $1dc49c, $1df177
+	dr $1dc49c, $1dc525
 
-unk_077_7177:
-	INCBIN "gfx/title_screen/image_77_7177.2bpp"
+Func_077_4525:
+	dr $1dc525, $1dc56e
+
+Func_077_456e:
+	dr $1dc56e, $1dc5b4
+
+Func_077_45b4:
+	dr $1dc5b4, $1dc5fa
+
+Func_077_45fa:
+	dr $1dc5fa, $1dc667
+
+Func_077_4667:
+	dr $1dc667, $1dc856
+
+Func_077_4856:
+	dr $1dc856, $1dc8bc
+
+Func_077_48bc:
+	dr $1dc8bc, $1dc8d9
+
+Func_077_48d9:
+	dr $1dc8d9, $1dc943
+
+Func_077_4943:
+	dr $1dc943, $1dcb70
+
+Func_077_4b70:
+	dr $1dcb70, $1dcbf8
+
+Func_077_4bf8:
+	dr $1dcbf8, $1dcd06
+
+Func_077_4d06:
+	dr $1dcd06, $1dce10
+
+Func_077_4e10:
+	dr $1dce10, $1dd23f
+
+Func_077_523f:
+	dr $1dd23f, $1dd282
+
+Func_077_5282:
+	dr $1dd282, $1dd289
+
+Func_077_5289:
+	dr $1dd289, $1dd297
+
+Func_077_5297:
+	dr $1dd297, $1dd2a6
+
+Func_077_52a6:
+	dr $1dd2a6, $1dd337
+
+unk_077_5337:
+	dr $1dd337, $1dd37f
+
+unk_077_537f:
+	dr $1dd37f, $1dd40f
+
+unk_077_540f:
+	dr $1dd40f, $1dd577
+
+unk_077_5577:
+	dr $1dd577, $1dd6df
+
+unk_077_56df:
+	dr $1dd6df, $1dd84f
+
+unk_077_584f:
+	dr $1dd84f, $1deb37
+
+unk_077_6b37:
+	dr $1deb37, $1deb7f
+
+unk_077_6b7f:
+	dr $1deb7f, $1debc7
+
+unk_077_6bc7:
+	dr $1debc7, $1ded2f
+
+unk_077_6d2f:
+	dr $1ded2f, $1dee97
+
+unk_077_6e97:
+	dr $1dee97, $1defff
+
+VastFameTilemap: ; 6fff
+	INCBIN "gfx/title_screen/vast_fame_logo.bin"
+
+unk_077_7167:
+	dw $7BDE
+	dw $7E80
+	dw $6C00
+	dw 0
+	dw $7BDE
+	dw $5294
+	dw $294A
+	dw 0
+
+VastFameGFX:
+	INCBIN "gfx/title_screen/vast_fame_logo.2bpp"
 
 
 SECTION "banknum77", ROMX[$7fff], BANK[$77]

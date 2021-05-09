@@ -111,7 +111,7 @@ unkTable_025c:
 	dba Func_04e_46e5   ; $0f
 	dba Func_062_4000   ; $10
 	dba Func_04e_4637   ; $11
-	dba Func_077_4000   ; $12
+	dba Intro_VastFame  ; $12
 	dba Func_067_4000   ; $13
 	dba Func_067_506e   ; $14
 	dba Func_067_51f5   ; $15
