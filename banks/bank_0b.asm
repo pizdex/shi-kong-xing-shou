@@ -556,7 +556,7 @@ Func_00b_45e1:
 
 Func_00b_45ff:
 ; Display emote
-	ld a, $44
+	ld a, SFX_44
 	call PlaySound
 	call Func_00b_4369
 	call GetScriptByte
@@ -754,7 +754,7 @@ Func_00b_4cc5:
 	dr $2ccc5, $2ccde
 
 Func_00b_4cde:
-	ld a, $59
+	ld a, BGM_59
 	call PlaySound
 	farcall Func_039_4892
 	xor a
@@ -762,7 +762,7 @@ Func_00b_4cde:
 	ret
 
 Func_00b_4cee:
-	ld a, $29
+	ld a, SFX_29
 	call PlaySound
 	call Func_00b_4dc5
 	call Func_00b_4dc5

@@ -1062,7 +1062,7 @@ Func_1fb9:
 	jr .joypad_loop
 
 .asm_1fda
-	ld a, $17
+	ld a, SFX_17
 	call PlaySound
 	xor a
 	ldh [hVBlank], a

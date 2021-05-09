@@ -100,7 +100,7 @@ Func_077_4424:
 	ld a, c
 	inc a
 	ld [wdcb0], a
-	ld a, $23
+	ld a, SFX_23
 	call PlaySound
 	xor a
 	ld [wdcb1], a
