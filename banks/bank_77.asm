@@ -101,7 +101,7 @@ Func_077_4424:
 	inc a
 	ld [wdcb0], a
 	ld a, $23
-	call Func_2be2
+	call PlaySound
 	xor a
 	ld [wdcb1], a
 	ld [wdcb2], a

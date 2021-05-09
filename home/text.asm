@@ -1063,7 +1063,7 @@ Func_1fb9:
 
 .asm_1fda
 	ld a, $17
-	call Func_2be2
+	call PlaySound
 	xor a
 	ldh [hVBlank], a
 	call Func_1fb1

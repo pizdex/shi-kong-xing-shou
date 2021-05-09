@@ -71,7 +71,7 @@ Func_023b::
 	ld bc, wcab0
 	xor a
 	ldh [hFFC4], a
-	call Func_092e
+	call FadeOutPalette
 	ld de, unkTable_025c
 	ld a, [wd0fa]
 	ld l, a
@@ -896,7 +896,7 @@ Func_0925::
 	ld b, $cd
 	jp Func_08ae
 
-Func_092e:
+FadeOutPalette:
 	ld a, 0
 	ldh [rBGP], a
 	ldh [rOBP0], a
@@ -926,7 +926,7 @@ Func_092e:
 	call CopyObjectPalettes
 
 	call DelayFrame
-	jr Func_092e
+	jr FadeOutPalette
 
 .exit
 ; Warning: LCD disabled outside of VBlank here
@@ -2270,7 +2270,7 @@ Func_13fe:
 	and a
 	ret z
 
-	call Func_2be2
+	call PlaySound
 	ret
 
 .unk_141c
@@ -3936,19 +3936,22 @@ ClearSRAM:
 	jr nz, .clear
 	ret
 
-Func_2be2::
+PlaySound::
+; Play music or sound effect indicated by a.
 	push hl
 	push de
 	push bc
 	ld d, a
 	cp $53
-	jr c, .asm_2bef
+	jr c, .is_sfx
 
+; If the sound to be played is music (a >= $53),
+; it won't replay it if it is already playing.
 	ldh a, [hFFDA]
 	cp d
-	jr z, .asm_2bff
+	jr z, .done
 
-.asm_2bef
+.is_sfx
 	ld a, d
 	ldh [hFFDA], a
 	ld a, [wd08f]
@@ -3959,7 +3962,7 @@ Func_2be2::
 	pop af
 	rst Bankswitch
 
-.asm_2bff
+.done
 	pop bc
 	pop de
 	pop hl

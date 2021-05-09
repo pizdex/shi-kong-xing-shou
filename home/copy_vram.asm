@@ -182,7 +182,7 @@ PlaceTilemap::
 	ldh [rVBK], a
 	ret
 
-Func_0398::
+FadeInPalette::
 ; Map/intro fade in
 
 ; Load default background palette
@@ -216,7 +216,7 @@ Func_0398::
 	call CopyObjectPalettes
 
 	call DelayFrame
-	jp Func_0398
+	jp FadeInPalette
 
 PartialCopyBackgroundPalettes:
 ; Copy data from [hl] to [hl+$30] to the first 24 background palettes
