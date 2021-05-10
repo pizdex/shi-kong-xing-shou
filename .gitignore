@@ -2,6 +2,12 @@
 *.o
 data/text/*.asm
 
+# compiled graphics
+gfx/faces/*.2bpp
+gfx/faces/*.gbcpal
+gfx/monsters/**/*.2bpp
+gfx/monsters/**/*.gbcpal
+
 # compiled roms
 *.gbc
 *.gb

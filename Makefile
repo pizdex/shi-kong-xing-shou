@@ -63,3 +63,24 @@ $(ROM): $(OBJS)
 
 data/text/%.asm: data/text/%.txt
 	$(PYTHON) tools/tx_parse.py $< > $@
+
+
+### Misc file-specific graphics rules
+
+gfx/character_set/%.1bpp: tools/gfx += --interleave --png=$<
+
+
+### Catch-all graphics rules
+
+%.2bpp: %.png
+	$(GFX) -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -o $@ $@)
+
+%.1bpp: %.png
+	$(GFX) -d1 -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -d1 -o $@ $@)
+
+%.gbcpal: %.png
+	$(GFX) -p $@ $<
