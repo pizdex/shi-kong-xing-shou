@@ -508,10 +508,666 @@ Func_008_55fe:
 	ret
 
 Func_008_560c::
-	dr $2160c, $2167a
+	ld a, BGM_69
+	call PlaySound
+
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcf5], a
+
+	ld hl, vBGMap0
+	ld de, unk_008_5b46
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+
+	ld hl, vBGMap0
+	ld de, unk_008_5e16
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+	ld hl, unk_008_5afe
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, unk_008_5f7e
+	ld de, vTiles2
+	ld bc, $0520
+	call CopyBytesVRAM
+
+	call Func_008_55fe
+	call Func_008_587c
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
+	ldh [rLCDC], a
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
 
 Func_008_567a:
-	dr $2167a, $21a70
+	call DelayFrame
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+	ldh a, [hFFBF]
+	and a
+	jr nz, Func_008_56b0
+	ld a, [wdcf5]
+	and a
+	jr z, Func_008_56be
+	cp 1
+	jr z, Func_008_56c4
+	cp 2
+	jr z, Func_008_56ca
+	cp 3
+	jr z, Func_008_56dc
+	cp 4
+	jr z, Func_008_56e2
+	cp 5
+	jr z, Func_008_56e8
+	cp 6
+	jr z, Func_008_56ee
+	cp 7
+	jr z, Func_008_56f4
+	cp 8
+	jr z, Func_008_56fa
+	jp Func_008_567a
+
+Func_008_56b0:
+	xor a
+	ldh [hFFBF], a
+	ld [wd0fa], a
+	ld a, 4
+	ld [hFFBA], a
+	jp Func_0257
+
+Func_008_56be:
+	call Func_008_59cf
+	jp Func_008_567a
+
+Func_008_56c4:
+	call Func_008_5700
+	jp Func_008_567a
+
+Func_008_56ca:
+	call Func_008_5909
+	call Func_008_5864
+	call Func_008_5790
+	call Func_008_57fe
+	call Func_008_582e
+	jp Func_008_567a
+
+Func_008_56dc:
+	call Func_008_594e
+	jp Func_008_567a
+
+Func_008_56e2:
+	call Func_008_5a42
+	jp Func_008_567a
+
+Func_008_56e8:
+	call Func_008_59fd
+	jp Func_008_567a
+
+Func_008_56ee:
+	call Func_008_59e6
+	jp Func_008_567a
+
+Func_008_56f4:
+	call Func_008_5a70
+	jp Func_008_567a
+
+Func_008_56fa:
+	call Func_008_5a59
+	jp Func_008_567a
+
+Func_008_5700:
+	ld bc, wcab0
+	xor a
+	ldh [hFFC4], a
+	call FadeOutPalette
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcf6], a
+	ld [wdce8], a
+	ld hl, vBGMap0
+	ld de, unk_008_7016
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld hl, vBGMap0
+	ld de, unk_008_717e
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+	ld hl, unk_008_72e6
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+	ld hl, unk_008_732e
+	ld de, wcaf0
+	ld bc, $40
+	call CopyBytes3
+	ld hl, unk_008_7376
+	ld de, vTiles2
+	ld bc, $0760
+	call CopyBytesVRAM
+	ld hl, unk_008_7ad6
+	ld de, vTiles0
+	ld bc, $80
+	call CopyBytesVRAM
+	call Func_008_55fe
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
+	ldh [rLCDC], a
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+	ld a, 2
+	ld [wdcf5], a
+	ret
+
+Func_008_5790:
+	ld a, [wdcf6]
+	and a
+	jr z, Func_008_579b
+	dec a
+	ld [wdcf6], a
+	ret
+
+Func_008_579b:
+	ld bc, wdd50
+
+Func_008_579e:
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, Func_008_57b2
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $5f
+	jr c, Func_008_579e
+	ret
+
+Func_008_57b2:
+	ld a, $2c
+	call PlaySound
+	ld de, unk_008_57e2
+	ld a, [wdce8]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, 1
+	ld [bc], a
+	ld a, [hli]
+	ld [wdcf6], a
+	ld a, [wdce8]
+	inc a
+	ld [wdce8], a
+	cp 7
+	ret c
+	xor a
+	ld [wdce8], a
+	ret
+
+unk_008_57e2:
+	dw $30f0
+	dw $1004
+	dw $5000
+	dw $1004
+	dw $70f0
+	dw $1004
+	dw $9000
+	dw $1004
+	dw $40f0
+	dw $1004
+	dw $6000
+	dw $1004
+	dw $80f0
+	dw $1004
+
+Func_008_57fe:
+	ld bc, wdd50
+
+Func_008_5801:
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, Func_008_5815
+
+Func_008_5809:
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $5f
+	jr c, Func_008_5801
+	ret
+
+Func_008_5815:
+	ld hl, 2
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, Func_008_5820
+	dec [hl]
+	jr Func_008_5809
+
+Func_008_5820:
+	ld [hl], 4
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	ld d, a
+	ld a, 3
+	sub d
+	ld [hl], a
+	jr Func_008_5809
+
+Func_008_582e:
+	ld bc, wdd50
+
+Func_008_5831:
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, Func_008_5845
+
+Func_008_5839:
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $4f
+	jr c, Func_008_5831
+	ret
+
+Func_008_5845:
+	ld hl, 1
+	add hl, bc
+	dec [hl]
+	dec [hl]
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	add 4
+	ld [hl], a
+	cp $a0
+	jr nz, Func_008_5839
+	ld [hl], 0
+	inc hl
+	ld [hl], 0
+	inc hl
+	ld [hl], 0
+	inc hl
+	ld [hl], 0
+	jr Func_008_5839
+
+Func_008_5864:
+	ld hl, wVirtualOAMSprite00
+	ld bc, $28
+	ld de, 4
+
+Func_008_586d:
+	ld a, $a0
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, Func_008_586d
+	xor a
+	ld [wd1fb], a
+	call Func_008_588d
+	ret
+
+Func_008_587c:
+	ld hl, wVirtualOAMSprite00
+	ld bc, $28
+	ld de, 4
+
+Func_008_5885:
+	ld a, $a0
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, Func_008_5885
+	ret
+
+Func_008_588d:
+	ld bc, wdd50
+
+Func_008_5890:
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, Func_008_58a4
+
+Func_008_5898:
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $4f
+	jr c, Func_008_5890
+	ret
+
+Func_008_58a4:
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	ld [wdcf7], a
+	ld hl, 1
+	add hl, bc
+	ld a, [hl]
+	ld [wdcf8], a
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	ld de, unk_008_58f1
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb]
+	ld e, a
+	ld d, $c0
+
+Func_008_58ca:
+	ld a, [hli]
+	cp $ff
+	jr z, Func_008_58ea
+	push bc
+	ld b, a
+	ld a, [wdcf7]
+	add b
+	pop bc
+	ld [de], a
+	inc de
+	ld a, [hli]
+	push bc
+	ld b, a
+	ld a, [wdcf8]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop bc
+	jr Func_008_58ca
+
+Func_008_58ea:
+	ld a, e
+	ld [wd1fb], a
+	jp Func_008_5898
+
+unk_008_58f1:
+	dw unk_008_58f7
+	dw unk_008_58f7
+	dw unk_008_5900
+
+unk_008_58f7:
+	db $0
+	db $0
+	db $0
+	db $0
+	db $0
+	db $8
+	db $2
+	db $0
+	db $ff
+
+unk_008_5900:
+	db $0
+	db $0
+	db $4
+	db $0
+	db $0
+	db $8
+	db $6
+	db $0
+	db $ff
+
+Func_008_5909:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $40
+	ret nz
+	xor a
+	ld [wdcf3], a
+	ld de, unk_008_5948
+	ld a, [wdcf4]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	ld hl, vBGMap0
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld a, [wdcf4]
+	inc a
+	ld [wdcf4], a
+	cp 3
+	ret c
+	ld a, 3
+	ld [wdcf5], a
+	ret
+
+unk_008_5948:
+	dw unk_008_7b56
+	dw unk_008_7cbe
+	dw unk_008_7cbe
+
+Func_008_594e:
+	ld bc, wcab0
+	xor a
+	ldh [hFFC4], a
+	call FadeOutPalette
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld hl, vBGMap0
+	ld de, unk_008_5cae
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld hl, vBGMap0
+	ld de, unk_008_5e16
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+	ld hl, unk_008_5afe
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+	ld hl, unk_008_649e
+	ld de, vTiles2
+	ld bc, $0800
+	call CopyBytesVRAM
+	ld hl, unk_008_6c9e
+	ld de, vTiles1
+	ld bc, $0210
+	call CopyBytesVRAM
+	call Func_008_55fe
+	call Func_008_587c
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
+	ldh [rLCDC], a
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+	ld a, 4
+	ld [wdcf5], a
+	ret
+
+Func_008_59cf:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $60
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call Func_008_55e4
+	ld a, 5
+	ld [wdcf5], a
+	ret
+
+Func_008_59e6:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $20
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call Func_008_55d1
+	ld a, 0
+	ld [wdcf5], a
+	ret
+
+Func_008_59fd:
+	ld de, unk_008_5a3c
+	ld a, [wdcf4]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	ld hl, $9900
+	ld bc, $1402
+	ld a, 2
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld a, [wdcf4]
+	inc a
+	ld [wdcf4], a
+	cp 3
+	jr nc, Func_008_5a2f
+	ld a, 6
+	ld [wdcf5], a
+	ret
+
+Func_008_5a2f:
+	xor a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld a, 1
+	ld [wdcf5], a
+	ret
+
+unk_008_5a3c:
+	dw unk_008_6ed6
+	dw unk_008_6efe
+	dw unk_008_6efe
+
+Func_008_5a42:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $60
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call Func_008_55e4
+	ld a, 7
+	ld [wdcf5], a
+	ret
+
+Func_008_5a59:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $20
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call Func_008_55d1
+	ld a, 4
+	ld [wdcf5], a
+	ret
 
 Func_008_5a70:
 	ld de, unk_008_5ab2
@@ -561,7 +1217,34 @@ unk_008_5ab2:
 
 ; Cutscene graphics?
 unk_008_5abe:
-	dr $21abe, $22f4e
+	dr $21abe, $21afe
+
+unk_008_5afe:
+	dr $21afe, $21b46
+
+unk_008_5b46:
+	dr $21b46, $21cae
+
+unk_008_5cae:
+	dr $21cae, $21e16
+
+unk_008_5e16:
+	dr $21e16, $21f7e
+
+unk_008_5f7e:
+	dr $21f7e, $2249e
+
+unk_008_649e:
+	dr $2249e, $22c9e
+
+unk_008_6c9e:
+	dr $22c9e, $22ed6
+
+unk_008_6ed6:
+	dr $22ed6, $22efe
+
+unk_008_6efe:
+	dr $22efe, $22f4e
 
 ; Cutscene text tilemaps
 unk_008_6f4e:
@@ -580,7 +1263,28 @@ unk_008_6fee:
 	dr $22fee, $23016
 
 unk_008_7016:
-	dr $23016, $23fff
+	dr $23016, $2317e
+
+unk_008_717e:
+	dr $2317e, $232e6
+
+unk_008_72e6:
+	dr $232e6, $2332e
+
+unk_008_732e:
+	dr $2332e, $23376
+
+unk_008_7376:
+	dr $23376, $23ad6
+
+unk_008_7ad6:
+	dr $23ad6, $23b56
+
+unk_008_7b56:
+	dr $23b56, $23cbe
+
+unk_008_7cbe:
+	dr $23cbe, $23fff
 
 SECTION "banknum8", ROMX[$7fff], BANK[$8]
 	db $8

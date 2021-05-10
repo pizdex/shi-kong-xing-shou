@@ -456,7 +456,9 @@ wdcfe:: ds 1
 wdcff:: ds 1
 wdd00:: ds $18
 
-wdd18:: ds $98
+wdd18:: ds $38
+wdd50:: ds 1
+	ds $5f
 
 wddb0:: ds $50
 
