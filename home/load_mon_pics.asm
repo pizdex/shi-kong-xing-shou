@@ -1,4 +1,4 @@
-Func_0cfa:
+Func_0cfa::
 	ld a, [_BANKNUM]
 	push af
 	ld a, $27
@@ -28,7 +28,7 @@ Func_0cfa:
 	rst Bankswitch
 	ret
 
-Func_0d2e:
+Func_0d2e::
 	ld a, [_BANKNUM]
 	push af
 	ld a, [wd9e5]
@@ -49,7 +49,7 @@ Func_0d2e:
 	rst Bankswitch
 	ret
 
-Func_0d52:
+Func_0d52::
 	ld a, [_BANKNUM]
 	push af
 	ld a, [wd9e5]
@@ -70,7 +70,7 @@ Func_0d52:
 	rst Bankswitch
 	ret
 
-LoadMonPicBank:
+LoadMonPicBank::
 	cp 28
 	jr c, .pics1
 	cp 56

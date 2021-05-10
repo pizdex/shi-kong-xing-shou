@@ -1,4 +1,4 @@
-Func_19ca:
+Func_19ca::
 	ldh a, [hFFBC] ; text type?
 	cp 1
 	jr z, .type1
@@ -51,7 +51,7 @@ CheckCharacter::
 	call GetCharacterSetBase
 	jp CheckCharacter
 
-GetCharacterSetBase:
+GetCharacterSetBase::
 ; Determine which bank and address to get the character set from
 ; $f0 = 40:4000, $f1 = $40:6000, $f2 = $41:4000, etc.
 	and $0f
@@ -75,7 +75,7 @@ GetCharacterSetBase:
 	ld [wdcd1], a
 	ret
 
-CheckCharacter_Continue:
+CheckCharacter_Continue::
 	ld [wCurrentCharacterByte], a
 	call RequestLoadCharacter_wTilemap
 
@@ -170,7 +170,7 @@ CheckCharacter_Continue:
 	ld [hli], a
 	ret
 
-RequestLoadCharacter_wTilemap:
+RequestLoadCharacter_wTilemap::
 ; Tiles start at $8a80 with tile ID $a8
 	ld a, [wCharacterTilePos]
 	add $a8
@@ -265,7 +265,7 @@ ENDR
 	ld [wCharacterTilePos], a
 	ret
 
-CheckCharacter_Commands:
+CheckCharacter_Commands::
 	ld de, .commands
 	sub $e0
 	ld l, a
@@ -295,7 +295,7 @@ CheckCharacter_Commands:
 	dw Text_Cont      ; $ee
 	dw Func_1fe9      ; $ef
 
-Text_Init:
+Text_Init::
 ; Save name and face of person
 	pop hl
 	ld a, [hli]
@@ -338,7 +338,7 @@ Text_Init:
 	ld [wCharacterTilePos], a
 	jp CheckCharacter
 
-Func_1ba0:
+Func_1ba0::
 ; Clear old name buffer
 	ld bc, $10 tiles
 	ld hl, $8e00
@@ -361,7 +361,7 @@ Func_1ba0:
 	ld h, [hl]
 	ld l, a
 
-RequestLoadCharacter_Name:
+RequestLoadCharacter_Name::
 ; Used for names on textboxes
 	ld a, $0a
 	rst Bankswitch
@@ -428,7 +428,7 @@ ENDR
 	rst Bankswitch
 	ret
 
-Func_1c2c:
+Func_1c2c::
 ; Save current bank
 	ld a, [_BANKNUM]
 	push af
@@ -468,10 +468,10 @@ Func_1c2c:
 	ld [wCharacterTilePos], a
 	jp CheckCharacter
 
-Text_End:
+Text_End::
 	call Func_1fb9
 
-Text_EndCont:
+Text_EndCont::
 	ld a, [_BANKNUM]
 	push af
 	ld a, BANK(Func_00a_4178)
@@ -488,7 +488,7 @@ Text_EndCont:
 	pop hl
 	ret
 
-Func_1c8b:
+Func_1c8b::
 	ld hl, wcbd0
 	ld c, $20
 	xor a
@@ -498,7 +498,7 @@ Func_1c8b:
 	jr nz, .asm_1c91
 	ret
 
-Func_1c96:
+Func_1c96::
 	call Func_0817
 	pop hl
 	call $421a
@@ -509,7 +509,7 @@ Func_1c96:
 	push hl
 	jp CheckCharacter
 
-Func_1ca9:
+Func_1ca9::
 	pop hl
 	ld a, [wdcd3]
 	ld l, a
@@ -518,7 +518,7 @@ Func_1ca9:
 	push hl
 	jp CheckCharacter
 
-PrintTwoOptionMenu:
+PrintTwoOptionMenu::
 	pop hl
 	ld a, [hli]
 	ld h, [hl]
@@ -529,14 +529,14 @@ PrintTwoOptionMenu:
 	push hl
 	jp CheckCharacter
 
-unk_1cc5:
+unk_1cc5::
 	text "  ", 0
 	text "是", 1
 	text "  ", 0
 	text "否", 1
 	choice
 
-unk_1cd0:
+unk_1cd0::
 	text "  ", 0
 	text "回", 1
 	text "春", 3
@@ -545,7 +545,7 @@ unk_1cd0:
 	text "動", 2
 	choice
 
-InterpretTwoOptionMenu:
+InterpretTwoOptionMenu::
 	call .Main
 	jp Text_EndCont
 
@@ -615,7 +615,7 @@ InterpretTwoOptionMenu:
 	call Func_1f8a
 	ret
 
-Func_1d41:
+Func_1d41::
 	pop hl
 	ld a, l
 	ld [wdcd3], a
@@ -638,12 +638,12 @@ Func_1d41:
 	db $f1, $49, $4a
 	db $e8
 
-Func_1d67:
+Func_1d67::
 ; Buy sell cancel menu
 	call Func_1d6d
 	jp Text_EndCont
 
-Func_1d6d:
+Func_1d6d::
 ; Buy sell cancel menu for real
 
 ; Init position
@@ -749,10 +749,10 @@ ENDR
 	call Func_1f8a
 	ret
 
-Func_1e07:
+Func_1e07::
 	jp CheckCharacter
 
-Func_1e0a:
+Func_1e0a::
 	pop hl
 	call $6e4d
 	ld a, [wcbfe]
@@ -762,7 +762,7 @@ Func_1e0a:
 	push hl
 	jp CheckCharacter
 
-Func_1e1a:
+Func_1e1a::
 	pop hl
 	call $6de3
 	ld a, [wcbfe]
@@ -772,7 +772,7 @@ Func_1e1a:
 	push hl
 	jp CheckCharacter
 
-Text_Paragraph:
+Text_Paragraph::
 	call Func_1fb9
 	call Func_1e40
 	call Func_1e7b
@@ -782,7 +782,7 @@ Text_Paragraph:
 	ld [wCharacterTilePos], a
 	jp CheckCharacter
 
-Func_1e40:
+Func_1e40::
 ; Clear tilemap textbox
 	ld a, [wd0d1]
 	ld l, a
@@ -801,7 +801,7 @@ Func_1e40:
 	jr nz, .clear
 	ret
 
-Text_NextLine:
+Text_NextLine::
 	xor a
 	ld [wCharacterTilemapPos], a
 
@@ -813,14 +813,14 @@ Text_NextLine:
 	ld [wTextLine], a
 	jp CheckCharacter
 
-Func_1e6e:
+Func_1e6e::
 	xor a
 	ld [wCharacterTilemapPos], a
 	call Func_1f24
 	call Func_1e7b
 	jp CheckCharacter
 
-Func_1e7b:
+Func_1e7b::
 	ld hl, $050d
 	ld a, [wTextboxPos]
 	and a
@@ -871,7 +871,7 @@ Func_1e7b:
 	call DelayFrame
 	ret
 
-Func_1ee4:
+Func_1ee4::
 	ld de, wd128
 	lb bc, 2, 14
 .copy
@@ -891,7 +891,7 @@ Func_1ee4:
 	jr nz, .copy
 	ret
 
-Func_1efe:
+Func_1efe::
 	push bc
 	push de
 .asm_1f00:
@@ -927,7 +927,7 @@ Func_1efe:
 	jr nz, Func_1efe
 	ret
 
-Func_1f24:
+Func_1f24::
 	ld a, [wd0d1]
 	ld l, a
 	ld a, [wd0d1 + 1]
@@ -979,11 +979,11 @@ Func_1f24:
 	jr nz, .clear
 	ret
 
-Text_Cont:
+Text_Cont::
 	call Func_1fb9
 	jp Text_NextLine
 
-Func_1f70:
+Func_1f70::
 	ld hl, wcde0
 	ld [hl], $3f
 	ld a, [hFFD3]
@@ -1004,11 +1004,11 @@ Func_1f70:
 	ld [hl], $03
 	ret
 
-Func_1f8a:
+Func_1f8a::
 	homecall Func_004_4045
 	ret
 
-Func_1f97:
+Func_1f97::
 ; Timer between flash
 	ld bc, wcde0
 	ld hl, 3
@@ -1031,7 +1031,7 @@ Func_1f97:
 	ld [hl], 4
 	ret
 
-Func_1fb1:
+Func_1fb1::
 ; Inefficient
 	ld hl, wcde0
 	inc hl
@@ -1039,7 +1039,7 @@ Func_1fb1:
 	ld [hl], 0
 	ret
 
-Func_1fb9:
+Func_1fb9::
 ; Flashing gameboy icon on textbox stuff
 	call Func_1f70
 	xor a
@@ -1062,21 +1062,21 @@ Func_1fb9:
 	jr .joypad_loop
 
 .asm_1fda
-	ld a, $17
-	call Func_2be2
+	ld a, SFX_17
+	call PlaySound
 	xor a
 	ldh [hVBlank], a
 	call Func_1fb1
 	call Func_1f8a
 	ret
 
-Func_1fe9:
+Func_1fe9::
 	xor a
 	ldh [hFFBC], a
 	pop hl
 	ret
 
-Func_1fee:
+Func_1fee::
 	ldh a, [wScriptBank]
 	rst Bankswitch
 	ld a, [wd0cd]
@@ -1105,7 +1105,7 @@ Func_1fee:
 	ld [de], a
 	ret
 
-Func_2011:
+Func_2011::
 	ld de, unk_209e
 	ldh a, [hFF9A]
 	ld l, a
@@ -1204,13 +1204,13 @@ ENDR
 	jr .asm_2086
 	ret ; ?
 
-unk_209e:
+unk_209e::
 	db $07, $00, $40, $07, $0f, $43, $10, $00
 	db $40, $10, $7b, $48, $52, $00, $40, $63
 	db $00, $40, $69, $00, $40, $69, $83, $48
 	db $10, $00, $40
 
-Func_20b9:
+Func_20b9::
 	ldh a, [hFFB2]
 	rst Bankswitch
 	push de
@@ -1274,7 +1274,7 @@ Func_20b9:
 	ld [wd0c8], a
 	ret
 
-Func_2108:
+Func_2108::
 	ldh a, [hFFAC]
 	and a
 	jr z, .asm_211f
@@ -1296,7 +1296,7 @@ Func_2108:
 	call Func_21bb
 	ret
 
-Func_2123:
+Func_2123::
 	xor a
 	ldh [hFFAD], a
 	ld [wdcd0], a
@@ -1397,7 +1397,7 @@ Func_2123:
 	ldh [hFFAC], a
 	ret
 
-Func_21bb:
+Func_21bb::
 	ld a, [wdcea]
 	and a
 	jp z, Func_224e
@@ -1496,7 +1496,7 @@ Func_21bb:
 	inc [hl]
 	ret
 
-Func_224e:
+Func_224e::
 	ld bc, wcd40
 .asm_2251:
 	ld hl, $0d
@@ -1561,7 +1561,7 @@ Func_224e:
 	call Func_23a6
 	ret
 
-Func_22a4:
+Func_22a4::
 	ld bc, wcd40
 .asm_22a7:
 	ld hl, $0d
@@ -1616,7 +1616,7 @@ ENDR
 	ld c, l
 	jr .asm_22a7
 
-Func_22f6:
+Func_22f6::
 	ld a, [wd9fb]
 	ld [wdb1f], a
 	call Func_2363
@@ -1692,7 +1692,7 @@ Func_22f6:
 	inc [hl]
 	ret
 
-Func_2363:
+Func_2363::
 	ld a, [wdb1f]
 	cp $14
 	jr c, .asm_239f
@@ -1733,7 +1733,7 @@ Func_2363:
 	ld de, unk_004_48e7
 	ret
 
-Func_23a6:
+Func_23a6::
 	ldh a, [hFFBF]
 	and a
 	ret nz
@@ -1748,5 +1748,5 @@ Func_23a6:
 	homecall Func_01c_4000
 	ret
 
-unk_23c5:
+unk_23c5::
 	db $05, $00, $00, $00, $00, $00, $00, $0a, $0a, $0a, $14, $14, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $0a, $0a, $0a, $0a, $0a, $00, $00, $08, $08, $08, $08, $00, $00, $00, $00, $0a, $0a, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00

@@ -1,4 +1,4 @@
-LoadSpritePalette:
+LoadSpritePalette::
 	push bc
 	ld a, [_BANKNUM]
 	push af
@@ -58,7 +58,7 @@ LoadSpritePalette:
 	pop bc
 	ret
 
-LoadPalettes_OCPD:
+LoadPalettes_OCPD::
 ; Load b palettes from hl into rOCPD
 	ldh a, [hConsoleType]
 	cp BOOTUP_A_CGB

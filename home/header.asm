@@ -36,7 +36,7 @@ SECTION "lcd", ROM0[$0048]
 
 
 SECTION "Header Code", ROM0[$00b0]
-Func_00b0:
+Func_00b0::
 	push af
 	di
 	ld de, Func_00ca
@@ -57,7 +57,7 @@ CopyBytes::
 	jr nz, .loop
 	ret
 
-Func_00ca:
+Func_00ca::
 	ld a, $aa
 	ld [$5180], a
 	ld a, $3a

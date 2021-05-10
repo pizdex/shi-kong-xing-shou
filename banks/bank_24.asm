@@ -101,8 +101,8 @@ StartMenu_Input:
 	jr z, .check_up
 
 ; Pressed down
-	ld a, $11
-	call Func_2be2
+	ld a, SFX_11
+	call PlaySound
 	ld a, [wd08e]
 	inc a
 	ld [wd08e], a
@@ -120,8 +120,8 @@ StartMenu_Input:
 	jr z, .check_a
 
 ; Pressed up
-	ld a, $11
-	call Func_2be2
+	ld a, SFX_11
+	call PlaySound
 	ld a, [wd08e]
 	and a
 	jr z, .reached_top
@@ -176,8 +176,8 @@ StartMenu_Input:
 	jr z, .check_exit
 
 .asm_6b57
-	ld a, $11
-	call Func_2be2
+	ld a, SFX_11
+	call PlaySound
 	call Func_024_6ba1
 	ld a, 1
 	ld [wd087], a
