@@ -22,7 +22,7 @@ Intro_VastFame::
 
 	ld hl, vBGMap0
 	ld de, VastFameTilemap
-	ld bc, $1412
+	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
 	ld a, $14
@@ -31,7 +31,7 @@ Intro_VastFame::
 
 	ld hl, vBGMap0
 	ld de, unk_077_6e97
-	ld bc, $1412
+	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
 	ld a, $14
@@ -48,7 +48,7 @@ Intro_VastFame::
 	ld bc, $03e0
 	call CopyBytesVRAM
 
-	ld a, $c7
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 
 	ld hl, wcab0
@@ -72,7 +72,7 @@ Intro:
 
 	ld hl, vBGMap0
 	ld de, unk_077_5577
-	ld bc, $1412
+	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
 	ld a, $14
@@ -81,7 +81,7 @@ Intro:
 
 	ld hl, vBGMap0
 	ld de, unk_077_540f
-	ld bc, $1412
+	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
 	ld a, $14
@@ -168,7 +168,7 @@ Intro_CharacterCastScreen:
 	call Func_077_52a6
 	ld a, $e7
 	ldh [rLCDC], a
-	ld hl, $cab0
+	ld hl, wcab0
 	xor a
 	ldh [hFFC4], a
 	ldh [hFF9D], a
@@ -239,7 +239,7 @@ Intro_CharacterCastScreen:
 	call Func_077_5282
 	ld a, 0
 	ld [wdcf5], a
-	ld bc, $cab0
+	ld bc, wcab0
 	xor a
 	ldh [hFFC4], a
 	call Func_096a
@@ -283,7 +283,7 @@ TitleScreen:
 
 	ld hl, vBGMap0
 	ld de, unk_077_6d2f
-	ld bc, $1412
+	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
 	ld a, $14
@@ -292,7 +292,7 @@ TitleScreen:
 
 	ld hl, vBGMap0
 	ld de, unk_077_6bc7
-	ld bc, $1412
+	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
 	ld a, $14
@@ -300,7 +300,7 @@ TitleScreen:
 	call PlaceAttrmap
 
 	ld hl, unk_077_6b37
-	ld de, $cab0
+	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
 
@@ -309,23 +309,23 @@ TitleScreen:
 	ld bc, $40
 	call CopyBytes3
 
-	ld a, $76
+	ld a, BANK(unk_076_4000)
 	ld [wTempBank], a
-	ld hl, $4000
+	ld hl, unk_076_4000
 	ld de, $9000
 	ld bc, $0800
 	call FarCopyBytesVRAM
 
-	ld a, $76
+	ld a, BANK(unk_076_4800)
 	ld [wTempBank], a
-	ld hl, $4800
+	ld hl, unk_076_4800
 	ld de, $8800
 	ld bc, $0800
 	call FarCopyBytesVRAM
 
-	ld a, $76
+	ld a, BANK(unk_076_4fa0)
 	ld [wTempBank], a
-	ld hl, $4fa0
+	ld hl, unk_076_4fa0
 	ld de, $8000
 	ld bc, $0800
 	call FarCopyBytesVRAM
@@ -350,7 +350,7 @@ TitleScreen:
 	call Func_077_4667
 	ld a, $c7
 	ldh [rLCDC], a
-	ld hl, $cab0
+	ld hl, wcab0
 	xor a
 	ldh [hFFC4], a
 	ldh [hFF9D], a
@@ -393,7 +393,7 @@ asm_077_4307:
 	ret
 
 Intro_Delay:
-	ld bc, $80 ; ??
+	ld bc, $80
 .do_delay
 	ld hl, 0
 .loop
@@ -402,7 +402,7 @@ Intro_Delay:
 	or l
 	jr nz, .loop
 	dec bc
-	cp 0
+	cp 0 ; ??
 	jr nz, .do_delay
 	ret
 
@@ -613,17 +613,17 @@ unk_077_6d2f:
 unk_077_6e97:
 	dr $1dee97, $1defff
 
-VastFameTilemap: ; 6fff
-	INCBIN "gfx/title_screen/vast_fame_logo.bin"
+VastFameTilemap:
+	INCBIN "gfx/title_screen/vast_fame_logo.tilemap"
 
 unk_077_7167:
-	dw $7BDE
-	dw $7E80
-	dw $6C00
+	dw $7bde
+	dw $7e80
+	dw $6c00
 	dw 0
-	dw $7BDE
+	dw $7bde
 	dw $5294
-	dw $294A
+	dw $294a
 	dw 0
 
 VastFameGFX:
