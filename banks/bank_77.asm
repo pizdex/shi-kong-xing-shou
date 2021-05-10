@@ -42,10 +42,10 @@ Intro_VastFame::
 	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
-	ld hl, VastFameGFX
 
+	ld hl, VastFameGFX
 	ld de, vTiles2
-	ld bc, $03e0
+	ld bc, $3e0
 	call CopyBytesVRAM
 
 	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
@@ -100,17 +100,17 @@ Intro:
 
 	ld hl, unk_077_56df
 	ld de, vTiles2
-	ld bc, $0170
+	ld bc, $170
 	call CopyBytesVRAM
 
 	ld hl, unk_077_584f
 	ld de, vTiles0
-	ld bc, $0400
+	ld bc, $400
 	call CopyBytesVRAM
 
 	call Func_077_52a6
 
-	ld a, $c7
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 
 	ld hl, wcab0
@@ -166,8 +166,10 @@ Intro_CharacterCastScreen:
 .NewScreen:
 	call Func_077_4943
 	call Func_077_52a6
-	ld a, $e7
+
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
+
 	ld hl, wcab0
 	xor a
 	ldh [hFFC4], a
@@ -225,7 +227,7 @@ Intro_CharacterCastScreen:
 	inc a
 	ld [wdce8], a
 	cp 8
-	jr c, .asm_077_41be
+	jr c, .asm_41be
 	xor a
 	ld [wdce8], a
 	ld a, 1
@@ -234,7 +236,7 @@ Intro_CharacterCastScreen:
 	call Func_077_5282
 	jp .Loop
 
-.asm_077_41be
+.asm_41be
 	ld c, $40
 	call Func_077_5282
 	ld a, 0
@@ -245,6 +247,7 @@ Intro_CharacterCastScreen:
 	call Func_096a
 	call ClearBGMap0
 	call Func_077_52a6
+
 	xor a
 	ldh [hFFBF], a
 	ldh [hSCX], a
@@ -305,7 +308,7 @@ TitleScreen:
 	call CopyBytes3
 
 	ld hl, unk_077_6b7f
-	ld de, $caf0
+	ld de, wcaf0
 	ld bc, $40
 	call CopyBytes3
 
@@ -313,21 +316,21 @@ TitleScreen:
 	ld [wTempBank], a
 	ld hl, unk_076_4000
 	ld de, $9000
-	ld bc, $0800
+	ld bc, $800
 	call FarCopyBytesVRAM
 
 	ld a, BANK(unk_076_4800)
 	ld [wTempBank], a
 	ld hl, unk_076_4800
 	ld de, $8800
-	ld bc, $0800
+	ld bc, $800
 	call FarCopyBytesVRAM
 
 	ld a, BANK(unk_076_4fa0)
 	ld [wTempBank], a
 	ld hl, unk_076_4fa0
 	ld de, $8000
-	ld bc, $0800
+	ld bc, $800
 	call FarCopyBytesVRAM
 
 	call Func_077_5289
@@ -348,15 +351,17 @@ TitleScreen:
 	ld a, $82
 	ld [wcd58], a
 	call Func_077_4667
-	ld a, $c7
+
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
+
 	ld hl, wcab0
 	xor a
 	ldh [hFFC4], a
 	ldh [hFF9D], a
 	call FadeInPalette
 
-asm_077_42ce:
+.asm_42ce:
 	call DelayFrame
 	call Func_077_4667
 	ldh a, [hFF9D]
@@ -364,28 +369,28 @@ asm_077_42ce:
 	ldh [hFF9D], a
 	ldh a, [hFFBF]
 	and a
-	jr nz, asm_077_4307
+	jr nz, .asm_4307
 	call Func_077_4525
 	call Func_077_45fa
 	call Func_077_45b4
 	call Func_077_456e
 	ld a, [wdcf5]
 	cp 1
-	jr z, asm_077_42fb
+	jr z, .asm_42fb
 	cp 2
-	jr z, asm_077_4301
+	jr z, .asm_4301
 	call Func_077_4482
-	jp asm_077_42ce
+	jp .asm_42ce
 
-asm_077_42fb:
+.asm_42fb
 	call Func_077_43d6
-	jp asm_077_42ce
+	jp .asm_42ce
 
-asm_077_4301:
+.asm_4301
 	call Func_077_4359
-	jp asm_077_42ce
+	jp .asm_42ce
 
-asm_077_4307:
+.asm_4307
 	xor a
 	ldh [hFFBF], a
 	ld [wd0fa], a
@@ -500,8 +505,8 @@ Func_077_4424:
 	ld [wdcb1], a
 	ld [wdcb2], a
 	ld a, 1
-	ld [$cd51], a
-	ld [$dcf5], a
+	ld [wcd51], a
+	ld [wdcf5], a
 	jr Func_077_449c
 	ret
 
