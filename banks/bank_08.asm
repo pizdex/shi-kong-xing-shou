@@ -569,26 +569,26 @@ Func_008_567a:
 	jr nz, Func_008_56b0
 	ld a, [wdcf5]
 	and a
-	jr z, Func_008_56be
+	jr z, Func_008_56be ; waiting?
 	cp 1
-	jr z, Func_008_56c4
+	jr z, Func_008_56c4 ; to meteor scene 
 	cp 2
-	jr z, Func_008_56ca
+	jr z, Func_008_56ca ; perform meteor animation
 	cp 3
-	jr z, Func_008_56dc
+	jr z, Func_008_56dc ; fade out meteor animation to texts 4+
 	cp 4
-	jr z, Func_008_56e2
+	jr z, Func_008_56e2 ; text 4+ wait
 	cp 5
-	jr z, Func_008_56e8
+	jr z, Func_008_56e8 ; text 2 and 3
 	cp 6
-	jr z, Func_008_56ee
+	jr z, Func_008_56ee ; text 2 and 3 wait
 	cp 7
-	jr z, Func_008_56f4
+	jr z, Func_008_56f4 ; load new text 4+
 	cp 8
-	jr z, Func_008_56fa
+	jr z, Func_008_56fa ; text 4+ wait
 	jp Func_008_567a
 
-Func_008_56b0:
+Func_008_56b0: ; done
 	xor a
 	ldh [hFFBF], a
 	ld [wd0fa], a
@@ -651,6 +651,7 @@ Func_008_5700:
 	ld [wdcf4], a
 	ld [wdcf6], a
 	ld [wdce8], a
+
 	ld hl, vBGMap0
 	ld de, unk_008_7016
 	lb bc, $14, $12
@@ -659,6 +660,7 @@ Func_008_5700:
 	ld a, $14
 	ldh [hFF92], a
 	call PlaceTilemap_Bank0
+
 	ld hl, vBGMap0
 	ld de, unk_008_717e
 	lb bc, $14, $12
@@ -667,18 +669,22 @@ Func_008_5700:
 	ld a, $14
 	ldh [hFF92], a
 	call PlaceAttrmap
+
 	ld hl, unk_008_72e6
 	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
+
 	ld hl, unk_008_732e
 	ld de, wcaf0
 	ld bc, $40
 	call CopyBytes3
+
 	ld hl, unk_008_7376
 	ld de, vTiles2
 	ld bc, $0760
 	call CopyBytesVRAM
+
 	ld hl, unk_008_7ad6
 	ld de, vTiles0
 	ld bc, $80
@@ -722,7 +728,7 @@ Func_008_579e:
 	ret
 
 Func_008_57b2:
-	ld a, $2c
+	ld a, SFX_2c
 	call PlaySound
 	ld de, unk_008_57e2
 	ld a, [wdce8]
@@ -1114,8 +1120,8 @@ Func_008_59fd:
 	ld l, a
 	push hl
 	pop de
-	ld hl, $9900
-	ld bc, $1402
+	ld hl, vBGMap0 + $100
+	lb bc, $14, 2
 	ld a, 2
 	ldh [hFF93], a
 	ld a, $14
@@ -1138,7 +1144,7 @@ Func_008_5a2f:
 	ld [wdcf5], a
 	ret
 
-unk_008_5a3c:
+unk_008_5a3c:	; texts 2 and 3
 	dw unk_008_6ed6
 	dw unk_008_6efe
 	dw unk_008_6efe
@@ -1182,8 +1188,8 @@ Func_008_5a70:
 	push hl
 	pop de
 	hlbgcoord 0, 8
-	lb bc, $14, $02
-	ld a, $02
+	lb bc, $14, 2
+	ld a, 2
 	ldh [hFF93], a
 	ld a, $14
 	ldh [hFF92], a
@@ -1207,7 +1213,7 @@ Func_008_5a70:
 	ld [hFFBF], a
 	ret
 
-unk_008_5ab2:
+unk_008_5ab2:	; texts 5 to 10
 	dw unk_008_6f4e
 	dw unk_008_6f76
 	dw unk_008_6f9e
@@ -1216,54 +1222,57 @@ unk_008_5ab2:
 	dw unk_008_6fee
 
 ; Cutscene graphics?
-unk_008_5abe:
-	dr $21abe, $21afe
+unk_008_5abe: ; unreferenced?
+INCBIN "gfx/cutscenes/unk_008_5abe.bin"
 
 unk_008_5afe:
-	dr $21afe, $21b46
+INCBIN "gfx/cutscenes/unk_008_5afe.bin"
 
-unk_008_5b46:
-	dr $21b46, $21cae
+unk_008_5b46: ; text 1
+INCBIN "gfx/cutscenes/unk_008_5b46.tilemap"
 
-unk_008_5cae:
-	dr $21cae, $21e16
+unk_008_5cae: ; text 4
+INCBIN "gfx/cutscenes/unk_008_5cae.tilemap"
 
-unk_008_5e16:
-	dr $21e16, $21f7e
+unk_008_5e16: ; attr map, all zeros
+INCBIN "gfx/cutscenes/unk_008_5e16.bin"
 
-unk_008_5f7e:
-	dr $21f7e, $2249e
+unk_008_5f7e: ; text 1 - 3
+INCBIN "gfx/cutscenes/unk_008_5f7e.2bpp"
 
-unk_008_649e:
-	dr $2249e, $22c9e
+unk_008_649e: ; text 5 to 10?
+INCBIN "gfx/cutscenes/unk_008_649e.2bpp"
 
-unk_008_6c9e:
-	dr $22c9e, $22ed6
+unk_008_6c9e: ; text 4?
+INCBIN "gfx/cutscenes/unk_008_6c9e.2bpp"
 
-unk_008_6ed6:
-	dr $22ed6, $22efe
+unk_008_6ed6: ; text 2
+INCBIN "gfx/cutscenes/unk_008_6ed6.tilemap"
 
-unk_008_6efe:
-	dr $22efe, $22f4e
+unk_008_6efe: ; text 3
+INCBIN "gfx/cutscenes/unk_008_6efe.tilemap"
 
-; Cutscene text tilemaps
+unk_008_6f26:; unreferenced?
+INCBIN "gfx/cutscenes/unk_008_6f26.bin"
+
+; Cutscene text tilemaps, 5 to 10
 unk_008_6f4e:
-	dr $22f4e, $22f76
+INCBIN "gfx/cutscenes/unk_008_6f4e.tilemap"
 
 unk_008_6f76:
-	dr $22f76, $22f9e
+INCBIN "gfx/cutscenes/unk_008_6f76.tilemap"
 
 unk_008_6f9e:
-	dr $22f9e, $22fc6
+INCBIN "gfx/cutscenes/unk_008_6f9e.tilemap"
 
 unk_008_6fc6:
-	dr $22fc6, $22fee
+INCBIN "gfx/cutscenes/unk_008_6fc6.tilemap"
 
 unk_008_6fee:
-	dr $22fee, $23016
+INCBIN "gfx/cutscenes/unk_008_6fee.tilemap"
 
-unk_008_7016:
-	dr $23016, $2317e
+unk_008_7016: ; stormy tile map 1
+INCBIN "gfx/cutscenes/unk_008_7016.tilemap"
 
 unk_008_717e:
 	dr $2317e, $232e6
@@ -1274,14 +1283,14 @@ unk_008_72e6:
 unk_008_732e:
 	dr $2332e, $23376
 
-unk_008_7376:
-	dr $23376, $23ad6
+unk_008_7376: ; stormy sky
+INCBIN "gfx/cutscenes/unk_008_7376.2bpp"
 
-unk_008_7ad6:
-	dr $23ad6, $23b56
+unk_008_7ad6: ; meteors
+INCBIN "gfx/cutscenes/unk_008_7ad6.2bpp"
 
-unk_008_7b56:
-	dr $23b56, $23cbe
+unk_008_7b56: ; stormy tile map 2
+INCBIN "gfx/cutscenes/unk_008_7b56.tilemap"
 
 unk_008_7cbe:
 	dr $23cbe, $23fff
