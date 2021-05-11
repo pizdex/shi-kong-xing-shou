@@ -94,7 +94,7 @@ Func_0257::
 unkTable_025c::
 ; Seems to load on each map entry
 	dba Func_005_41fb   ; $00
-	dba Func_008_560c   ; $01
+	dba MeteorCutscene  ; $01
 	dba Func_03c_40d2   ; $02
 	dba Func_03c_4343   ; $03
 	dba Func_01b_4000   ; $04
