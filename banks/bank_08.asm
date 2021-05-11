@@ -552,7 +552,7 @@ MeteorCutscene::
 
 	ld hl, MeteorCutscene_TextGFX_1
 	ld de, vTiles2
-	ld bc, $0520
+	ld bc, $520
 	call CopyBytesVRAM
 
 	call MeteorCutscene_ClearSpriteBuffer
@@ -689,7 +689,7 @@ MeteorCutscene_DoFadeToMeteors:
 
 	ld hl, MeteorCutscene_StormGFX
 	ld de, vTiles2
-	ld bc, $0760
+	ld bc, $760
 	call CopyBytesVRAM
 
 	ld hl, MeteorCutscene_MeteorGFX
@@ -1054,12 +1054,12 @@ MeteorCutscene_DoFadeFromMeteors:
 
 	ld hl, MeteorCutscene_TextGFX_2
 	ld de, vTiles2
-	ld bc, $0800
+	ld bc, $800
 	call CopyBytesVRAM
 
 	ld hl, MeteorCutscene_TextGFX_3
 	ld de, vTiles1
-	ld bc, $0210
+	ld bc, $210
 	call CopyBytesVRAM
 
 	call MeteorCutscene_ClearSpriteBuffer
@@ -1212,79 +1212,79 @@ MeteorCutscene_LoadTexts2:
 	dw MeteorCutscene_Text9_Tilemap
 
 MeteorCutscene_BlackPalette:
-INCBIN "gfx/cutscenes/unk_008_5abe.pal"
+INCBIN "gfx/cutscenes/cutscene_black.pal"
 
 MeteorCutscene_TextPalette:
-INCBIN "gfx/cutscenes/unk_008_5afe.pal"
+INCBIN "gfx/cutscenes/cutscene_text.pal"
 
 MeteorCutscene_Text1_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_5b46.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_1.tilemap"
 
 MeteorCutscene_Text4_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_5cae.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_4.tilemap"
 
 MeteorCutscene_TextAttr:
-INCBIN "gfx/cutscenes/unk_008_5e16.attr"
+INCBIN "gfx/cutscenes/cutscene_text.attr"
 
 MeteorCutscene_TextGFX_1:
-INCBIN "gfx/cutscenes/unk_008_5f7e.2bpp"
+INCBIN "gfx/cutscenes/meteor/text_gfx_1.2bpp"
 
 MeteorCutscene_TextGFX_2:
-INCBIN "gfx/cutscenes/unk_008_649e.2bpp"
+INCBIN "gfx/cutscenes/meteor/text_gfx_2.2bpp"
 
 MeteorCutscene_TextGFX_3:
-INCBIN "gfx/cutscenes/unk_008_6c9e.2bpp"
+INCBIN "gfx/cutscenes/meteor/text_gfx_3.2bpp"
 
-unk_008_6eae: ; unreferenced?
+unk_008_6eae:
 INCBIN "data/unk_008_6eae.bin"
 
 MeteorCutscene_Text2_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_6ed6.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_2.tilemap"
 
 MeteorCutscene_Text3_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_6efe.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_3.tilemap"
 
-unk_008_6f26: ; unreferenced?
+unk_008_6f26:
 INCBIN "data/unk_008_6f26.bin"
 
 MeteorCutscene_Text5_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_6f4e.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_5.tilemap"
 
 MeteorCutscene_Text6_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_6f76.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_6.tilemap"
 
 MeteorCutscene_Text7_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_6f9e.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_7.tilemap"
 
 MeteorCutscene_Text8_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_6fc6.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_8.tilemap"
 
 MeteorCutscene_Text9_Tilemap:
-INCBIN "gfx/cutscenes/unk_008_6fee.tilemap"
+INCBIN "gfx/cutscenes/meteor/text_9.tilemap"
 
 MeteorCutscene_StormTilemap_1:
-INCBIN "gfx/cutscenes/unk_008_7016.tilemap"
+INCBIN "gfx/cutscenes/meteor/storm_bg_1.tilemap"
 
 MeteorCutscene_StormAttr:
-INCBIN "gfx/cutscenes/unk_008_717e.attr"
+INCBIN "gfx/cutscenes/meteor/storm.attr"
 
 MeteorCutscene_MeteorPalette:
-INCBIN "gfx/cutscenes/unk_008_72e6.pal"
+INCBIN "gfx/cutscenes/meteor/meteor_bg.pal"
 
 MeteorCutscene_OBJPalette:
-INCBIN "gfx/cutscenes/unk_008_732e.pal"
+INCBIN "gfx/cutscenes/meteor/meteor_obj.pal"
 
 MeteorCutscene_StormGFX:
-INCBIN "gfx/cutscenes/unk_008_7376.2bpp"
+INCBIN "gfx/cutscenes/meteor/storm.2bpp"
 
 MeteorCutscene_MeteorGFX:
-INCBIN "gfx/cutscenes/unk_008_7ad6.2bpp"
+INCBIN "gfx/cutscenes/meteor/meteor.2bpp"
 
 MeteorCutscene_StormTilemap_2:
-INCBIN "gfx/cutscenes/unk_008_7b56.tilemap"
+INCBIN "gfx/cutscenes/meteor/storm_bg_2.tilemap"
 
 MeteorCutscene_StormTilemap_3:
-INCBIN "gfx/cutscenes/unk_008_7cbe.tilemap"
+INCBIN "gfx/cutscenes/meteor/storm_bg_3.tilemap"
 
 SECTION "banknum8", ROMX[$7fff], BANK[$8]
 	db $8
