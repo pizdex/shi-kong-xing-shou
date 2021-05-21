@@ -744,15 +744,11 @@ MeteorCutscene_PlaceMeteor:
 	add hl, hl
 	add hl, hl
 	add hl, de
+REPT 3
 	ld a, [hli]
 	ld [bc], a
 	inc bc
-	ld a, [hli]
-	ld [bc], a
-	inc bc
-	ld a, [hli]
-	ld [bc], a
-	inc bc
+ENDR
 	ld a, 1
 	ld [bc], a
 	ld a, [hli]
