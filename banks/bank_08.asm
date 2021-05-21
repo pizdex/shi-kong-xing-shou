@@ -777,30 +777,30 @@ unk_008_57e2:
 
 MeteorCutscene_AnimateMeteor:
 	ld bc, wdd50
-.asm_008_5801
+.asm_5801
 	ld hl, 3
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_008_5815
-.asm_008_5809
+	jr nz, .asm_5815
+.asm_5809
 	ld hl, 4
 	add hl, bc
 	push hl
 	pop bc
 	ld a, l
 	cp $5f
-	jr c, .asm_008_5801
+	jr c, .asm_5801
 	ret
-.asm_008_5815
+.asm_5815
 	ld hl, 2
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_008_5820
+	jr z, .asm_5820
 	dec [hl]
-	jr .asm_008_5809
-.asm_008_5820
+	jr .asm_5809
+.asm_5820
 	ld [hl], 4
 	ld hl, 3
 	add hl, bc
@@ -809,26 +809,26 @@ MeteorCutscene_AnimateMeteor:
 	ld a, 3
 	sub d
 	ld [hl], a
-	jr .asm_008_5809
+	jr .asm_5809
 
 MeteorCutscene_MoveMeteor:
 	ld bc, wdd50
-.asm_008_5831
+.asm_5831
 	ld hl, 3
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_008_5845
-.asm_008_5839
+	jr nz, .asm_5845
+.asm_5839
 	ld hl, 4
 	add hl, bc
 	push hl
 	pop bc
 	ld a, l
 	cp $4f
-	jr c, .asm_008_5831
+	jr c, .asm_5831
 	ret
-.asm_008_5845
+.asm_5845
 	ld hl, 1
 	add hl, bc
 	dec [hl]
@@ -839,7 +839,7 @@ MeteorCutscene_MoveMeteor:
 	add 4
 	ld [hl], a
 	cp $a0
-	jr nz, .asm_008_5839
+	jr nz, .asm_5839
 	ld [hl], 0
 	inc hl
 	ld [hl], 0
@@ -847,7 +847,7 @@ MeteorCutscene_MoveMeteor:
 	ld [hl], 0
 	inc hl
 	ld [hl], 0
-	jr .asm_008_5839
+	jr .asm_5839
 
 MeteorCutscene_InitMeteor:
 ; clears the OAM each time
@@ -879,22 +879,22 @@ MeteorCutscene_HideAllSprites:
 
 MeteorCutscene_InitMeteor2:
 	ld bc, wdd50
-.asm_008_5890
+.asm_5890
 	ld hl, 3
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_008_58a4
-.asm_008_5898
+	jr nz, .asm_58a4
+.asm_5898
 	ld hl, 4
 	add hl, bc
 	push hl
 	pop bc
 	ld a, l
 	cp $4f
-	jr c, .asm_008_5890
+	jr c, .asm_5890
 	ret
-.asm_008_58a4
+.asm_58a4
 	ld hl, 0
 	add hl, bc
 	ld a, [hl]
@@ -917,10 +917,10 @@ MeteorCutscene_InitMeteor2:
 	ld a, [wd1fb]
 	ld e, a
 	ld d, $c0
-.asm_008_58ca
+.asm_58ca
 	ld a, [hli]
 	cp -1
-	jr z, .asm_008_58ea
+	jr z, .asm_58ea
 	push bc
 	ld b, a
 	ld a, [wdcf7]
@@ -942,11 +942,11 @@ MeteorCutscene_InitMeteor2:
 	ld [de], a
 	inc de
 	pop bc
-	jr .asm_008_58ca
-.asm_008_58ea
+	jr .asm_58ca
+.asm_58ea
 	ld a, e
 	ld [wd1fb], a
-	jp .asm_008_5898
+	jp .asm_5898
 
 .Frames:
 	dw .Frame1
@@ -1124,11 +1124,11 @@ MeteorCutscene_LoadTexts:
 	inc a
 	ld [wdcf4], a
 	cp 3
-	jr nc, .asm_008_5a2f
+	jr nc, .asm_5a2f
 	ld a, 6
 	ld [wdcf5], a
 	ret
-.asm_008_5a2f
+.asm_5a2f
 	xor a
 	ld [wdcf3], a
 	ld [wdcf4], a
