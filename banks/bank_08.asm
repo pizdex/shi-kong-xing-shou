@@ -788,6 +788,7 @@ MeteorCutscene_AnimateMeteor:
 	cp $5f
 	jr c, .asm_5801
 	ret
+
 .asm_5815
 	ld hl, 2
 	add hl, bc
@@ -796,6 +797,7 @@ MeteorCutscene_AnimateMeteor:
 	jr z, .asm_5820
 	dec [hl]
 	jr .asm_5809
+
 .asm_5820
 	ld [hl], 4
 	ld hl, 3
@@ -824,6 +826,7 @@ MeteorCutscene_MoveMeteor:
 	cp $4f
 	jr c, .asm_5831
 	ret
+
 .asm_5845
 	ld hl, 1
 	add hl, bc
@@ -890,6 +893,7 @@ MeteorCutscene_InitMeteor2:
 	cp $4f
 	jr c, .asm_5890
 	ret
+
 .asm_58a4
 	ld hl, 0
 	add hl, bc
@@ -939,6 +943,7 @@ MeteorCutscene_InitMeteor2:
 	inc de
 	pop bc
 	jr .asm_58ca
+
 .asm_58ea
 	ld a, e
 	ld [wd1fb], a
@@ -1124,6 +1129,7 @@ MeteorCutscene_LoadTexts:
 	ld a, 6
 	ld [wdcf5], a
 	ret
+
 .asm_5a2f
 	xor a
 	ld [wdcf3], a
