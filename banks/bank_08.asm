@@ -950,25 +950,25 @@ MeteorCutscene_InitMeteor2:
 	dw .Frame2
 
 .Frame1:
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
-	db $8
-	db $2
-	db $0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 8
+	db 2
+	db 0
 	db -1
 
 .Frame2:
-	db $0
-	db $0
-	db $4
-	db $0
-	db $0
-	db $8
-	db $6
-	db $0
+	db 0
+	db 0
+	db 4
+	db 0
+	db 0
+	db 8
+	db 6
+	db 0
 	db -1
 
 MeteorCutscene_AnimateStormBG:
@@ -1190,6 +1190,7 @@ MeteorCutscene_LoadTexts2:
 	ld a, 8
 	ld [wdcf5], a
 	ret
+
 .asm_5aa2
 	xor a
 	ld [wdcf3], a
