@@ -476,17 +476,23 @@ text_08_4537:
 INCLUDE "data/text/ballots_house_intro.asm"
 INCLUDE "data/text/bank08_misc.asm"
 
-Func_008_55d1:
-	ld hl, $5afe
+MeteorCutscene_ApplyTextPals:
+	ld hl, MeteorCutscene_TextPalette
 	call CopyBackgroundPalettes
-	ld hl, $5afe
-	ld de, $cab0
+	ld hl, MeteorCutscene_TextPalette
+	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
 	ret
 
-Func_008_55e4:
-	dr $215e4, $215f7
+MeteorCutscene_ApplyBlackPal:
+	ld hl, MeteorCutscene_BlackPalette
+	call CopyBackgroundPalettes
+	ld hl, MeteorCutscene_BlackPalette
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+	ret
 
 Func_008_55f7:
 .loop
@@ -495,7 +501,7 @@ Func_008_55f7:
 	jr nz, .loop
 	ret
 
-Func_008_55fe:
+MeteorCutscene_ClearSpriteBuffer:
 	ld hl, wcd00
 	ld bc, $100
 .clear
@@ -507,14 +513,597 @@ Func_008_55fe:
 	jr nz, .clear
 	ret
 
-Func_008_560c::
-	dr $2160c, $2167a
+MeteorCutscene::
+	ld a, BGM_69
+	call PlaySound
 
-Func_008_567a:
-	dr $2167a, $21a70
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcf5], a
 
-Func_008_5a70:
-	ld de, unk_008_5ab2
+	hlbgcoord 0, 0
+	ld de, MeteorCutscene_Text1_Tilemap
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+
+	hlbgcoord 0, 0
+	ld de, MeteorCutscene_TextAttr
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+	ld hl, MeteorCutscene_TextPalette
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, MeteorCutscene_TextGFX_1
+	ld de, vTiles2
+	ld bc, $520
+	call CopyBytesVRAM
+
+	call MeteorCutscene_ClearSpriteBuffer
+	call MeteorCutscene_HideAllSprites
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
+	ldh [rLCDC], a
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+
+.SceneLoop:
+	call DelayFrame
+	ldh a, [hFF9D]
+	inc a
+	ldh [hFF9D], a
+	ldh a, [hFFBF]
+	and a
+	jr nz, .done
+
+	ld a, [wdcf5]
+	and a
+	jr z, .Text2_WaitBlack
+	cp 1
+	jr z, .FadeToMeteors
+	cp 2
+	jr z, .DoMeteorAnimation
+	cp 3
+	jr z, .FadeFromMeteors ; to text 4
+	cp 4
+	jr z, .Text4_WaitBlack ; texts 4 - 9
+	cp 5
+	jr z, .Text2_Load ; texts 2 and 3
+	cp 6
+	jr z, .Text2_WaitShow ; texts 2 and 3
+	cp 7
+	jr z, .Text4_Load ; texts 4 - 9
+	cp 8
+	jr z, .Text4_WaitShow ; texts 4 - 9
+	jp .SceneLoop
+
+.done
+	xor a
+	ldh [hFFBF], a
+	ld [wd0fa], a
+	ld a, 4
+	ld [hFFBA], a
+	jp Func_0257
+
+.Text2_WaitBlack:
+	call MeteorCutscene_WaitAndBlackOut
+	jp .SceneLoop
+
+.FadeToMeteors:
+	call MeteorCutscene_DoFadeToMeteors
+	jp .SceneLoop
+
+.DoMeteorAnimation:
+	call MeteorCutscene_AnimateStormBG
+	call MeteorCutscene_InitMeteor
+	call MeteorCutscene_PlaceMeteor
+	call MeteorCutscene_AnimateMeteor
+	call MeteorCutscene_MoveMeteor
+	jp .SceneLoop
+
+.FadeFromMeteors:
+	call MeteorCutscene_DoFadeFromMeteors
+	jp .SceneLoop
+
+.Text4_WaitBlack:
+	call MeteorCutscene_WaitAndBlackOut2
+	jp .SceneLoop
+
+.Text2_Load:
+	call MeteorCutscene_LoadTexts
+	jp .SceneLoop
+
+.Text2_WaitShow:
+	call MeteorCutscene_WaitAndShowText
+	jp .SceneLoop
+
+.Text4_Load:
+	call MeteorCutscene_LoadTexts2
+	jp .SceneLoop
+
+.Text4_WaitShow:
+	call MeteorCutscene_WaitAndShowText2
+	jp .SceneLoop
+
+MeteorCutscene_DoFadeToMeteors:
+	ld bc, wcab0
+	xor a
+	ldh [hFFC4], a
+	call FadeOutPalette
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld [wdcf6], a
+	ld [wdce8], a
+
+	hlbgcoord 0, 0
+	ld de, MeteorCutscene_StormTilemap_1
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+
+	hlbgcoord 0, 0
+	ld de, MeteorCutscene_StormAttr
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+	ld hl, MeteorCutscene_MeteorPalette
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, MeteorCutscene_OBJPalette
+	ld de, wcaf0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, MeteorCutscene_StormGFX
+	ld de, vTiles2
+	ld bc, $760
+	call CopyBytesVRAM
+
+	ld hl, MeteorCutscene_MeteorGFX
+	ld de, vTiles0
+	ld bc, $80
+	call CopyBytesVRAM
+	call MeteorCutscene_ClearSpriteBuffer
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
+	ldh [rLCDC], a
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+	ld a, 2
+	ld [wdcf5], a
+	ret
+
+MeteorCutscene_PlaceMeteor:
+	ld a, [wdcf6]
+	and a
+	jr z, .shoot
+	dec a
+	ld [wdcf6], a
+	ret
+
+.shoot
+	ld bc, wdd50
+.loop
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .play_sfx
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $5f
+	jr c, .loop
+	ret
+
+.play_sfx
+	ld a, SFX_2c
+	call PlaySound
+
+	ld de, unk_008_57e2
+	ld a, [wdce8]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+REPT 3
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+ENDR
+	ld a, 1
+	ld [bc], a
+	ld a, [hli]
+	ld [wdcf6], a
+	ld a, [wdce8]
+	inc a
+	ld [wdce8], a
+	cp 7
+	ret c
+	xor a
+	ld [wdce8], a
+	ret
+
+unk_008_57e2:
+	dw $30f0, $1004
+	dw $5000, $1004
+	dw $70f0, $1004
+	dw $9000, $1004
+	dw $40f0, $1004
+	dw $6000, $1004
+	dw $80f0, $1004
+
+MeteorCutscene_AnimateMeteor:
+	ld bc, wdd50
+.asm_5801
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .asm_5815
+.asm_5809
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $5f
+	jr c, .asm_5801
+	ret
+
+.asm_5815
+	ld hl, 2
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_5820
+	dec [hl]
+	jr .asm_5809
+
+.asm_5820
+	ld [hl], 4
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	ld d, a
+	ld a, 3
+	sub d
+	ld [hl], a
+	jr .asm_5809
+
+MeteorCutscene_MoveMeteor:
+	ld bc, wdd50
+.asm_5831
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .asm_5845
+.asm_5839
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $4f
+	jr c, .asm_5831
+	ret
+
+.asm_5845
+	ld hl, 1
+	add hl, bc
+	dec [hl]
+	dec [hl]
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	add 4
+	ld [hl], a
+	cp $a0
+	jr nz, .asm_5839
+	ld [hl], 0
+	inc hl
+	ld [hl], 0
+	inc hl
+	ld [hl], 0
+	inc hl
+	ld [hl], 0
+	jr .asm_5839
+
+MeteorCutscene_InitMeteor:
+; clears the OAM each time
+	ld hl, wVirtualOAM
+	ld bc, $28
+	ld de, 4
+.loop
+	ld a, $a0
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .loop
+	xor a
+	ld [wd1fb], a
+	call MeteorCutscene_InitMeteor2
+	ret
+
+MeteorCutscene_HideAllSprites:
+	ld hl, wVirtualOAM
+	ld bc, $28
+	ld de, 4
+.loop
+	ld a, $a0
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .loop
+	ret
+
+MeteorCutscene_InitMeteor2:
+	ld bc, wdd50
+.asm_5890
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .asm_58a4
+.asm_5898
+	ld hl, 4
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $4f
+	jr c, .asm_5890
+	ret
+
+.asm_58a4
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	ld [wdcf7], a
+	ld hl, 1
+	add hl, bc
+	ld a, [hl]
+	ld [wdcf8], a
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	ld de, .Frames
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb]
+	ld e, a
+	ld d, $c0
+.asm_58ca
+	ld a, [hli]
+	cp -1
+	jr z, .asm_58ea
+	push bc
+	ld b, a
+	ld a, [wdcf7]
+	add b
+	pop bc
+	ld [de], a
+	inc de
+	ld a, [hli]
+	push bc
+	ld b, a
+	ld a, [wdcf8]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop bc
+	jr .asm_58ca
+
+.asm_58ea
+	ld a, e
+	ld [wd1fb], a
+	jp .asm_5898
+
+.Frames:
+	dw .Frame1
+	dw .Frame1
+	dw .Frame2
+
+.Frame1:
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 8
+	db 2
+	db 0
+	db -1
+
+.Frame2:
+	db 0
+	db 0
+	db 4
+	db 0
+	db 0
+	db 8
+	db 6
+	db 0
+	db -1
+
+MeteorCutscene_AnimateStormBG:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $40
+	ret nz
+	xor a
+	ld [wdcf3], a
+	ld de, .Tilemaps
+	ld a, [wdcf4]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	hlbgcoord 0, 0
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld a, [wdcf4]
+	inc a
+	ld [wdcf4], a
+	cp 3
+	ret c
+	ld a, 3
+	ld [wdcf5], a
+	ret
+
+.Tilemaps:
+	dw MeteorCutscene_StormTilemap_2
+	dw MeteorCutscene_StormTilemap_3
+	dw MeteorCutscene_StormTilemap_3
+
+MeteorCutscene_DoFadeFromMeteors:
+	ld bc, wcab0
+	xor a
+	ldh [hFFC4], a
+	call FadeOutPalette
+	xor a
+	ldh [hFFBF], a
+	ldh [hSCX], a
+	ldh [hFFAF], a
+	ldh [hSCY], a
+	ldh [hFFB1], a
+	ld [wdcf3], a
+	ld [wdcf4], a
+
+	hlbgcoord 0, 0
+	ld de, MeteorCutscene_Text4_Tilemap
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+
+	hlbgcoord 0, 0
+	ld de, MeteorCutscene_TextAttr
+	lb bc, $14, $12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+	ld hl, MeteorCutscene_TextPalette
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+
+	ld hl, MeteorCutscene_TextGFX_2
+	ld de, vTiles2
+	ld bc, $800
+	call CopyBytesVRAM
+
+	ld hl, MeteorCutscene_TextGFX_3
+	ld de, vTiles1
+	ld bc, $210
+	call CopyBytesVRAM
+
+	call MeteorCutscene_ClearSpriteBuffer
+	call MeteorCutscene_HideAllSprites
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
+	ldh [rLCDC], a
+	ld hl, wcab0
+	xor a
+	ldh [hFFC4], a
+	ldh [hFF9D], a
+	call FadeInPalette
+	ld a, 4
+	ld [wdcf5], a
+	ret
+
+MeteorCutscene_WaitAndBlackOut:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $60
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call MeteorCutscene_ApplyBlackPal
+	ld a, 5
+	ld [wdcf5], a
+	ret
+
+MeteorCutscene_WaitAndShowText:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $20
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call MeteorCutscene_ApplyTextPals
+	ld a, 0
+	ld [wdcf5], a
+	ret
+
+MeteorCutscene_LoadTexts:
+	ld de, .Tilemaps
 	ld a, [wdcf4]
 	ld l, a
 	ld h, 0
@@ -526,8 +1115,75 @@ Func_008_5a70:
 	push hl
 	pop de
 	hlbgcoord 0, 8
-	lb bc, $14, $02
-	ld a, $02
+	lb bc, $14, 2
+	ld a, 2
+	ldh [hFF93], a
+	ld a, $14
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld a, [wdcf4]
+	inc a
+	ld [wdcf4], a
+	cp 3
+	jr nc, .asm_5a2f
+	ld a, 6
+	ld [wdcf5], a
+	ret
+
+.asm_5a2f
+	xor a
+	ld [wdcf3], a
+	ld [wdcf4], a
+	ld a, 1
+	ld [wdcf5], a
+	ret
+
+.Tilemaps:	; texts 2 and 3
+	dw MeteorCutscene_Text2_Tilemap
+	dw MeteorCutscene_Text3_Tilemap
+	dw MeteorCutscene_Text3_Tilemap
+
+MeteorCutscene_WaitAndBlackOut2:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $60
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call MeteorCutscene_ApplyBlackPal
+	ld a, 7
+	ld [wdcf5], a
+	ret
+
+MeteorCutscene_WaitAndShowText2:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp $20
+	ret nz
+	xor a
+	ld [wdcf3], a
+	call MeteorCutscene_ApplyTextPals
+	ld a, 4
+	ld [wdcf5], a
+	ret
+
+MeteorCutscene_LoadTexts2:
+	ld de, .Tilemaps
+	ld a, [wdcf4]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	hlbgcoord 0, 8
+	lb bc, $14, 2
+	ld a, 2
 	ldh [hFF93], a
 	ld a, $14
 	ldh [hFF92], a
@@ -537,7 +1193,6 @@ Func_008_5a70:
 	ld [wdcf4], a
 	cp 6
 	jr nc, .asm_5aa2
-
 	ld a, 8
 	ld [wdcf5], a
 	ret
@@ -551,36 +1206,88 @@ Func_008_5a70:
 	ld [hFFBF], a
 	ret
 
-unk_008_5ab2:
-	dw unk_008_6f4e
-	dw unk_008_6f76
-	dw unk_008_6f9e
-	dw unk_008_6fc6
-	dw unk_008_6fee
-	dw unk_008_6fee
+.Tilemaps:	; texts 5 to 10
+	dw MeteorCutscene_Text5_Tilemap
+	dw MeteorCutscene_Text6_Tilemap
+	dw MeteorCutscene_Text7_Tilemap
+	dw MeteorCutscene_Text8_Tilemap
+	dw MeteorCutscene_Text9_Tilemap
+	dw MeteorCutscene_Text9_Tilemap
 
-; Cutscene graphics?
-unk_008_5abe:
-	dr $21abe, $22f4e
+MeteorCutscene_BlackPalette:
+INCBIN "gfx/cutscenes/cutscene_black.pal"
 
-; Cutscene text tilemaps
-unk_008_6f4e:
-	dr $22f4e, $22f76
+MeteorCutscene_TextPalette:
+INCBIN "gfx/cutscenes/cutscene_text.pal"
 
-unk_008_6f76:
-	dr $22f76, $22f9e
+MeteorCutscene_Text1_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_1.tilemap"
 
-unk_008_6f9e:
-	dr $22f9e, $22fc6
+MeteorCutscene_Text4_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_4.tilemap"
 
-unk_008_6fc6:
-	dr $22fc6, $22fee
+MeteorCutscene_TextAttr:
+INCBIN "gfx/cutscenes/cutscene_text.attr"
 
-unk_008_6fee:
-	dr $22fee, $23016
+MeteorCutscene_TextGFX_1:
+INCBIN "gfx/cutscenes/meteor/text_gfx_1.2bpp"
 
-unk_008_7016:
-	dr $23016, $23fff
+MeteorCutscene_TextGFX_2:
+INCBIN "gfx/cutscenes/meteor/text_gfx_2.2bpp"
+
+MeteorCutscene_TextGFX_3:
+INCBIN "gfx/cutscenes/meteor/text_gfx_3.2bpp"
+
+unk_008_6eae:
+INCBIN "data/unk_008_6eae.bin"
+
+MeteorCutscene_Text2_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_2.tilemap"
+
+MeteorCutscene_Text3_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_3.tilemap"
+
+unk_008_6f26:
+INCBIN "data/unk_008_6f26.bin"
+
+MeteorCutscene_Text5_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_5.tilemap"
+
+MeteorCutscene_Text6_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_6.tilemap"
+
+MeteorCutscene_Text7_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_7.tilemap"
+
+MeteorCutscene_Text8_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_8.tilemap"
+
+MeteorCutscene_Text9_Tilemap:
+INCBIN "gfx/cutscenes/meteor/text_9.tilemap"
+
+MeteorCutscene_StormTilemap_1:
+INCBIN "gfx/cutscenes/meteor/storm_bg_1.tilemap"
+
+MeteorCutscene_StormAttr:
+INCBIN "gfx/cutscenes/meteor/storm.attr"
+
+MeteorCutscene_MeteorPalette:
+INCBIN "gfx/cutscenes/meteor/meteor_bg.pal"
+
+MeteorCutscene_OBJPalette:
+INCBIN "gfx/cutscenes/meteor/meteor_obj.pal"
+
+MeteorCutscene_StormGFX:
+INCBIN "gfx/cutscenes/meteor/storm.2bpp"
+
+MeteorCutscene_MeteorGFX:
+INCBIN "gfx/cutscenes/meteor/meteor.2bpp"
+
+MeteorCutscene_StormTilemap_2:
+INCBIN "gfx/cutscenes/meteor/storm_bg_2.tilemap"
+
+MeteorCutscene_StormTilemap_3:
+INCBIN "gfx/cutscenes/meteor/storm_bg_3.tilemap"
 
 SECTION "banknum8", ROMX[$7fff], BANK[$8]
 	db $8
