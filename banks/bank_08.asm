@@ -1269,7 +1269,7 @@ MeteorCutscene_StormTilemap_1:
 INCBIN "gfx/cutscenes/meteor/storm_bg_1.tilemap"
 
 MeteorCutscene_StormAttr:
-INCBIN "gfx/cutscenes/meteor/storm.attr"
+INCBIN "gfx/cutscenes/meteor/storm.gbcattr"
 
 MeteorCutscene_MeteorPalette:
 INCBIN "gfx/cutscenes/meteor/meteor_bg.pal"
