@@ -204,7 +204,7 @@ Func_2e04::
 	ld hl, wdd00
 .asm_2e07
 	ld [hl], $01
-	dec c ; dec bc
+	dec c ; @bad: use dec bc
 	ld a, c
 	or b
 	ret z
@@ -220,7 +220,7 @@ Func_2e13::
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+	dec c ; @bad: use dec bc
 	ld a, c
 	or b
 	jr nz, .copy1
@@ -232,7 +232,8 @@ Func_2e13::
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	jr nz, .copy2
@@ -250,7 +251,8 @@ Func_2e38::
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	and a
@@ -264,7 +266,6 @@ Func_2e38::
 	jr .asm_2e3b
 
 Func_2e56::
-; Debug code
 	ld de, wd7cb
 	ld hl, .unk_2ea0
 	ld bc, $9e
@@ -272,7 +273,8 @@ Func_2e56::
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	jr nz, .copy1

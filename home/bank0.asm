@@ -242,7 +242,8 @@ Func_0453::
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	jr nz, .copy1
@@ -262,7 +263,8 @@ Func_0453::
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	jr nz, .copy2
@@ -317,7 +319,8 @@ Func_0506::
 	ld a, [hli]
 	ld [hl], 0
 	inc hl
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	jr nz, .asm_0517
@@ -379,7 +382,7 @@ Func_055b::
 
 	ld a, [wd0e4]
 	ld [wcd04], a
-	jp .asm_05e9
+	jp .asm_05e9 ; jr
 
 .asm_058a
 	ld a, [wd9dd]
@@ -1287,7 +1290,9 @@ Func_0b65::
 INCLUDE "home/text_menu.asm"
 INCLUDE "home/load_mon_pics.asm"
 
-Func_0f06::
+IncFillBoxVRAM::
+; Fill box b*c with value e starting at hl
+; Increment e after every write
 	push hl
 
 .copy:
@@ -1301,7 +1306,7 @@ Func_0f06::
 	bit 1, a ; STATF_BUSY
 	jr nz, .waitLCD1
 
-; write byte
+; Write byte
 	ld a, c
 	ld [hl], a
 
@@ -1314,6 +1319,7 @@ Func_0f06::
 ; Verify that byte was written
 	ld a, [hl]
 	cp c
+; @bug: if jump is taken, causes stack issue
 	jr nz, .copy
 
 	inc l
@@ -1332,7 +1338,7 @@ Func_0f06::
 	ldh a, [hFF92]
 	ld b, a
 	dec c
-	jr nz, Func_0f06
+	jr nz, IncFillBoxVRAM
 
 	ld a, 0
 	ldh [rVBK], a
@@ -2132,7 +2138,7 @@ Func_1373::
 Func_1377::
 	push hl
 
-.copy:
+.copy
 	ld a, [de]
 	push bc
 	ld c, a
@@ -2181,9 +2187,9 @@ Func_1377::
 	ld bc, BG_MAP_WIDTH
 	add hl, bc
 	ld a, h
-	cp $9f
+	cp HIGH($9f00)
 	jr c, .next_row
-	ld h, $9c
+	ld h, HIGH(vBGMap1)
 
 .next_row
 	pop bc
@@ -2262,7 +2268,7 @@ Func_13fe::
 	ld l, a
 	ld h, 0
 	add hl, de
-	ldh a, [hFFDA]
+	ldh a, [hCurSound]
 	cp [hl]
 	ret z
 
@@ -3253,6 +3259,7 @@ Func_25fb::
 	or a
 	jr nz, Func_2612
 
+; SoundID == 0
 	call Func_25f5
 	xor a
 	call Func_2612
@@ -3270,22 +3277,20 @@ Func_2612::
 	ld hl, wdae2
 	bit 0, [hl]
 	jr z, .asm_261e
-
 	cp $53
-	jr c, .asm_262b
+	jr c, .exit
 
 .asm_261e
 	ld hl, wdae3
 	ld l, [hl]
 	ld [hl], a
-	ld l, $e3
+	ld l, LOW(wdae3)
 	ld a, [hl]
-	cp $eb
-	jr nc, .asm_262b
-
+	cp LOW(wdaeb)
+	jr nc, .exit
 	inc [hl]
 
-.asm_262b
+.exit
 	pop hl
 	ret
 
@@ -3301,6 +3306,7 @@ Func_262d::
 	ret
 
 Func_263e::
+; Load sound bank?
 	ld e, a
 	cp $53
 	jr c, .asm_2677
@@ -3320,7 +3326,7 @@ Func_263e::
 
 .asm_2657
 	ld a, $02
-	jr c, .asm_265d
+	jr c, .asm_265d ; jr
 
 .asm_265b
 	ld a, $03
@@ -3420,7 +3426,7 @@ Func_26e1::
 	ld a, [hli]
 	push hl
 	ld l, a
-	ld h, $00
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld a, [wd0a4]
@@ -3488,12 +3494,15 @@ Func_278b::
 	inc de
 	ld a, [hli]
 	ld [de], a
+
+; add de, $17
 	ld a, e
 	add $17
 	ld e, a
 	ld a, d
 	adc 0
 	ld d, a
+
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -3943,17 +3952,17 @@ PlaySound::
 	push bc
 	ld d, a
 	cp $53
-	jr c, .is_sfx
+	jr c, .play
 
 ; If the sound to be played is music (a >= $53),
 ; it won't replay it if it is already playing.
-	ldh a, [hFFDA]
+	ldh a, [hCurSound]
 	cp d
 	jr z, .done
 
-.is_sfx
+.play
 	ld a, d
-	ldh [hFFDA], a
+	ldh [hCurSound], a
 	ld a, [wd08f]
 	push af
 	ld a, d

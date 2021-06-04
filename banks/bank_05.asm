@@ -1,5 +1,11 @@
 Func_005_4000::
-	dr $14000, $14093
+	dr $14000, $1401d
+
+Func_005_401d::
+	dr $1401d, $1406b
+
+Func_005_406b::
+	dr $1406b, $14093
 
 Func_005_4093::
 	dr $14093, $141fb
@@ -74,7 +80,10 @@ Func_005_4bc1:
 	ret
 
 .asm_4c3a:
-	dr $14c3a, $14e4e
+	dr $14c3a, $14c69
+
+Func_005_4c69:
+	dr $14c69, $14e4e
 
 Func_005_4e4e:
 	dr $14e4e, $14f2e
@@ -144,7 +153,40 @@ Func_005_50a5:
 	ret
 
 Func_005_50e5:
-	dr $150e5, $15cf0
+	dr $150e5, $151db
+
+Func_005_51db:
+	xor a
+	ld [wdcea], a
+	ld hl, wcd20
+	ld bc, 3
+; ???
+	xor a
+.asm_51e6
+	ld [hli], a
+	dec c
+	ld a, c
+	or b
+	jr nz, .asm_51e6
+	ret
+
+Func_005_51ed:
+	dr $151ed, $15a8e
+
+Func_005_5a8e:
+	ld hl, wcd00
+	ld bc, $100
+.clear
+	xor a
+	ld [hli], a
+	dec bc
+	ld a, c
+	or b
+	jr nz, .clear
+	ret
+
+Func_005_5a9c:
+	dr $15a9c, $15cf0
 
 
 SECTION "banknum5", ROMX[$7fff], BANK[$5]

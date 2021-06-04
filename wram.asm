@@ -193,8 +193,9 @@ wd0b4:: ds 1
 wd0b5:: ds 5
 
 wd0ba:: ds 2
-wd0bc:: ds 6
+wd0bc:: ds 5
 
+wd0c1:: ds 1
 wd0c2:: ds 1
 wd0c3:: ds 1
 
@@ -261,7 +262,7 @@ wd1fb:: ds 1
 wd1fc:: ds 1
 	ds 3
 
-wd200:: ds $84
+wd200:: ds $84 ; party struct
 
 wd284:: ds $7c
 
@@ -276,7 +277,10 @@ wd3f6:: ds 1
 wd3f7:: ds 1
 wd3f8:: ds 1
 
-wd3f9:: ds $3d2
+wd3f9:: ds $212
+
+wd60b:: ds 1
+wd60c:: ds $1bf
 
 wd7cb:: ds $9f
 
@@ -285,7 +289,8 @@ wd86a:: ds $c
 wd876:: ds 1
 wd877:: ds $87
 
-wd8fe:: ds 2
+wd8fe:: ds 1
+wd8ff:: ds 1
 
 wd900:: ds $3c
 
@@ -391,7 +396,9 @@ wTextBGMapPointer:: ds 2
 wdad0:: ds $12
 
 wdae2:: ds 1
-wdae3:: ds $38
+wdae3:: ds 1
+wdae7:: ds 7
+wdaeb:: ds $30
 
 wGameTimeSeconds:: ds 1
 wdb1c:: ds 1
