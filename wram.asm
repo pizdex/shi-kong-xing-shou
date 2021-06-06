@@ -262,7 +262,13 @@ wd1fb:: ds 1
 wd1fc:: ds 1
 	ds 3
 
-wd200:: ds $84 ; party struct
+wPartyMons::
+wPartyMon1:: party_struct wPartyMon1
+wPartyMon2:: party_struct wPartyMon2
+wPartyMon3:: party_struct wPartyMon3
+wPartyMon4:: party_struct wPartyMon4
+wPartyMon5:: party_struct wPartyMon5
+wPartyMon6:: party_struct wPartyMon6
 
 wd284:: ds $7c
 
@@ -461,9 +467,10 @@ wdcfc:: ds 1
 wdcfd:: ds 1
 wdcfe:: ds 1
 wdcff:: ds 1
-wdd00:: ds $18
 
+wdd00:: ds $18
 wdd18:: ds $38
+
 wdd50:: ds 1
 	ds $5f
 

@@ -123,7 +123,7 @@ Func_005_50a5:
 	ld a, [hl]
 	ld [wEnemyMonSpecies], a
 
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld e, 0
 .asm_50c3:
 	ld hl, 2

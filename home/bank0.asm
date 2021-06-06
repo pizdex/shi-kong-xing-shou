@@ -176,7 +176,7 @@ Func_0430::
 	ret
 
 Func_0453::
-	ld hl, wd200
+	ld hl, wPartyMons
 .asm_0456:
 	ld a, [hl]
 	cp $51
@@ -1283,10 +1283,6 @@ Func_0b46::
 	rst Bankswitch
 	ret
 
-Func_0b65::
-	call DelayFrame
-	push hl
-
 INCLUDE "home/text_menu.asm"
 INCLUDE "home/load_mon_pics.asm"
 
@@ -1450,7 +1446,7 @@ Func_0fc4::
 
 Func_0fdc::
 	ld a, [wd08e]
-	ld hl, wd200
+	ld hl, wPartyMons
 	ld de, $16
 	and a
 	jr z, .asm_0fec
@@ -2078,7 +2074,7 @@ Func_132b::
 Func_132f::
 	push hl
 	push de
-	ld hl, wd200
+	ld hl, wPartyMons
 .asm_1334
 	ld a, [hl]
 	and a
@@ -2552,7 +2548,7 @@ Func_168c::
 	ret
 
 Func_16b6::
-; Broken
+; @bug: SRAM is not enabled
 	call ClearSRAM
 	xor a
 	ld [rRAMG], a
@@ -2587,7 +2583,7 @@ Func_16c0::
 	ret
 
 Func_16ea::
-; Broken
+; @bug: SRAM is not enabled
 	call ClearSRAM
 	xor a
 	ld [rRAMG], a
@@ -2630,9 +2626,10 @@ Func_1712::
 	ret
 
 Func_1730::
-	ld bc, $009a
+; Debug code
+	ld bc, 7 * $16
 	call Func_2e13
-	ld bc, $0007
+	ld bc, 7
 	call Func_2e04
 
 ; wow...
@@ -2712,7 +2709,7 @@ Func_1730::
 	call Func_2d08
 	call Debug_GiveItems
 
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld hl, $16
 	add hl, bc
 	push hl
@@ -2741,7 +2738,7 @@ Func_1730::
 	inc hl
 	ld [hl], $0c
 
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld hl, $2c
 	add hl, bc
 	push hl
@@ -2770,7 +2767,7 @@ Func_1730::
 	inc hl
 	ld [hl], $0c
 
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld hl, $42
 	add hl, bc
 	push hl
@@ -2799,7 +2796,7 @@ Func_1730::
 	inc hl
 	ld [hl], $0c
 
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld hl, $58
 	add hl, bc
 	push hl
@@ -2828,7 +2825,7 @@ Func_1730::
 	inc hl
 	ld [hl], $0c
 
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld hl, $6e
 	add hl, bc
 	push hl
@@ -2862,13 +2859,13 @@ unk_18ea::
 	ds $16, 0
 
 Func_1900::
-; Debug code?
-	ld bc, $16
+; Debug code
+	ld bc, 1 * $16
 	call Func_2e13
 	ld bc, 1
 	call Func_2e04
 
-; ...
+; wow...
 	ld a, 0
 	ld [wdaa0], a
 	ld a, 0

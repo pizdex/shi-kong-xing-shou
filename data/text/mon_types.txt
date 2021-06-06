@@ -1,0 +1,35 @@
+@org $1e, $55c0:
+	text "普";
+	line;
+
+@org $1e, $55c3:
+	text "火";
+	line;
+
+@org $1e, $55c6:
+	text "水";
+	line;
+
+@org $1e, $55c9:
+	text "土";
+	line;
+
+@org $1e, $55cc:
+	text "鬥";
+	line;
+
+@org $1e, $55cf:
+	text "闇";
+	line;
+
+@org $1e, $55d2:
+	text "光";
+	line;
+
+@org $1e, $55d5:
+	text "草";
+	line;
+
+@org $1e, $55d8:
+	text "飛";
+	line;

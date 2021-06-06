@@ -1,3 +1,7 @@
+Func_0b65::
+	call DelayFrame
+	push hl
+
 Menu_CheckCharacter::
 ; Text routine used for menus, battles and other things
 	pop hl

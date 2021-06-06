@@ -225,7 +225,7 @@ Func_2e13::
 	or b
 	jr nz, .copy1
 
-	ld de, wd200
+	ld de, wPartyMon1
 	ld hl, wde00
 	ld bc, $16
 .copy2
@@ -338,4 +338,106 @@ Func_2e56::
 	db $02, $02, $01, $01, $01, $01, $01, $01 ; 20?
 
 unk_2f40::
-	INCBIN "data/unk_2f40.bin"
+; Partner 1 mon data
+	db mon_081 ; species
+	db 90 ; level
+	dw $005a ; HP
+	db $05, $00, $00 ; exp
+	db $02, 20, 20 ; move 1
+	db $77, 20, 20 ; move 2
+	db $89, 20, 20 ; move 3
+	db $88, 20, 20 ; move 4
+	db $00 ; status
+	db $00 ; item
+	db 0
+
+; Partner 2 mon data
+	db mon_117
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $09, 12, 12
+	db $86, 12, 12
+	db $00, 12, 12
+	db $00, 12, 12
+	db $00
+	db $00
+	db 0
+
+; Partner 3 mon data
+	db mon_108
+	db 90
+	dw $005a
+	db $20, $cb, $00
+	db $03, 12, 12
+	db $04, 12, 12
+	db $05, 12, 12
+	db $06, 12, 12
+	db $00
+	db $00
+	db 0
+
+; Partner 4 mon data
+	db mon_091
+	db 90
+	dw $005a
+	db $20, $cb, $00
+	db $04, 12, 12
+	db $05, 12, 12
+	db $06, 12, 12
+	db $07, 12, 12
+	db $00
+	db $00
+	db 0
+
+; Partner 5 mon data
+	db mon_099
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $05, 12, 12
+	db $06, 12, 12
+	db $07, 12, 12
+	db $08, 12, 12
+	db $00
+	db $05
+	db 0
+
+; Partner 6 mon data
+	db mon_145
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $06, 12, 12
+	db $07, 12, 12
+	db $08, 12, 12
+	db $09, 12, 12
+	db $00
+	db $06
+	db 0
+
+; Partner 7 mon data
+	db mon_144
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $07, 12, 12
+	db $08, 12, 12
+	db $09, 12, 12
+	db $0a, 12, 12
+	db $00
+	db $07
+	db 0
+
+; Partner 8 mon data
+	db mon_126
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $08, 12, 12
+	db $09, 12, 12
+	db $0a, 12, 12
+	db $0b, 12, 12
+	db $00
+	db $08
+	db 0

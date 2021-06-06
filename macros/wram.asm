@@ -1,3 +1,27 @@
+party_struct: MACRO
+\1Species:: db
+\1Level:: db
+\1HP:: dw
+\1Exp:: ds 3
+
+\1Move1ID:: db
+\1Move1PP:: db
+\1Move1MaxPP:: db
+\1Move2ID:: db
+\1Move2PP:: db
+\1Move2MaxPP:: db
+\1Move3ID:: db
+\1Move3PP:: db
+\1Move3MaxPP:: db
+\1Move4ID:: db
+\1Move4PP:: db
+\1Move4MaxPP:: db
+
+\1Status:: db
+\1Item:: db
+\1unk22:: db
+ENDM
+
 sprite_oam_struct: MACRO
 \1YCoord::     db
 \1XCoord::     db

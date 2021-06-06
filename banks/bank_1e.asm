@@ -22,7 +22,7 @@ Func_01e_4266::
 Func_01e_4275::
 	ld l, d
 	ld h, 0
-	ld de, $4ec3
+	ld de, unk_01e_4ec3
 	add hl, hl
 	add hl, de
 	ld a, [hli]
@@ -47,10 +47,10 @@ Func_01e_4290::
 	add hl, de
 	ld a, [hl]
 	ld [wdce8], a
-	and $0f
+	and $0f ; ?
 	ld l, a
 	ld h, 0
-	ld de, unk_01e_55ae
+	ld de, TypeNames
 	add hl, hl
 	add hl, de
 	ld a, [hli]
@@ -114,15 +114,28 @@ Func_01e_434d:
 	dr $7834d, $787fb
 
 Func_01e_47fb:
-	dr $787fb, $7947f
+	dr $787fb, $78ec3
+
+unk_01e_4ec3:
+	dr $78ec3, $7947f
 
 INCLUDE "data/monsters/menu_icons.asm"
 
 unk_01e_551f:
 	dr $7951f, $795ae
 
-unk_01e_55ae:
-	dr $795ae, $795db
+TypeNames:
+	dw text_1e_55c0
+	dw text_1e_55c3
+	dw text_1e_55c6
+	dw text_1e_55c9
+	dw text_1e_55cc
+	dw text_1e_55cf
+	dw text_1e_55d2
+	dw text_1e_55d5
+	dw text_1e_55d8
+
+INCLUDE "data/text/mon_types.asm"
 
 INCLUDE "data/icon_pointers.asm"
 

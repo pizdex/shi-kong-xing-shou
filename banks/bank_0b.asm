@@ -811,7 +811,7 @@ Func_00b_4e39:
 	ld [wd984 + 1], a
 	ld a, [hl]
 	ld [wEnemyMonSpecies], a
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld e, 0
 .asm_4e7a:
 	ld hl, 2
