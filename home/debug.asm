@@ -339,7 +339,7 @@ Func_2e56::
 
 unk_2f40::
 ; Partner 1 mon data
-	db mon_081 ; species
+	db MON_081 ; species
 	db 90 ; level
 	dw $005a ; HP
 	db $05, $00, $00 ; exp
@@ -352,7 +352,7 @@ unk_2f40::
 	db 0
 
 ; Partner 2 mon data
-	db mon_117
+	db MON_117
 	db 90
 	dw $005a
 	db $00, $00, $00
@@ -365,7 +365,7 @@ unk_2f40::
 	db 0
 
 ; Partner 3 mon data
-	db mon_108
+	db MON_108
 	db 90
 	dw $005a
 	db $20, $cb, $00
@@ -378,7 +378,7 @@ unk_2f40::
 	db 0
 
 ; Partner 4 mon data
-	db mon_091
+	db MON_091
 	db 90
 	dw $005a
 	db $20, $cb, $00
@@ -391,7 +391,7 @@ unk_2f40::
 	db 0
 
 ; Partner 5 mon data
-	db mon_099
+	db MON_099
 	db 90
 	dw $005a
 	db $00, $00, $00
@@ -404,7 +404,7 @@ unk_2f40::
 	db 0
 
 ; Partner 6 mon data
-	db mon_145
+	db MON_145
 	db 90
 	dw $005a
 	db $00, $00, $00
@@ -417,7 +417,7 @@ unk_2f40::
 	db 0
 
 ; Partner 7 mon data
-	db mon_144
+	db MON_144
 	db 90
 	dw $005a
 	db $00, $00, $00
@@ -430,7 +430,7 @@ unk_2f40::
 	db 0
 
 ; Partner 8 mon data
-	db mon_126
+	db MON_126
 	db 90
 	dw $005a
 	db $00, $00, $00

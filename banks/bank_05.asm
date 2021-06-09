@@ -132,7 +132,7 @@ Func_005_50a5:
 	or [hl]
 	jr nz, .asm_50d8
 
-	ld hl, $16
+	ld hl, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	inc e
 	ld a, l

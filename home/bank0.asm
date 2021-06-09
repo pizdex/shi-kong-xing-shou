@@ -2079,6 +2079,7 @@ Func_132f::
 	ld a, [hl]
 	and a
 	jr z, .asm_1346
+
 	ld de, $16
 	add hl, de
 	ld a, l
@@ -2432,27 +2433,27 @@ Func_15e7::
 	jp hl
 
 .unk_15f6
-	dw Func_1620
-	dw Func_1730
-	dw Func_1730
-	dw Func_1900
-	dw Func_16f4
-	dw Func_1712
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
-	dw Func_1730
+	dw Func_1620 ; $00
+	dw Func_1730 ; $01
+	dw Func_1730 ; $02
+	dw Func_1900 ; $03
+	dw Func_16f4 ; $04
+	dw Func_1712 ; $05
+	dw Func_1730 ; $06
+	dw Func_1730 ; $07
+	dw Func_1730 ; $08
+	dw Func_1730 ; $09
+	dw Func_1730 ; $0a
+	dw Func_1730 ; $0b
+	dw Func_1730 ; $0c
+	dw Func_1730 ; $0d
+	dw Func_1730 ; $0e
+	dw Func_1730 ; $0f
+	dw Func_1730 ; $10
+	dw Func_1730 ; $11
+	dw Func_1730 ; $12
+	dw Func_1730 ; $13
+	dw Func_1730 ; $14
 
 Func_1620::
 	ld hl, wdd00
@@ -2709,150 +2710,190 @@ Func_1730::
 	call Func_2d08
 	call Debug_GiveItems
 
+; 2nd mon
 	ld bc, wPartyMons
-	ld hl, $16
+	ld hl, 1 * PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
 	pop bc
-	ld a, $8a
+; species
+	ld a, MON_138
 	ld [bc], a
-	ld hl, 1
+; level
+	ld hl, MON_LEVEL
 	add hl, bc
-	ld [hl], $5a
-	ld hl, 5
+	ld [hl], 90
+; exp
+	ld hl, MON_EXP + 1
 	add hl, bc
-	ld [hl], $10
-	ld hl, 2
+	ld [hl], $10 ; $001000 (4096)
+; hp
+	ld hl, MON_HP
 	add hl, bc
-	ld [hl], $05
-	ld hl, $14
+	ld [hl], $05 ; $0005 (5)
+; item
+	ld hl, MON_ITEM
 	add hl, bc
 	ld [hl], $12
-	inc hl
+; unk22
+	inc hl ; MON_UNK22
 	ld [hl], $14
-	ld hl, 7
+; moves
+	ld hl, MON_MOVE1ID
 	add hl, bc
 	ld [hl], $85
-	inc hl
-	ld [hl], $0c
-	inc hl
-	ld [hl], $0c
+	inc hl ; MON_MOVE1PP
+	ld [hl], 12
+	inc hl ; MON_MOVE1MAXPP
+	ld [hl], 12
 
+; 3rd mon
 	ld bc, wPartyMons
-	ld hl, $2c
+	ld hl, 2 * PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
 	pop bc
-	ld a, $72
+; species
+	ld a, MON_114
 	ld [bc], a
-	ld hl, 1
+; level
+	ld hl, MON_LEVEL
 	add hl, bc
-	ld [hl], $5a
-	ld hl, 5
+	ld [hl], 90
+; exp
+	ld hl, MON_EXP + 1
 	add hl, bc
-	ld [hl], $10
-	ld hl, 2
+	ld [hl], $10 ; $001000 (4096)
+; hp
+	ld hl, MON_HP
 	add hl, bc
-	ld [hl], $55
-	ld hl, $14
+	ld [hl], $55 ; $0055 (85)
+; item
+	ld hl, MON_ITEM
 	add hl, bc
 	ld [hl], $12
-	inc hl
+; unk22
+	inc hl ; MON_UNK22
 	ld [hl], $14
-	ld hl, 7
+; moves
+	ld hl, MON_MOVE1ID
 	add hl, bc
 	ld [hl], $2c
-	inc hl
-	ld [hl], $0c
-	inc hl
-	ld [hl], $0c
+	inc hl ; MON_MOVE1PP
+	ld [hl], 12
+	inc hl ; MON_MOVE1MAXPP
+	ld [hl], 12
 
+; 4th mon
 	ld bc, wPartyMons
-	ld hl, $42
+	ld hl, 3 * PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
 	pop bc
-	ld a, $05
+; species
+	ld a, MON_005
 	ld [bc], a
-	ld hl, 1
+; level
+	ld hl, MON_LEVEL
 	add hl, bc
-	ld [hl], $5a
-	ld hl, 5
+	ld [hl], 90
+; exp
+	ld hl, MON_EXP + 1
 	add hl, bc
-	ld [hl], $10
-	ld hl, 2
+	ld [hl], $10 ; $001000 (4096)
+; hp
+	ld hl, MON_HP
 	add hl, bc
-	ld [hl], $55
-	ld hl, $14
+	ld [hl], $55 ; $0055 (85)
+; item
+	ld hl, MON_ITEM
 	add hl, bc
 	ld [hl], $12
-	inc hl
+; unk22
+	inc hl ; MON_UNK22
 	ld [hl], $14
-	ld hl, 7
+; moves
+	ld hl, MON_MOVE1ID
 	add hl, bc
 	ld [hl], $2c
 	inc hl
-	ld [hl], $0c
+	ld [hl], 12
 	inc hl
-	ld [hl], $0c
+	ld [hl], 12
 
+; 5th mon
 	ld bc, wPartyMons
-	ld hl, $58
+	ld hl, 4 * PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
 	pop bc
-	ld a, $78
+; species
+	ld a, MON_120
 	ld [bc], a
-	ld hl, 1
+; level
+	ld hl, MON_LEVEL
 	add hl, bc
-	ld [hl], $5a
-	ld hl, 5
+	ld [hl], 90
+; exp
+	ld hl, MON_EXP + 1
 	add hl, bc
-	ld [hl], $10
-	ld hl, 2
+	ld [hl], $10 ; $001000 (4096)
+; hp
+	ld hl, MON_HP
 	add hl, bc
-	ld [hl], $55
-	ld hl, $14
+	ld [hl], $55 ; $0055 (85)
+; item
+	ld hl, MON_ITEM
 	add hl, bc
 	ld [hl], $12
-	inc hl
+; unk22
+	inc hl ; MON_UNK22
 	ld [hl], $14
-	ld hl, 7
+; moves
+	ld hl, MON_MOVE1ID
 	add hl, bc
 	ld [hl], $2c
 	inc hl
-	ld [hl], $0c
+	ld [hl], 12
 	inc hl
-	ld [hl], $0c
+	ld [hl], 12
 
+; 6th mon
 	ld bc, wPartyMons
-	ld hl, $6e
+	ld hl, 5 * PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
 	pop bc
-	ld a, $31
+; species
+	ld a, MON_049
 	ld [bc], a
-	ld hl, 1
+; level
+	ld hl, MON_LEVEL
 	add hl, bc
-	ld [hl], $5a
-	ld hl, 5
+	ld [hl], 90
+; exp
+	ld hl, MON_EXP + 1
 	add hl, bc
-	ld [hl], $10
-	ld hl, 2
+	ld [hl], $10 ; $001000 (4096)
+; hp
+	ld hl, MON_HP
 	add hl, bc
-	ld [hl], $55
-	ld hl, $14
+	ld [hl], $55 ; $0055 (85)
+; item
+	ld hl, MON_ITEM
 	add hl, bc
 	ld [hl], $12
-	inc hl
+; unk22
+	inc hl ; MON_UNK22
 	ld [hl], $14
-	ld hl, 7
+; moves
+	ld hl, MON_MOVE1ID
 	add hl, bc
 	ld [hl], $2c
 	inc hl
-	ld [hl], $0c
+	ld [hl], 12
 	inc hl
-	ld [hl], $0c
+	ld [hl], 12
 	ret
 
 unk_18ea::

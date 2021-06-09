@@ -283,18 +283,23 @@ wd3f6:: ds 1
 wd3f7:: ds 1
 wd3f8:: ds 1
 
-wd3f9:: ds $212
+wd3f9:: ds 5
+wd3fe:: ds 1
+wd3ff:: ds 1
+wd400:: ds $20b
 
 wd60b:: ds 1
 wd60c:: ds $1bf
 
-wd7cb:: ds $9f
+wd7cb:: ds $9f ; mon dex
 
-wd86a:: ds $c
+wd86a:: ds 12
 
-wd876:: ds 1
-wd877:: ds $87
+wd876:: ds $16
 
+wd88c:: ds $6e
+
+wd8fa:: ds 4
 wd8fe:: ds 1
 wd8ff:: ds 1
 
@@ -307,13 +312,17 @@ wd982:: ds 1
 wd983:: ds 1
 wd984:: ds 2
 wd986:: ds 1
-wd987:: ds 2
+wd987:: ds 1
+wd988:: ds 1
 wd989:: ds 1
-wd98a:: ds 2
+wd98a:: ds 1
+wd98b:: ds 1
 wd98c:: ds 3
 wd98f:: ds 1
 wd990:: ds 1
-wd991:: ds 7
+wd991:: ds 2
+wd993:: ds 1
+wd994:: ds 4
 
 wd998:: ds 1
 wd999:: ds 1
@@ -328,7 +337,10 @@ wd9ad:: ds 2
 wd9af:: ds 3
 
 wd9b2:: ds 1
-wd9b3:: ds $c
+wd9b3:: ds 1
+wd9b4:: ds 1
+wd9b5:: ds 1
+wd9b6:: ds 9
 
 wd9bf:: ds 1
 
@@ -356,7 +368,9 @@ wd9e2:: ds 1
 wd9e3:: ds 1
 wEnemyMonSpecies:: ds 1
 wd9e5:: ds 4
-wd9e9:: ds 7
+wd9e9:: ds 1
+wd9ea:: ds 1
+wd9eb:: ds 5
 
 wTempBank:: ds 1
 wd9f1:: ds 2

@@ -798,10 +798,10 @@ Func_00b_4e39:
 	ld a, $01
 	ld [hFFD3], a
 	xor a
-	ld [$d3fe], a
+	ld [wd3fe], a
 	ld [wScriptByte], a
 	ld a, $0c
-	ld [$d3ff], a
+	ld [wd3ff], a
 	xor a
 	ld [wd987], a
 	ld hl, wd876
@@ -814,13 +814,13 @@ Func_00b_4e39:
 	ld bc, wPartyMons
 	ld e, 0
 .asm_4e7a:
-	ld hl, 2
+	ld hl, MON_HP
 	add hl, bc
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_4e90
 
-	ld hl, $16
+	ld hl, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	inc e
 	ld a, l
