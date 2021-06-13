@@ -835,7 +835,7 @@ Func_00b_4e39:
 	ld a, c
 	ld [wd981], a
 	ld a, b
-	ld [wd982], a
+	ld [wd981 + 1], a
 	ld a, e
 	ld [wd983], a
 	call DelayFrame

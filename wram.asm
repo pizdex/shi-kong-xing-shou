@@ -305,10 +305,12 @@ wd8ff:: ds 1
 
 wd900:: ds $3c
 
-wd93c:: ds $45
+wd93c:: ds $3c
 
-wd981:: ds 1
-wd982:: ds 1
+wd978:: ds 4
+wd97c:: ds 5
+
+wd981:: ds 2
 wd983:: ds 1
 wd984:: ds 2
 wd986:: ds 1

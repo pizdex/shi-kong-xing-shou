@@ -149,7 +149,7 @@ Func_005_50a5:
 	ld a, c
 	ld [wd981], a
 	ld a, b
-	ld [wd982], a
+	ld [wd981 + 1], a
 	ret
 
 Func_005_50e5:

@@ -650,12 +650,13 @@ ENDR
 	ret
 
 GetTextBGMapPointer::
-; Calculate pointer to the next character or textbox on the BG map and return it
+; Calculate BGMap address from coords depending on SCXY
 	push bc
 	push de
 	ld bc, vBGMap0
 	ld e, h
 	ld a, l
+; a * 8 (1 tile = 8 pixels)
 	add a
 	add a
 	add a
@@ -1953,7 +1954,7 @@ Func_125b::
 .asm_1280
 	ld a, [wd981]
 	ld l, a
-	ld a, [wd982]
+	ld a, [wd981 + 1]
 	ld h, a
 
 .asm_1288
@@ -1967,7 +1968,7 @@ Func_125b::
 Func_128e::
 	ld a, [wd981]
 	ld c, a
-	ld a, [wd982]
+	ld a, [wd981 + 1]
 	ld b, a
 	ld hl, 2
 	add hl, bc

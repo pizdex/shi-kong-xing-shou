@@ -13,7 +13,7 @@ Func_030_4000::
 	jr .asm_401e
 
 .asm_4018
-	ld de, unk_030_44ab
+	ld de, MoveEffectPointers
 	ld a, [wd988]
 
 .asm_401e
@@ -173,150 +173,150 @@ Func_030_442a:
 Func_030_4442:
 	dr $c0442, $c04ab
 
-unk_030_44ab:
-	dw Func_030_55a5
-	dw Func_030_555c
-	dw Func_030_5603
-	dw Func_030_564a
-	dw Func_030_54de
-	dw Func_030_5486
-	dw Func_030_5465
-	dw Func_030_55a5
-	dw Func_030_5441
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_542e
-	dw Func_030_541a
-	dw Func_030_53ba
-	dw Func_030_52c3
-	dw Func_030_564a
-	dw Func_030_5249
-	dw Func_030_5231
-	dw Func_030_51da
-	dw Func_030_51bb
-	dw Func_030_5190
-	dw Func_030_5249
-	dw Func_030_5155
-	dw Func_030_5441
-	dw Func_030_542e
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_513a
-	dw Func_030_564a
-	dw Func_030_50f8
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_50cc
-	dw Func_030_50a4
-	dw Func_030_5074
-	dw Func_030_5056
-	dw Func_030_5003
-	dw Func_030_4fe8
-	dw Func_030_541a
-	dw Func_030_4fd4
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_4f9f
-	dw Func_030_541a
-	dw Func_030_5155
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_4f5f
-	dw Func_030_564a
-	dw Func_030_4f10
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_4eca
-	dw Func_030_4eca
-	dw Func_030_4e79
-	dw Func_030_4e28
-	dw Func_030_4e0b
-	dw Func_030_4d64
-	dw Func_030_564a
-	dw Func_030_4d13
-	dw Func_030_564a
-	dw Func_030_4d13
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_5190
-	dw Func_030_4cca
-	dw Func_030_4c50
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_4c12
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_4be3
-	dw Func_030_4bb1
-	dw Func_030_4b94
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_4b4d
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_50cc
-	dw Func_030_4e79
-	dw Func_030_564a
-	dw Func_030_4b30
-	dw Func_030_4e79
-	dw Func_030_4b30
-	dw Func_030_4e93
-	dw Func_030_4b1b
-	dw Func_030_564a
-	dw Func_030_4aec
-	dw Func_030_564a
-	dw Func_030_4aa5
-	dw Func_030_564a
-	dw Func_030_4a89
-	dw Func_030_55a5
-	dw Func_030_4b2d
-	dw Func_030_4a3d
-	dw Func_030_4b30
-	dw Func_030_4a20
-	dw Func_030_4a20
-	dw Func_030_4a03
-	dw Func_030_49d2
-	dw Func_030_564a
-	dw Func_030_55a5
-	dw Func_030_50f8
-	dw Func_030_5441
-	dw Func_030_498e
-	dw Func_030_53ba
-	dw Func_030_4aec
-	dw Func_030_4aec
-	dw Func_030_4aec
-	dw Func_030_564a
-	dw Func_030_564a
-	dw Func_030_4973
-	dw Func_030_4950
-	dw Func_030_4950
-	dw Func_030_4919
-	dw Func_030_48c5
-	dw Func_030_48bb
-	dw Func_030_4873
-	dw Func_030_485d
-	dw Func_030_480b
-	dw Func_030_4a3d
-	dw Func_030_47ee
-	dw Func_030_51da
-	dw Func_030_564a
-	dw Func_030_4793
-	dw Func_030_470d
-	dw Func_030_46ed
-	dw Func_030_46ce
-	dw Func_030_4689
-	dw Func_030_4641
-	dw Func_030_462d
-	dw Func_030_4619
-	dw Func_030_4605
-	dw Func_030_45fb
-	dw Func_030_564a
+MoveEffectPointers:
+	dw Func_030_55a5 ; $00
+	dw Func_030_555c ; $01
+	dw Func_030_5603 ; $02
+	dw Func_030_564a ; $03
+	dw Func_030_54de ; $04
+	dw Func_030_5486 ; $05
+	dw Func_030_5465 ; $06
+	dw Func_030_55a5 ; $07
+	dw Func_030_5441 ; $08
+	dw Func_030_564a ; $09
+	dw Func_030_564a ; $0a
+	dw Func_030_542e ; $0b
+	dw Func_030_541a ; $0c
+	dw Func_030_53ba ; $0d
+	dw Func_030_52c3 ; $0e
+	dw Func_030_564a ; $0f
+	dw Func_030_5249 ; $10
+	dw Func_030_5231 ; $11
+	dw Func_030_51da ; $12
+	dw Func_030_51bb ; $13
+	dw Func_030_5190 ; $14
+	dw Func_030_5249 ; $15
+	dw Func_030_5155 ; $16
+	dw Func_030_5441 ; $17
+	dw Func_030_542e ; $18
+	dw Func_030_564a ; $19
+	dw Func_030_564a ; $1a
+	dw Func_030_513a ; $1b
+	dw Func_030_564a ; $1c
+	dw Func_030_50f8 ; $1d
+	dw Func_030_564a ; $1e
+	dw Func_030_564a ; $1f
+	dw Func_030_564a ; $20
+	dw Func_030_564a ; $21
+	dw Func_030_50cc ; $22
+	dw Func_030_50a4 ; $23
+	dw Func_030_5074 ; $24
+	dw Func_030_5056 ; $25
+	dw Func_030_5003 ; $26
+	dw Func_030_4fe8 ; $27
+	dw Func_030_541a ; $28
+	dw Func_030_4fd4 ; $29
+	dw Func_030_564a ; $2a
+	dw Func_030_564a ; $2b
+	dw Func_030_564a ; $2c
+	dw Func_030_564a ; $2d
+	dw Func_030_564a ; $2e
+	dw Func_030_4f9f ; $2f
+	dw Func_030_541a ; $30
+	dw Func_030_5155 ; $31
+	dw Func_030_564a ; $32
+	dw Func_030_564a ; $33
+	dw Func_030_4f5f ; $34
+	dw Func_030_564a ; $35
+	dw Func_030_4f10 ; $36
+	dw Func_030_564a ; $37
+	dw Func_030_564a ; $38
+	dw Func_030_4eca ; $39
+	dw Func_030_4eca ; $3a
+	dw Func_030_4e79 ; $3b
+	dw Func_030_4e28 ; $3c
+	dw Func_030_4e0b ; $3d
+	dw Func_030_4d64 ; $3e
+	dw Func_030_564a ; $3f
+	dw Func_030_4d13 ; $40
+	dw Func_030_564a ; $41
+	dw Func_030_4d13 ; $42
+	dw Func_030_564a ; $43
+	dw Func_030_564a ; $44
+	dw Func_030_5190 ; $45
+	dw Func_030_4cca ; $46
+	dw Func_030_4c50 ; $47
+	dw Func_030_564a ; $48
+	dw Func_030_564a ; $49
+	dw Func_030_4c12 ; $4a
+	dw Func_030_564a ; $4b
+	dw Func_030_564a ; $4c
+	dw Func_030_4be3 ; $4d
+	dw Func_030_4bb1 ; $4e
+	dw Func_030_4b94 ; $4f
+	dw Func_030_564a ; $50
+	dw Func_030_564a ; $51
+	dw Func_030_564a ; $52
+	dw Func_030_4b4d ; $53
+	dw Func_030_564a ; $54
+	dw Func_030_564a ; $55
+	dw Func_030_50cc ; $56
+	dw Func_030_4e79 ; $57
+	dw Func_030_564a ; $58
+	dw Func_030_4b30 ; $59
+	dw Func_030_4e79 ; $5a
+	dw Func_030_4b30 ; $5b
+	dw Func_030_4e93 ; $5c
+	dw Func_030_4b1b ; $5d
+	dw Func_030_564a ; $5e
+	dw Func_030_4aec ; $5f
+	dw Func_030_564a ; $60
+	dw Func_030_4aa5 ; $61
+	dw Func_030_564a ; $62
+	dw Func_030_4a89 ; $63
+	dw Func_030_55a5 ; $64
+	dw Func_030_4b2d ; $65
+	dw Func_030_4a3d ; $66
+	dw Func_030_4b30 ; $67
+	dw Func_030_4a20 ; $68
+	dw Func_030_4a20 ; $69
+	dw Func_030_4a03 ; $6a
+	dw Func_030_49d2 ; $6b
+	dw Func_030_564a ; $6c
+	dw Func_030_55a5 ; $6d
+	dw Func_030_50f8 ; $6e
+	dw Func_030_5441 ; $6f
+	dw Func_030_498e ; $70
+	dw Func_030_53ba ; $71
+	dw Func_030_4aec ; $72
+	dw Func_030_4aec ; $73
+	dw Func_030_4aec ; $74
+	dw Func_030_564a ; $75
+	dw Func_030_564a ; $76
+	dw Func_030_4973 ; $77
+	dw Func_030_4950 ; $78
+	dw Func_030_4950 ; $79
+	dw Func_030_4919 ; $7a
+	dw Func_030_48c5 ; $7b
+	dw Func_030_48bb ; $7c
+	dw Func_030_4873 ; $7d
+	dw Func_030_485d ; $7e
+	dw Func_030_480b ; $7f
+	dw Func_030_4a3d ; $80
+	dw Func_030_47ee ; $81
+	dw Func_030_51da ; $82
+	dw Func_030_564a ; $83
+	dw Func_030_4793 ; $84
+	dw Func_030_470d ; $85
+	dw Func_030_46ed ; $86
+	dw Func_030_46ce ; $87
+	dw Func_030_4689 ; $88
+	dw Func_030_4641 ; $89
+	dw Func_030_462d ; $8a
+	dw Func_030_4619 ; $8b
+	dw Func_030_4605 ; $8c
+	dw Func_030_45fb ; $8d
+	dw Func_030_564a ; $8e
 
 Func_030_45c9:
 	ld de, unk_030_565c
@@ -565,7 +565,70 @@ Func_030_52c3:
 	dr $c12c3, $c13ba
 
 Func_030_53ba:
-	dr $c13ba, $c141a
+	ld a, [wd993]
+	and a
+	jp z, Func_030_55ab
+
+.asm_53c1
+	ld a, $01
+	ld [wd9b5], a
+	ld a, $3e
+	ld [wd3ff], a
+	call Func_1159
+	call Func_030_53ee
+	and a
+	jr z, .asm_53c1
+
+	ld a, [wd986]
+	and a
+	jr z, .asm_53df
+	ld de, wd97c
+	jr .asm_53e2
+
+.asm_53df
+	ld de, wd978
+.asm_53e2
+	ld a, [wd991]
+	and $03
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld [hl], $01
+	ret
+
+Func_030_53ee:
+	ld a, [wd986]
+	and a
+	jr z, .asm_53fe
+
+	ld a, [wd984]
+	ld l, a
+	ld a, [wd984 + 1]
+	ld h, a
+	jr .asm_5406
+
+.asm_53fe
+	ld a, [wd981]
+	ld l, a
+	ld a, [wd981 + 1]
+	ld h, a
+
+.asm_5406
+	ld bc, 7
+	add hl, bc
+	ld a, [wd991]
+	and $03
+	jr z, .asm_5418
+
+.asm_5411
+	ld bc, 3
+	add hl, bc
+	dec a
+	jr nz, .asm_5411
+
+.asm_5418
+	ld a, [hl]
+	ret
 
 Func_030_541a:
 	dr $c141a, $c142e
@@ -592,7 +655,10 @@ Func_030_555c:
 	dr $c155c, $c15a5
 
 Func_030_55a5:
-	dr $c15a5, $c1603
+	dr $c15a5, $c15ab
+
+Func_030_55ab:
+	dr $c15ab, $c1603
 
 Func_030_5603:
 	dr $c1603, $c164a
