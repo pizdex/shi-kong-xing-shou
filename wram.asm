@@ -123,9 +123,25 @@ wcd25:: ds 1
 wcd26:: ds 1
 wcd27:: ds $19
 
-wcd40:: ds $10
+wcd40:: ds 1
+wcd41:: ds 1
+wcd42:: ds 1
+wcd43:: ds 1
+wcd44:: ds 1
 
-wcd50:: ds $90
+wcd45:: ds 11
+
+wcd50:: ds 1
+wcd51:: ds 1
+wcd52:: ds 1
+wcd53:: ds 1
+wcd54:: ds 1
+wcd55:: ds 1
+wcd56:: ds 1
+wcd57:: ds 1
+wcd58:: ds 1
+
+	ds $87
 
 ; Start menu
 wcde0:: ds 1
@@ -177,8 +193,9 @@ wd0b4:: ds 1
 wd0b5:: ds 5
 
 wd0ba:: ds 2
-wd0bc:: ds 6
+wd0bc:: ds 5
 
+wd0c1:: ds 1
 wd0c2:: ds 1
 wd0c3:: ds 1
 
@@ -245,7 +262,13 @@ wd1fb:: ds 1
 wd1fc:: ds 1
 	ds 3
 
-wd200:: ds $84
+wPartyMons::
+wPartyMon1:: party_struct wPartyMon1
+wPartyMon2:: party_struct wPartyMon2
+wPartyMon3:: party_struct wPartyMon3
+wPartyMon4:: party_struct wPartyMon4
+wPartyMon5:: party_struct wPartyMon5
+wPartyMon6:: party_struct wPartyMon6
 
 wd284:: ds $7c
 
@@ -260,33 +283,48 @@ wd3f6:: ds 1
 wd3f7:: ds 1
 wd3f8:: ds 1
 
-wd3f9:: ds $3d2
+wd3f9:: ds 5
+wd3fe:: ds 1
+wd3ff:: ds 1
+wd400:: ds $20b
 
-wd7cb:: ds $9f
+wd60b:: ds 1
+wd60c:: ds $1bf
 
-wd86a:: ds $c
+wd7cb:: ds $9f ; mon dex
 
-wd876:: ds 1
-wd877:: ds $87
+wd86a:: ds 12
 
-wd8fe:: ds 2
+wd876:: ds $16
+
+wd88c:: ds $6e
+
+wd8fa:: ds 4
+wd8fe:: ds 1
+wd8ff:: ds 1
 
 wd900:: ds $3c
 
-wd93c:: ds $45
+wd93c:: ds $3c
 
-wd981:: ds 1
-wd982:: ds 1
+wd978:: ds 4
+wd97c:: ds 5
+
+wd981:: ds 2
 wd983:: ds 1
 wd984:: ds 2
 wd986:: ds 1
-wd987:: ds 2
+wd987:: ds 1
+wd988:: ds 1
 wd989:: ds 1
-wd98a:: ds 2
+wd98a:: ds 1
+wd98b:: ds 1
 wd98c:: ds 3
 wd98f:: ds 1
 wd990:: ds 1
-wd991:: ds 7
+wd991:: ds 2
+wd993:: ds 1
+wd994:: ds 4
 
 wd998:: ds 1
 wd999:: ds 1
@@ -301,7 +339,10 @@ wd9ad:: ds 2
 wd9af:: ds 3
 
 wd9b2:: ds 1
-wd9b3:: ds $c
+wd9b3:: ds 1
+wd9b4:: ds 1
+wd9b5:: ds 1
+wd9b6:: ds 9
 
 wd9bf:: ds 1
 
@@ -329,7 +370,9 @@ wd9e2:: ds 1
 wd9e3:: ds 1
 wEnemyMonSpecies:: ds 1
 wd9e5:: ds 4
-wd9e9:: ds 7
+wd9e9:: ds 1
+wd9ea:: ds 1
+wd9eb:: ds 5
 
 wTempBank:: ds 1
 wd9f1:: ds 2
@@ -375,7 +418,9 @@ wTextBGMapPointer:: ds 2
 wdad0:: ds $12
 
 wdae2:: ds 1
-wdae3:: ds $38
+wdae3:: ds 1
+wdae7:: ds 7
+wdaeb:: ds $30
 
 wGameTimeSeconds:: ds 1
 wdb1c:: ds 1
@@ -426,11 +471,24 @@ wdceb:: ds 1
 wdcec:: ds 7
 
 wdcf3:: ds 1
-wdcf4:: ds $c
+wdcf4:: ds 1
+wdcf5:: ds 1
+wdcf6:: ds 1
+wdcf7:: ds 1
+wdcf8:: ds 1
+wdcf9:: ds 1
+wdcfa:: ds 1
+wdcfb:: ds 1
+wdcfc:: ds 1
+wdcfd:: ds 1
+wdcfe:: ds 1
+wdcff:: ds 1
 
 wdd00:: ds $18
+wdd18:: ds $38
 
-wdd18:: ds $98
+wdd50:: ds 1
+	ds $5f
 
 wddb0:: ds $50
 

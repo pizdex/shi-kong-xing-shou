@@ -1,6 +1,6 @@
 SECTION "Debug", ROM0[$2ca4]
 
-Func_2ca4:
+Func_2ca4::
 	ld de, wd284
 	ld hl, .unk_2cb8
 .asm_2caa
@@ -58,7 +58,7 @@ ENDR
 	db $27, $01
 	db $28, $01
 
-Func_2d08:
+Func_2d08::
 	ld de, wddb0
 	ld hl, .unk_2d16
 .copy
@@ -95,7 +95,7 @@ Func_2d08:
 	db $15, $03
 	db $ff, $ff
 
-Debug_GiveItems:
+Debug_GiveItems::
 	ld de, wd300
 	ld hl, .item_data
 .copy
@@ -200,11 +200,11 @@ Debug_GiveItems:
 	db TM50, 12
 	db $ff, $ff
 
-Func_2e04:
+Func_2e04::
 	ld hl, wdd00
 .asm_2e07
 	ld [hl], $01
-	dec c ; dec bc
+	dec c ; @bad: use dec bc
 	ld a, c
 	or b
 	ret z
@@ -213,26 +213,27 @@ Func_2e04:
 	add hl, de
 	jr .asm_2e07
 
-Func_2e13:
+Func_2e13::
 	ld de, wde00
 	ld hl, unk_2f40
 .copy1
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+	dec c ; @bad: use dec bc
 	ld a, c
 	or b
 	jr nz, .copy1
 
-	ld de, wd200
+	ld de, wPartyMon1
 	ld hl, wde00
 	ld bc, $16
 .copy2
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	jr nz, .copy2
@@ -241,16 +242,17 @@ Func_2e13:
 	ld [wdcea], a
 	ret
 
-Func_2e38:
+Func_2e38::
 	ld de, wdb20
-.asm_2e3b:
+.asm_2e3b
 	ld hl, unk_2f40
 	ld bc, $13
 .copy
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	and a
@@ -263,8 +265,7 @@ Func_2e38:
 	ret nc
 	jr .asm_2e3b
 
-Func_2e56:
-; Debug code
+Func_2e56::
 	ld de, wd7cb
 	ld hl, .unk_2ea0
 	ld bc, $9e
@@ -272,7 +273,8 @@ Func_2e56:
 	ld a, [hli]
 	ld [de], a
 	inc de
-	dec c ; dec bc
+; @bad
+	dec c
 	ld a, c
 	or b
 	jr nz, .copy1
@@ -335,5 +337,107 @@ Func_2e56:
 	db $01, $01, $02, $02, $02, $02, $02, $02 ; 19
 	db $02, $02, $01, $01, $01, $01, $01, $01 ; 20?
 
-unk_2f40:
-	INCBIN "data/unk_2f40.bin"
+unk_2f40::
+; Partner 1 mon data
+	db MON_081 ; species
+	db 90 ; level
+	dw $005a ; HP
+	db $05, $00, $00 ; exp
+	db $02, 20, 20 ; move 1
+	db $77, 20, 20 ; move 2
+	db $89, 20, 20 ; move 3
+	db $88, 20, 20 ; move 4
+	db $00 ; status
+	db $00 ; item
+	db 0
+
+; Partner 2 mon data
+	db MON_117
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $09, 12, 12
+	db $86, 12, 12
+	db $00, 12, 12
+	db $00, 12, 12
+	db $00
+	db $00
+	db 0
+
+; Partner 3 mon data
+	db MON_108
+	db 90
+	dw $005a
+	db $20, $cb, $00
+	db $03, 12, 12
+	db $04, 12, 12
+	db $05, 12, 12
+	db $06, 12, 12
+	db $00
+	db $00
+	db 0
+
+; Partner 4 mon data
+	db MON_091
+	db 90
+	dw $005a
+	db $20, $cb, $00
+	db $04, 12, 12
+	db $05, 12, 12
+	db $06, 12, 12
+	db $07, 12, 12
+	db $00
+	db $00
+	db 0
+
+; Partner 5 mon data
+	db MON_099
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $05, 12, 12
+	db $06, 12, 12
+	db $07, 12, 12
+	db $08, 12, 12
+	db $00
+	db $05
+	db 0
+
+; Partner 6 mon data
+	db MON_145
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $06, 12, 12
+	db $07, 12, 12
+	db $08, 12, 12
+	db $09, 12, 12
+	db $00
+	db $06
+	db 0
+
+; Partner 7 mon data
+	db MON_144
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $07, 12, 12
+	db $08, 12, 12
+	db $09, 12, 12
+	db $0a, 12, 12
+	db $00
+	db $07
+	db 0
+
+; Partner 8 mon data
+	db MON_126
+	db 90
+	dw $005a
+	db $00, $00, $00
+	db $08, 12, 12
+	db $09, 12, 12
+	db $0a, 12, 12
+	db $0b, 12, 12
+	db $00
+	db $08
+	db 0

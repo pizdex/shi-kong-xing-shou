@@ -1,6 +1,6 @@
 Func_01f_4000::
 ; 2bpp
-	ld de, unk_01f_4347
+	ld de, FacePicPointers
 	ld a, [wTextFaceID]
 	ld l, a
 	ld h, 0
@@ -15,7 +15,7 @@ Func_01f_4000::
 	call CopyBytesVRAM
 
 ; palette
-	ld de, unk_01f_4139
+	ld de, FacePalettePointers
 	pop hl
 	add hl, de
 	ld a, [hli]
@@ -52,7 +52,7 @@ Func_01f_4028:
 	ld c, l
 	ld b, h
 	; ld bc, wcab0 + $38
-	ld de, unk_01f_4139
+	ld de, FacePalettePointers
 	pop hl
 	add hl, de
 	ld a, [hli]
@@ -65,85 +65,139 @@ Func_01f_4028:
 	ret
 
 Func_01f_405d:
-	dr $7c05d, $7c139
+	ld a, [wd08a]
+	push af
+	cp 3
+	jr nz, .asm_4072
 
-unk_01f_4139:
-	dr $7c139, $7c335
+	ld hl, wdd18
+	ld a, [hl]
+	cp $80
+	jr nz, .asm_4072
 
-unk_01f_4335:
-	dr $7c335, $7c347
+	pop af
+	ld a, 8
+	jr .asm_4073
 
-unk_01f_4347:
-	dw face0
-	dw face1
-	dw $45bb
-	dw $46bb
-	dw $47bb
-	dw $48bb
-	dw $49bb
-	dw $4abb
-	dw $4bbb
-	dw $4cbb
-	dw $4dbb
-	dw $4ebb
-	dw $4fbb
-	dw $50bb
-	dw $51bb
-	dw $52bb
-	dw $53bb
-	dw $54bb
-	dw $55bb
-	dw $56bb
-	dw $57bb
-	dw $58bb
-	dw $59bb
-	dw $5abb
-	dw $5bbb
-	dw $5cbb
-	dw $5dbb
-	dw $5ebb
-	dw $5fbb
-	dw $60bb
-	dw $61bb
-	dw $62bb
-	dw $63bb
-	dw $64bb
-	dw $65bb
-	dw $66bb
-	dw $67bb
-	dw $68bb
-	dw $69bb
-	dw $6abb
-	dw $6bbb
-	dw $6cbb
-	dw $6dbb
-	dw $6ebb
-	dw $6fbb
-	dw $70bb
-	dw $71bb
-	dw $72bb
-	dw $73bb
-	dw $74bb
-	dw $75bb
-	dw $76bb
-	dw $77bb
-	dw $78bb
-	dw $79bb
-	dw $7abb
-	dw $7bbb
-	dw face39
+.asm_4072
+	pop af
 
-face0:
-	dr $7c3bb, $7c4bb
+.asm_4073
+	ld de, unk_01f_4335
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd08a]
+	ld b, a
+	ld de, $9000
+	ld a, d
+	or b
+	ld d, a
+	ld e, 0
+	ld bc, $100
+	call CopyBytesVRAM
+	ret
 
-face1:
-	dr $7c4bb, $7fcbb
+unk_01f_4091:
+	db $90, $91, $92, $93, $94, $95, $96, $97, $93
 
-face39:
-	dr $7fcbb, $7fdbb
+Func_01f_409a:
+	ld bc, wcab0
+	ld hl, $38
+	add hl, bc
+	ld c, l
+	ld b, h
+	ld hl, .unk_40af
+	push bc
+	pop de
+	ld bc, 8
+	call CopyBytes3
+	ret
 
-unk_01f_7dbb:
-	dr $7fdbb, $7fec0
+.unk_40af
+	db $ff, $7f, $dc, $01, $0f, $15, $00, $00
+
+Func_01f_40b7:
+	ld a, [wd08e]
+	cp 3
+	jr nz, .asm_40ca
+
+	ld hl, wdd18
+	ld a, [hl]
+	cp $80
+	jr nz, .asm_40ca
+
+	call Func_01f_409a
+	ret
+
+.asm_40ca
+	ld bc, wcab0
+	ld hl, $38
+	add hl, bc
+	ld c, l
+	ld b, h
+	ld de, FacePalettePointers
+	ld a, [wd08e]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push bc
+	pop de
+	ld bc, 8
+	call CopyBytes3
+	ret
+
+Func_01f_40ea:
+	ld hl, $9822
+	ld a, 16
+	ld b, a
+	ldh [hFF92], a
+	ld a, 9
+	ld c, a
+	ldh [hFF93], a
+	call Func_1022
+	ld de, .unk_4119
+	ld a, [wd08e]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, .unk_4129
+	ld a, 4
+	ld b, a
+	ldh [hFF92], a
+	ld a, 4
+	ld c, a
+	ldh [hFF93], a
+	call PlaceAttrmap
+	ret
+
+.unk_4119
+	dw $9822
+	dw $9826
+	dw $982a
+	dw $982e
+	dw $98c2
+	dw $98c6
+	dw $98ca
+	dw $98ce
+
+.unk_4129
+	db $07, $07, $07, $07, $07, $07, $07, $07, $07, $07, $07, $07, $07, $07, $07, $07
+
+INCLUDE "data/faces/palettes.asm"
+INCLUDE "data/faces/pics.asm"
 
 
 SECTION "banknum1f", ROMX[$7fff], BANK[$1f]

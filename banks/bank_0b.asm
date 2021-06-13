@@ -556,8 +556,8 @@ Func_00b_45e1:
 
 Func_00b_45ff:
 ; Display emote
-	ld a, $44
-	call Func_2be2
+	ld a, SFX_44
+	call PlaySound
 	call Func_00b_4369
 	call GetScriptByte
 	ld bc, wd1a0
@@ -754,16 +754,16 @@ Func_00b_4cc5:
 	dr $2ccc5, $2ccde
 
 Func_00b_4cde:
-	ld a, $59
-	call Func_2be2
+	ld a, BGM_59
+	call PlaySound
 	farcall Func_039_4892
 	xor a
 	ld [wScriptByte], a
 	ret
 
 Func_00b_4cee:
-	ld a, $29
-	call Func_2be2
+	ld a, SFX_29
+	call PlaySound
 	call Func_00b_4dc5
 	call Func_00b_4dc5
 	call Func_00b_4dc5
@@ -798,10 +798,10 @@ Func_00b_4e39:
 	ld a, $01
 	ld [hFFD3], a
 	xor a
-	ld [$d3fe], a
+	ld [wd3fe], a
 	ld [wScriptByte], a
 	ld a, $0c
-	ld [$d3ff], a
+	ld [wd3ff], a
 	xor a
 	ld [wd987], a
 	ld hl, wd876
@@ -811,16 +811,16 @@ Func_00b_4e39:
 	ld [wd984 + 1], a
 	ld a, [hl]
 	ld [wEnemyMonSpecies], a
-	ld bc, wd200
+	ld bc, wPartyMons
 	ld e, 0
 .asm_4e7a:
-	ld hl, 2
+	ld hl, MON_HP
 	add hl, bc
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_4e90
 
-	ld hl, $16
+	ld hl, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	inc e
 	ld a, l
@@ -835,7 +835,7 @@ Func_00b_4e39:
 	ld a, c
 	ld [wd981], a
 	ld a, b
-	ld [wd982], a
+	ld [wd981 + 1], a
 	ld a, e
 	ld [wd983], a
 	call DelayFrame

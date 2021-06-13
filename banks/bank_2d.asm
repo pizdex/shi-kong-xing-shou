@@ -1,4 +1,4 @@
-unk_02d_4000:
+Func_02d_4000:
 	dr $b4000, $b507b
 
 Func_02d_507b::
@@ -37,8 +37,8 @@ Func_02d_5147:
 ; Load wild mon encounter data
 
 ; Get species and level
-	ld hl, 0 ; ???
-	add hl, bc
+	ld hl, 0
+	add hl, bc ; ld hl, bc
 REPT 2
 	ld a, [de]
 	inc de

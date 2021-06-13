@@ -1,4 +1,8 @@
-Menu_CheckCharacter:
+Func_0b65::
+	call DelayFrame
+	push hl
+
+Menu_CheckCharacter::
 ; Text routine used for menus, battles and other things
 	pop hl
 	ld a, [hli]
@@ -10,7 +14,7 @@ Menu_CheckCharacter:
 	jp Menu_CheckCharacter_Continue
 	ret ; ?
 
-MenuText_Done:
+MenuText_Done::
 	ld a, [wd9d6]
 	and a
 	jr z, .asm_0b94
@@ -31,7 +35,7 @@ MenuText_Done:
 	pop hl
 	ret
 
-Menu_CheckCharacter_Commands:
+Menu_CheckCharacter_Commands::
 	ld de, .commands
 	sub $e0
 	ld l, a
@@ -61,10 +65,10 @@ Menu_CheckCharacter_Commands:
 	dw MenuText_Skip ; $ee
 	dw MenuText_Skip ; $ef
 
-MenuText_Skip:
+MenuText_Skip::
 	jp Menu_CheckCharacter
 
-Func_0bc7:
+Func_0bc7::
 	ld a, [wd9d0]
 	ld l, a
 	ld a, [wd9d0 + 1]
@@ -82,19 +86,19 @@ Func_0bc7:
 	push hl
 	jp Menu_CheckCharacter
 
-Func_0bec:
+Func_0bec::
 	pop hl
 	call Func_1fb9
 	ret
 
-Func_0bf1:
+Func_0bf1::
 	ld bc, $480
 	ld hl, $8b60
 	xor a
 	call ByteFillVRAM
 	call DelayFrame
 
-Func_0bfe:
+Func_0bfe::
 	call Func_1fb9
 	ld bc, $480
 	ld hl, $8b60
@@ -107,7 +111,7 @@ Func_0bfe:
 	push hl
 	jp Menu_CheckCharacter
 
-Func_0c17:
+Func_0c17::
 	ld a, [wd986]
 	and a
 	jr nz, .asm_0c22
@@ -124,7 +128,7 @@ Func_0c17:
 	push hl
 	jp Menu_CheckCharacter
 
-Func_0c33:
+Func_0c33::
 	ld a, [wd9e9]
 	ld d, a
 	farcall Func_01e_4266
@@ -132,7 +136,7 @@ Func_0c33:
 	push hl
 	jp Menu_CheckCharacter
 
-Func_0c42:
+Func_0c42::
 	ld a, [wd9f3]
 	ld d, a
 	farcall Func_01e_4275
@@ -140,7 +144,7 @@ Func_0c42:
 	push hl
 	jp Menu_CheckCharacter
 
-Func_0c51:
+Func_0c51::
 	ld hl, wd86a
 	ld a, $b6
 	ld [wd08b], a
@@ -153,7 +157,7 @@ Func_0c51:
 	push hl
 	jp Menu_CheckCharacter
 
-Func_0c6a:
+Func_0c6a::
 	pop hl
 	ld a, l
 	ld [wdcd3], a
@@ -172,11 +176,11 @@ Func_0c6a:
 	push hl
 	jp Menu_CheckCharacter
 
-Menu_GetCharacterSetBase:
+Menu_GetCharacterSetBase::
 	call GetCharacterSetBase
 	jp Menu_CheckCharacter
 
-Menu_CheckCharacter_Continue:
+Menu_CheckCharacter_Continue::
 	ld [wCurrentCharacterByte], a
 	ld a, [wCharacterTilePos]
 	ld c, a
@@ -195,7 +199,7 @@ Menu_CheckCharacter_Continue:
 .asm_0caf
 	or $80
 
-.asm_0cb1:
+.asm_0cb1
 	ld [wCharacterTileDest + 1], a
 	ld a, b
 	and $f0

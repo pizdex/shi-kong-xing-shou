@@ -6,6 +6,10 @@ MD5  := md5sum -c
 PYTHON := python3
 
 ASMFLAGS := -hL
+# Include all labels, including unreferenced and local labels, in the sym/map file if `make` is run with `ALLSYM=1`
+ifeq ($(ALLSYM),1)
+ASMFLAGS += -E
+endif
 
 SCANINC := tools/scan_includes
 
@@ -59,3 +63,23 @@ endif
 $(ROM): $(OBJS)
 	$(LINK) -n $(SYM) -m $(MAP) -p 0 -o $@ $(OBJS)
 	$(FIX) -cv -t $(ROM_TITLE) -l 0x33 -k A7 -m 0x1b -r 2 -p 0 $@
+
+### Misc file-specific graphics rules
+
+gfx/character_set/%.1bpp: tools/gfx += --interleave --png=$<
+
+
+### Catch-all graphics rules
+
+%.2bpp: %.png
+	$(GFX) -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -o $@ $@)
+
+%.1bpp: %.png
+	$(GFX) -d1 -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -d1 -o $@ $@)
+
+%.gbcpal: %.png
+	$(GFX) -p $@ $<

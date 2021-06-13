@@ -20,10 +20,124 @@ Func_01e_4266::
 	dr $78266, $78275
 
 Func_01e_4275::
-	dr $78275, $787fb
+	ld l, d
+	ld h, 0
+	ld de, unk_01e_4ec3
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Func_0b65
+	ret
+
+Func_01e_4284:
+	ld l, d
+	ld h, 0
+	ld de, MonIcons
+	add hl, de
+	ld a, [hl]
+	ld [wd0c1], a
+	ret
+
+Func_01e_4290::
+	ld l, d
+	ld h, 0
+	ld de, MonIcons
+	add hl, de
+	ld a, [hl]
+	ld [wdce8], a
+	and $0f ; ?
+	ld l, a
+	ld h, 0
+	ld de, TypeNames
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, $3c
+	ld [wd08b], a
+	ld a, $40
+	ld [wd08c], a
+	xor a
+	ld [wCharacterTilePos], a
+	call Func_0b65
+	ret
+
+Func_01e_42ba:
+	dr $782ba, $782e4
+
+Func_01e_42e4:
+	ld l, d
+	ld a, d ; @bad
+	ld h, 0
+	ld de, unk_01e_551f
+	add hl, de
+	ld a, [hl]
+	ld [wd8ff], a
+	ret
+
+Func_01e_42f1:
+	dr $782f1, $7831f
+
+Func_01e_431f::
+	ld l, d
+	ld h, 0
+	ld de, MonIcons
+	add hl, de
+	ld l, [hl]
+	ld h, 0
+	add hl, hl
+	ld de, IconPointers
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd0c3]
+	sla a
+	sla a
+	add $80
+	swap a
+	ld d, a
+	and $f0
+	ld e, a
+	ld a, d
+	and $0f
+	or $80
+	ld d, a
+	ld bc, $40
+	call CopyBytesVRAM
+	ret
+
+Func_01e_434d:
+	dr $7834d, $787fb
 
 Func_01e_47fb:
-	dr $787fb, $797ed
+	dr $787fb, $78ec3
+
+unk_01e_4ec3:
+	dr $78ec3, $7947f
+
+INCLUDE "data/monsters/menu_icons.asm"
+
+unk_01e_551f:
+	dr $7951f, $795ae
+
+TypeNames:
+	dw text_1e_55c0
+	dw text_1e_55c3
+	dw text_1e_55c6
+	dw text_1e_55c9
+	dw text_1e_55cc
+	dw text_1e_55cf
+	dw text_1e_55d2
+	dw text_1e_55d5
+	dw text_1e_55d8
+
+INCLUDE "data/text/mon_types.asm"
+
+INCLUDE "data/icon_pointers.asm"
 
 PointerTable_01e_57ed:
 	dw text_1e_5829

@@ -90,7 +90,7 @@ hFFD8:: ds 1
 
 hGameTimeFrames:: ds 1
 
-hFFDA:: ds 1
+hCurSound:: ds 1
 hFFDB:: ds 1
 hFFDC:: ds 1
 hFFDD:: ds 1
