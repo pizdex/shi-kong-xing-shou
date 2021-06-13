@@ -4,7 +4,7 @@ BlankName::
 	line
 
 BallotName::
-	text2 "123456"
+	text2 "T M P"
 	line
 
 BuckName::
@@ -51,9 +51,7 @@ MittName::
 	line
 
 SnowyName::
-	text "小", 0
-	text " ", 0
-	text "白", 2
+	text2 "T M P"
 	line
 
 text_0a_46f6::

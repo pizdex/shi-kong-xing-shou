@@ -1,190 +1,42 @@
-
-text_08_4651::
+text_08_46d9::
 	text_init NAME_SNOWY, $08
-	text "汪", 3
-	text "汪"
-	text "~", 2
-	text "汪", 3
-	text "~", 2
+	text2 "Wang Wang~ "
+	line "Wang~"
 	done
 
-text_08_465e::
+text_08_46ee::
 	text_init NAME_BALLOT, PIC_BALLOT_0
-	text "小", 0
-	text "白", 2
-	text "~"
-	line
-	text "乖", 3
-	text "~", 2
-	text "乖", 3
-	text "~", 2
-	para
-	text "肚", 3
-	text "子", 0
-	text "餓", 3
-	text "了", 1
-	text "嗎?"
-	para
-	text "我", 2
-	text "們", 3
-	text "一", 0
-	text "起", 2
-	text "去"
-	text "天", 0
-	text "文", 3
-	line
-	text "台", 3
-	text "，", 1
-	cont
-	text "找", 1
-	text "爸", 3
-	text "爸"
-	text "回", 1
-	text "來", 2
-	text "吃", 0
-	text "晚", 2
-	line
-	text "餐", 1
-	text "好", 2
-	text "嗎", 1
-	text "?"
+	text2 "Small white~ "
+	line "Good~ Are you "
+	line "hungry? Let's "
+	line "go to the "
+	para "observatory "
+	line "together, do "
+	line "you find Dad "
+	line "back to eat "
+	line "dinner?"
 	done
 
-text_08_46a4::
+db 0 ; padding hack
+
+text_08_4766::
 	text_init NAME_SNOWY, $08
-	text "汪", 3
-	text "~", 2
-	text "汪", 3
-	text "汪"
-	text "~", 2
+	text2 "Wang~ Wang "
+	line "Wang~"
 	done
+
+db 0, 0, 0
 
 text_08_46b1::
 	text_init NAME_BLANK, $1b
-	text "賽", 3
-	text "亞"
-	text "?", 1
-	para
-	text "我", 2
-	text "剛", 3
-	text "剛"
-	text "才", 2
-	text "和", 3
-	text "他聊"
-	line
-	text "過", 2
-	text "天", 0
-	text "而", 1
-	text "已。"
-	para
-	text "不", 0
-	text "過", 2
-	text "他", 3
-	text "一", 0
-	text "看", 2
-	text "到", 1
-	text "月", 3
-	line
-	text "亮", 3
-	text "之", 0
-	text "後", 2
-	text "，", 1
-	cont
-	text "就", 2
-	text "緊", 0
-	text "張", 3
-	text "兮兮往"
-	text "天", 0
-	line
-	text "文", 3
-	text "台"
-	text "跑", 1
-	text "去", 2
-	text "了", 1
-	text "。"
 	done
 
 text_08_46fe::
 	text_init NAME_BLANK, $13
-	text "⋯", 2
-	text "啊", 3
-	text "?", 1
-	cont
-	text "要", 1
-	text "找"
-	text "你", 2
-	text "爸", 3
-	text "爸"
-	text "回", 1
-	text "家", 3
-	line
-	text "吃", 0
-	text "晚", 2
-	text "餐", 1
-	text "啊", 3
-	text "。", 1
-	para
-	text "真", 1
-	text "是"
-	text "孝", 3
-	text "順"
-	text "的", 1
-	text "小", 0
-	text "孩", 2
-	line
-	text "。", 1
-	para
-	text "媽", 3
-	text "媽病逝"
-	text "後", 2
-	text "，", 1
-	line
-	text "要", 1
-	text "更", 2
-	text "堅", 3
-	text "強", 0
-	text "喲", 3
-	text "!", 1
-	para
-	text "啊", 3
-	text "啊啊"
-	text "!", 1
-	text "!"
-	cont
-	text "又", 3
-	text "提", 1
-	text "到"
-	text "這", 2
-	text "件", 3
-	text "事", 2
-	text "~"
-	line
-	text "真", 1
-	text "是"
-	text "對", 2
-	text "不", 0
-	text "起", 2
-	text "。", 1
 	done
 
 text_08_4768::
 	text_init NAME_BLANK, $20
-	text "是", 1
-	text "你", 2
-	text "啊", 3
-	text "!", 1
-	para
-	text "哈", 3
-	text "哈哈"
-	text "~", 2
-	cont
-	text "昨", 3
-	text "天", 0
-	text "考", 3
-	text "試", 2
-	text "，", 1
-	text "你", 2
-	text "又", 3
 	line
 	text "考", 3
 	text "輸", 2

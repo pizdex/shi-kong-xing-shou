@@ -11,15 +11,15 @@ Script_008_4000::
 	scr_emote 0, EMOTE_HEART
 	scr_delay 3, 32
 	scr_face FACE_DOWN
-	scr_text text_08_456d
-	scr_text text_08_458a
-	scr_text text_08_45a5
+	scr_text text_08_457b
+	scr_text text_08_45a9
+	scr_text text_08_45c4
 	scr_face FACE_LEFT
 	scr_move unk_00b_413c
 	scr_move unk_00b_413c
 	scr_face FACE_DOWN
 	scr_move unk_00b_4191
-	scr_text text_08_45cc
+	scr_text text_08_45f6
 	scr_delay 3, 7
 	scr_emote 0, EMOTE_EXCLAMATION
 	scr_delay 3, 32
@@ -29,11 +29,11 @@ Script_008_4000::
 	scr_move unk_00b_413c
 	scr_face FACE_DOWN
 	scr_move unk_00b_4191
-	scr_text text_08_45db
+	scr_text text_08_460c
 	scr_delay 3, 7
 	scr_emote 0, EMOTE_QUESTION
 	scr_delay 3, 32
-	scr_text text_08_45f0
+	scr_text text_08_4626
 	scr_move unk_00b_4191
 	scr_move unk_00b_4191
 	scr_move unk_00b_4191
@@ -43,9 +43,9 @@ Script_008_4000::
 	scr_setmap $01, $08 ; map switch
 ; outside
 	scr_face FACE_RIGHT
-	scr_text text_08_4651
-	scr_text text_08_465e
-	scr_text text_08_46a4
+	scr_text text_08_46d9
+	scr_text text_08_46ee
+	scr_text text_08_4766
 	scr_face FACE_LEFT
 	scr_1f $01 ; story flags?
 	scr_end

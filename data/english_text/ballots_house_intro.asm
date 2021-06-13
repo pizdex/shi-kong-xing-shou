@@ -1,143 +1,65 @@
-
 House_CutsceneText1::
 	text_init NAME_BALLOT, PIC_BALLOT_0
-	text2 "Alright!"
-	para "All that's left"
-	line "is a bit of"
-	cont "this!"
+	text2 "Um~ Put in "
+	line "this~"
 	done
 
 House_CutsceneText2::
 	text_init NAME_BALLOT, PIC_BALLOT_0
-	text2 "A"
+	text2 "⋯ at this "
+	line "time~ Add the "
+	line "taste⋯"
 	done
 
-text_08_456d::
+text_08_457b::
 	text_init NAME_BALLOT, $2a
-	text2 "01234567891234"
-	line "123"
+	text2 "Success! This "
+	line "is the taste "
+	line "of my mother!"
 	done
 
-text_08_458a::
+text_08_45a9::
 	text_init NAME_BALLOT, $2b
-; # TEMP
-	text "媽", 3
-	text "媽"
-	text "⋯", 2
-	text "⋯⋯"
-	line
-	text "我", 2
-	text "好想"
-	text "妳", 3
-	text "⋯", 2
-	text "⋯"
-	para
-	text "⋯", 2
-	text "⋯⋯⋯"
+	text2 "Mom⋯ I really "
+	line "want to⋯"
 	done
 
-text_08_45a5::
+text_08_45c4::
 	text_init NAME_BALLOT, PIC_BALLOT_0
-	text "不", 0
-	text "行", 3
-	text "~", 2
-	text "不", 0
-	text "行", 3
-	text "!", 1
-	para
-	text "我", 2
-	text "答", 3
-	text "應", 2
-	text "過"
-	text "媽", 3
-	text "媽"
-	text "，", 1
-	line
-	text "要", 1
-	text "堅", 3
-	text "強", 0
-	text "的", 1
-	text "!"
+	text2 "No~ No! I "
+	line "promised my "
+	line "mother and be "
+	line "strong!"
 	done
 
-text_08_45cc::
+text_08_45f6::
 	text_init NAME_BALLOT, PIC_BALLOT_0
-	text "爸", 3
-	text "~", 2
-	text "吃", 0
-	text "飯", 3
-	text "了", 1
-	text "!"
+	text2 "Dad~ time to "
+	line "eat!"
 	done
 
-text_08_45db::
+text_08_460c::
 	text_init NAME_BALLOT, PIC_BALLOT_0
-	text "爸", 3
-	text "~", 2
-	line
-	text "吃", 0
-	text "~", 2
-	text "飯", 3
-	text "~", 2
-	text "了", 1
-	text "!!"
+	text2 "Dad~ Eating~ "
+	line "Meal~ !!"
 	done
 
-text_08_45f0::
+text_08_4626::
 	text_init NAME_BALLOT, PIC_BALLOT_0
-	text "爸", 3
-	text "又"
-	text "到", 1
-	text "天", 0
-	text "文", 3
-	text "台"
-	text "了", 1
-	line
-	text "嗎", 1
-	text "?"
-	para
-	text "這", 2
-	text "陣", 3
-	text "子", 0
-	text "常", 2
-	text "整", 3
-	text "晚", 2
-	text "都", 3
-	line
-	text "待", 3
-	text "在"
-	text "天", 0
-	text "文", 3
-	text "台裡"
-	text "。", 1
-	para
-	text "真", 1
-	text "是"
-	text "反", 0
-	text "常", 2
-	text "⋯⋯"
-	para
-	text "找", 1
-	text "爸", 3
-	text "回", 1
-	text "來", 2
-	text "吃", 0
-	text "飯", 3
-	text "吧", 2
-	line
-	text "!", 1
-	cont
-	text "不", 0
-	text "然", 3
-	text "辛"
-	text "苦", 2
-	text "做"
-	text "的", 1
-	text "飯", 3
-	line
-	text "菜", 3
-	text "都"
-	text "冷", 2
-	text "了", 1
-	text "。"
+	text2 "Dad went to "
+	line "the "
+	line "observatory? "
+	line "This occult "
+	para "is always in "
+	line "the "
+	line "observatory "
+	line "all night. "
+	line "It's really "
+	para "abnormal⋯ "
+	line "find dad to "
+	line "come back! "
+	line "Otherwise, "
+	line "the hard "
+	para "meals are "
+	line "cold."
 	done

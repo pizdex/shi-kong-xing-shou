@@ -81,7 +81,8 @@ NEWCHARMAP english
 	charmap "/", $4e
 	charmap ",", $4f
 
-	charmap "'m",$84
+	charmap "⋯", $84
+	charmap "~", $85
 
 NEWCHARMAP charmap0
 ; 40:4000
