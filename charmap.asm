@@ -83,6 +83,8 @@ NEWCHARMAP english
 
 	charmap "⋯", $84
 	charmap "~", $85
+	charmap "-", $86
+	charmap "α", $87
 
 NEWCHARMAP charmap0
 ; 40:4000
