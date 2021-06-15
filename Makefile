@@ -72,6 +72,7 @@ data/text/%.asm: data/text/%.txt
 ### Misc file-specific graphics rules
 
 gfx/character_set/%.1bpp: tools/gfx += --interleave --png=$<
+gfx/battle/%.2bpp: tools/gfx += --interleave --png=$<
 
 
 ### Catch-all graphics rules
