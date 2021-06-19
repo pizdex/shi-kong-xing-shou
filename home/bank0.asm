@@ -520,12 +520,12 @@ Func_06d0::
 	ret
 
 GetScriptByte::
-; Get byte from [wScriptBank]:[wScriptPos] and store it in [wScriptByte]
+; Get byte from [hScriptBank]:[wScriptPos] and store it in [wScriptByte]
 	ld a, [_BANKNUM]
 	push af
 
 ; Get bank and address
-	ldh a, [wScriptBank]
+	ldh a, [hScriptBank]
 	rst Bankswitch
 	ld a, [wScriptPos]
 	ld l, a
@@ -2222,7 +2222,7 @@ Func_13b7::
 Func_13d5::
 	ld a, [_BANKNUM]
 	push af
-	ldh a, [wScriptBank]
+	ldh a, [hScriptBank]
 	rst Bankswitch
 	ld a, [wd0cd]
 	ld l, a
@@ -2467,7 +2467,7 @@ Func_1620::
 	ldh [hFFD6], a
 
 	ld a, BANK(Script_008_4000)
-	ld [wScriptBank], a
+	ld [hScriptBank], a
 	ld hl, wScriptPos
 	ld [hl], LOW(Script_008_4000)
 	inc hl
@@ -2602,7 +2602,7 @@ Func_16f4::
 	ldh [hFFD6], a
 
 	ld a, BANK(Script_00e_4005)
-	ld [wScriptBank], a
+	ld [hScriptBank], a
 	ld hl, wScriptPos
 	ld [hl], LOW(Script_00e_4005)
 	inc hl
@@ -2620,7 +2620,7 @@ Func_1712::
 	ldh [hFFD6], a
 
 	ld a, BANK(Script_055_53ef)
-	ld [wScriptBank], a
+	ld [hScriptBank], a
 	ld hl, wScriptPos
 	ld [hl], LOW(Script_055_53ef)
 	inc hl

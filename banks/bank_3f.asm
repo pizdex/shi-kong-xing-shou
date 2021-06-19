@@ -1,5 +1,5 @@
 unk_03f_4000:
-	dr $fc000, $fffff
+	dr $fc000, $fe850
 
 
 SECTION "banknum3f", ROMX[$7fff], BANK[$3f]

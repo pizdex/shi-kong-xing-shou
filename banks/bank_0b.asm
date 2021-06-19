@@ -535,7 +535,25 @@ Func_00b_45a9:
 	dr $2c5a9, $2c5b0
 
 Func_00b_45b0:
-	dr $2c5b0, $2c5e1
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcca], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdccb], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdccd], a
+	call GetScriptByte
+	ld a, [wScriptByte]
+	ld [wdcce], a
+
+	xor a
+	ld [wScriptByte], a
+	ld [wdccc], a
+	ld a, 1
+	ld [wdccf], a
+	ret
 
 Func_00b_45e1:
 	call GetScriptByte
@@ -1035,7 +1053,53 @@ Func_00b_6004:
 	dr $2e004, $2e06f
 
 Func_00b_606f:
-	dr $2e06f, $2e0dd
+	ld a, [wdccf]
+	and a
+	ret z
+	ldh a, [hFF9D]
+	and $07
+	ret nz
+
+	ld a, [wdccd]
+	ld l, a
+	ld a, [wdcce]
+	ld h, a
+	ld a, [wdccc]
+	add a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld a, [wdcca]
+	ld l, a
+	ld a, [wdccb]
+	ld h, a
+	ld a, [de]
+	cp $ff
+	jr z, .asm_60ad
+
+	ld b, a
+	ldh [hFF92], a
+	inc de
+	ld a, [de]
+	ld c, a
+	ldh [hFF93], a
+	inc de
+	call Func_00b_65f6
+	ld a, [wdccc]
+	inc a
+	ld [wdccc], a
+	ret
+
+.asm_60ad
+	xor a
+	ld [wdccf], a
+	ret
+
+Func_00b_60b2:
+	dr $2e0b2, $2e0dd
 
 Func_00b_60dd:
 	ldh a, [hFFA7]
@@ -1081,7 +1145,10 @@ Func_00b_625c:
 	dr $2e25c, $2e53d
 
 Func_00b_653d:
-	dr $2e53d, $2f1e0
+	dr $2e53d, $2e5f6
+
+Func_00b_65f6:
+	dr $2e5f6, $2f1e0
 
 SECTION "banknumb", ROMX[$7fff], BANK[$b]
 	db $b

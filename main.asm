@@ -325,18 +325,24 @@ INCLUDE "banks/bank_44.asm"
 
 
 SECTION "bank45", ROMX, BANK[$45]
+; empty bank
 
-INCLUDE "banks/bank_45.asm"
+SECTION "banknum45", ROMX[$7fff], BANK[$45]
+	db $45
 
 
 SECTION "bank46", ROMX, BANK[$46]
+; empty bank
 
-INCLUDE "banks/bank_46.asm"
+SECTION "banknum46", ROMX[$7fff], BANK[$46]
+	db $46
 
 
 SECTION "bank47", ROMX, BANK[$47]
+; empty bank
 
-INCLUDE "banks/bank_47.asm"
+SECTION "banknum47", ROMX[$7fff], BANK[$47]
+	db $47
 
 
 SECTION "bank48", ROMX, BANK[$48]
@@ -490,8 +496,10 @@ INCLUDE "banks/bank_67.asm"
 
 
 SECTION "bank68", ROMX, BANK[$68]
+; empty bank
 
-INCLUDE "banks/bank_68.asm"
+SECTION "banknum68", ROMX[$7fff], BANK[$68]
+	db $68
 
 
 SECTION "bank69", ROMX, BANK[$69]
@@ -515,8 +523,10 @@ INCLUDE "banks/bank_6c.asm"
 
 
 SECTION "bank6d", ROMX, BANK[$6d]
+; empty bank
 
-INCLUDE "banks/bank_6d.asm"
+SECTION "banknum6d", ROMX[$7fff], BANK[$6d]
+	db $6d
 
 
 SECTION "bank6e", ROMX, BANK[$6e]
@@ -540,13 +550,17 @@ INCLUDE "banks/bank_71.asm"
 
 
 SECTION "bank72", ROMX, BANK[$72]
+; empty bank
 
-INCLUDE "banks/bank_72.asm"
+SECTION "banknum72", ROMX[$7fff], BANK[$72]
+	db $72
 
 
 SECTION "bank73", ROMX, BANK[$73]
+; empty bank
 
-INCLUDE "banks/bank_73.asm"
+SECTION "banknum73", ROMX[$7fff], BANK[$73]
+	db $73
 
 
 SECTION "bank74", ROMX, BANK[$74]

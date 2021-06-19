@@ -8,7 +8,7 @@ Func_04e_46e5::
 	dr $1386e5, $138943
 
 Func_04e_4943::
-	dr $138943, $13bfff
+	dr $138943, $13b280
 
 
 SECTION "banknum4e", ROMX[$7fff], BANK[$4e]

@@ -50,7 +50,7 @@ hFFB2:: ds 1
 hFFB3:: ds 1
 hFFB4:: ds 1
 hFFB5:: ds 1
-wScriptBank:: ds 1
+hScriptBank:: ds 1
 hFFB7:: ds 1
 hFFB8:: ds 1
 hFFB9:: ds 1

@@ -113,7 +113,9 @@ Script_008_408a:
 	scr_end
 
 unk_008_4117:
-	db $11, $05, $03, $00, $00, $00, $00, $00, $00
+	db $11
+	db $05, $03 ; coords
+	db $00, $00, $00, $00, $00, $00
 	dw Script_008_4123
 	db $88
 
@@ -122,7 +124,9 @@ Script_008_4123:
 	scr_end
 
 unk_008_4127:
-	db $11, $05, $03, $00, $00, $00, $00, $00, $00
+	db $11
+	db $05, $03
+	db $00, $00, $00, $00, $00, $00
 	dw Script_008_4133
 	db $88
 
@@ -282,7 +286,10 @@ Script_008_4295:
 	scr_end
 
 Script_008_429e:
-	dr $2029e, $202ed
+	dr $2029e, $202a2
+
+Script_008_42a2:
+	dr $202a2, $202ed
 
 Script_008_42ed:
 	scr_checkbit wdaa0, 1, .script_42f7
@@ -319,7 +326,8 @@ Script_008_4315:
 	scr_end
 
 Script_008_4319:
-	dr $20319, $2031d
+	scr_04 text_08_4e15
+	scr_end
 
 Script_008_431d:
 	dr $2031d, $20334

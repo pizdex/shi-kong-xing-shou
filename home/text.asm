@@ -13,7 +13,7 @@ Func_19ca::
 	ret
 
 .type1
-	ldh a, [wScriptBank]
+	ldh a, [hScriptBank]
 	jr .select_bank
 
 .type2
@@ -1077,7 +1077,7 @@ Func_1fe9::
 	ret
 
 Func_1fee::
-	ldh a, [wScriptBank]
+	ldh a, [hScriptBank]
 	rst Bankswitch
 	ld a, [wd0cd]
 	ld l, a
@@ -1106,7 +1106,7 @@ Func_1fee::
 	ret
 
 Func_2011::
-	ld de, unk_209e
+	ld de, .table_209e
 	ldh a, [hFF9A]
 	ld l, a
 	ld c, a
@@ -1115,12 +1115,15 @@ Func_2011::
 	add hl, hl
 	add hl, bc
 	add hl, de
+; bank
 	ld a, [hli]
 	rst Bankswitch
+; address
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
+
 	ldh a, [hFF9B]
 	ld l, a
 	ld h, 0
@@ -1171,9 +1174,10 @@ ENDR
 	ld [wd0ca], a
 
 .asm_206c
-	ld de, wScriptBank
+	ld de, hScriptBank
 	ld a, [hli]
 	ld [de], a
+; @bad: should do inc hl instead
 	inc de
 	ld a, [hli]
 	inc de
@@ -1181,6 +1185,7 @@ ENDR
 	inc de
 	ld a, [hli]
 	inc de
+
 	ld a, [hli]
 	ld [wd0cd], a
 	ld a, [hli]
@@ -1204,11 +1209,16 @@ ENDR
 	jr .asm_2086
 	ret ; ?
 
-unk_209e::
-	db $07, $00, $40, $07, $0f, $43, $10, $00
-	db $40, $10, $7b, $48, $52, $00, $40, $63
-	db $00, $40, $69, $00, $40, $69, $83, $48
-	db $10, $00, $40
+.table_209e
+	dba unk_007_4000
+	dba unk_007_430f
+	dba unk_010_4000
+	dba unk_010_487b
+	dba unk_052_4000
+	dba unk_063_4000
+	dba unk_069_4000
+	dba unk_069_4883
+	dba unk_010_4000
 
 Func_20b9::
 	ldh a, [hFFB2]

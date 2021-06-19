@@ -1,5 +1,5 @@
 unk_051_4000:
-	dr $144000, $147fff
+	dr $144000, $1469d0
 
 
 SECTION "banknum51", ROMX[$7fff], BANK[$51]
