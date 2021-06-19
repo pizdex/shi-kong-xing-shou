@@ -10,6 +10,7 @@ banks = 0x80
 def reportINCROMs(incromDir):
 	grepProc = subprocess.Popen(['grep', '-wr', 'dr', incromDir], stdout=subprocess.PIPE)
 	targetLines = grepProc.communicate()[0].decode().split('\n')
+	totalBytes = banks * 0x4000
 	incromBytes = [0]*banks
 	incromByteTotal = 0
 	for line in targetLines:
@@ -45,7 +46,8 @@ def reportINCROMs(incromDir):
 		incromBytes[incBank] += diff
 		incromByteTotal += diff
 
-	print("Total: " + str(incromByteTotal) + " bytes included (dr macro)")
+	percentage = ((totalBytes - incromByteTotal) / totalBytes) * 100
+	print("Total: %d bytes included (%.2f%% complete)" % (incromByteTotal, percentage))
 	print("Included bytes: ")
 	for i in range(0, banks):
 		if incromBytes[i] == 0:
