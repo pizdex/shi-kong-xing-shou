@@ -286,10 +286,43 @@ Script_008_4295:
 	scr_end
 
 Script_008_429e:
-	dr $2029e, $202a2
+	db $88, $1b, $10
+	scr_end
 
 Script_008_42a2:
-	dr $202a2, $202ed
+	scr_cont
+	scr_cont
+	scr_cont
+	scr_cont
+	scr_end
+	db $00
+	dw Script_008_42ed
+	db $13
+	scr_08 $0e ; TEMP
+	scr_cont
+	scr_cont
+	scr_cont
+	scr_cont
+	scr_face $01 ; TEMP
+	dw Script_008_42fb
+	db $20, $0E, $0D, $00, $00, $00, $00
+	db $07, $02
+	dw Script_008_4309
+	db $1D, $05, $09, $00, $00
+	db $00, $00, $06, $03
+	dw Script_008_430d
+	db $16, $0B, $04
+	db $00, $00, $00, $00, $00, $04
+	dw Script_008_4311
+	db $19
+	db $06, $05, $00, $00, $00, $00, $08, $00
+	dw Script_008_4315
+	db $01, $05, $10,
+	dw wdaa0
+	db $01, $01, $00
+	db $00
+	dw Script_008_4319
+	db $88
 
 Script_008_42ed:
 	scr_checkbit wdaa0, 1, .script_42f7

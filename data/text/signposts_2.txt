@@ -1,0 +1,51 @@
+@org $0c, $4152:
+	signpost;
+	text "多魯市";
+	done;
+
+@org $0c, $415a:
+	signpost;
+	text "←鐘塔";
+	done;
+
+@org $0c, $4162:
+	signpost;
+	text "↓山達農莊";
+	done;
+
+@org $0c, $416d:
+	signpost;
+	text "山達農莊";
+	done;
+
+@org $0c, $4176:
+	signpost;
+	text "←咖啡林";
+	done;
+
+@org $0c, $417f:
+	signpost;
+	text "↑多魯市";
+	done;
+
+@org $0c, $4189:
+	signpost;
+	text "↓山達農莊";
+	done;
+
+@org $0c, $4194:
+	signpost;
+	text "↑咖啡林";
+	line "←天之岩";
+	line "↓山達農莊";
+	done;
+
+@org $0c, $41af:
+	signpost;
+	text "咖啡林";
+	done;
+
+@org $0c, $41b6:
+	signpost;
+	text "天之岩";
+	done;

@@ -1,0 +1,57 @@
+@org $0c, $4216:
+	signpost;
+	text "神木村";
+	done;
+
+@org $0c, $421e:
+	signpost;
+	text "←奇蹟之泉";
+	done;
+
+@org $0c, $4229:
+	signpost;
+	text "↓雷達站";
+	done;
+
+@org $0c, $4233:
+	signpost;
+	text "→神木村";
+	done;
+
+@org $0c, $423d:
+	signpost;
+	text "↑神木村";
+	line "↓雷達站";
+	done;
+
+@org $0c, $4250:
+	signpost;
+	text "雷達站";
+	done;
+
+@org $0c, $4258:
+	signpost;
+	text "人魚村";
+	done;
+
+@org $0c, $4260:
+	signpost;
+	text "海巫之殿";
+	done;
+
+@org $0c, $426a:
+	signpost;
+	text "生之谷";
+	done;
+
+@org $0c, $4272:
+	signpost;
+	text "↑生之谷";
+	line " 死之谷";
+	done;
+
+@org $0c, $4283:
+	signpost;
+	text "↓神木村";
+	line "→地熱城";
+	done;
