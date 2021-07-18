@@ -1,0 +1,81 @@
+@org $c, $40a7:
+	signpost;
+	text "往學校";
+	done;
+
+@org $c, $40af:
+	signpost;
+	text "往天文台";
+	done;
+
+@org $c, $40b8:
+	signpost;
+	text "貝爾村";
+	done;
+
+@org $c, $40c0:
+	signpost;
+	text "天文台";
+	done;
+
+@org $c, $40c7:
+	signpost;
+	text "往廢鐵場";
+	done;
+
+@org $c, $40d1:
+	signpost;
+	text "往水晶村";
+	done;
+
+@org $c, $40db:
+	signpost;
+	text "科技城廣場";
+	done;
+
+@org $c, $40e6:
+	signpost;
+	text "發電廠";
+	done;
+
+@org $c, $40ed:
+	signpost;
+	text "水晶村";
+	done;
+
+@org $c, $40f5:
+	signpost;
+	text "礦坑";
+	line "閒人勿進";
+	done;
+
+@org $c, $4103:
+	signpost;
+	text "↑貝爾村";
+	done;
+
+@org $c, $410d:
+	signpost;
+	text "↑科技城";
+	done;
+
+@org $c, $4116:
+	signpost;
+	text "←多魯市";
+	done;
+
+@org $c, $4120:
+	signpost;
+	text "↑水晶村";
+	done;
+
+@org $c, $412a:
+	signpost;
+	text "↓科技城";
+	done;
+
+@org $c, $4133:
+	signpost;
+	text "↓發電廠";
+	done;
+

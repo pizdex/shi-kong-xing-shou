@@ -1,0 +1,27 @@
+@org $0c, $42f9:
+	signpost;
+	text "→金鋼山";
+	done;
+
+@org $0c, $4303:
+	signpost;
+	text "應力研究所";
+	done;
+
+@org $0c, $430e:
+	signpost;
+	text "←空中港口";
+	done;
+
+@org $0c, $431a:
+	signpost;
+	text "金鋼山";
+	done;
+
+@org $0c, $4322:
+	signpost;
+	text "打";
+	forcemap "鐵", 0;
+	text "鋪";
+	done;
+

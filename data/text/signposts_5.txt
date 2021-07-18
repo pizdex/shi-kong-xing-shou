@@ -1,0 +1,36 @@
+@org $0c, $42a5:
+	signpost;
+	text "星夢城";
+	done;
+
+@org $0c, $42ad:
+	signpost;
+	text "往學校";
+	done;
+
+@org $0c, $42b5:
+	signpost;
+	text "↓海邊";
+	done;
+
+@org $0c, $42bd:
+	signpost;
+	text "←永凍園";
+	done;
+
+@org $0c, $42c7:
+	signpost;
+	text "星夢城醫院";
+	done;
+
+@org $0c, $42d3:
+	signpost;
+	text "永凍園";
+	done;
+
+@org $0c, $42db:
+	signpost;
+	text "怪獸区猛";
+	line "請小心!";
+	done;
+

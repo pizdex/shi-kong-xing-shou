@@ -19,7 +19,10 @@ text_init: MACRO
 	db TX_INIT, \1, \2
 ENDM
 
-	const_next $e2
+	const TX_SIGN
+text_sign: MACRO
+	db TX_SIGN
+ENDM
 
 	const TX_END ; $e2
 done: MACRO

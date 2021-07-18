@@ -251,7 +251,10 @@ wd1a0:: ds 8
 wd1a8:: ds 8
 wd1b0:: ds $32
 
-wd1e2:: ds $f
+wd1e2:: ds 1
+wd1e3:: ds 1
+
+	ds 13
 
 wd1f1:: ds 1
 wd1f2:: ds 7
@@ -418,8 +421,8 @@ wTextBGMapPointer:: ds 2
 wdad0:: ds $12
 
 wdae2:: ds 1
-wdae3:: ds 1
-wdae7:: ds 7
+wdae3:: ds 4
+wdae7:: ds 4
 wdaeb:: ds $30
 
 wGameTimeSeconds:: ds 1
