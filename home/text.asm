@@ -1107,7 +1107,7 @@ Func_1fee::
 
 Func_2011::
 	ld de, .table_209e
-	ldh a, [hFF9A]
+	ldh a, [hMapGroup]
 	ld l, a
 	ld c, a
 	ld b, 0
@@ -1124,7 +1124,7 @@ Func_2011::
 	ld a, [hli]
 	ld d, a
 
-	ldh a, [hFF9B]
+	ldh a, [hMapNumber]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -1143,7 +1143,7 @@ ENDR
 	ld a, [hli]
 	ld [wd0cb + 1], a
 	ld bc, $0c
-	ldh a, [hFF9C]
+	ldh a, [hWarpNumber]
 	and a
 	jr z, .asm_2052
 

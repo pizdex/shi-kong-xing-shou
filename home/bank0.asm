@@ -55,9 +55,9 @@ Func_0200::
 	call SRAMTest
 
 	ld a, $03
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	ld a, 0
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 	ld [wd0ff], a
 	ld [wd0df], a
 	ld [wd0ef], a
@@ -461,9 +461,9 @@ Func_05f2::
 Func_05ff::
 	ld a, [_BANKNUM]
 	push af
-	call Func_2011
+	call LoadMapData
 	call Func_2433
-	call Func_0f6e
+	call LoadMapGFX
 	call Func_24be
 	call Func_1fee
 	call Func_19b6
@@ -1374,7 +1374,7 @@ Func_0f36::
 	rst Bankswitch
 	ret
 
-Func_0f6e::
+LoadMapGFX::
 	ld a, [_BANKNUM]
 	push af
 	ldh a, [hFFB2]
@@ -2252,9 +2252,9 @@ Func_13d5::
 	rst Bankswitch
 	ret
 
-Func_13fe::
-	ld de, .unk_141c
-	ldh a, [hFF9A]
+PlayMapMusic::
+	ld de, .map_music
+	ldh a, [hMapGroup]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -2262,7 +2262,7 @@ Func_13fe::
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ldh a, [hFF9B]
+	ldh a, [hMapNumber]
 	ld l, a
 	ld h, 0
 	add hl, de
@@ -2277,81 +2277,81 @@ Func_13fe::
 	call PlaySound
 	ret
 
-.unk_141c
-	dw .unk_142c
-	dw .unk_1462
-	dw .unk_1498
-	dw .unk_14bc
-	dw .unk_14e0
-	dw .unk_1546
-	dw .unk_156e
-	dw .unk_159b
+.map_music
+	dw .group_0
+	dw .group_1
+	dw .group_2
+	dw .group_3
+	dw .group_4
+	dw .group_5
+	dw .group_6
+	dw .group_7
 
-.unk_142c
-	db $00, $59, $65, $65, $59, $59, $59, $59
-	db $59, $65, $65, $65, $5e, $5e, $5e, $5e
-	db $5e, $5e, $5e, $71, $72, $67, $67, $67
-	db $67, $67, $67, $72, $6e, $6f, $6f, $6f
-	db $6f, $6f, $69, $66, $66, $66, $66, $66
-	db $5b, $5a, $65, $66, $64, $60, $60, $60
-	db $60, $60, $60, $60, $71, $72
+.group_0
+	db SFX_00, BGM_59, BGM_65, BGM_65, BGM_59, BGM_59, BGM_59, BGM_59
+	db BGM_59, BGM_65, BGM_65, BGM_65, BGM_5e, BGM_5e, BGM_5e, BGM_5e
+	db BGM_5e, BGM_5e, BGM_5e, BGM_71, BGM_72, BGM_67, BGM_67, BGM_67
+	db BGM_67, BGM_67, BGM_67, BGM_72, BGM_6e, BGM_6f, BGM_6f, BGM_6f
+	db BGM_6f, BGM_6f, BGM_69, BGM_66, BGM_66, BGM_66, BGM_66, BGM_66
+	db BGM_5b, BGM_5a, BGM_65, BGM_66, BGM_64, BGM_60, BGM_60, BGM_60
+	db BGM_60, BGM_60, BGM_60, BGM_60, BGM_71, BGM_72
 
-.unk_1462
-	db $00, $5b, $65, $65, $5b, $5b, $5b, $5b
-	db $59, $65, $65, $65, $5e, $5e, $5e, $5e
-	db $5e, $5e, $5e, $71, $72, $67, $67, $67
-	db $67, $67, $67, $72, $6e, $6f, $6f, $6f
-	db $6f, $6f, $69, $66, $66, $66, $66, $66
-	db $63, $5a, $65, $66, $64, $60, $60, $60
-	db $60, $60, $60, $60, $71, $72
+.group_1
+	db SFX_00, BGM_5b, BGM_65, BGM_65, BGM_5b, BGM_5b, BGM_5b, BGM_5b
+	db BGM_59, BGM_65, BGM_65, BGM_65, BGM_5e, BGM_5e, BGM_5e, BGM_5e
+	db BGM_5e, BGM_5e, BGM_5e, BGM_71, BGM_72, BGM_67, BGM_67, BGM_67
+	db BGM_67, BGM_67, BGM_67, BGM_72, BGM_6e, BGM_6f, BGM_6f, BGM_6f
+	db BGM_6f, BGM_6f, BGM_69, BGM_66, BGM_66, BGM_66, BGM_66, BGM_66
+	db BGM_63, BGM_5a, BGM_65, BGM_66, BGM_64, BGM_60, BGM_60, BGM_60
+	db BGM_60, BGM_60, BGM_60, BGM_60, BGM_71, BGM_72
 
-.unk_1498
-	db $00, $5e, $59, $66, $66, $66, $61, $61
-	db $60, $69, $69, $69, $69, $69, $5e, $5e
-	db $5e, $5e, $59, $59, $59, $59, $59, $61
-	db $6d, $72, $71, $5e, $5e, $5e, $5e, $5e
-	db $5e, $72, $71, $5b
+.group_2
+	db SFX_00, BGM_5e, BGM_59, BGM_66, BGM_66, BGM_66, BGM_61, BGM_61
+	db BGM_60, BGM_69, BGM_69, BGM_69, BGM_69, BGM_69, BGM_5e, BGM_5e
+	db BGM_5e, BGM_5e, BGM_59, BGM_59, BGM_59, BGM_59, BGM_59, BGM_61
+	db BGM_6d, BGM_72, BGM_71, BGM_5e, BGM_5e, BGM_5e, BGM_5e, BGM_5e
+	db BGM_5e, BGM_72, BGM_71, BGM_5b
 
-.unk_14bc
-	db $00, $5d, $5d, $5d, $5f, $5f, $5f, $67
-	db $67, $59, $5e, $68, $68, $68, $68, $72
-	db $70, $70, $5b, $5b, $5b, $60, $61, $67
-	db $67, $67, $67, $67, $67, $72, $71, $5d
-	db $5f, $5b, $5b, $5b
+.group_3
+	db SFX_00, BGM_5d, BGM_5d, BGM_5d, BGM_5f, BGM_5f, BGM_5f, BGM_67
+	db BGM_67, BGM_59, BGM_5e, BGM_68, BGM_68, BGM_68, BGM_68, BGM_72
+	db BGM_70, BGM_70, BGM_5b, BGM_5b, BGM_5b, BGM_60, BGM_61, BGM_67
+	db BGM_67, BGM_67, BGM_67, BGM_67, BGM_67, BGM_72, BGM_71, BGM_5d
+	db BGM_5f, BGM_5b, BGM_5b, BGM_5b
 
-.unk_14e0
-	db $00, $64, $64, $64, $64, $64, $5b, $5b
-	db $5b, $5b, $5b, $6e, $59, $59, $63, $64
-	db $63, $59, $59, $59, $5e, $60, $5b, $5c
-	db $5c, $5c, $60, $60, $60, $60, $63, $5e
-	db $63, $66, $66, $66, $66, $6e, $5e, $5e
-	db $6d, $6d, $62, $67, $6e, $6e, $6e, $6e
-	db $6e, $72, $71, $6e, $5e, $5e, $5e, $5e
-	db $71, $72, $6e, $6e, $6e, $6e, $6e, $6e
-	db $72, $71, $65, $65, $59, $6e, $6e, $6e
-	db $6e, $6e, $6e, $72, $71, $6e, $5a, $63
-	db $5c, $5c, $5c, $69, $69, $6d, $5e, $5e
-	db $5e, $5e, $5e, $5e, $72, $71, $62, $67
-	db $5a, $5a, $5a, $5a, $70, $70
+.group_4
+	db SFX_00, BGM_64, BGM_64, BGM_64, BGM_64, BGM_64, BGM_5b, BGM_5b
+	db BGM_5b, BGM_5b, BGM_5b, BGM_6e, BGM_59, BGM_59, BGM_63, BGM_64
+	db BGM_63, BGM_59, BGM_59, BGM_59, BGM_5e, BGM_60, BGM_5b, BGM_5c
+	db BGM_5c, BGM_5c, BGM_60, BGM_60, BGM_60, BGM_60, BGM_63, BGM_5e
+	db BGM_63, BGM_66, BGM_66, BGM_66, BGM_66, BGM_6e, BGM_5e, BGM_5e
+	db BGM_6d, BGM_6d, BGM_62, BGM_67, BGM_6e, BGM_6e, BGM_6e, BGM_6e
+	db BGM_6e, BGM_72, BGM_71, BGM_6e, BGM_5e, BGM_5e, BGM_5e, BGM_5e
+	db BGM_71, BGM_72, BGM_6e, BGM_6e, BGM_6e, BGM_6e, BGM_6e, BGM_6e
+	db BGM_72, BGM_71, BGM_65, BGM_65, BGM_59, BGM_6e, BGM_6e, BGM_6e
+	db BGM_6e, BGM_6e, BGM_6e, BGM_72, BGM_71, BGM_6e, BGM_5a, BGM_63
+	db BGM_5c, BGM_5c, BGM_5c, BGM_69, BGM_69, BGM_6d, BGM_5e, BGM_5e
+	db BGM_5e, BGM_5e, BGM_5e, BGM_5e, BGM_72, BGM_71, BGM_62, BGM_67
+	db BGM_5a, BGM_5a, BGM_5a, BGM_5a, BGM_70, BGM_70
 
-.unk_1546
-	db $00, $5a, $5a, $66, $66, $66, $66, $5c
-	db $64, $64, $64, $64, $64, $64, $64, $5c
-	db $5c, $5c, $5c, $5c, $5c, $5c, $63, $63
-	db $63, $66, $66, $5c, $5b, $5c, $5c, $5c
-	db $5c, $72, $71, $65, $65, $65, $65, $5c
+.group_5
+	db SFX_00, BGM_5a, BGM_5a, BGM_66, BGM_66, BGM_66, BGM_66, BGM_5c
+	db BGM_64, BGM_64, BGM_64, BGM_64, BGM_64, BGM_64, BGM_64, BGM_5c
+	db BGM_5c, BGM_5c, BGM_5c, BGM_5c, BGM_5c, BGM_5c, BGM_63, BGM_63
+	db BGM_63, BGM_66, BGM_66, BGM_5c, BGM_5b, BGM_5c, BGM_5c, BGM_5c
+	db BGM_5c, BGM_72, BGM_71, BGM_65, BGM_65, BGM_65, BGM_65, BGM_5c
 
-.unk_156e
-	db $00, $68, $68, $61, $61, $61, $61, $61
-	db $5b, $64, $60, $5a, $6e, $63, $5b, $60
-	db $60, $60, $60, $60, $60, $60, $60, $60
-	db $70, $70, $70, $70, $72, $71, $63, $63
-	db $62, $5f, $6e, $6e, $6e, $6e, $6e, $6e
-	db $71, $72, $5f, $61, $69
+.group_6
+	db SFX_00, BGM_68, BGM_68, BGM_61, BGM_61, BGM_61, BGM_61, BGM_61
+	db BGM_5b, BGM_64, BGM_60, BGM_5a, BGM_6e, BGM_63, BGM_5b, BGM_60
+	db BGM_60, BGM_60, BGM_60, BGM_60, BGM_60, BGM_60, BGM_60, BGM_60
+	db BGM_70, BGM_70, BGM_70, BGM_70, BGM_72, BGM_71, BGM_63, BGM_63
+	db BGM_62, BGM_5f, BGM_6e, BGM_6e, BGM_6e, BGM_6e, BGM_6e, BGM_6e
+	db BGM_71, BGM_72, BGM_5f, BGM_61, BGM_69
 
-.unk_159b
-	db $00, $5f, $59, $6e, $5c, $6d, $63, $67
-	db $59, $60, $5e, $5e, $5e
+.group_7
+	db SFX_00, BGM_5f, BGM_59, BGM_6e, BGM_5c, BGM_6d, BGM_63, BGM_67
+	db BGM_59, BGM_60, BGM_5e, BGM_5e, BGM_5e
 
 Func_15a8::
 	push hl
@@ -2460,9 +2460,9 @@ Func_1620::
 	ld hl, wdd00
 	ld [hl], $01
 	ld a, $04
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	ld a, 1
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 	ld a, 1
 	ldh [hFFD6], a
 
@@ -2593,11 +2593,11 @@ Func_16ea::
 
 Func_16f4::
 	ld a, 1
-	ldh [hFF9A], a
+	ldh [hMapGroup], a
 	ld a, $04
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	ld a, 1
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 	ld a, 1
 	ldh [hFFD6], a
 
@@ -2611,11 +2611,11 @@ Func_16f4::
 
 Func_1712::
 	ld a, 4
-	ldh [hFF9A], a
+	ldh [hMapGroup], a
 	ld a, $43
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	ld a, 1
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 	ld a, 1
 	ldh [hFFD6], a
 
@@ -2689,11 +2689,11 @@ Func_1730::
 	ld a, $1a
 	ld [hFFBA], a
 	ld a, $0c
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	ld a, 3
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 	ld a, 6
-	ldh [hFF9A], a
+	ldh [hMapGroup], a
 
 	ld a, $01
 	ld [wdcbb], a
@@ -2962,11 +2962,11 @@ Func_1900::
 	ld a, 0
 	ld [hFFBA], a
 	ld a, $01
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	ld a, 0
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 	ld a, 0
-	ldh [hFF9A], a
+	ldh [hMapGroup], a
 	ld a, 1
 	ld [wdcbb], a
 
@@ -3098,11 +3098,11 @@ Func_24d1::
 	ret
 
 Func_24e6::
-	ld a, [hFF9A]
+	ld a, [hMapGroup]
 	cp 1
 	ret nz
 
-	ld a, [hFF9B]
+	ld a, [hMapNumber]
 	cp $23
 	jr z, .asm_2504
 	cp $24

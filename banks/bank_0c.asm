@@ -5,7 +5,7 @@ Func_00c_4056::
 	ld de, .SignpostGroups
 
 ; map group
-	ld a, [hFF9A]
+	ld a, [hMapGroup]
 	ld l, a
 	ld h, 0
 	add hl, hl

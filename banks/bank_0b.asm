@@ -476,10 +476,10 @@ Script_setbit:
 Func_00b_451d:
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 ; Enable map switch
 	ld a, 1
 	ld [hFFBF], a
@@ -758,10 +758,10 @@ Func_00b_4ca3:
 	ld [wd0fa], a
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ldh [hFF9B], a
+	ldh [hMapNumber], a
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ldh [hFF9C], a
+	ldh [hWarpNumber], a
 	ld a, $01
 	ldh [hFFBF], a
 	xor a

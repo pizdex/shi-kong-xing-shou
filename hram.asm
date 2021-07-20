@@ -20,10 +20,11 @@ hFF97:: ds 1
 
 hFF98:: ds 1
 hFF99:: ds 1
-hFF9A:: ds 1
 
-hFF9B:: ds 1
-hFF9C:: ds 1
+hMapGroup:: ds 1
+hMapNumber:: ds 1
+hWarpNumber:: ds 1
+
 hFF9D:: ds 1
 hFF9E:: ds 1
 hFF9F:: ds 1
@@ -63,7 +64,7 @@ hTargetBank:: ds 1
 
 hFFBF:: ds 1 ; load map
 hFFC0:: ds 1
-hFFC1:: ds 1
+hScrollNumber:: ds 1
 hFFC2:: ds 1
 hFFC3:: ds 1
 hFFC4:: ds 1
