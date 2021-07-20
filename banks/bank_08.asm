@@ -284,45 +284,18 @@ Script_008_4295:
 	scr_face FACE_UP
 	scr_move unk_00b_4193
 	scr_end
-
-Script_008_429e:
-	db $88, $1b, $10
-	scr_end
-
-Script_008_42a2:
-	scr_cont
-	scr_cont
-	scr_cont
-	scr_cont
-	scr_end
-	db $00
-	dw Script_008_42ed
-	db $13
-	scr_08 $0e ; TEMP
-	scr_cont
-	scr_cont
-	scr_cont
-	scr_cont
-	scr_face $01 ; TEMP
-	dw Script_008_42fb
-	db $20, $0E, $0D, $00, $00, $00, $00
-	db $07, $02
-	dw Script_008_4309
-	db $1D, $05, $09, $00, $00
-	db $00, $00, $06, $03
-	dw Script_008_430d
-	db $16, $0B, $04
-	db $00, $00, $00, $00, $00, $04
-	dw Script_008_4311
-	db $19
-	db $06, $05, $00, $00, $00, $00, $08, $00
-	dw Script_008_4315
-	db $01, $05, $10,
-	dw wdaa0
-	db $01, $01, $00
-	db $00
-	dw Script_008_4319
 	db $88
+
+BellVillage1_ObjectEvents:
+	; 11 bytes
+	object_event $1b, $10, $09,     0, 0, 0, 9, 0, Script_008_42ed
+	object_event $13, $08, $0E,     0, 0, 0, 5, 1, Script_008_42fb
+	object_event $20, $0E, $0D,     0, 0, 0, 7, 2, Script_008_4309
+	object_event $1D, $05, $09,     0, 0, 0, 6, 3, Script_008_430d
+	object_event $16, $0B, $04,     0, 0, 0, 0, 4, Script_008_4311
+	object_event $19, $06, $05,     0, 0, 0, 8, 0, Script_008_4315
+	object_event $01, $05, $10, wdaa0, 1, 1, 0, 0, Script_008_4319
+	objects_end
 
 Script_008_42ed:
 	scr_checkbit wdaa0, 1, .script_42f7
