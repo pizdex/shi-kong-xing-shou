@@ -1105,8 +1105,8 @@ Func_1fee::
 	ld [de], a
 	ret
 
-Func_2011::
-	ld de, .table_209e
+LoadMapData::
+	ld de, .MapGroupPointers
 	ldh a, [hMapGroup]
 	ld l, a
 	ld c, a
@@ -1209,9 +1209,9 @@ ENDR
 	jr .asm_2086
 	ret ; ?
 
-.table_209e
-	dba unk_007_4000
-	dba unk_007_430f
+.MapGroupPointers:
+	dba Group00_Maps
+	dba Group01_Maps
 	dba unk_010_4000
 	dba unk_010_487b
 	dba unk_052_4000

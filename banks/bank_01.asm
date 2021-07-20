@@ -1,15 +1,5 @@
 ; Map headers
-unk_001_4000:
-	db 12, 10
-	dw $756c
-	dw $76d1
-	dw $75e5
-	dw $7815
-	dw $7896
-	dw $0000
-	dw $4000
-	dw $0000
-	dw $78de
+	map_attributes BellVillage1, BELL_VILLAGE_1, 0, unk_006_4000
 
 unk_001_4014:
 	db 6, 10
@@ -63,10 +53,25 @@ unk_001_4064:
 	dr $4064, $4294
 
 unk_001_4294:
-	dr $4294, $75e5
+	dr $4294, $756c
 
-unk_001_75e5:
-	dr $75e5, $79d0
+BellVillage1_Blocks:
+	dr $756c, $75e5
+
+BellVillage1_Tiles:
+	dr $75e5, $76d1
+
+BellVillage1_Metatiles:
+	dr $76d1, $7815
+
+BellVillage1_AttrMap:
+	dr $7815, $7896
+
+BellVillage1_Palettes:
+	dr $7896, $78de
+
+BellVillage1_Collision:
+	dr $78de, $79d0
 
 
 SECTION "banknum1", ROMX[$7fff], BANK[$1]
