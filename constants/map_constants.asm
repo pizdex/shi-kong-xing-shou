@@ -27,10 +27,10 @@ ENDM
 ; Map IDs
 	newgroup    GROUP_00,                           ; 00
 	map_const	BELL_VILLAGE_1,              12, 10 ; 01
-	map_const	BELL_SCHOOL_OUTSIDE_1,        0,  0 ; 02 TODO
-	map_const	BELL_OBSERVATORY_OUTSIDE_1,   0,  0 ; 03 TODO
-	map_const	BALLOTS_HOUSE_1,              0,  0 ; 04 TODO
-	map_const	HAYATOS_HOUSE_1,              0,  0 ; 05 TODO
+	map_const	BELL_SCHOOL_OUTSIDE_1,        6, 10 ; 02 TODO
+	map_const	BELL_OBSERVATORY_OUTSIDE_1,  10,  6 ; 03 TODO
+	map_const	BALLOTS_HOUSE_1,              6,  5 ; 04 TODO
+	map_const	HAYATOS_HOUSE_1,              6,  5 ; 05 TODO
 	map_const	CARPET_WOMANS_HOUSE_1,        0,  0 ; 06 TODO
 	map_const	FANGFANGS_HOUSE_1,            0,  0 ; 07 TODO
 	map_const	BELL_HEALING_CENTER_1,        0,  0 ; 08 TODO

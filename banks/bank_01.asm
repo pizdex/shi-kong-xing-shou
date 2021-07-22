@@ -1,7 +1,7 @@
 ; Map headers
 	map_attributes BellVillage1, BELL_VILLAGE_1, 0, unk_006_4000
 
-unk_001_4014:
+BellSchoolOutside1_MapAttributes:
 	db 6, 10
 	dw $726f
 	dw $73a8
@@ -13,7 +13,7 @@ unk_001_4014:
 	dw $0000
 	dw $752d
 
-unk_001_4028:
+BellObservatoryOutside1_MapAttributes:
 	db 10, 6
 	dw $6fd1
 	dw $70ae
@@ -25,7 +25,7 @@ unk_001_4028:
 	dw $0000
 	dw $7247
 
-unk_001_403c:
+BallotsHouse1_MapAttributes:
 	db 6, 5
 	dw $6c6b
 	dw $6c8a
@@ -37,7 +37,7 @@ unk_001_403c:
 	dw $0000
 	dw $6fa0
 
-unk_001_4050:
+HayatosHouse1_MapAttributes:
 	db 6, 5
 	dw $6cda
 	dw $6cf9
@@ -49,19 +49,34 @@ unk_001_4050:
 	dw $0000
 	dw $6fa0
 
-unk_001_4064:
-	dr $4064, $4294
+CarpetWomansHouse1_MapAttributes:
+	dr $4064, $4078
+
+FangfangsHouse1_MapAttributes:
+	dr $4078, $408c
+
+BellHealingCenter1_MapAttributes:
+	dr $408c, $40a0
+
+BellSchool1_MapAttributes:
+	dr $40a0, $40b4
+
+BellObservatory1_MapAttributes:
+	dr $40b4, $40c8
+
+BellSchoolSouthClassroom_MapAttributes:
+	dr $40c8, $4294
 
 unk_001_4294:
 	dr $4294, $756c
 
-BellVillage1_Blocks:
+BellVillage1_Layout:
 	dr $756c, $75e5
 
-BellVillage1_Tiles:
+BellVillage1_Metatiles:
 	dr $75e5, $76d1
 
-BellVillage1_Metatiles:
+BellVillage1_Blocks:
 	dr $76d1, $7815
 
 BellVillage1_AttrMap:

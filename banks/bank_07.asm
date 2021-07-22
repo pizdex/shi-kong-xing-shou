@@ -1,16 +1,17 @@
 Group00_Maps::
 	dw BellVillage1_Header
 	dw BellVillage1_Header
-	dw unk_007_40cc
-	dw unk_007_40ea
-	dw unk_007_4108
-	dw unk_007_414a
-	dw unk_007_415c
-	dw unk_007_416e
-	dw unk_007_4180
-	dw unk_007_4192
-	dw unk_007_41bc
-	dw unk_007_41da
+	dw BellSchoolOutside1_Header
+	dw BellObservatoryOutside1_Header
+	dw BallotsHouse1_Header
+	dw HayatosHouse1_Header
+	dw CarpetWomansHouse1_Header
+	dw FangfangsHouse1_Header
+	dw BellHealingCenter1_Header
+	dw BellSchool1_Header
+	dw BellObservatory1_Header
+	dw BellSchoolSouthClassroom_Header
+
 	dw unk_007_44ef
 	dw unk_007_4579
 	dw unk_007_458b
@@ -45,7 +46,7 @@ Group00_Maps::
 	dw unk_007_48d3
 	dw unk_007_420a
 
-BellVillage1_Header:
+; BellVillage1
 	map  BellVillage1
 	warp 6, 5, $9048    ; 0
 	warp 1, 0, $2048    ; 1
@@ -58,35 +59,64 @@ BellVillage1_Header:
 	warp 0, 5, $7048    ; 8
 	end_map
 
-unk_007_40cc::
-	dr $1c0cc, $1c0ea
+; BellSchoolOutside1
+	map  BellSchoolOutside1
+	warp 0, 5, $9058    ; 0
+	warp 0, 0, $6058    ; 1
+	end_map
 
-unk_007_40ea::
-	dr $1c0ea, $1c108
+; BellObservatoryOutside1
+	map  BellObservatoryOutside1
+	warp 0, 1, $8018
+	warp 5, 0, $7058
+	end_map
 
-unk_007_4108::
-	dr $1c108, $1c14a
+; BallotsHouse1
+	map  BallotsHouse1
+	warp 0, 0, $8038
+	warp 1, 0, $4078
+	warp 0, 0, $4038, BallotsHouse1_ObjectEvents2, BallotsHouse1_MapEvents2
+	warp 0, 0, $8038, BallotsHouse1_ObjectEvents3
+	warp 0, 0, $8038, BallotsHouse1_ObjectEvents4
+	end_map
 
-unk_007_414a::
-	dr $1c14a, $1c15c
+; HayatosHouse1
+	map  HayatosHouse1
+	warp 0, 0, $8078
+	end_map
 
-unk_007_415c::
-	dr $1c15c, $1c16e
+; CarpetWomansHouse1
+	map  CarpetWomansHouse1
+	warp 0, 0, $8038
+	end_map
 
-unk_007_416e::
-	dr $1c16e, $1c180
+; FangfangsHouse1
+	map  FangfangsHouse1
+	warp 0, 0, $8078
+	end_map
 
-unk_007_4180::
-	dr $1c180, $1c192
+; BellHealingCenter1
+	map  BellHealingCenter1
+	warp 0, 0, $8068
+	end_map
 
-unk_007_4192::
-	dr $1c192, $1c1bc
+; BellSchool1
+	map  BellSchool1
+	warp 0, 5, $8068
+	warp 0, 5, $6028
+	warp 0, 0, $7028
+	end_map
 
-unk_007_41bc::
-	dr $1c1bc, $1c1da
+; BellObservatory1
+	map  BellObservatory1
+	warp 1, 1, $8068
+	warp 0, 1, $b088, BellObservatory1_ObjectEvents2
+	end_map
 
-unk_007_41da::
-	dr $1c1da, $1c1ec
+; BellSchoolSouthClassroom
+	map  BellSchoolSouthClassroom
+	warp 1, 0, $4078
+	end_map
 
 unk_007_41ec::
 	dr $1c1ec, $1c20a
@@ -95,22 +125,66 @@ unk_007_420a::
 	dr $1c20a, $1c21c
 
 BellVillage1_MapEvents::
-	event ABSOLUTE, 19, $01, $01, $85, $42
-	event ABSOLUTE, 19, $01, $02, $95, $42
-	warp_event ABSOLUTE, 0, $02, $00, $00 ; TEMP
-	warp_event 23, ABSOLUTE, $03, $00, $00 ; TEMP
-	warp_event 3, 7, $05, $00, $00 ; TEMP
-	warp_event 19, 5, $06, $00, $00 ; TEMP
-	warp_event 20, 15, $07, $00, $00 ; TEMP
-	event 4, 15, $01, $00, $a7, $41
-	warp_event 12, 11, $08, $00, $00 ; TEMP
-	signpost_event  8,  3, $01
-	signpost_event 22,  7, $02
-	signpost_event 15, 17, $03
+	script_event ABSOLUTE, 19, 1, Script_008_4285
+	script_event ABSOLUTE, 19, 2, Script_008_4295
+	warp_event ABSOLUTE, 0, MAP_BELL_SCHOOL_OUTSIDE_1, 0
+	warp_event 23, ABSOLUTE, MAP_BELL_OBSERVATORY_OUTSIDE_1, 0
+	warp_event 3, 7, MAP_HAYATOS_HOUSE_1, 0
+	warp_event 19, 5, MAP_CARPET_WOMANS_HOUSE_1, 0
+	warp_event 20, 15, MAP_FANGFANGS_HOUSE_1, 0
+	script_event 4, 15, 0, Script_008_41a7
+	warp_event 12, 11, MAP_BELL_HEALING_CENTER_1, 0
+	signpost_event  8,  3, 1
+	signpost_event 22,  7, 2
+	signpost_event 15, 17, 3
 	events_end
 
-unk_007_4265::
-	dr $1c265, $1c30f
+BellSchoolOutside1_MapEvents::
+	warp_event ABSOLUTE, 19, MAP_BELL_VILLAGE_1, 1
+	script_event 4, 4, 0, $4137
+	script_event 5, 4, 0, $4137
+	script_event 6, 4, 0, $4137
+	events_end
+
+BellObservatoryOutside1_MapEvents::
+	warp_event     0, ABSOLUTE, MAP_BELL_VILLAGE_1, 2
+	script_event   14, 5, 0, Script_008_408a
+	script_event   15, 5, 0, Script_008_408a
+	script_event   16, 5, 0, Script_008_408a
+	signpost_event  8, 8, 4
+	events_end
+
+BallotsHouse1_MapEvents:
+	warp_event ABSOLUTE, 8, MAP_BELL_VILLAGE_1, 6, 0
+	events_end
+
+BallotsHouse1_MapEvents2:
+	script_event ABSOLUTE, 8, 0, Script_008_4151
+
+MapEvent_007_42aa::
+	events_end
+
+HayatosHouse1_MapEvents::
+	warp_event ABSOLUTE, 8, MAP_BELL_VILLAGE_1, 3, 0
+	events_end
+
+CarpetWomansHouse1_MapEvents::
+	dr $1c2b2, $1c2b9
+
+FangfangsHouse1_MapEvents::
+	dr $1c2b9, $1c2c0
+
+BellHealingCenter1_MapEvents::
+	dr $1c2c0, $1c2cd
+
+BellSchool1_MapEvents::
+	dr $1c2cd, $1c2ec
+
+BellObservatory1_MapEvents::
+	dr $1c2ec, $1c2f3
+
+BellSchoolSouthClassroom_MapEvents::
+	dr $1c2f3, $1c30f
 
 Group01_Maps::
 	dr $1c30f, $1c4ef

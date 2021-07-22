@@ -112,7 +112,7 @@ Script_008_408a:
 	scr_setmap $0a, $00
 	scr_end
 
-unk_008_4117:
+BallotsHouse1_ObjectEvents2:
 	db $11
 	db $05, $03 ; coords
 	db $00, $00, $00, $00, $00, $00
@@ -123,7 +123,7 @@ Script_008_4123:
 	scr_04 text_08_4cf4
 	scr_end
 
-unk_008_4127:
+BallotsHouse1_ObjectEvents3:
 	db $11
 	db $05, $03
 	db $00, $00, $00, $00, $00, $00
@@ -263,7 +263,7 @@ Script_008_4214:
 	scr_34 $01, $04, $00 ; TEMP
 	scr_end
 
-unk_008_426e:
+BallotsHouse1_ObjectEvents4:
 	db $11, $03, $04, $00, $00, $00, $00, $00, $00
 	dw Script_008_4089
 	db $24, $04, $04, $00, $00, $00, $00, $00, $01
@@ -284,10 +284,14 @@ Script_008_4295:
 	scr_face FACE_UP
 	scr_move unk_00b_4193
 	scr_end
-	db $88
+
+BallotsHouse1_ObjectEvents:
+BellSchoolOutside1_ObjectEvents:
+BellObservatory1_ObjectEvents:
+BellObservatoryOutside1_ObjectEvents:
+	objects_end
 
 BellVillage1_ObjectEvents:
-	; 11 bytes
 	object_event $1b, $10, $09,     0, 0, 0, 9, 0, Script_008_42ed
 	object_event $13, $08, $0E,     0, 0, 0, 5, 1, Script_008_42fb
 	object_event $20, $0E, $0D,     0, 0, 0, 7, 2, Script_008_4309
@@ -335,7 +339,7 @@ Script_008_4319:
 	scr_04 text_08_4e15
 	scr_end
 
-Script_008_431d:
+HayatosHouse1_ObjectEvents:
 	dr $2031d, $20334
 
 Script_008_4334:
@@ -351,7 +355,7 @@ Script_008_4342:
 	scr_04 text_08_4911
 	scr_end
 
-unk_008_4346:
+CarpetWomansHouse1_ObjectEvents:
 	dr $20346, $2035d
 
 Script_008_435d:
@@ -373,7 +377,7 @@ Script_008_436e:
 	scr_04 text_08_4f1a
 	scr_end
 
-unk_008_437c:
+FangfangsHouse1_ObjectEvents:
 	dr $2037c, $2039e
 
 Script_008_439e:
@@ -393,7 +397,7 @@ Script_008_43b0:
 	scr_04 text_08_4a87
 	scr_end
 
-unk_008_43b4:
+BellHealingCenter1_ObjectEvents:
 	dr $203b4, $203c4
 
 Script_008_43c4:
@@ -401,8 +405,11 @@ Script_008_43c4:
 	scr_text text_08_4b14
 	scr_end
 
-unk_008_43ca:
-	dr $203ca, $203ed
+BellObservatory1_ObjectEvents2:
+	dr $203ca, $203d6
+
+BellSchool1_ObjectEvents:
+	dr $203d6, $203ed
 
 Script_008_43ed:
 	scr_04 text_08_4fa8
@@ -412,7 +419,7 @@ Script_008_43f1:
 	scr_04 text_08_5001
 	scr_end
 
-Script_008_43f5:
+BellSchoolSouthClassroom_ObjectEvents:
 	dr $203f5, $2040c
 
 Script_008_440c:
