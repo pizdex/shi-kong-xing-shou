@@ -8,8 +8,8 @@ __current_map__ equs "\1"
 ENDM
 
 warp: MACRO
-; \1 = warp X?
-; \2 = warp Y?
+; \1 = block view X-offset
+; \2 = block view Y-offset
 ; \3 = OAM location
 ; \4 = object events location
 ; \5 = map events location

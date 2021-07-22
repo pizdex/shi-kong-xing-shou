@@ -71,22 +71,23 @@ unk_001_4294:
 	dr $4294, $756c
 
 BellVillage1_Layout:
-	dr $756c, $75e5
+	db 0	; unknown
+INCBIN "data/maps/layouts/BellVillage1.bin"
 
 BellVillage1_Metatiles:
-	dr $75e5, $76d1
+INCBIN "data/maps/metatiles/BellVillage1.bin"
 
 BellVillage1_Blocks:
-	dr $76d1, $7815
+INCBIN "data/maps/blocks/BellVillage1.bin"
 
 BellVillage1_AttrMap:
-	dr $7815, $7896
+INCBIN "data/maps/attributes/BellVillage1.bin"
 
 BellVillage1_Palettes:
-	dr $7896, $78de
+INCBIN "data/maps/palettes/BellVillage1.bin"
 
 BellVillage1_Collision:
-	dr $78de, $79d0
+INCBIN "data/maps/collision/BellVillage1.bin"
 
 
 SECTION "banknum1", ROMX[$7fff], BANK[$1]
