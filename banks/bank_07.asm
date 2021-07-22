@@ -160,8 +160,6 @@ BallotsHouse1_MapEvents:
 
 BallotsHouse1_MapEvents2:
 	script_event ABSOLUTE, 8, 0, Script_008_4151
-
-MapEvent_007_42aa::
 	events_end
 
 HayatosHouse1_MapEvents::
