@@ -62,7 +62,7 @@ tileset_fragment: MACRO
 ; \2 = VRAM destination
 ; \3 = number of bytes
 	db BANK(\1)
-	dw \2, \2
+	dw \2, \3
 	dw \1
 ENDM
 
