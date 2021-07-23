@@ -2,13 +2,16 @@
 
 from xml.dom import minidom
 import sys
+import os
 
 root = minidom.Document()
 
 with open(sys.argv[1], 'rb') as meta:
 	rows = []
 	
-	WIDTH = int(sys.argv[3])
+	name, ext = os.path.splitext(os.path.basename(sys.argv[1]))
+	
+	WIDTH = int(sys.argv[2])
 	
 	row = meta.read(WIDTH)
 	while row:
@@ -47,16 +50,12 @@ with open(sys.argv[1], 'rb') as meta:
 	map_.setAttribute('height', f'{meta_height}')
 	root.appendChild(map_)
 	
-	map_.appendChild(
-		root.createComment('Add tilesets as much as needed')
-	)
-	
 	tileset = root.createElement('tileset')
 	tileset.setAttribute('firstgid', '1')
 	tileset.setAttribute('tilewidth', '32')
 	tileset.setAttribute('tileheight', '32')
 	tileset_img = root.createElement('image')
-	tileset_img.setAttribute('source', '../blocks/???')
+	tileset_img.setAttribute('source', f'../blocks/{name}.tmx')
 	tileset.appendChild(tileset_img)
 	map_.appendChild(tileset)
 	
@@ -74,7 +73,7 @@ with open(sys.argv[1], 'rb') as meta:
 
 	xml_str = root.toprettyxml(indent ="\t") 
 
-	save_path_file = sys.argv[2]
+	save_path_file = f'{name}.tmx'
 
 	with open(save_path_file, "w") as f:
 		f.write(xml_str) 

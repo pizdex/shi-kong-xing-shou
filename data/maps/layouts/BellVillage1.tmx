@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <map orientation="orthogonal" renderorder="right-down" tilewidth="32" tileheight="32" width="12" height="10">
-	<!--Add tilesets as much as needed-->
 	<tileset firstgid="1" tilewidth="32" tileheight="32">
 		<image source="../blocks/BellVillage1.tmx"/>
 	</tileset>

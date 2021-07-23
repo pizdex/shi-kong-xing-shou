@@ -2,11 +2,14 @@
 
 from xml.dom import minidom
 import sys
+import os
 
 root = minidom.Document()
 
 with open(sys.argv[1], 'rb') as meta:
 	rows = []
+	
+	name, ext = os.path.splitext(os.path.basename(sys.argv[1]))
 	
 	row = meta.read(2)
 	while row:
@@ -58,7 +61,7 @@ with open(sys.argv[1], 'rb') as meta:
 
 	xml_str = root.toprettyxml(indent ="\t") 
 
-	save_path_file = sys.argv[2]
+	save_path_file = save_path_file = f'{name}.tmx'
 
 	with open(save_path_file, "w") as f:
 		f.write(xml_str) 

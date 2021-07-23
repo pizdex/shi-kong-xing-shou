@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<map orientation="orthogonal" renderorder="right-down" tilewidth="32" tileheight="32" width="10" height="6">
+	<tileset firstgid="1" tilewidth="32" tileheight="32">
+		<image source="../blocks/BellObservatoryOutside1.tmx"/>
+	</tileset>
+	<layer id="1" name="layout" width="10" height="6">
+		<data encoding="csv">
+1,2,3,4,1,22,23,24,25,26,
+1,5,6,7,8,27,28,29,30,26,
+1,9,10,11,10,10,31,32,33,26,
+12,4,13,14,15,34,35,36,37,38,
+16,16,17,16,18,39,17,40,41,42,
+19,19,20,19,21,1,43,19,44,26</data>
+	</layer>
+</map>

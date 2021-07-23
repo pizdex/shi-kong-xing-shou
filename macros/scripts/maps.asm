@@ -56,3 +56,16 @@ map_attributes: MACRO
 	dw 0 ; ??
 	dw \1_Collision
 ENDM
+
+tileset_fragment: MACRO
+; \1 = tileset source
+; \2 = VRAM destination
+; \3 = number of bytes
+	db BANK(\1)
+	dw \2, \2
+	dw \1
+ENDM
+
+end_tileset: MACRO
+	db -1
+ENDM
