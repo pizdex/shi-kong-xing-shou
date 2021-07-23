@@ -27,17 +27,17 @@ ENDM
 ; Map IDs
 	newgroup    GROUP_00,                           ; 00
 	map_const	BELL_VILLAGE_1,              12, 10 ; 01
-	map_const	BELL_SCHOOL_OUTSIDE_1,        0,  0 ; 02 TODO
-	map_const	BELL_OBSERVATORY_OUTSIDE_1,   0,  0 ; 03 TODO
-	map_const	BALLOTS_HOUSE_1,              0,  0 ; 04 TODO
-	map_const	HAYATOS_HOUSE_1,              0,  0 ; 05 TODO
-	map_const	CARPET_WOMANS_HOUSE_1,        0,  0 ; 06 TODO
-	map_const	FANGFANGS_HOUSE_1,            0,  0 ; 07 TODO
-	map_const	BELL_HEALING_CENTER_1,        0,  0 ; 08 TODO
-	map_const	BELL_SCHOOL_1,                0,  0 ; 09 TODO
-	map_const	BELL_OBSERVATORY_1,           0,  0 ; 0A TODO
-	map_const	BELL_SCHOOL_SOUTH_CLASSROOM,  0,  0 ; 0B TODO
-	map_const	TECH_CITY_1,                  0,  0 ; 0C TODO
+	map_const	BELL_SCHOOL_OUTSIDE_1,        6, 10 ; 02
+	map_const	BELL_OBSERVATORY_OUTSIDE_1,  10,  6 ; 03
+	map_const	BALLOTS_HOUSE_1,              6,  5 ; 04
+	map_const	HAYATOS_HOUSE_1,              6,  5 ; 05
+	map_const	CARPET_WOMANS_HOUSE_1,        6,  5 ; 06
+	map_const	FANGFANGS_HOUSE_1,            6,  5 ; 07
+	map_const	BELL_HEALING_CENTER_1,        6,  5 ; 08
+	map_const	BELL_SCHOOL_1,                6, 10 ; 09
+	map_const	BELL_OBSERVATORY_1,           6,  6 ; 0A
+	map_const	BELL_SCHOOL_SOUTH_CLASSROOM,  6,  6 ; 0B
+	map_const	TECH_CITY_1,                 18, 12 ; 0C
 	; TODO
 	endgroup
 

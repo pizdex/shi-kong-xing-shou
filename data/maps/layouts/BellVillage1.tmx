@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<map orientation="orthogonal" renderorder="right-down" tilewidth="32" tileheight="32" width="12" height="10">
+	<tileset firstgid="1" tilewidth="32" tileheight="32">
+		<image source="../blocks/BellVillage1.tmx"/>
+	</tileset>
+	<layer id="1" name="layout" width="12" height="10">
+		<data encoding="csv">
+1,2,3,4,5,2,2,2,2,2,2,28,
+6,7,8,9,10,11,29,7,30,31,32,33,
+12,13,14,15,16,17,15,34,35,36,37,38,
+18,19,20,15,21,22,39,40,41,42,43,44,
+23,24,25,15,26,27,13,14,45,46,47,48,
+6,49,50,51,52,53,58,59,66,67,68,69,
+54,27,13,55,56,57,70,71,70,31,32,72,
+6,53,58,59,45,60,60,60,56,73,74,75,
+6,61,62,63,64,30,76,77,15,78,79,33,
+65,2,2,2,2,2,2,3,80,5,2,81</data>
+	</layer>
+</map>
