@@ -185,7 +185,96 @@ BellSchoolSouthClassroom_MapEvents::
 	dr $1c2f3, $1c30f
 
 Group01_Maps::
-	dr $1c30f, $1c4ef
+	dw unk_007_437b
+	dw unk_007_437b
+	dw unk_007_43ed
+	dw unk_007_440b
+	dw unk_007_4429
+	dw unk_007_4447
+	dw unk_007_4459
+	dw unk_007_446b
+	dw unk_007_447d
+	dw unk_007_448f
+	dw unk_007_44b9
+	dw unk_007_44cb
+	dw unk_007_44ef
+	dw unk_007_4579
+	dw unk_007_458b
+	dw unk_007_459d
+	dw unk_007_45af
+	dw unk_007_45c1
+	dw unk_007_45d3
+	dw unk_007_45fd
+	dw unk_007_460f
+	dw unk_007_4621
+	dw unk_007_4687
+	dw unk_007_4699
+	dw unk_007_46ab
+	dw unk_007_46bd
+	dw unk_007_46cf
+	dw unk_007_46ed
+	dw unk_007_46ff
+	dw unk_007_4711
+	dw unk_007_4747
+	dw unk_007_4765
+	dw unk_007_4783
+	dw unk_007_47a1
+	dw unk_007_47b3
+	dw unk_007_47c5
+	dw unk_007_47fb
+	dw unk_007_480d
+	dw unk_007_484f
+	dw unk_007_4861
+	dw unk_007_487f
+	dw unk_007_489d
+	dw unk_007_44dd
+	dw unk_007_48d3
+	dw unk_007_48e5
+	dw unk_007_48f7
+	dw unk_007_49b1
+	dw unk_007_49c3
+	dw unk_007_49d5
+	dw unk_007_49e7
+	dw unk_007_49f9
+	dw unk_007_4a0b
+	dw unk_007_4a29
+	dw unk_007_4a3b
+
+unk_007_437b::
+	dr $1c37b, $1c3ed
+
+unk_007_43ed::
+	dr $1c3ed, $1c40b
+
+unk_007_440b::
+	dr $1c40b, $1c429
+
+unk_007_4429::
+	dr $1c429, $1c447
+
+unk_007_4447::
+	dr $1c447, $1c459
+
+unk_007_4459::
+	dr $1c459, $1c46b
+
+unk_007_446b::
+	dr $1c46b, $1c47d
+
+unk_007_447d::
+	dr $1c47d, $1c48f
+
+unk_007_448f::
+	dr $1c48f, $1c4b9
+
+unk_007_44b9::
+	dr $1c4b9, $1c4cb
+
+unk_007_44cb::
+	dr $1c4cb, $1c4dd
+
+unk_007_44dd::
+	dr $1c4dd, $1c4ef
 
 unk_007_44ef::
 	dr $1c4ef, $1c579
@@ -278,7 +367,37 @@ unk_007_489d::
 	dr $1c89d, $1c8d3
 
 unk_007_48d3::
-	dr $1c8d3, $1ce2f
+	dr $1c8d3, $1c8e5
+
+unk_007_48e5::
+	dr $1c8e5, $1c8f7
+
+unk_007_48f7::
+	dr $1c8f7, $1c9b1
+
+unk_007_49b1::
+	dr $1c9b1, $1c9c3
+
+unk_007_49c3::
+	dr $1c9c3, $1c9d5
+
+unk_007_49d5::
+	dr $1c9d5, $1c9e7
+
+unk_007_49e7::
+	dr $1c9e7, $1c9f9
+
+unk_007_49f9::
+	dr $1c9f9, $1ca0b
+
+unk_007_4a0b::
+	dr $1ca0b, $1ca29
+
+unk_007_4a29::
+	dr $1ca29, $1ca3b
+
+unk_007_4a3b::
+	dr $1ca3b, $1ce2f
 
 unk_007_4e2f::
 	dr $1ce2f, $1cf00
