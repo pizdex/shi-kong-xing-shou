@@ -11,7 +11,25 @@ Script_00e_4005::
 	scr_end
 
 Script_00e_400b:
-	dr $3800b, $38abe
+	dr $3800b, $38141
+
+unk_00e_4141::
+	dr $38141, $38142
+
+unk_00e_4142::
+	dr $38142, $3819d
+
+unk_00e_419d::
+	dr $3819d, $381ca
+
+unk_00e_41ca::
+	dr $381ca, $381ef
+
+unk_00e_41ef::
+	dr $381ef, $3821d
+
+unk_00e_421d::
+	dr $3821d, $38abe
 
 INCLUDE "data/text/bank0e_misc.asm"
 

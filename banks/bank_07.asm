@@ -141,9 +141,9 @@ BellVillage1_MapEvents::
 
 BellSchoolOutside1_MapEvents::
 	warp_event ABSOLUTE, 19, MAP_BELL_VILLAGE_1, 1
-	script_event 4, 4, 0, $4137
-	script_event 5, 4, 0, $4137
-	script_event 6, 4, 0, $4137
+	script_event 4, 4, 0, Script_008_4137
+	script_event 5, 4, 0, Script_008_4137
+	script_event 6, 4, 0, Script_008_4137
 	events_end
 
 BellObservatoryOutside1_MapEvents::
@@ -185,18 +185,19 @@ BellSchoolSouthClassroom_MapEvents::
 	dr $1c2f3, $1c30f
 
 Group01_Maps::
-	dw unk_007_437b
-	dw unk_007_437b
-	dw unk_007_43ed
-	dw unk_007_440b
-	dw unk_007_4429
-	dw unk_007_4447
-	dw unk_007_4459
-	dw unk_007_446b
-	dw unk_007_447d
-	dw unk_007_448f
-	dw unk_007_44b9
-	dw unk_007_44cb
+	dw BellVillage2_Header
+	dw BellVillage2_Header
+	dw BellSchoolOutside2_Header
+	dw BellObservatoryOutside2_Header
+	dw BallotsHouse2_Header
+	dw HayatosHouse2_Header
+	dw CarpetWomansHouse2_Header
+	dw FangfangsHouse2_Header
+	dw BellHealingCenter2_Header
+	dw BellSchool2_Header
+	dw BellObservatory2_Header
+	dw BellSchoolNorthClassroom_Header
+
 	dw unk_007_44ef
 	dw unk_007_4579
 	dw unk_007_458b
@@ -240,41 +241,277 @@ Group01_Maps::
 	dw unk_007_4a29
 	dw unk_007_4a3b
 
-unk_007_437b::
-	dr $1c37b, $1c3ed
+BellVillage2_Header::
+	; map XXXXX
+	db BANK(BellVillage1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellVillage1_MapAttributes
 
-unk_007_43ed::
-	dr $1c3ed, $1c40b
+	; warp 6, 5, $9048, unk_00e_4142, unk_007_4a4d
+	db 6, 5
+	dw $9048
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_440b::
-	dr $1c40b, $1c429
+	; warp 1, 0, $2048, unk_00e_4142, unk_007_4a4d
+	db 1, 0
+	dw $2048
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_4429::
-	dr $1c429, $1c447
+	; warp 7, 1, $7088, unk_00e_4142, unk_007_4a4d
+	db 7, 1
+	dw $7088
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_4447::
-	dr $1c447, $1c459
+	; warp 0, 1, $7038, unk_00e_4142, unk_007_4a4d
+	db 0, 1
+	dw $7038
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_4459::
-	dr $1c459, $1c46b
+	; warp 7, 0, $7058, unk_00e_4142, unk_007_4a4d
+	db 7, 0
+	dw $7058
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_446b::
-	dr $1c46b, $1c47d
+	; warp 7, 5, $7068, unk_00e_4142, unk_007_4a4d
+	db 7, 5
+	dw $7068
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_447d::
-	dr $1c47d, $1c48f
+	; warp 0, 5, $7048, unk_00e_4142, unk_007_4a4d
+	db 0, 5
+	dw $7048
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_448f::
-	dr $1c48f, $1c4b9
+	; warp 4, 4, $5048, unk_00e_4142, unk_007_4a4d
+	db 4, 4
+	dw $5048
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_44b9::
-	dr $1c4b9, $1c4cb
+	; warp 0, 5, $7048, unk_00e_4142, unk_007_4a4d
+	db 0, 5
+	dw $7048
+	db BANK(unk_00e_4142)
+	ds 3 ; 0 0 0
+	dw unk_00e_4142
+	dw unk_007_4a4d
 
-unk_007_44cb::
-	dr $1c4cb, $1c4dd
+BellSchoolOutside2_Header::
+	; map XXXXX
+	db BANK(BellSchoolOutside1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellSchoolOutside1_MapAttributes
+
+	; warp 0, 5, $9058, unk_00e_4141, unk_007_4a90
+	db 0, 5
+	dw $9058
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4a90
+
+	; warp 0, 0, $6058, unk_00e_4141, unk_007_4a90
+	db 0, 0
+	dw $6058
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4a90
+
+BellObservatoryOutside2_Header::
+	; map XXXXX
+	db BANK(BellObservatoryOutside1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellObservatoryOutside1_MapAttributes
+
+	; warp 0, 1, $8018, unk_00e_4141, unk_007_4aa9
+	db 0, 1
+	dw $8018
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4aa9
+
+	; warp 5, 0, $7058, unk_00e_4141, unk_007_4aa9
+	db 5, 0
+	dw $7058
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4aa9
+
+BallotsHouse2_Header::
+	; map XXXXX
+	db BANK(BallotsHouse1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BallotsHouse1_MapAttributes
+
+	; warp 0, 0, $8038, unk_00e_4141, unk_007_4ab6
+	db 0, 0
+	dw $8038
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4ab6
+
+	; warp 0, 0, $5078, unk_00e_4141, unk_007_4ac3
+	db 0, 0
+	dw $5078
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4ac3
+
+HayatosHouse2_Header::
+	; map XXXXX
+	db BANK(HayatosHouse1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw HayatosHouse1_MapAttributes
+
+	; warp 0, 0, $8078, unk_00e_419d, unk_007_4ad6
+	db 0, 0
+	dw $8078
+	db BANK(unk_00e_419d)
+	ds 3 ; 0 0 0
+	dw unk_00e_419d
+	dw unk_007_4ad6
+
+CarpetWomansHouse2_Header::
+	; map XXXXX
+	db BANK(CarpetWomansHouse1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw CarpetWomansHouse1_MapAttributes
+
+	; warp 0, 0, $8038, unk_00e_41ca, unk_007_4ae3
+	db 0, 0
+	dw $8038
+	db BANK(unk_00e_41ca)
+	ds 3 ; 0 0 0
+	dw unk_00e_41ca
+	dw unk_007_4ae3
+
+FangfangsHouse2_Header::
+	; map XXXXX
+	db BANK(FangfangsHouse1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw FangfangsHouse1_MapAttributes
+
+	; warp 0, 0, $8078, unk_00e_41ef, unk_007_4af0
+	db 0, 0
+	dw $8078
+	db BANK(unk_00e_41ef)
+	ds 3 ; 0 0 0
+	dw unk_00e_41ef
+	dw unk_007_4af0
+
+BellHealingCenter2_Header::
+	; map XXXXX
+	db BANK(BellHealingCenter1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellHealingCenter1_MapAttributes
+
+	; warp 0, 0, $8068, unk_00e_421d, unk_007_4afd
+	db 0, 0
+	dw $8068
+	db BANK(unk_00e_41ef)
+	ds 3 ; 0 0 0
+	dw unk_00e_421d
+	dw unk_007_4afd
+
+BellSchool2_Header::
+	; map XXXXX
+	db BANK(BellSchool1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellSchool1_MapAttributes
+
+	; warp 0, 5, $8068, unk_00e_4141, unk_007_4b0a
+	db 0, 5
+	dw $8068
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4b0a
+
+	; warp 0, 5, $6028, unk_00e_4141, unk_007_4b0a
+	db 0, 5
+	dw $6028
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4b0a
+
+	; warp 0, 0, $7028, unk_00e_4141, unk_007_4b0a
+	db 0, 0
+	dw $7028
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4b0a
+
+BellObservatory2_Header::
+	; map XXXXX
+	db BANK(BellObservatory1_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellObservatory1_MapAttributes
+
+	; warp 1, 1, $8068, unk_00e_4141, unk_007_4b2f
+	db 1, 1
+	dw $8068
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4b2f
+
+BellSchoolNorthClassroom_Header::
+	; map XXXXX
+	db BANK(BellSchoolSouthClassroom_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellSchoolSouthClassroom_MapAttributes
+
+	; warp 1, 0, $4078, unk_00e_4141, unk_007_4b30
+	db 1, 0
+	dw $4078
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4b30
 
 unk_007_44dd::
-	dr $1c4dd, $1c4ef
+	; map XXXXX
+	db BANK(BellSchoolSouthClassroom_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellSchoolSouthClassroom_MapAttributes
+
+	; warp 1, 0, $4078, unk_00e_4141, unk_007_4b3d
+	db 1, 0
+	dw $4078
+	db BANK(unk_00e_4141)
+	ds 3 ; 0 0 0
+	dw unk_00e_4141
+	dw unk_007_4b3d
 
 unk_007_44ef::
 	dr $1c4ef, $1c579
@@ -397,7 +634,46 @@ unk_007_4a29::
 	dr $1ca29, $1ca3b
 
 unk_007_4a3b::
-	dr $1ca3b, $1ce2f
+	dr $1ca3b, $1ca4d
+
+unk_007_4a4d::
+	dr $1ca4d, $1ca90
+
+unk_007_4a90::
+	dr $1ca90, $1caa9
+
+unk_007_4aa9::
+	dr $1caa9, $1cab6
+
+unk_007_4ab6::
+	dr $1cab6, $1cac3
+
+unk_007_4ac3::
+	dr $1cac3, $1cad6
+
+unk_007_4ad6::
+	dr $1cad6, $1cae3
+
+unk_007_4ae3::
+	dr $1cae3, $1caf0
+
+unk_007_4af0::
+	dr $1caf0, $1cafd
+
+unk_007_4afd::
+	dr $1cafd, $1cb0a
+
+unk_007_4b0a::
+	dr $1cb0a, $1cb2f
+
+unk_007_4b2f::
+	dr $1cb2f, $1cb30
+
+unk_007_4b30::
+	dr $1cb30, $1cb3d
+
+unk_007_4b3d::
+	dr $1cb3d, $1ce2f
 
 unk_007_4e2f::
 	dr $1ce2f, $1cf00
