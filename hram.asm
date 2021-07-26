@@ -62,7 +62,7 @@ hFFBD:: ds 1
 
 hTargetBank:: ds 1
 
-hFFBF:: ds 1 ; load map
+hFade:: ds 1 ; load map
 hFFC0:: ds 1
 hScrollNumber:: ds 1
 hFFC2:: ds 1
@@ -85,7 +85,7 @@ hFFD2:: ds 1
 hFFD3:: ds 1
 hFFD4:: ds 1
 hFFD5:: ds 1
-hFFD6:: ds 1
+hFFD6:: ds 1 ; execute script?
 hFFD7:: ds 1
 hFFD8:: ds 1
 

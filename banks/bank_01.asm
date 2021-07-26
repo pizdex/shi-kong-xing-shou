@@ -1,14 +1,35 @@
 ; Map headers
+BellVillage2_MapAttributes:
 	map_attributes BellVillage1, BELL_VILLAGE_1, 0, Tileset_006_4000
+
+BellSchoolOutside2_MapAttributes:
 	map_attributes BellSchoolOutside1, BELL_SCHOOL_OUTSIDE_1, 0, Tileset_006_400f
+
+BellObservatoryOutside2_MapAttributes:
 	map_attributes BellObservatoryOutside1, BELL_OBSERVATORY_OUTSIDE_1, 0, Tileset_006_4025
+
+BallotsHouse2_MapAttributes:
 	map_attributes BallotsHouse1, BALLOTS_HOUSE_1, 0, Tileset_006_403b
+
+HayatosHouse2_MapAttributes:
 	map_attributes HayatosHouse1, HAYATOS_HOUSE_1, 0, Tileset_006_403b
+
+CarpetWomansHouse2_MapAttributes:
 	map_attributes CarpetWomansHouse1, CARPET_WOMANS_HOUSE_1, 0, Tileset_006_403b
+
+FangfangsHouse2_MapAttributes:
 	map_attributes FangfangsHouse1, FANGFANGS_HOUSE_1, 0, Tileset_006_403b
+
+BellHealingCenter2_MapAttributes:
 	map_attributes BellHealingCenter1, BELL_HEALING_CENTER_1, 0, Tileset_006_404a
+
+BellSchool2_MapAttributes:
 	map_attributes BellSchool1, BELL_SCHOOL_1, 0, Tileset_006_4052
+
+BellObservatory2_MapAttributes:
 	map_attributes BellObservatory1, BELL_OBSERVATORY_1, 0, Tileset_006_405a
+
+BellSchoolNorthClassroom_MapAttributes:
 	map_attributes BellSchoolSouthClassroom, BELL_SCHOOL_SOUTH_CLASSROOM, 0, Tileset_006_403b
 
 unk_001_40dc:

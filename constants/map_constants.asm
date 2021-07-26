@@ -22,7 +22,7 @@ endgroup: MACRO
 PURGE CURRENT_NUM_MAPGROUP_MAPS
 ENDM
 
-	const_def
+	const_def   -1
 
 ; Map IDs
 	newgroup    GROUP_00,                           ; 00

@@ -1744,7 +1744,7 @@ Func_2363::
 	ret
 
 Func_23a6::
-	ldh a, [hFFBF]
+	ldh a, [hFade]
 	and a
 	ret nz
 	ld a, [wd1f1]

@@ -238,7 +238,7 @@ wd0f5:: ds 1
 wCharacterTileDest:: ds 2
 wd0f8:: ds 1
 wd0f9:: ds 1
-wd0fa:: ds 1
+wTargetMode:: ds 1
 wd0fb:: ds 2
 wd0fd:: ds 2
 wd0ff:: ds 1

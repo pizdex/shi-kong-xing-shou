@@ -63,17 +63,17 @@ Func_0200::
 	ld [wd0ef], a
 	ld a, 0
 	ld [hFFBA], a
-	call Func_15e7
+	call LoadMapAndScriptPredef
 	ld a, $12
-	ld [wd0fa], a
+	ld [wTargetMode], a
 
-Func_023b::
+JumpToGameMode::
 	ld bc, wcab0
 	xor a
 	ldh [hFFC4], a
 	call FadeOutPalette
-	ld de, unkTable_025c
-	ld a, [wd0fa]
+	ld de, GameModes
+	ld a, [wTargetMode]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -87,11 +87,11 @@ Func_023b::
 	ld l, a
 	jp hl
 
-Func_0257::
-	call Func_15e7
-	jr Func_023b
+JumpToModeAndSetMapPredefs::
+	call LoadMapAndScriptPredef
+	jr JumpToGameMode
 
-unkTable_025c::
+GameModes::
 ; Seems to load on each map entry
 	dba Func_005_41fb   ; $00
 	dba MeteorCutscene  ; $01
@@ -2421,8 +2421,8 @@ Func_15a8::
 	ldh [rVBK], a
 	ret
 
-Func_15e7::
-	ld de, .unk_15f6
+LoadMapAndScriptPredef::
+	ld de, .Predefs
 	ld a, [hFFBA]
 	ld l, a
 	ld h, 0
@@ -2433,12 +2433,12 @@ Func_15e7::
 	ld l, a
 	jp hl
 
-.unk_15f6
-	dw Func_1620 ; $00
+.Predefs
+	dw MapPredef_BallotsHouseIntro ; $00
 	dw Func_1730 ; $01
 	dw Func_1730 ; $02
 	dw Func_1900 ; $03
-	dw Func_16f4 ; $04
+	dw MapPredef_AfterMeteorShower ; $04
 	dw Func_1712 ; $05
 	dw Func_1730 ; $06
 	dw Func_1730 ; $07
@@ -2456,10 +2456,10 @@ Func_15e7::
 	dw Func_1730 ; $13
 	dw Func_1730 ; $14
 
-Func_1620::
+MapPredef_BallotsHouseIntro::
 	ld hl, wdd00
 	ld [hl], $01
-	ld a, $04
+	ld a, MAP_BALLOTS_HOUSE_1
 	ldh [hMapNumber], a
 	ld a, 1
 	ldh [hWarpNumber], a
@@ -2591,10 +2591,10 @@ Func_16ea::
 	ld [rRAMG], a
 	jp Func_1661
 
-Func_16f4::
-	ld a, 1
+MapPredef_AfterMeteorShower::
+	ld a, GROUP_BALLOTS_HOUSE_2
 	ldh [hMapGroup], a
-	ld a, $04
+	ld a, MAP_BALLOTS_HOUSE_2
 	ldh [hMapNumber], a
 	ld a, 1
 	ldh [hWarpNumber], a

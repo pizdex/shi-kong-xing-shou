@@ -44,6 +44,16 @@ signpost_event: MACRO
 	event \1, \2, $02, \3, $00, $00
 ENDM
 
+event_04: MACRO
+; $04 - Script event
+; \1 = X
+; \2 = Y
+; \3 = ?
+; \4 = script location
+	db \1, \2, $04
+	db \3
+	dw \4
+ENDM
 events_end: MACRO
 	db -1
 ENDM
