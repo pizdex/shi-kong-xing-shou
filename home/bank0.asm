@@ -2422,7 +2422,7 @@ Func_15a8::
 	ret
 
 LoadMapAndScriptPredef::
-	ld de, .unk_15f6
+	ld de, .Predefs
 	ld a, [hFFBA]
 	ld l, a
 	ld h, 0
@@ -2433,12 +2433,12 @@ LoadMapAndScriptPredef::
 	ld l, a
 	jp hl
 
-.unk_15f6
-	dw Func_1620 ; $00
+.Predefs
+	dw MapPredef_BallotsHouseIntro ; $00
 	dw Func_1730 ; $01
 	dw Func_1730 ; $02
 	dw Func_1900 ; $03
-	dw Func_16f4 ; $04
+	dw MapPredef_AfterMeteorShower ; $04
 	dw Func_1712 ; $05
 	dw Func_1730 ; $06
 	dw Func_1730 ; $07
@@ -2456,10 +2456,10 @@ LoadMapAndScriptPredef::
 	dw Func_1730 ; $13
 	dw Func_1730 ; $14
 
-Func_1620::
+MapPredef_BallotsHouseIntro::
 	ld hl, wdd00
 	ld [hl], $01
-	ld a, $04
+	ld a, MAP_BALLOTS_HOUSE_1
 	ldh [hMapNumber], a
 	ld a, 1
 	ldh [hWarpNumber], a
@@ -2591,10 +2591,10 @@ Func_16ea::
 	ld [rRAMG], a
 	jp Func_1661
 
-Func_16f4::
-	ld a, 1
+MapPredef_AfterMeteorShower::
+	ld a, GROUP_BALLOTS_HOUSE_2
 	ldh [hMapGroup], a
-	ld a, $04
+	ld a, MAP_BALLOTS_HOUSE_2
 	ldh [hMapNumber], a
 	ld a, 1
 	ldh [hWarpNumber], a

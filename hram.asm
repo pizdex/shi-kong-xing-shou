@@ -85,7 +85,7 @@ hFFD2:: ds 1
 hFFD3:: ds 1
 hFFD4:: ds 1
 hFFD5:: ds 1
-hFFD6:: ds 1
+hFFD6:: ds 1 ; execute script?
 hFFD7:: ds 1
 hFFD8:: ds 1
 
