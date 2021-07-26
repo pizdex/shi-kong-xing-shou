@@ -241,263 +241,73 @@ Group01_Maps::
 	dw unk_007_4a29
 	dw unk_007_4a3b
 
-BellVillage2_Header::
-	; map XXXXX
-	db BANK(BellVillage1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BellVillage1_MapAttributes
+; BellVillage2
+	map BellVillage2
+	warp 6, 5, $9048
+	warp 1, 0, $2048
+	warp 7, 1, $7088
+	warp 0, 1, $7038
+	warp 7, 0, $7058
+	warp 7, 5, $7068
+	warp 0, 5, $7048
+	warp 4, 4, $5048
+	warp 0, 5, $7048
+	end_map
 
-	; warp 6, 5, $9048, unk_00e_4142, unk_007_4a4d
-	db 6, 5
-	dw $9048
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; BellSchoolOutside2
+	map BellSchoolOutside2
+	warp 0, 5, $9058
+	warp 0, 0, $6058
+	end_map
 
-	; warp 1, 0, $2048, unk_00e_4142, unk_007_4a4d
-	db 1, 0
-	dw $2048
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; BellObservatoryOutside2
+	map BellObservatoryOutside2
+	warp 0, 1, $8018, BellSchoolOutside2_ObjectEvents, BellObservatoryOutside2_MapEvents
+	warp 5, 0, $7058, BellSchoolOutside2_ObjectEvents, BellObservatoryOutside2_MapEvents
+	end_map
 
-	; warp 7, 1, $7088, unk_00e_4142, unk_007_4a4d
-	db 7, 1
-	dw $7088
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; BallotsHouse2
+	map BallotsHouse2
+	warp 0, 0, $8038
+	warp 0, 0, $5078, BallotsHouse2_ObjectEvents, BallotsHouse2_MapEvents2
+	end_map
 
-	; warp 0, 1, $7038, unk_00e_4142, unk_007_4a4d
-	db 0, 1
-	dw $7038
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; HayatosHouse2
+	map HayatosHouse2
+	warp 0, 0, $8078
+	end_map
 
-	; warp 7, 0, $7058, unk_00e_4142, unk_007_4a4d
-	db 7, 0
-	dw $7058
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; CarpetWomansHouse2
+	map CarpetWomansHouse2
+	warp 0, 0, $8038
+	end_map
 
-	; warp 7, 5, $7068, unk_00e_4142, unk_007_4a4d
-	db 7, 5
-	dw $7068
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; FangfangsHouse2
+	map FangfangsHouse2
+	warp 0, 0, $8078
+	end_map
 
-	; warp 0, 5, $7048, unk_00e_4142, unk_007_4a4d
-	db 0, 5
-	dw $7048
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; BellHealingCenter2
+	map BellHealingCenter2
+	warp 0, 0, $8068
+	end_map
 
-	; warp 4, 4, $5048, unk_00e_4142, unk_007_4a4d
-	db 4, 4
-	dw $5048
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; BellSchool2
+	map BellSchool2
+	warp 0, 5, $8068
+	warp 0, 5, $6028
+	warp 0, 0, $7028
+	end_map
 
-	; warp 0, 5, $7048, unk_00e_4142, unk_007_4a4d
-	db 0, 5
-	dw $7048
-	db BANK(unk_00e_4142)
-	ds 3 ; 0 0 0
-	dw unk_00e_4142
-	dw unk_007_4a4d
+; BellObservatory2
+	map BellObservatory2
+	warp 1, 1, $8068
+	end_map
 
-BellSchoolOutside2_Header::
-	; map XXXXX
-	db BANK(BellSchoolOutside1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BellSchoolOutside1_MapAttributes
-
-	; warp 0, 5, $9058, unk_00e_4141, unk_007_4a90
-	db 0, 5
-	dw $9058
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4a90
-
-	; warp 0, 0, $6058, unk_00e_4141, unk_007_4a90
-	db 0, 0
-	dw $6058
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4a90
-
-BellObservatoryOutside2_Header::
-	; map XXXXX
-	db BANK(BellObservatoryOutside1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BellObservatoryOutside1_MapAttributes
-
-	; warp 0, 1, $8018, unk_00e_4141, unk_007_4aa9
-	db 0, 1
-	dw $8018
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4aa9
-
-	; warp 5, 0, $7058, unk_00e_4141, unk_007_4aa9
-	db 5, 0
-	dw $7058
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4aa9
-
-BallotsHouse2_Header::
-	; map XXXXX
-	db BANK(BallotsHouse1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BallotsHouse1_MapAttributes
-
-	; warp 0, 0, $8038, unk_00e_4141, unk_007_4ab6
-	db 0, 0
-	dw $8038
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4ab6
-
-	; warp 0, 0, $5078, unk_00e_4141, unk_007_4ac3
-	db 0, 0
-	dw $5078
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4ac3
-
-HayatosHouse2_Header::
-	; map XXXXX
-	db BANK(HayatosHouse1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw HayatosHouse1_MapAttributes
-
-	; warp 0, 0, $8078, unk_00e_419d, unk_007_4ad6
-	db 0, 0
-	dw $8078
-	db BANK(unk_00e_419d)
-	ds 3 ; 0 0 0
-	dw unk_00e_419d
-	dw unk_007_4ad6
-
-CarpetWomansHouse2_Header::
-	; map XXXXX
-	db BANK(CarpetWomansHouse1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw CarpetWomansHouse1_MapAttributes
-
-	; warp 0, 0, $8038, unk_00e_41ca, unk_007_4ae3
-	db 0, 0
-	dw $8038
-	db BANK(unk_00e_41ca)
-	ds 3 ; 0 0 0
-	dw unk_00e_41ca
-	dw unk_007_4ae3
-
-FangfangsHouse2_Header::
-	; map XXXXX
-	db BANK(FangfangsHouse1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw FangfangsHouse1_MapAttributes
-
-	; warp 0, 0, $8078, unk_00e_41ef, unk_007_4af0
-	db 0, 0
-	dw $8078
-	db BANK(unk_00e_41ef)
-	ds 3 ; 0 0 0
-	dw unk_00e_41ef
-	dw unk_007_4af0
-
-BellHealingCenter2_Header::
-	; map XXXXX
-	db BANK(BellHealingCenter1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BellHealingCenter1_MapAttributes
-
-	; warp 0, 0, $8068, unk_00e_421d, unk_007_4afd
-	db 0, 0
-	dw $8068
-	db BANK(unk_00e_41ef)
-	ds 3 ; 0 0 0
-	dw unk_00e_421d
-	dw unk_007_4afd
-
-BellSchool2_Header::
-	; map XXXXX
-	db BANK(BellSchool1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BellSchool1_MapAttributes
-
-	; warp 0, 5, $8068, unk_00e_4141, unk_007_4b0a
-	db 0, 5
-	dw $8068
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4b0a
-
-	; warp 0, 5, $6028, unk_00e_4141, unk_007_4b0a
-	db 0, 5
-	dw $6028
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4b0a
-
-	; warp 0, 0, $7028, unk_00e_4141, unk_007_4b0a
-	db 0, 0
-	dw $7028
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4b0a
-
-BellObservatory2_Header::
-	; map XXXXX
-	db BANK(BellObservatory1_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BellObservatory1_MapAttributes
-
-	; warp 1, 1, $8068, unk_00e_4141, unk_007_4b2f
-	db 1, 1
-	dw $8068
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4b2f
-
-BellSchoolNorthClassroom_Header::
-	; map XXXXX
-	db BANK(BellSchoolSouthClassroom_MapAttributes)
-	ds 3 ; 0 0 0
-	dw BellSchoolSouthClassroom_MapAttributes
-
-	; warp 1, 0, $4078, unk_00e_4141, unk_007_4b30
-	db 1, 0
-	dw $4078
-	db BANK(unk_00e_4141)
-	ds 3 ; 0 0 0
-	dw unk_00e_4141
-	dw unk_007_4b30
+; BellSchoolNorthClassroom
+	map BellSchoolNorthClassroom
+	warp 1, 0, $4078
+	end_map
 
 unk_007_44dd::
 	; map XXXXX
@@ -505,12 +315,12 @@ unk_007_44dd::
 	ds 3 ; 0 0 0
 	dw BellSchoolSouthClassroom_MapAttributes
 
-	; warp 1, 0, $4078, unk_00e_4141, unk_007_4b3d
+	; warp 1, 0, $4078, BellSchoolOutside2_ObjectEvents, unk_007_4b3d
 	db 1, 0
 	dw $4078
-	db BANK(unk_00e_4141)
+	db BANK(BellSchoolOutside2_ObjectEvents)
 	ds 3 ; 0 0 0
-	dw unk_00e_4141
+	dw BellSchoolOutside2_ObjectEvents
 	dw unk_007_4b3d
 
 unk_007_44ef::
@@ -636,41 +446,79 @@ unk_007_4a29::
 unk_007_4a3b::
 	dr $1ca3b, $1ca4d
 
-unk_007_4a4d::
-	dr $1ca4d, $1ca90
+BellVillage2_MapEvents::
+	script_event ABSOLUTE, 19, $00, Script_00e_409f
+	warp_event ABSOLUTE, 0, $02, $00, $00 ; TEMP
+	warp_event 23, ABSOLUTE, $2b, $00, $00 ; TEMP
+	warp_event 3, 7, $05, $00, $00 ; TEMP
+	warp_event 19, 5, $06, $00, $00 ; TEMP
+	warp_event 20, 15, $07, $00, $00 ; TEMP
+	warp_event 4, 15, $04, $00, $00 ; TEMP
+	warp_event 12, 11, $08, $00, $00 ; TEMP
+	signpost_event 8, 3, $01
+	signpost_event 22, 7, $02
+	signpost_event 15, 17, $03
+	events_end
 
-unk_007_4a90::
-	dr $1ca90, $1caa9
+BellSchoolOutside2_MapEvents::
+	warp_event ABSOLUTE, 19, $01, $01, $00 ; TEMP
+	script_event 4, 4, $00, Script_00e_408f
+	script_event 5, 4, $00, Script_00e_408f
+	script_event 6, 4, $00, Script_00e_408f
+	events_end
 
-unk_007_4aa9::
-	dr $1caa9, $1cab6
+BellObservatoryOutside2_MapEvents::
+	warp_event 0, ABSOLUTE, $01, $02, $00 ; TEMP
+	signpost_event 8, 8, $04
+	events_end
 
-unk_007_4ab6::
-	dr $1cab6, $1cac3
+BallotsHouse2_MapEvents::
+	warp_event ABSOLUTE, 8, $01, $06, $00 ; TEMP
+	event 9, 3, $07, $01, $00, $00
+	events_end
 
-unk_007_4ac3::
-	dr $1cac3, $1cad6
+BallotsHouse2_MapEvents2::
+	script_event ABSOLUTE, 8, $00, Script_00e_404a
+	event_04 5, 3, $00, Script_00e_4012
+	event 9, 3, $07, $01, $00, $00
+	events_end
 
-unk_007_4ad6::
-	dr $1cad6, $1cae3
+HayatosHouse2_MapEvents::
+	warp_event ABSOLUTE, 8, $01, $03, $00 ; TEMP
+	event 9, 3, $07, $02, $00, $00
+	events_end
 
-unk_007_4ae3::
-	dr $1cae3, $1caf0
+CarpetWomansHouse2_MapEvents::
+	warp_event ABSOLUTE, 8, $01, $04, $00 ; TEMP
+	event 2, 3, $07, $03, $00, $00
+	events_end
 
-unk_007_4af0::
-	dr $1caf0, $1cafd
+FangfangsHouse2_MapEvents::
+	warp_event ABSOLUTE, 8, $01, $05, $00 ; TEMP
+	event 9, 3, $07, $04, $00, $00
+	events_end
 
-unk_007_4afd::
-	dr $1cafd, $1cb0a
+BellHealingCenter2_MapEvents::
+	warp_event ABSOLUTE, 8, $01, $07, $00 ; TEMP
+	event_04 5, 4, $00, Script_00e_4683
+	events_end
 
-unk_007_4b0a::
-	dr $1cb0a, $1cb2f
+BellSchool2_MapEvents::
+	warp_event ABSOLUTE, 18, $02, $01, $00 ; TEMP
+	warp_event 1, 14, $0b, $00, $00 ; TEMP
+	warp_event 1, 15, $0b, $00, $00 ; TEMP
+	warp_event 1, 5, $2a, $00, $00 ; TEMP
+	warp_event 1, 6, $2a, $00, $00 ; TEMP
+	event 7, 2, $07, $05, $00, $00
+	events_end
 
-unk_007_4b2f::
-	dr $1cb2f, $1cb30
+BellObservatory2_MapEvents::
+	events_end
 
-unk_007_4b30::
-	dr $1cb30, $1cb3d
+BellSchoolNorthClassroom_MapEvents::
+	warp_event 10, ABSOLUTE, $09, $01, $00 ; TEMP
+	event 2, 3, $07, $06, $00, $00
+	events_end
 
 unk_007_4b3d::
 	dr $1cb3d, $1ce2f

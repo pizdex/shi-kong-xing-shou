@@ -139,9 +139,9 @@ ENDM
 	const script_34 ; $34
 scr_34: MACRO
 	db script_34
-	db \1
-	db \2
-	db \3
+	db \1 ; cutscene
+	db \2 ; map number
+	db \3 ; warp number
 ENDM
 
 	const_def $36
