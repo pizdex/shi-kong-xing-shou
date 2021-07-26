@@ -63,17 +63,17 @@ Func_0200::
 	ld [wd0ef], a
 	ld a, 0
 	ld [hFFBA], a
-	call Func_15e7
+	call LoadMapAndScriptPredef
 	ld a, $12
-	ld [wd0fa], a
+	ld [wTargetMode], a
 
-Func_023b::
+JumpToGameMode::
 	ld bc, wcab0
 	xor a
 	ldh [hFFC4], a
 	call FadeOutPalette
-	ld de, unkTable_025c
-	ld a, [wd0fa]
+	ld de, GameModes
+	ld a, [wTargetMode]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -87,11 +87,11 @@ Func_023b::
 	ld l, a
 	jp hl
 
-Func_0257::
-	call Func_15e7
-	jr Func_023b
+JumpToModeAndSetMapPredefs::
+	call LoadMapAndScriptPredef
+	jr JumpToGameMode
 
-unkTable_025c::
+GameModes::
 ; Seems to load on each map entry
 	dba Func_005_41fb   ; $00
 	dba MeteorCutscene  ; $01
@@ -2421,7 +2421,7 @@ Func_15a8::
 	ldh [rVBK], a
 	ret
 
-Func_15e7::
+LoadMapAndScriptPredef::
 	ld de, .unk_15f6
 	ld a, [hFFBA]
 	ld l, a

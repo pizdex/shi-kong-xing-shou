@@ -12,8 +12,8 @@ Script_00e_4005::
 
 unk_00e_400b:
 	xor a
-	ld [wd0fa], a
-	jp Func_023b
+	ld [wTargetMode], a
+	jp JumpToGameMode
 
 Script_00e_4012:
 	scr_checkbit $daa0, $04, Script_00e_4049 ; TEMP

@@ -482,7 +482,7 @@ Func_00b_451d:
 	ldh [hWarpNumber], a
 ; Enable map switch
 	ld a, 1
-	ld [hFFBF], a
+	ld [hFade], a
 	xor a
 	ld [wScriptByte], a
 	ret
@@ -755,7 +755,7 @@ Func_00b_4c5f:
 Func_00b_4ca3:
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ld [wd0fa], a
+	ld [wTargetMode], a
 	call GetScriptByte
 	ld a, [wScriptByte]
 	ldh [hMapNumber], a
@@ -763,7 +763,7 @@ Func_00b_4ca3:
 	ld a, [wScriptByte]
 	ldh [hWarpNumber], a
 	ld a, $01
-	ldh [hFFBF], a
+	ldh [hFade], a
 	xor a
 	ld [wScriptByte], a
 	ret

@@ -62,7 +62,7 @@ hFFBD:: ds 1
 
 hTargetBank:: ds 1
 
-hFFBF:: ds 1 ; load map
+hFade:: ds 1 ; load map
 hFFC0:: ds 1
 hScrollNumber:: ds 1
 hFFC2:: ds 1
