@@ -63,7 +63,7 @@ Func_005_4bc1:
 	ld a, [hli]
 	ldh [hFF9E], a
 	ld a, [hli]
-	ldh [hFFA7], a
+	ldh [hSimulatedJoypadState], a
 	ld a, [hli]
 	ld [wd1f9], a
 	ld a, [hli]

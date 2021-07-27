@@ -34,7 +34,7 @@ hFFA2:: ds 2
 hFFA4:: ds 1
 hFFA5:: ds 1
 hFFA6:: ds 1
-hFFA7:: ds 1
+hSimulatedJoypadState:: ds 1
 hFFA8:: ds 1
 hFFA9:: ds 1
 hFFAA:: ds 1

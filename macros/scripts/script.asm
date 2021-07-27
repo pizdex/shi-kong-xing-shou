@@ -118,7 +118,19 @@ scr_emote: MACRO
 	db \2 ; emote
 ENDM
 
-	const_def $1c
+	const_def $1a
+
+	const script_1a ; $1a
+scr_1a: MACRO
+	db script_1a
+	db \1, \2, \3, \4
+ENDM
+
+	const script_1b ; $1b
+scr_1b: MACRO
+	db script_1b
+	db \1
+ENDM
 
 	const script_1c ; $1c
 scr_1c: MACRO
@@ -134,6 +146,14 @@ scr_1f: MACRO
 	db \1
 ENDM
 
+	const_def $2a
+
+	const script_farjump ; $2a
+scr_farjump: MACRO
+	db script_farjump
+	dba \1
+ENDM
+
 	const_def $34
 
 	const script_34 ; $34
@@ -143,9 +163,10 @@ scr_34: MACRO
 	db \2 ; map number
 	db \3 ; warp number
 ENDM
-
-	const_def $36
-
+	const script_35 ; $35
+scr_35: MACRO
+	db script_35, \1
+ENDM
 	const script_36 ; $36
 scr_36: MACRO
 	db script_36
@@ -156,11 +177,51 @@ scr_37: MACRO
 	db script_37
 ENDM
 
+	const_def $3b
+
+	const script_3b ; $3b
+scr_3b: MACRO
+	db script_3b
+	dw \1
+ENDM
+
 	const_def $44
 
 	const script_44 ; $44
 scr_44: MACRO
 	db script_44
+ENDM
+
+	const_def $48
+
+	const script_48 ; $48
+scr_48: MACRO
+	db script_48
+	db \1
+	db \2
+ENDM
+
+	const_def $4a
+
+	const script_4a ; $4a
+scr_4a: MACRO
+	db script_4a
+	db \1
+ENDM
+
+	const_def $4d
+
+	const script_4d ; $4d
+scr_4d: MACRO
+	db script_4d
+	db \1, \2
+ENDM
+
+	const script_4e ; $4e
+scr_4e: MACRO
+	db script_4e
+	db \1
+	dw \2
 ENDM
 
 	const_def $5e
@@ -169,4 +230,34 @@ ENDM
 scr_5e: MACRO
 	db script_5e
 	db \1 ; follower
+ENDM
+
+	const_def $61
+
+	const script_61 ; $65
+scr_61: MACRO
+	db script_61
+	db \1
+ENDM
+
+	const_def $62
+
+	const script_62 ; $62
+scr_62: MACRO
+	db script_62
+	db \1, \2
+ENDM
+
+	const script_63 ; $63
+scr_63: MACRO
+	db script_63
+	db \1
+ENDM
+
+	const_def $65
+
+	const script_65 ; $65
+scr_65: MACRO
+	db script_65
+	db \1
 ENDM

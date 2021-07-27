@@ -526,7 +526,7 @@ wdcb6:: ds 5
 
 wdcbb:: ds $d
 
-wdcc8:: ds 2
+wMovementPointer:: ds 2
 wdcca:: ds 1
 wdccb:: ds 1
 wdccc:: ds 1

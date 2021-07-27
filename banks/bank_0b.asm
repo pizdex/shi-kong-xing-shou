@@ -104,7 +104,7 @@ ScriptCommandTable:
 	dw Func_00b_4a6e   ; $27
 	dw Func_00b_4a86   ; $28
 	dw Func_00b_4a9a   ; $29
-	dw Func_00b_4aaa   ; $2a
+	dw Script_farjump   ; $2a
 	dw Func_00b_4acb   ; $2b
 	dw Func_00b_4afc   ; $2c
 	dw Func_00b_4b2f   ; $2d
@@ -266,7 +266,7 @@ Func_00b_43bd:
 	ld [wcbfe + 1], a
 	ld a, 1
 	ldh [hFFBC], a
-	call Func_00b_43fc
+	call AdjustTextboxYPosition
 	xor a
 	ld [wScriptByte], a
 	ld a, [wcbfb]
@@ -289,7 +289,7 @@ Func_00b_43bd:
 	call Func_06f8
 	ret
 
-Func_00b_43fc:
+AdjustTextboxYPosition:
 	ld a, TEXTBOX_TOP
 	ld [wTextboxPos], a
 ; Check y coord
@@ -392,7 +392,7 @@ Func_00b_4480:
 Func_00b_449c:
 	xor a
 	ldh [hFFD6], a
-	ldh [hFFA7], a
+	ldh [hSimulatedJoypadState], a
 	ld [wd0f0], a
 	call Func_0817
 	call Func_19b6
@@ -490,10 +490,10 @@ Func_00b_451d:
 Func_00b_4537:
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ld [wdcc8], a
+	ld [wMovementPointer], a
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ld [wdcc8 + 1], a
+	ld [wMovementPointer + 1], a
 	ld a, $0e
 	ld [wScriptByte], a
 	ret
@@ -511,15 +511,15 @@ Func_00b_455f:
 Func_00b_456c:
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ld [wdcc8], a
+	ld [wMovementPointer], a
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ld [wdcc8 + 1], a
+	ld [wMovementPointer + 1], a
 ; Next command
 	ld a, $10
 	ld [wScriptByte], a
 	xor a
-	ldh [hFFA7], a
+	ldh [hSimulatedJoypadState], a
 	ret
 
 Func_00b_4587:
@@ -563,7 +563,7 @@ Func_00b_45e1:
 	ld a, [wScriptByte]
 	ld [wcbfe + 1], a
 
-	call Func_00b_43fc
+	call AdjustTextboxYPosition
 
 ; Display text
 	ld a, 1
@@ -722,7 +722,7 @@ Func_00b_4a86:
 Func_00b_4a9a:
 	dr $2ca9a, $2caaa
 
-Func_00b_4aaa:
+Script_farjump:
 	dr $2caaa, $2cacb
 
 Func_00b_4acb:
@@ -808,10 +808,10 @@ Func_00b_4e0d:
 Func_00b_4e39:
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ld [wdcc8], a
+	ld [wMovementPointer], a
 	call GetScriptByte
 	ld a, [wScriptByte]
-	ld [wdcc8 + 1], a
+	ld [wMovementPointer + 1], a
 	farcall Func_02d_507b
 	ld a, $01
 	ld [hFFD3], a
@@ -1102,13 +1102,13 @@ Func_00b_60b2:
 	dr $2e0b2, $2e0dd
 
 Func_00b_60dd:
-	ldh a, [hFFA7]
+	ldh a, [hSimulatedJoypadState]
 	and a
 	ret nz
 
-	ld a, [wdcc8]
+	ld a, [wMovementPointer]
 	ld l, a
-	ld a, [wdcc8 + 1]
+	ld a, [wMovementPointer + 1]
 	ld h, a
 	ld a, [hli]
 	cp $ff
@@ -1116,16 +1116,16 @@ Func_00b_60dd:
 
 	xor a
 	ld [wScriptByte], a
-	ldh [hFFA7], a
+	ldh [hSimulatedJoypadState], a
 	ret
 
 .asm_60f5
 	inc a
-	ld [hFFA7], a
+	ld [hSimulatedJoypadState], a
 	ld a, l
-	ld [wdcc8], a
+	ld [wMovementPointer], a
 	ld a, h
-	ld [wdcc8 + 1], a
+	ld [wMovementPointer + 1], a
 	ld a, $10
 	ld [hFFA6], a
 	ld a, 1

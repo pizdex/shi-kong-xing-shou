@@ -314,137 +314,347 @@ unk_007_44dd::
 	db BANK(BellSchoolSouthClassroom_MapAttributes)
 	ds 3 ; 0 0 0
 	dw BellSchoolSouthClassroom_MapAttributes
-
-	; warp 1, 0, $4078, BellSchoolOutside2_ObjectEvents, unk_007_4b3d
-	db 1, 0
-	dw $4078
-	db BANK(BellSchoolOutside2_ObjectEvents)
-	ds 3 ; 0 0 0
-	dw BellSchoolOutside2_ObjectEvents
-	dw unk_007_4b3d
+	warp  1, 0, $4078, BellSchoolOutside2_ObjectEvents, unk_007_4b3d
 
 unk_007_44ef::
-	dr $1c4ef, $1c579
+	; map XXXXX
+	db BANK(unk_001_40dc)
+	ds 3 ; 0 0 0
+	dw unk_001_40dc
+	warp  6, 7, $9068, unk_00f_42b0, unk_007_4b44
+	warp  0, 0, $2058, unk_00f_42b0, unk_007_4b44
+	warp  13, 0, $2058, unk_00f_42b0, unk_007_4b44
+	warp  0, 2, $7028, unk_00f_42b0, unk_007_4b44
+	warp  0, 6, $7028, unk_00f_42b0, unk_007_4b44
+	warp  1, 6, $7058, unk_00f_42b0, unk_007_4b44
+	warp  10, 7, $7038, unk_00f_42b0, unk_007_4b44
+	warp  13, 6, $7048, unk_00f_42b0, unk_007_4b44
+	warp  13, 1, $7068, unk_00f_42b0, unk_007_4b44
+	warp  8, 0, $7048, unk_00f_42b0, unk_007_4b44
+	warp  4, 0, $7058, unk_00f_42b0, unk_007_4b44
 
 unk_007_4579::
-	dr $1c579, $1c58b
+	; map XXXXX
+	db BANK(unk_001_40f0)
+	ds 3 ; 0 0 0
+	dw unk_001_40f0
+	warp  0, 0, $8048, unk_00f_401a, unk_007_4ba5
 
 unk_007_458b::
-	dr $1c58b, $1c59d
+	; map XXXXX
+	db BANK(unk_001_4104)
+	ds 3 ; 0 0 0
+	dw unk_001_4104
+	warp  0, 0, $8048, unk_00f_4329, unk_007_4bb2
 
 unk_007_459d::
-	dr $1c59d, $1c5af
+	; map XXXXX
+	db BANK(unk_001_4118)
+	ds 3 ; 0 0 0
+	dw unk_001_4118
+	warp  0, 0, $8058, unk_00f_4000, unk_007_4bbf
 
 unk_007_45af::
-	dr $1c5af, $1c5c1
+	; map XXXXX
+	db BANK(unk_001_412c)
+	ds 3 ; 0 0 0
+	dw unk_001_412c
+	warp  0, 0, $8038, unk_00f_4039, unk_007_4bcc
 
 unk_007_45c1::
-	dr $1c5c1, $1c5d3
+	; map XXXXX
+	db BANK(unk_001_4140)
+	ds 3 ; 0 0 0
+	dw unk_001_4140
+	warp  0, 0, $8058, unk_00f_4348, unk_007_4bd9
 
 unk_007_45d3::
-	dr $1c5d3, $1c5fd
+	; map XXXXX
+	db BANK(unk_001_4154)
+	ds 3 ; 0 0 0
+	dw unk_001_4154
+	warp  0, 0, $8048, unk_00f_43d2, unk_007_4be6
+	warp  0, 0, $7058, unk_00f_43e9, unk_007_4bf3
+	warp  0, 0, $8048, unk_00f_4416, unk_007_4be6
 
 unk_007_45fd::
-	dr $1c5fd, $1c60f
+	; map XXXXX
+	db BANK(unk_001_4168)
+	ds 3 ; 0 0 0
+	dw unk_001_4168
+	warp  0, 0, $8058, unk_00f_4375, unk_007_4c06
 
 unk_007_460f::
-	dr $1c60f, $1c621
+	; map XXXXX
+	db BANK(unk_001_417c)
+	ds 3 ; 0 0 0
+	dw unk_001_417c
+	warp  0, 0, $8058, unk_00f_4397, unk_007_4c13
 
 unk_007_4621::
-	dr $1c621, $1c687
+	; map XXXXX
+	db BANK(unk_001_4190)
+	ds 3 ; 0 0 0
+	dw unk_001_4190
+	warp  4, 5, $9048, unk_00e_4903, unk_007_4c26
+	warp  3, 0, $2058, unk_00e_4903, unk_007_4c26
+	warp  5, 0, $5058, unk_00e_4903, unk_007_4c26
+	warp  7, 0, $6068, unk_00e_4903, unk_007_4c26
+	warp  0, 5, $8058, unk_00e_4903, unk_007_4c26
+	warp  7, 5, $6068, unk_00e_4903, unk_007_4c26
+	warp  4, 3, $7058, unk_00e_4903, unk_007_4c26
+	warp  0, 0, $6038, unk_00e_4903, unk_007_4c26
 
 unk_007_4687::
-	dr $1c687, $1c699
+	; map XXXXX
+	db BANK(unk_001_41a4)
+	ds 3 ; 0 0 0
+	dw unk_001_41a4
+	warp  0, 0, $8058, BellSchoolNorthClassroom_ObjectEvents, unk_007_4c63
 
 unk_007_4699::
-	dr $1c699, $1c6ab
+	; map XXXXX
+	db BANK(unk_001_41b8)
+	ds 3 ; 0 0 0
+	dw unk_001_41b8
+	warp  0, 0, $8048, unk_00e_49c5, unk_007_4c70
 
 unk_007_46ab::
-	dr $1c6ab, $1c6bd
+	; map XXXXX
+	db BANK(unk_001_41cc)
+	ds 3 ; 0 0 0
+	dw unk_001_41cc
+	warp  0, 0, $8068, unk_00e_49df, unk_007_4c7d
 
 unk_007_46bd::
-	dr $1c6bd, $1c6cf
+	; map XXXXX
+	db BANK(unk_001_41e0)
+	ds 3 ; 0 0 0
+	dw unk_001_41e0
+	warp  0, 0, $8058, unk_00e_49ef, unk_007_4c8a
 
 unk_007_46cf::
-	dr $1c6cf, $1c6ed
+	; map XXXXX
+	db BANK(unk_001_41f4)
+	ds 3 ; 0 0 0
+	dw unk_001_41f4
+	warp  0, 0, $8058, BellSchoolNorthClassroom_ObjectEvents, unk_007_4c97
+	warp  1, 0, $4088, BellSchoolNorthClassroom_ObjectEvents, unk_007_4c97
 
 unk_007_46ed::
-	dr $1c6ed, $1c6ff
+	; map XXXXX
+	db BANK(unk_001_4208)
+	ds 3 ; 0 0 0
+	dw unk_001_4208
+	warp  0, 0, $8068, unk_00e_4664, unk_007_4caa
 
 unk_007_46ff::
-	dr $1c6ff, $1c711
+	; map XXXXX
+	db BANK(unk_001_421c)
+	ds 3 ; 0 0 0
+	dw unk_001_421c
+	warp  0, 0, $8068, unk_00e_4537, unk_007_4cbd
 
 unk_007_4711::
-	dr $1c711, $1c747
+	; map XXXXX
+	db BANK(unk_001_4230)
+	ds 3 ; 0 0 0
+	dw unk_001_4230
+	warp  7, 0, $2068, unk_00f_40c2, unk_007_4cd0
+	warp  0, 0, $7058, unk_00f_40c2, unk_007_4cd0
+	warp  0, 0, $8088, unk_00f_40ab, unk_007_4cd0
+	warp  0, 0, $8088, unk_00f_40c2, unk_007_4cd0
 
 unk_007_4747::
-	dr $1c747, $1c765
+	; map XXXXX
+	db BANK(unk_001_4244)
+	ds 3 ; 0 0 0
+	dw unk_001_4244
+	warp  1, 0, $9038, unk_00f_4160, unk_007_4ce3
+	warp  0, 0, $9028, unk_00f_4160, unk_007_4ce3
 
 unk_007_4765::
-	dr $1c765, $1c783
+	; map XXXXX
+	db BANK(unk_001_4258)
+	ds 3 ; 0 0 0
+	dw unk_001_4258
+	warp  0, 0, $9028, unk_00f_418d, unk_007_4cf0
+	warp  1, 0, $2078, unk_00f_418d, unk_007_4cf0
 
 unk_007_4783::
-	dr $1c783, $1c7a1
+	; map XXXXX
+	db BANK(unk_001_426c)
+	ds 3 ; 0 0 0
+	dw unk_001_426c
+	warp  1, 0, $2078, unk_00f_41af, unk_007_4cfd
+	warp  0, 0, $9028, unk_00f_41af, unk_007_4cfd
 
 unk_007_47a1::
-	dr $1c7a1, $1c7b3
+	; map XXXXX
+	db BANK(unk_001_4280)
+	ds 3 ; 0 0 0
+	dw unk_001_4280
+	warp  0, 0, $9028, unk_00f_41dc, unk_007_4d0a
 
 unk_007_47b3::
-	dr $1c7b3, $1c7c5
+	; map XXXXX
+	db BANK(unk_001_4294)
+	ds 3 ; 0 0 0
+	dw unk_001_4294
+	warp  13, 7, $9088, unk_00e_4a1a, unk_007_4d17
 
 unk_007_47c5::
-	dr $1c7c5, $1c7fb
+	; map XXXXX
+	db BANK(unk_017_4000)
+	ds 3 ; 0 0 0
+	dw unk_017_4000
+	warp  0, 3, $9038, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d24
+	warp  0, 0, $5048, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d24
+	warp  5, 0, $3088, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d24
+	warp  5, 3, $7088, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d24
 
 unk_007_47fb::
-	dr $1c7fb, $1c80d
+	; map XXXXX
+	db BANK(unk_017_4014)
+	ds 3 ; 0 0 0
+	dw unk_017_4014
+	warp  0, 0, $9058, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d49
 
 unk_007_480d::
-	dr $1c80d, $1c84f
+	; map XXXXX
+	db BANK(unk_017_4028)
+	ds 3 ; 0 0 0
+	dw unk_017_4028
+	warp  5, 3, $5038, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d50
+	warp  0, 0, $3018, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d50
+	warp  0, 3, $7018, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d50
+	warp  4, 0, $2038, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d50
+	warp  5, 0, $2078, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d50
 
 unk_007_484f::
-	dr $1c84f, $1c861
+	; map XXXXX
+	db BANK(unk_017_403c)
+	ds 3 ; 0 0 0
+	dw unk_017_403c
+	warp  0, 0, $9058, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d87
 
 unk_007_4861::
-	dr $1c861, $1c87f
+	; map XXXXX
+	db BANK(unk_017_4050)
+	ds 3 ; 0 0 0
+	dw unk_017_4050
+	warp  5, 5, $9058, BellSchoolNorthClassroom_ObjectEvents, unk_007_4d8e
+	warp  7, 5, $9078, unk_00e_4a75, unk_007_4d8e
 
 unk_007_487f::
-	dr $1c87f, $1c89d
+	; map XXXXX
+	db BANK(unk_017_474b)
+	ds 3 ; 0 0 0
+	dw unk_017_474b
+	warp  3, 0, $2078, unk_00e_422d, unk_007_4da7
+	warp  0, 0, $2028, unk_00e_422d, unk_007_4da7
 
 unk_007_489d::
-	dr $1c89d, $1c8d3
+	; map XXXXX
+	db BANK(unk_017_475f)
+	ds 3 ; 0 0 0
+	dw unk_017_475f
+	warp  5, 3, $9068, unk_00f_4000, unk_007_4de4
+	warp  0, 3, $9058, unk_00f_4000, unk_007_4de4
+	warp  5, 0, $2068, unk_00f_4000, unk_007_4de4
+	warp  0, 0, $4028, unk_00f_4000, unk_007_4de4
 
 unk_007_48d3::
-	dr $1c8d3, $1c8e5
+	; map XXXXX
+	db BANK(unk_017_4a09)
+	ds 3 ; 0 0 0
+	dw unk_017_4a09
+	warp  0, 1, $8018, BellSchoolNorthClassroom_ObjectEvents, unk_007_4e21
 
 unk_007_48e5::
-	dr $1c8e5, $1c8f7
+	; map XXXXX
+	db BANK(unk_017_4cae)
+	ds 3 ; 0 0 0
+	dw unk_017_4cae
+	warp  0, 5, $20b0, BellSchoolNorthClassroom_ObjectEvents, unk_007_4e2e
 
 unk_007_48f7::
-	dr $1c8f7, $1c9b1
+	; map XXXXX
+	db BANK(unk_018_4000)
+	ds 3 ; 0 0 0
+	dw unk_018_4000
+	warp  6, 7, $9068, unk_00e_43d5, unk_007_4e2f
+	warp  0, 0, $2058, unk_00e_43d5, unk_007_4e2f
+	warp  13, 0, $2058, unk_00e_43d5, unk_007_4e2f
+	warp  0, 2, $7028, unk_00e_43d5, unk_007_4e2f
+	warp  0, 6, $7028, unk_00e_43d5, unk_007_4e2f
+	warp  1, 6, $7058, unk_00e_43d5, unk_007_4e2f
+	warp  10, 7, $7038, unk_00e_43d5, unk_007_4e2f
+	warp  13, 6, $7048, unk_00e_43d5, unk_007_4e2f
+	warp  13, 1, $7068, unk_00e_43d5, unk_007_4e2f
+	warp  8, 0, $7048, unk_00e_43d5, unk_007_4e2f
+	warp  4, 0, $7058, unk_00e_43d5, unk_007_4e2f
+	warp  6, 3, $8078, unk_00e_44ff, unk_007_4e90
+	warp  6, 3, $8078, unk_00e_43d5, unk_007_4e2f
+	warp  13, 1, $7068, unk_00e_4366, unk_007_4e2f
+	warp  13, 1, $7068, unk_00e_426b, unk_007_4e2f
 
 unk_007_49b1::
-	dr $1c9b1, $1c9c3
+	; map XXXXX
+	db BANK(unk_018_4014)
+	ds 3 ; 0 0 0
+	dw unk_018_4014
+	warp  0, 0, $8048, unk_00e_4578, unk_007_4e91
 
 unk_007_49c3::
-	dr $1c9c3, $1c9d5
+	; map XXXXX
+	db BANK(unk_018_4028)
+	ds 3 ; 0 0 0
+	dw unk_018_4028
+	warp  0, 0, $8048, unk_00e_4597, unk_007_4e9e
 
 unk_007_49d5::
-	dr $1c9d5, $1c9e7
+	; map XXXXX
+	db BANK(unk_018_403c)
+	ds 3 ; 0 0 0
+	dw unk_018_403c
+	warp  0, 0, $8058, BellSchoolNorthClassroom_ObjectEvents, unk_007_4eab
 
 unk_007_49e7::
-	dr $1c9e7, $1c9f9
+	; map XXXXX
+	db BANK(unk_018_4050)
+	ds 3 ; 0 0 0
+	dw unk_018_4050
+	warp  0, 0, $8038, unk_00e_45c0, unk_007_4eb8
 
 unk_007_49f9::
-	dr $1c9f9, $1ca0b
+	; map XXXXX
+	db BANK(unk_018_4064)
+	ds 3 ; 0 0 0
+	dw unk_018_4064
+	warp  0, 0, $8058, unk_00e_4632, unk_007_4ec5
 
 unk_007_4a0b::
-	dr $1ca0b, $1ca29
+	; map XXXXX
+	db BANK(unk_018_4078)
+	ds 3 ; 0 0 0
+	dw unk_018_4078
+	warp  0, 0, $8048, unk_00e_481c, unk_007_4ed2
+	warp  0, 0, $8048, unk_00e_469f, unk_007_4ed2
 
 unk_007_4a29::
-	dr $1ca29, $1ca3b
+	; map XXXXX
+	db BANK(unk_018_408c)
+	ds 3 ; 0 0 0
+	dw unk_018_408c
+	warp  0, 0, $8058, unk_00e_4642, unk_007_4edf
 
 unk_007_4a3b::
-	dr $1ca3b, $1ca4d
+	; map XXXXX
+	db BANK(unk_018_40a0)
+	ds 3 ; 0 0 0
+	dw unk_018_40a0
+	warp  0, 0, $8058, unk_00e_4664, unk_007_4eec
 
 BellVillage2_MapEvents::
 	script_event ABSOLUTE, 19, $00, Script_00e_409f
@@ -521,10 +731,136 @@ BellSchoolNorthClassroom_MapEvents::
 	events_end
 
 unk_007_4b3d::
-	dr $1cb3d, $1ce2f
+	dr $1cb3d, $1cb44
+
+unk_007_4b44::
+	dr $1cb44, $1cba5
+
+unk_007_4ba5::
+	dr $1cba5, $1cbb2
+
+unk_007_4bb2::
+	dr $1cbb2, $1cbbf
+
+unk_007_4bbf::
+	dr $1cbbf, $1cbcc
+
+unk_007_4bcc::
+	dr $1cbcc, $1cbd9
+
+unk_007_4bd9::
+	dr $1cbd9, $1cbe6
+
+unk_007_4be6::
+	dr $1cbe6, $1cbf3
+
+unk_007_4bf3::
+	dr $1cbf3, $1cc06
+
+unk_007_4c06::
+	dr $1cc06, $1cc13
+
+unk_007_4c13::
+	dr $1cc13, $1cc26
+
+unk_007_4c26::
+	dr $1cc26, $1cc63
+
+unk_007_4c63::
+	dr $1cc63, $1cc70
+
+unk_007_4c70::
+	dr $1cc70, $1cc7d
+
+unk_007_4c7d::
+	dr $1cc7d, $1cc8a
+
+unk_007_4c8a::
+	dr $1cc8a, $1cc97
+
+unk_007_4c97::
+	dr $1cc97, $1ccaa
+
+unk_007_4caa::
+	dr $1ccaa, $1ccbd
+
+unk_007_4cbd::
+	dr $1ccbd, $1ccd0
+
+unk_007_4cd0::
+	dr $1ccd0, $1cce3
+
+unk_007_4ce3::
+	dr $1cce3, $1ccf0
+
+unk_007_4cf0::
+	dr $1ccf0, $1ccfd
+
+unk_007_4cfd::
+	dr $1ccfd, $1cd0a
+
+unk_007_4d0a::
+	dr $1cd0a, $1cd17
+
+unk_007_4d17::
+	dr $1cd17, $1cd24
+
+unk_007_4d24::
+	dr $1cd24, $1cd49
+
+unk_007_4d49::
+	dr $1cd49, $1cd50
+
+unk_007_4d50::
+	dr $1cd50, $1cd87
+
+unk_007_4d87::
+	dr $1cd87, $1cd8e
+
+unk_007_4d8e::
+	dr $1cd8e, $1cda7
+
+unk_007_4da7::
+	dr $1cda7, $1cde4
+
+unk_007_4de4::
+	dr $1cde4, $1ce21
+
+unk_007_4e21::
+	dr $1ce21, $1ce2e
+
+unk_007_4e2e::
+	dr $1ce2e, $1ce2f
 
 unk_007_4e2f::
-	dr $1ce2f, $1cf00
+	dr $1ce2f, $1ce90
+
+unk_007_4e90::
+	dr $1ce90, $1ce91
+
+unk_007_4e91::
+	dr $1ce91, $1ce9e
+
+unk_007_4e9e::
+	dr $1ce9e, $1ceab
+
+unk_007_4eab::
+	dr $1ceab, $1ceb8
+
+unk_007_4eb8::
+	dr $1ceb8, $1cec5
+
+unk_007_4ec5::
+	dr $1cec5, $1ced2
+
+unk_007_4ed2::
+	dr $1ced2, $1cedf
+
+unk_007_4edf::
+	dr $1cedf, $1ceec
+
+unk_007_4eec::
+	dr $1ceec, $1cf00
 
 SECTION "banknum7", ROMX[$7fff], BANK[$7]
 	db $7

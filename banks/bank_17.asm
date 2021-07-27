@@ -1,5 +1,29 @@
 unk_017_4000:
-	dr $5c000, $5cf9e
+	dr $5c000, $5c014
+
+unk_017_4014::
+	dr $5c014, $5c028
+
+unk_017_4028::
+	dr $5c028, $5c03c
+
+unk_017_403c::
+	dr $5c03c, $5c050
+
+unk_017_4050::
+	dr $5c050, $5c74b
+
+unk_017_474b::
+	dr $5c74b, $5c75f
+
+unk_017_475f::
+	dr $5c75f, $5ca09
+
+unk_017_4a09::
+	dr $5ca09, $5ccae
+
+unk_017_4cae::
+	dr $5ccae, $5cf9e
 
 gfx_017_4f9e::
 	dr $5cf9e, $5d11e
