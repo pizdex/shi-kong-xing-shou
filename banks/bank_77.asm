@@ -21,7 +21,7 @@ Intro_VastFame::
 	ld [wcd41], a
 
 	ld hl, vBGMap0
-	ld de, VastFameTilemap
+	ld de, VastFame_Tilemap
 	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
@@ -30,7 +30,7 @@ Intro_VastFame::
 	call PlaceTilemap_Bank0
 
 	ld hl, vBGMap0
-	ld de, unk_077_6e97
+	ld de, VastFame_Attrs
 	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
@@ -38,7 +38,7 @@ Intro_VastFame::
 	ldh [hFF92], a
 	call PlaceAttrmap
 
-	ld hl, unk_077_7167
+	ld hl, VastFame_Palette
 	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
@@ -285,7 +285,7 @@ TitleScreen:
 	ld [wdcf5], a
 
 	ld hl, vBGMap0
-	ld de, unk_077_6d2f
+	ld de, TitleScreen_Tilemap
 	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
@@ -294,7 +294,7 @@ TitleScreen:
 	call PlaceTilemap_Bank0
 
 	ld hl, vBGMap0
-	ld de, unk_077_6bc7
+	ld de, TitleScreen_Attrs
 	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
@@ -302,33 +302,33 @@ TitleScreen:
 	ldh [hFF92], a
 	call PlaceAttrmap
 
-	ld hl, unk_077_6b37
+	ld hl, TitleScreen_Palette1
 	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
 
-	ld hl, unk_077_6b7f
+	ld hl, TitleScreen_Palette2
 	ld de, wcaf0
 	ld bc, $40
 	call CopyBytes3
 
-	ld a, BANK(unk_076_4000)
+	ld a, BANK(TitleScreenGFX_Part1)
 	ld [wTempBank], a
-	ld hl, unk_076_4000
+	ld hl, TitleScreenGFX_Part1
 	ld de, $9000
 	ld bc, $800
 	call FarCopyBytesVRAM
 
-	ld a, BANK(unk_076_4800)
+	ld a, BANK(TitleScreenGFX_Part2)
 	ld [wTempBank], a
-	ld hl, unk_076_4800
+	ld hl, TitleScreenGFX_Part2
 	ld de, $8800
 	ld bc, $800
 	call FarCopyBytesVRAM
 
-	ld a, BANK(unk_076_4fa0)
+	ld a, BANK(TitleScreenGFX_Sprites)
 	ld [wTempBank], a
-	ld hl, unk_076_4fa0
+	ld hl, TitleScreenGFX_Sprites
 	ld de, $8000
 	ld bc, $800
 	call FarCopyBytesVRAM
@@ -442,17 +442,106 @@ Func_077_4322:
 	ld [hl], 20
 
 ; 5000 money
-	ld a, $13
+	ld a, HIGH(5000)
 	ld [wMoney + 1], a
-	ld a, $88
+	ld a, LOW(5000)
 	ld [wMoney + 2], a
 	ret
 
+
 Func_077_4359:
-	dr $1dc359, $1dc3d6
+	ldh a, [hFF95]
+	bit 6, a
+	jr z, asm_077_4373
+	ld a, [wdcf4]
+	and a
+	ret z
+	ld a, SFX_30
+	call PlaySound
+	xor a
+	ld [wdcfb], a
+	ld a, $60
+	ld [wcd5d], a
+	ret
+
+asm_077_4373:
+	ldh a, [hFF95]
+	bit 7, a
+	jr z, asm_077_4394
+	ld a, [wdcf4]
+	and a
+	ret z
+	ld a, [wdcfb]
+	cp 1
+	ret z
+	ld a, SFX_30
+	call PlaySound
+	ld a, 1
+	ld [wdcfb], a
+	ld a, $70
+	ld [wcd5d], a
+	ret
+
+asm_077_4394:
+	ldh a, [hFF95]
+	bit 0, a
+	ret z
+	ld a, SFX_34
+	call PlaySound
+	ld a, 1
+	ld [hFade], a
+	xor a
+	ld [wd9d2], a
+	ld a, [wdcfb]
+	and a
+	jr z, asm_077_43c2
+	call SRAMTest_Fast
+	and a
+	ret nz
+	ld a, 1
+	ld [wd9d2], a
+	ld hl, $4000
+	ld b, $3c
+	rst FarCall
+	xor a
+	ld [wTargetMode], a
+	ret
+
+asm_077_43c2:
+	ld a, 1
+	ld [wdcb3], a
+	xor a
+	ldh [hFFBF], a
+	ld [wTargetMode], a
+	ld a, 0
+	ld [hFFBA], a
+	jp JumpToModeAndSetMapPredefs
+	ret
 
 Func_077_43d6:
-	dr $1dc3d6, $1dc3fc
+	ld a, [wcd5d]
+	dec a
+	dec a
+	ld [wcd5d], a
+	ld a, [wcd59]
+	dec a
+	dec a
+	ld [wcd59], a
+	cp $60
+	jr z, asm_077_43eb
+	ret
+
+asm_077_43eb:
+	ld a, [wdcfb]
+	and a
+	jr z, asm_077_43f6
+	ld a, $70
+	ld [wcd5d], a
+
+asm_077_43f6:
+	ld a, 2
+	ld [wdcf5], a
+	ret
 
 CheatCode_InputList:
 	db D_UP, A_BUTTON, A_BUTTON, D_UP, B_BUTTON, B_BUTTON, SELECT, SELECT          ; 1
@@ -603,25 +692,100 @@ unk_077_56df:
 unk_077_584f:
 	dr $1dd84f, $1deb37
 
-unk_077_6b37:
-	dr $1deb37, $1deb7f
+TitleScreen_Palette1:
+	dw $7ffc
+	dw $6a20
+	dw $5800
+	dw $1400
 
-unk_077_6b7f:
-	dr $1deb7f, $1debc7
+	dw $7fff
+	dw $7e80
+	dw $7000
+	dw $1400
 
-unk_077_6bc7:
-	dr $1debc7, $1ded2f
+	dw $7fff
+	dw $7ef7
+	dw $790d
+	dw $1400
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
 
-unk_077_6d2f:
-	dr $1ded2f, $1dee97
+TitleScreen_Palette2:
+	dw $56B5
+ 	dw $0016
+ 	dw $01DD
+ 	dw $031F
 
-unk_077_6e97:
-	dr $1dee97, $1defff
+ 	dw $56B5
+ 	dw $00E0
+ 	dw $0246
+ 	dw $03B6
+ 	dw $56B5
+ 	dw $294A
+ 	dw $001F
+ 	dw $7BDE
 
-VastFameTilemap:
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+ 	dw $0000
+
+
+TitleScreen_Attrs:
+	INCBIN "gfx/title_screen/title_screen.gbcattr"
+
+TitleScreen_Tilemap:
+	INCBIN "gfx/title_screen/title_screen.tilemap"
+
+VastFame_Attrs:
+	INCBIN "gfx/title_screen/vast_fame_logo.gbcattr"
+
+VastFame_Tilemap:
 	INCBIN "gfx/title_screen/vast_fame_logo.tilemap"
 
-unk_077_7167:
+VastFame_Palette:
 	dw $7bde
 	dw $7e80
 	dw $6c00
