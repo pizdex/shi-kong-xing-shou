@@ -227,7 +227,8 @@ wGameTimeMinutes:: ds 1
 wd0df:: ds 1
 wd0e0:: ds 3
 wd0e3:: ds 1
-wd0e4:: ds $b
+wd0e4:: ds $a
+wd0ee:: ds 1
 wd0ef:: ds 1
 wd0f0:: ds 1
 wd0f1:: ds 1
@@ -519,8 +520,8 @@ wdc9f:: ds $11
 wdcb0:: ds 1
 wdcb1:: ds 1
 wdcb2:: ds 1
-wdcb3:: ds 2
-
+wdcb3:: ds 1
+wdcb4:: ds 1
 wdcb5:: ds 1
 wdcb6:: ds 5
 

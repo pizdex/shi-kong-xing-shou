@@ -726,7 +726,7 @@ Func_0817::
 	ld a, BANK(Func_005_4000)
 	rst Bankswitch
 	call Func_005_4000
-	call Func_005_4093
+	call ParseCurrentMapEvents
 	pop af
 	rst Bankswitch
 	ret
