@@ -140,8 +140,10 @@ wcd55:: ds 1
 wcd56:: ds 1
 wcd57:: ds 1
 wcd58:: ds 1
-
-	ds $87
+wcd59:: ds 1
+	ds 3
+wcd5d:: ds 1
+	ds $82
 
 ; Start menu
 wcde0:: ds 1

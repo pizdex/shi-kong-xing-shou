@@ -450,7 +450,7 @@ Func_077_4322:
 
 
 Func_077_4359:
-	ldh a, [hFF95]
+	ldh a, [hJoypadDown]
 	bit 6, a
 	jr z, asm_077_4373
 	ld a, [wdcf4]
@@ -465,7 +465,7 @@ Func_077_4359:
 	ret
 
 asm_077_4373:
-	ldh a, [hFF95]
+	ldh a, [hJoypadDown]
 	bit 7, a
 	jr z, asm_077_4394
 	ld a, [wdcf4]
@@ -483,7 +483,7 @@ asm_077_4373:
 	ret
 
 asm_077_4394:
-	ldh a, [hFF95]
+	ldh a, [hJoypadDown]
 	bit 0, a
 	ret z
 	ld a, SFX_34
@@ -511,7 +511,7 @@ asm_077_43c2:
 	ld a, 1
 	ld [wdcb3], a
 	xor a
-	ldh [hFFBF], a
+	ldh [hFade], a
 	ld [wTargetMode], a
 	ld a, 0
 	ld [hFFBA], a
