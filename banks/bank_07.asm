@@ -11,7 +11,6 @@ Group00_Maps::
 	dw BellSchool1_Header
 	dw BellObservatory1_Header
 	dw BellSchoolSouthClassroom_Header
-
 	dw unk_007_44ef
 	dw unk_007_4579
 	dw unk_007_458b
@@ -119,10 +118,39 @@ Group00_Maps::
 	end_map
 
 unk_007_41ec::
-	dr $1c1ec, $1c20a
+	; map XXXXX
+	db BANK(BellSchoolNorthClassroom_MapAttributes)
+	ds 3 ; 0 0 0
+	dw BellSchoolNorthClassroom_MapAttributes
+	; warp 1, 0, $4078, unk_008_4414, unk_007_42fa
+	db 1, 0
+	dw $4078
+	db BANK(unk_008_4414)
+	ds 3 ; 0 0 0
+	dw unk_008_4414
+	dw unk_007_42fa
+	; warp 0, 1, $5078, BellObservatory1_ObjectEvents, unk_007_4307
+	db 0, 1
+	dw $5078
+	db BANK(BellObservatory1_ObjectEvents)
+	ds 3 ; 0 0 0
+	dw BellObservatory1_ObjectEvents
+	dw unk_007_4307
+
 
 unk_007_420a::
-	dr $1c20a, $1c21c
+	; map XXXXX
+	db BANK(unk_017_4cae)
+	ds 3 ; 0 0 0
+	dw unk_017_4cae
+	; warp 0, 5, $20b0, BellObservatory1_ObjectEvents, unk_007_430e
+	db 0, 5
+	dw $20b0
+	db BANK(BellObservatory1_ObjectEvents)
+	ds 3 ; 0 0 0
+	dw BellObservatory1_ObjectEvents
+	dw unk_007_430e
+
 
 BellVillage1_MapEvents::
 	script_event ABSOLUTE, 19, 1, Script_008_4285
@@ -167,22 +195,45 @@ HayatosHouse1_MapEvents::
 	events_end
 
 CarpetWomansHouse1_MapEvents::
-	dr $1c2b2, $1c2b9
+	warp_event ABSOLUTE, 8, $01, $04, $00 ; TEMP
+	events_end
 
 FangfangsHouse1_MapEvents::
-	dr $1c2b9, $1c2c0
+	warp_event ABSOLUTE, 8, $01, $05, $00 ; TEMP
+	events_end
 
 BellHealingCenter1_MapEvents::
-	dr $1c2c0, $1c2cd
+	warp_event ABSOLUTE, 8, $01, $07, $00 ; TEMP
+	event 5, 4, $04, $00, $c4, $43
+	events_end
 
 BellSchool1_MapEvents::
-	dr $1c2cd, $1c2ec
+	warp_event ABSOLUTE, 18, $02, $01, $00 ; TEMP
+	warp_event 1, 14, $0b, $00, $00 ; TEMP
+	warp_event 1, 15, $0b, $00, $00 ; TEMP
+	warp_event 1, 5, $2a, $00, $00 ; TEMP
+	warp_event 1, 6, $2a, $00, $00 ; TEMP
+	events_end
 
 BellObservatory1_MapEvents::
-	dr $1c2ec, $1c2f3
+	warp_event ABSOLUTE, 10, $03, $01, $00 ; TEMP
+	events_end
 
 BellSchoolSouthClassroom_MapEvents::
-	dr $1c2f3, $1c30f
+	warp_event 10, ABSOLUTE, $09, $01, $00 ; TEMP
+	events_end
+
+unk_007_42fa::
+	event 10, ABSOLUTE, $01, $00, $b5, $41
+	event 7, 6, $01, $03, $c8, $41
+	events_end
+
+unk_007_4307::
+	event 10, ABSOLUTE, $01, $00, $14, $42
+	events_end
+
+unk_007_430e::
+	events_end
 
 Group01_Maps::
 	dw BellVillage2_Header
@@ -197,7 +248,6 @@ Group01_Maps::
 	dw BellSchool2_Header
 	dw BellObservatory2_Header
 	dw BellSchoolNorthClassroom_Header
-
 	dw unk_007_44ef
 	dw unk_007_4579
 	dw unk_007_458b
@@ -730,137 +780,290 @@ BellSchoolNorthClassroom_MapEvents::
 	event 2, 3, $07, $06, $00, $00
 	events_end
 
-unk_007_4b3d::
-	dr $1cb3d, $1cb44
+unk_007_4b3d:
+	warp_event 10, ABSOLUTE, $09, $02, $00
+	events_end
 
-unk_007_4b44::
-	dr $1cb44, $1cba5
+unk_007_4b44:
+	warp_event ABSOLUTE, 23, $28, $01, $00
+	warp_event  4,  0, $29, $00, $00
+	warp_event  5,  0, $29, $00, $00
+	warp_event 30,  0, $1c, $00, $00
+	warp_event 31,  0, $1c, $00, $00
+	warp_event  2,  9, $0d, $00, $00
+	warp_event  2, 17, $0e, $00, $00
+	warp_event  7, 17, $0f, $00, $00
+	warp_event 23, 19, $10, $00, $00
+	warp_event 30, 17, $11, $00, $00
+	script_event 32,  7,  0, Script_00f_45af
+	warp_event 20,  5, $14, $00, $00
+	warp_event 13,  5, $13, $00, $00
+	signpost_event 29,  3, $05
+	signpost_event  6,  3, $06
+	signpost_event 16, 16, $07
+	events_end
 
-unk_007_4ba5::
-	dr $1cba5, $1cbb2
+unk_007_4ba5:
+	warp_event ABSOLUTE,  8, $0c, $03, $00
+	event_07  2,  3, $07
+	events_end
 
-unk_007_4bb2::
-	dr $1cbb2, $1cbbf
+unk_007_4bb2:
+	warp_event ABSOLUTE,  8, $0c, $04, $00
+	event_07  3,  3, $08
+	events_end
 
-unk_007_4bbf::
-	dr $1cbbf, $1cbcc
+unk_007_4bbf:
+	warp_event ABSOLUTE,  8, $0c, $05, $00
+	event_07  5,  3, $09
+	events_end
 
-unk_007_4bcc::
-	dr $1cbcc, $1cbd9
+unk_007_4bcc:
+	warp_event ABSOLUTE,  8, $0c, $06, $00
+	event_07  8,  3, $0a
+	events_end
 
-unk_007_4bd9::
-	dr $1cbd9, $1cbe6
+unk_007_4bd9:
+	warp_event ABSOLUTE,  8, $0c, $07, $00
+	event_07  2,  7, $0b
+	events_end
 
-unk_007_4be6::
-	dr $1cbe6, $1cbf3
+unk_007_4be6:
+	warp_event ABSOLUTE,  8, $0c, $08, $00
+	event_07  2,  3, $0c
+	events_end
 
-unk_007_4bf3::
-	dr $1cbf3, $1cc06
+unk_007_4bf3:
+	script_event  3,  8,  0, Script_00f_44df
+	script_event  4,  8,  0, Script_00f_4592
+	event_07  2,  3, $0c
+	events_end
 
-unk_007_4c06::
-	dr $1cc06, $1cc13
+unk_007_4c06:
+	warp_event ABSOLUTE,  8, $0c, $0a, $00
+	event_04  4,  3,  0, Script_00f_4385
+	events_end
 
-unk_007_4c13::
-	dr $1cc13, $1cc26
+unk_007_4c13:
+	warp_event ABSOLUTE,  8, $0c, $09, $00
+	event_04  4,  4,  0, Script_00f_43b6
+	event_04  8,  4,  0, Script_00f_43c4
+	events_end
 
-unk_007_4c26::
-	dr $1cc26, $1cc63
+unk_007_4c26:
+	warp_event ABSOLUTE, 19, $29, $02, $00
+	script_event ABSOLUTE,  0,  0, unk_00e_49ab
+	warp_event 15,  3, $16, $00, $00
+	warp_event 20,  4, $17, $00, $00
+	warp_event  5, 16, $18, $00, $00
+	warp_event 20, 14, $19, $00, $00
+	warp_event 13, 11, $1b, $00, $00
+	warp_event  3,  4, $1a, $00, $00
+	signpost_event 10,  3, $0a
+	signpost_event 11, 15, $09
+	events_end
 
-unk_007_4c63::
-	dr $1cc63, $1cc70
+unk_007_4c63:
+	warp_event ABSOLUTE,  8, $15, $02, $00
+	event_07  9,  3, $0d
+	events_end
 
-unk_007_4c70::
-	dr $1cc70, $1cc7d
+unk_007_4c70:
+	warp_event ABSOLUTE,  8, $15, $03, $00
+	event_07  9,  3, $0e
+	events_end
 
-unk_007_4c7d::
-	dr $1cc7d, $1cc8a
+unk_007_4c7d:
+	warp_event ABSOLUTE,  8, $15, $04, $00
+	event_07  4,  3, $0f
+	events_end
 
-unk_007_4c8a::
-	dr $1cc8a, $1cc97
+unk_007_4c8a:
+	warp_event ABSOLUTE,  8, $15, $05, $00
+	event_07  2,  3, $10
+	events_end
 
-unk_007_4c97::
-	dr $1cc97, $1ccaa
+unk_007_4c97:
+	warp_event ABSOLUTE,  8, $15, $07, $00
+	event_04 10,  3,  0, Script_00e_40fe
+	event_07  9,  3, $11
+	events_end
 
-unk_007_4caa::
-	dr $1ccaa, $1ccbd
+unk_007_4caa:
+	warp_event ABSOLUTE,  8, $15, $06, $00
+	event_04  4,  4,  0, Script_00e_4683
+	event_04  8,  4,  0, unk_00e_4691
+	events_end
 
-unk_007_4cbd::
-	dr $1ccbd, $1ccd0
+unk_007_4cbd:
+	script_event ABSOLUTE,  9,  7, Script_00e_40cd
+	warp_event ABSOLUTE,  9, $2d, $02, $00
+	event_04  8,  3,  0, Script_00e_4129
+	events_end
 
-unk_007_4cd0::
-	dr $1ccd0, $1cce3
+unk_007_4cd0:
+	warp_event ABSOLUTE,  0, $29, $01, $00
+	warp_event  5,  5, $1e, $00, $00
+	signpost_event  9,  7, $08
+	events_end
 
-unk_007_4ce3::
-	dr $1cce3, $1ccf0
+unk_007_4ce3:
+	warp_event ABSOLUTE,  9, $1d, $01, $00
+	warp_event  1,  8, $1f, $00, $00
+	events_end
 
-unk_007_4cf0::
-	dr $1ccf0, $1ccfd
+unk_007_4cf0:
+	warp_event  1,  8, $1e, $01, $00
+	warp_event 10,  1, $20, $00, $00
+	events_end
 
-unk_007_4cfd::
-	dr $1ccfd, $1cd0a
+unk_007_4cfd:
+	warp_event 10,  1, $1f, $01, $00
+	warp_event  1,  8, $21, $00, $00
+	events_end
 
-unk_007_4d0a::
-	dr $1cd0a, $1cd17
+unk_007_4d0a:
+	warp_event  1,  8, $20, $01, $00
+	script_event  7,  5,  0, Script_00f_421c
+	events_end
 
-unk_007_4d17::
-	dr $1cd17, $1cd24
+unk_007_4d17:
+	warp_event ABSOLUTE, 23, $1a, $01, $00
+	script_event 10,  5,  5, unk_00e_4a46
+	events_end
 
-unk_007_4d24::
-	dr $1cd24, $1cd49
+unk_007_4d24:
+	warp_event ABSOLUTE, 15, $15, $01, $00
+	warp_event  4,  3, $24, $00, $00
+	warp_event 19,  2, $25, $01, $00
+	warp_event 19,  3, $25, $01, $00
+	warp_event 19, 12, $25, $02, $00
+	warp_event 19, 13, $25, $02, $00
+	events_end
 
-unk_007_4d49::
-	dr $1cd49, $1cd50
+unk_007_4d49:
+	warp_event ABSOLUTE,  9, $23, $01, $00
+	events_end
 
-unk_007_4d50::
-	dr $1cd50, $1cd87
+unk_007_4d50:
+	warp_event 13,  9, $26, $00, $00
+	warp_event  0,  2, $23, $02, $00
+	warp_event  0,  3, $23, $02, $00
+	warp_event  0, 12, $23, $03, $00
+	warp_event  0, 13, $23, $03, $00
+	warp_event 10,  0, $27, $00, $00
+	warp_event 11,  0, $27, $00, $00
+	warp_event 17,  0, $27, $01, $00
+	warp_event 18,  0, $27, $01, $00
+	events_end
 
-unk_007_4d87::
-	dr $1cd87, $1cd8e
+unk_007_4d87:
+	warp_event ABSOLUTE,  9, $25, $00, $00
+	events_end
 
-unk_007_4d8e::
-	dr $1cd8e, $1cda7
+unk_007_4d8e:
+	warp_event 14, 19, $25, $03, $00
+	warp_event 15, 19, $25, $03, $00
+	warp_event 21, 19, $25, $04, $00
+	warp_event 22, 19, $25, $04, $00
+	events_end
 
-unk_007_4da7::
-	dr $1cda7, $1cde4
+unk_007_4da7:
+	warp_event 12,  0, $01, $00, $00
+	warp_event 13,  0, $01, $00, $00
+	script_event  1,  0,  4, unk_00e_40b9
+	script_event  2,  0,  4, unk_00e_40b9
+	script_event  1,  0,  7, Script_00e_40c8
+	script_event  2,  0,  7, Script_00e_40c8
+	warp_event  1,  0, $2d, $00, $00
+	warp_event  2,  0, $2d, $00, $00
+	signpost_event  3,  3, $0c
+	signpost_event 14,  3, $0b
+	events_end
 
-unk_007_4de4::
-	dr $1cde4, $1ce21
+unk_007_4de4:
+	script_event 16, 15,  0, Script_00f_400a
+	script_event 17, 15,  0, Script_00f_400a
+	warp_event  4, 15, $1d, $00, $00
+	warp_event  5, 15, $1d, $00, $00
+	warp_event ABSOLUTE,  0, $15, $00, $00
+	event_04  2, ABSOLUTE,  0, Script_00f_45bd
+	signpost_event  6,  4, $0d
+	signpost_event 17,  2, $0e
+	signpost_event  5, 13, $10
+	signpost_event 16, 13, $0f
+	events_end
 
-unk_007_4e21::
-	dr $1ce21, $1ce2e
+unk_007_4e21:
+	warp_event  0, ABSOLUTE, $01, $02, $00
+	signpost_event  8,  8, $04
+	events_end
 
-unk_007_4e2e::
-	dr $1ce2e, $1ce2f
+unk_007_4e2e:
+	events_end
 
-unk_007_4e2f::
-	dr $1ce2f, $1ce90
+unk_007_4e2f:
+	warp_event ABSOLUTE, 23, $28, $01, $00
+	warp_event  4,  0, $29, $00, $00
+	warp_event  5,  0, $29, $00, $00
+	warp_event 30,  0, $1c, $00, $00
+	warp_event 31,  0, $1c, $00, $00
+	warp_event  2,  9, $2e, $00, $00
+	warp_event  2, 17, $2f, $00, $00
+	warp_event  7, 17, $30, $00, $00
+	warp_event 23, 19, $31, $00, $00
+	warp_event 30, 17, $32, $00, $00
+	script_event 32,  7,  0, unk_00e_46b6
+	warp_event 20,  5, $35, $00, $00
+	warp_event 13,  5, $34, $00, $00
+	signpost_event 29,  3, $05
+	signpost_event  6,  3, $06
+	signpost_event 16, 16, $07
+	events_end
 
-unk_007_4e90::
-	dr $1ce90, $1ce91
+unk_007_4e90:
+	events_end
 
-unk_007_4e91::
-	dr $1ce91, $1ce9e
+unk_007_4e91:
+	warp_event ABSOLUTE,  8, $2d, $03, $00
+	event_07  2,  3, $07
+	events_end
 
-unk_007_4e9e::
-	dr $1ce9e, $1ceab
+unk_007_4e9e:
+	warp_event ABSOLUTE,  8, $2d, $04, $00
+	event_07  3,  3, $08
+	events_end
 
-unk_007_4eab::
-	dr $1ceab, $1ceb8
+unk_007_4eab:
+	warp_event ABSOLUTE,  8, $2d, $05, $00
+	event_07  5,  3, $09
+	events_end
 
-unk_007_4eb8::
-	dr $1ceb8, $1cec5
+unk_007_4eb8:
+	warp_event ABSOLUTE,  8, $2d, $06, $00
+	event_07  8,  3, $0a
+	events_end
 
-unk_007_4ec5::
-	dr $1cec5, $1ced2
+unk_007_4ec5:
+	warp_event ABSOLUTE,  8, $2d, $07, $00
+	event_07  2,  7, $0b
+	events_end
 
-unk_007_4ed2::
-	dr $1ced2, $1cedf
+unk_007_4ed2:
+	script_event ABSOLUTE,  8,  0, Script_00e_40d2
+	event_07  2,  3, $0c
+	events_end
 
-unk_007_4edf::
-	dr $1cedf, $1ceec
+unk_007_4edf:
+	warp_event ABSOLUTE,  8, $2d, $0a, $00
+	event_04  4,  3,  0, unk_00e_4651
+	events_end
 
-unk_007_4eec::
-	dr $1ceec, $1cf00
+unk_007_4eec:
+	warp_event ABSOLUTE,  8, $2d, $09, $00
+	event_04  4,  4,  0, Script_00e_4683
+	event_04  8,  4,  0, unk_00e_4691
+	events_end
 
 SECTION "banknum7", ROMX[$7fff], BANK[$7]
 	db $7
