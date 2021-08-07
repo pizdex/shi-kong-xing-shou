@@ -1,8 +1,5 @@
-TitleScreenGFX_Part1:
-	INCBIN "gfx/title_screen/title_screen.2bpp", 0, $800
-
-TitleScreenGFX_Part2:
-	INCBIN "gfx/title_screen/title_screen.2bpp", $800
+TitleScreenGFX:
+	INCBIN "gfx/title_screen/title_screen.2bpp"
 
 TitleScreenGFX_Sprites:
 	INCBIN "gfx/title_screen/title_screen_sprites.2bpp"

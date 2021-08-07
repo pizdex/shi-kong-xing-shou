@@ -71,7 +71,7 @@ Intro:
 	call PlaySound
 
 	ld hl, vBGMap0
-	ld de, unk_077_5577
+	ld de, IntroStart_Tilemap
 	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
@@ -80,7 +80,7 @@ Intro:
 	call PlaceTilemap_Bank0
 
 	ld hl, vBGMap0
-	ld de, unk_077_540f
+	ld de, IntroStart_Attrs
 	lb bc, $14, $12
 	ld a, $12
 	ldh [hFF93], a
@@ -88,22 +88,22 @@ Intro:
 	ldh [hFF92], a
 	call PlaceAttrmap
 
-	ld hl, unk_077_5337
+	ld hl, Intro_Palette1
 	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
 
-	ld hl, unk_077_537f
+	ld hl, Intro_Palette2
 	ld de, wcaf0
 	ld bc, $40
 	call CopyBytes3
 
-	ld hl, unk_077_56df
+	ld hl, IntroStart_GFX
 	ld de, vTiles2
 	ld bc, $170
 	call CopyBytesVRAM
 
-	ld hl, unk_077_584f
+	ld hl, IntroStars_GFX
 	ld de, vTiles0
 	ld bc, $400
 	call CopyBytesVRAM
@@ -312,16 +312,16 @@ TitleScreen:
 	ld bc, $40
 	call CopyBytes3
 
-	ld a, BANK(TitleScreenGFX_Part1)
+	ld a, BANK(TitleScreenGFX)
 	ld [wTempBank], a
-	ld hl, TitleScreenGFX_Part1
+	ld hl, TitleScreenGFX
 	ld de, $9000
 	ld bc, $800
 	call FarCopyBytesVRAM
 
-	ld a, BANK(TitleScreenGFX_Part2)
+	ld a, BANK(TitleScreenGFX)
 	ld [wTempBank], a
-	ld hl, TitleScreenGFX_Part2
+	ld hl, TitleScreenGFX tile $80
 	ld de, $8800
 	ld bc, $800
 	call FarCopyBytesVRAM
@@ -350,7 +350,7 @@ TitleScreen:
 	ld [wcd57], a
 	ld a, $82
 	ld [wcd58], a
-	call Func_077_4667
+	call TitleScreen_UpdateSprites
 
 	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
@@ -361,17 +361,17 @@ TitleScreen:
 	ldh [hFF9D], a
 	call FadeInPalette
 
-.asm_42ce:
+.Loop:
 	call DelayFrame
-	call Func_077_4667
+	call TitleScreen_UpdateSprites
 	ldh a, [hFF9D]
 	inc a
 	ldh [hFF9D], a
 	ldh a, [hFFBF]
 	and a
-	jr nz, .asm_4307
-	call Func_077_4525
-	call Func_077_45fa
+	jr nz, .jump_to_game
+	call TitleScreen_PaletteCycle
+	call TitleScreen_DoSpriteAnimations
 	call Func_077_45b4
 	call Func_077_456e
 	ld a, [wdcf5]
@@ -379,18 +379,18 @@ TitleScreen:
 	jr z, .asm_42fb
 	cp 2
 	jr z, .asm_4301
-	call Func_077_4482
-	jp .asm_42ce
+	call TitleScreen_HandleStartInput
+	jp .Loop
 
 .asm_42fb
 	call Func_077_43d6
-	jp .asm_42ce
+	jp .Loop
 
 .asm_4301
 	call Func_077_4359
-	jp .asm_42ce
+	jp .Loop
 
-.asm_4307
+.jump_to_game
 	xor a
 	ldh [hFFBF], a
 	ld [wd0fa], a
@@ -550,7 +550,7 @@ CheatCode_InputList:
 	db D_RIGHT, B_BUTTON, B_BUTTON, B_BUTTON, D_LEFT, A_BUTTON, A_BUTTON, A_BUTTON ; 4
 	db D_LEFT, D_LEFT, D_RIGHT, D_RIGHT, D_UP, D_UP, D_DOWN, D_DOWN                ; 5
 
-Func_077_4424:
+TitleScreen_CheckCheatCodes:
 	ldh a, [hJoypadPressed]
 	and a
 	ret z
@@ -596,7 +596,7 @@ Func_077_4424:
 	ld a, 1
 	ld [wcd51], a
 	ld [wdcf5], a
-	jr Func_077_449c
+	jr TitleScreen_LoadNewGameMenu
 	ret
 
 .asm_446f
@@ -614,26 +614,603 @@ Func_077_4424:
 	ld [wdcb2], a
 	ret
 
-Func_077_4482:
-	dr $1dc482, $1dc49c
+TitleScreen_HandleStartInput:
+	ldh a, [hJoypadPressed]
+	bit PADB_START, a
+	jr z, TitleScreen_CheckCheatCodes
+	ld a, SFX_23
+	call PlaySound
+	call TitleScreen_LoadSaveFile
+	ld a, 1
+	ld [wdcf5], a
+	ret
 
-Func_077_449c:
-	dr $1dc49c, $1dc525
+TitleScreen_LoadSaveFile:
+	call SRAMTest_Fast
+	and a
+	jr z, TitleScreen_LoadContinueMenu
 
-Func_077_4525:
-	dr $1dc525, $1dc56e
+TitleScreen_LoadNewGameMenu:
+	ld a, $40
+	ld [wcd5a], a
+	ld a, $a0
+	ld [wcd59], a
+	ld a, 3
+	ld [wcd5b], a
+	ld a, $83
+	ld [wcd5c], a
+	ld a, $38
+	ld [wcd5e], a
+	ld a, $a0
+	ld [wcd5d], a
+	ld a, 5
+	ld [wcd5f], a
+	ld a, $85
+	ld [wcd60], a
+	xor a
+	ld [wdcf4], a
+	ld [wdcfb], a
+	ld a, $40
+	ld [wcd56], a
+	ld a, $b0
+	ld [wcd55], a
+	ld a, 0
+	ld [wcd57], a
+	ld a, $80
+	ld [wcd58], a
+	ret
+
+TitleScreen_LoadContinueMenu:
+	ld a, $40
+	ld [wcd5a], a
+	ld a, $a0
+	ld [wcd59], a
+	ld a, 4
+	ld [wcd5b], a
+	ld a, $84
+	ld [wcd5c], a
+	ld a, $38
+	ld [wcd5e], a
+	ld a, $a0
+	ld [wcd5d], a
+	ld a, 5
+	ld [wcd5f], a
+	ld a, $85
+	ld [wcd60], a
+	ld a, 1
+	ld [wdcf4], a
+	ld [wdcfb], a
+	ld a, $40
+	ld [wcd56], a
+	ld a, $b0
+	ld [wcd55], a
+	ld a, 0
+	ld [wcd57], a
+	ld a, $80
+	ld [wcd58], a
+	ret
+
+TitleScreen_PaletteCycle:
+	ld a, [wdcf3]
+	inc a
+	ld [wdcf3], a
+	cp 7
+	ret nz
+	xor a
+	ld [wdcf3], a
+	ld a, [wdce8]
+	ld de, .Palettes
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld b, 8
+	ld c, $90
+	call LoadPalettes_BCPD
+	ld a, [wdce8]
+	inc a
+	ld [wdce8], a
+	cp 3
+	ret c
+	xor a
+	ld [wdce8], a
+	ret
+
+.Palettes:
+	dw $7fff
+	dw $7ef7
+	dw $790d
+	dw $1400
+	dw $790d
+	dw $7fff
+	dw $7ef7
+	dw $1400
+	dw $7ef7
+	dw $790d
+	dw $7fff
+	dw $1400
 
 Func_077_456e:
-	dr $1dc56e, $1dc5b4
+	ld a, [wcd60]
+	and a
+	ret z
+	and $80
+	jr nz, asm_077_457e
+	ldh a, [hFF9D]
+	and 1
+	ret nz
+	jr asm_077_458a
+
+asm_077_457e:
+	ld a, [wcd60]
+	and $7f
+	ld [wcd60], a
+	xor a
+	ld [wcd67], a
+
+asm_077_458a:
+	ld a, [wcd60]
+	ld de, TitleScreen_SpriteAnimations
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd67]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	cp $ff
+	jr nz, asm_077_45a9
+	xor a
+	ld [wcd67], a
+	ret
+
+asm_077_45a9:
+	ld [wcd5f], a
+	ld a, [wcd67]
+	inc a
+	ld [wcd67], a
+	ret
 
 Func_077_45b4:
-	dr $1dc5b4, $1dc5fa
+	ld a, [wcd5c]
+	and a
+	ret z
+	and $80
+	jr nz, asm_077_45c4
+	ldh a, [hFF9D]
+	and 1
+	ret nz
+	jr asm_077_45d0
 
-Func_077_45fa:
-	dr $1dc5fa, $1dc667
+asm_077_45c4:
+	ld a, [wcd5c]
+	and $7f
+	ld [wcd5c], a
+	xor a
+	ld [wcd66], a
 
-Func_077_4667:
-	dr $1dc667, $1dc856
+asm_077_45d0:
+	ld a, [wcd5c]
+	ld de, $4640
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd66]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	cp $ff
+	jr nz, asm_077_45ef
+	xor a
+	ld [wcd66], a
+	ret
+
+asm_077_45ef:
+	ld [wcd5b], a
+	ld a, [wcd66]
+	inc a
+	ld [wcd66], a
+	ret
+
+TitleScreen_DoSpriteAnimations:
+	ld a, [wcd58]
+	and a
+	ret z
+	and $80
+	jr nz, .restart_animation
+	ldh a, [hFF9D]
+	and 1
+	ret nz
+	jr .animate
+
+.restart_animation:
+	ld a, [wcd58]
+	and $7f
+	ld [wcd58], a
+	xor a
+	ld [wcd65], a
+
+.animate:
+	ld a, [wcd58]
+	ld de, TitleScreen_SpriteAnimations
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd65]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	cp $ff
+	jr nz, .finished
+	xor a
+	ld [wcd65], a
+	ret
+
+.finished:
+	ld [wcd57], a
+	ld a, [wcd65]
+	inc a
+	ld [wcd65], a
+	ret
+
+TitleScreen_SpriteAnimations:
+	dw .Nothing
+	dw .TitleScreen
+	dw .PressStartText
+	dw .NewGameText
+	dw .NewGameContinueText
+	dw .Cursor
+
+.Nothing:
+	db $ff
+
+.TitleScreen:
+	db $1
+	db $1
+	db $1
+	db $1
+	db $ff
+
+.PressStartText:
+	db $2
+	db $2
+	db $2
+	db $2
+	db $0
+	db $0
+	db $0
+	db $0
+	db $ff
+
+.NewGameText:
+	db $3
+	db $3
+	db $3
+	db $ff
+
+.NewGameContinueText:
+	db $4
+	db $4
+	db $4
+	db $ff
+
+.Cursor:
+	db $5
+	db $5
+	db $5
+	db $ff
+
+TitleScreen_UpdateSprites:
+	ld hl, wVirtualOAM
+	ld bc, 40
+	ld de, 4
+
+.init_sprites
+	ld a, 160
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .init_sprites
+	xor a
+	ld [wd1fb], a
+	call .UpdateTitleSprites
+	call .UpdatePressStartSprites
+	call .UpdateMenuSprites
+	call .UpdateCursorSprites
+	ret
+
+.UpdateTitleSprites:
+	ld hl, TitleScreen_Sprites
+; get y offset -> c
+	ld de, wcd42
+	ld a, [de]
+	ld c, a
+; get x offset -> b
+	inc de
+	ld a, [de]
+	ld b, a
+; get sprite number
+	inc de
+	ld a, [de]
+	and a
+; return if sprite 0 is selected
+	ret z
+	add a
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb] ; where to put the sprite
+	ld e, a
+	ld d, HIGH(wVirtualOAM)
+.copy_sprite_1
+	ld a, [hli]
+	cp -1
+	jr z, .finished_copying_1
+; apply Y and X offsets
+	add c
+	ld [de], a
+	inc de
+	ld a, [hli]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .copy_sprite_1
+.finished_copying_1
+	ld a, e
+	ld [wd1fb], a
+	ret
+
+.UpdateCursorSprites:
+; See .UpdateTitleSprites
+	ld hl, TitleScreen_Sprites
+	ld de, wcd5d
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [de]
+	and a
+	ret z
+	add a
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb]
+	ld e, a
+	ld d, HIGH(wVirtualOAM)
+.copy_sprite_2
+	ld a, [hli]
+	cp -1
+	jr z, .finished_copying_2
+	add c
+	ld [de], a
+	inc de
+	ld a, [hli]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .copy_sprite_2
+.finished_copying_2
+	ld a, e
+	ld [wd1fb], a
+	ret
+
+.UpdateMenuSprites:
+	ld hl, TitleScreen_Sprites
+	ld de, wcd59
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [de]
+	and a
+	ret z
+	add a
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb]
+	ld e, a
+	ld d, HIGH(wVirtualOAM)
+.copy_sprite_3
+	ld a, [hli]
+	cp -1
+	jr z, .finished_copying_3
+	add c
+	ld [de], a
+	inc de
+	ld a, [hli]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .copy_sprite_3
+.finished_copying_3
+	ld a, e
+	ld [wd1fb], a
+	ret
+
+.UpdatePressStartSprites:
+	ld hl, TitleScreen_Sprites
+	ld de, wcd55
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [de]
+	and a
+	ret z
+	add a
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb]
+	ld e, a
+	ld d, HIGH(wVirtualOAM)
+.copy_sprite_4
+	ld a, [hli]
+	cp -1
+	jr z, .finished_copying_4
+	add c
+	ld [de], a
+	inc de
+	ld a, [hli]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .copy_sprite_4
+.finished_copying_4
+	ld a, e
+	ld [wd1fb], a
+	ret
+
+TitleScreen_Sprites:
+	dw .Nothing
+	dw .TitleScreen
+	dw .PushStartText
+	dw .NewGameText
+	dw .NewGameContinueText
+	dw .Cursor
+
+.Nothing:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $00, 0
+	dsprite  0,  0,  2,  0, $00, 0
+	dsprite  0,  0,  3,  0, $00, 0
+	dsprite  0,  0,  4,  0, $00, 0
+	dsprite  0,  0,  5,  0, $00, 0
+	db -1 ; end
+
+.TitleScreen:
+	dsprite  0,  0, 10,  0, $00, 0
+	dsprite  1,  0,  7,  0, $02, 0
+	dsprite  1,  0,  8,  0, $04, 0
+	dsprite  1,  0,  9,  0, $06, 0
+	dsprite  1,  0, 11,  0, $08, 0
+	dsprite  1,  0, 12,  0, $0a, 0
+	dsprite  2,  0, 10,  0, $0c, 0
+	dsprite  3,  0,  5,  0, $0e, 0
+	dsprite  3,  0,  6,  0, $10, 0
+	dsprite  3,  0,  7,  0, $12, 0
+	dsprite  3,  0,  8,  0, $14, 0
+	dsprite  3,  0,  9,  0, $16, 0
+	dsprite  4,  0, 11,  0, $18, 0
+	dsprite  4,  0, 12,  0, $1a, 0
+	dsprite  4,  0, 15,  0, $1c, 0
+	dsprite  4,  0, 16,  0, $1e, 0
+	dsprite  5,  0,  3,  0, $20, 0
+	dsprite  5,  0,  4,  0, $22, 0
+	dsprite  6,  0,  5,  0, $24, 0
+	dsprite  6,  0,  6,  0, $26, 1
+	dsprite  7,  0,  3,  0, $28, 0
+	dsprite  7,  0,  4,  0, $2a, 0
+	dsprite  8,  0,  5,  0, $2c, 0
+	dsprite  8,  0,  6,  0, $2e, 0
+	db -1 ; end
+
+.PushStartText:
+	dsprite  0,  0,  0,  0, $30, 2
+	dsprite  0,  0,  1,  0, $32, 2
+	dsprite  0,  0,  2,  0, $34, 2
+	dsprite  0,  0,  3,  0, $36, 2
+	dsprite  0,  0,  4,  0, $38, 2
+	dsprite  0,  0,  5,  0, $3a, 2
+	db -1 ; end
+
+
+.NewGameText:
+	dsprite  0,  0,  0,  0, $3c, 2
+	dsprite  0,  0,  1,  0, $3e, 2
+	dsprite  0,  0,  2,  0, $40, 2
+	dsprite  0,  0,  3,  0, $42, 2
+	dsprite  0,  0,  4,  0, $44, 2
+	dsprite  0,  0,  5,  0, $46, 2
+	db -1 ; end
+
+.NewGameContinueText:
+	dsprite  0,  0,  0,  0, $48, 2
+	dsprite  0,  0,  1,  0, $4a, 2
+	dsprite  0,  0,  2,  0, $4c, 2
+	dsprite  0,  0,  3,  0, $4e, 2
+	dsprite  0,  0,  4,  0, $50, 2
+	dsprite  0,  0,  5,  0, $52, 2
+	dsprite  2,  0,  0,  0, $54, 2
+	dsprite  2,  0,  1,  0, $56, 2
+	dsprite  2,  0,  2,  0, $58, 2
+	dsprite  2,  0,  3,  0, $5a, 2
+	dsprite  2,  0,  4,  0, $5c, 2
+	dsprite  2,  0,  5,  0, $5e, 2
+	db -1 ; end
+
+.Cursor:
+	dsprite  0,  0,  0,  0, $60, 2
+	db -1 ; end
 
 Func_077_4856:
 	dr $1dc856, $1dc8bc
@@ -674,22 +1251,22 @@ Func_077_5297:
 Func_077_52a6:
 	dr $1dd2a6, $1dd337
 
-unk_077_5337:
+Intro_Palette1:
 	dr $1dd337, $1dd37f
 
-unk_077_537f:
+Intro_Palette2:
 	dr $1dd37f, $1dd40f
 
-unk_077_540f:
+IntroStart_Attrs:
 	dr $1dd40f, $1dd577
 
-unk_077_5577:
+IntroStart_Tilemap:
 	dr $1dd577, $1dd6df
 
-unk_077_56df:
+IntroStart_GFX:
 	dr $1dd6df, $1dd84f
 
-unk_077_584f:
+IntroStars_GFX:
 	dr $1dd84f, $1deb37
 
 TitleScreen_Palette1:

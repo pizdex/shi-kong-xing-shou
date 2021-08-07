@@ -141,9 +141,19 @@ wcd56:: ds 1
 wcd57:: ds 1
 wcd58:: ds 1
 wcd59:: ds 1
-	ds 3
+wcd5a:: ds 1
+wcd5b:: ds 1
+wcd5c:: ds 1
 wcd5d:: ds 1
-	ds $82
+wcd5e:: ds 1
+wcd5f:: ds 1
+
+wcd60:: ds 1
+	ds 4
+wcd65:: ds 1
+wcd66:: ds 1
+wcd67:: ds 1
+	ds $78
 
 ; Start menu
 wcde0:: ds 1

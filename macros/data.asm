@@ -103,3 +103,15 @@ rept \1
 x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
 endr
 ENDM
+
+dsprite: MACRO
+; \1 y tile
+; \2 y pxl
+; \3 x tile
+; \4 x pxl
+; \5 tile number
+; \6 flags + attributes
+	db LOW(\1 * 8) + \2
+	db LOW(\3 * 8) + \4
+	db \5, \6
+ENDM
