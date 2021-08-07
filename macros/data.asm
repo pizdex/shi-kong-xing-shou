@@ -115,3 +115,9 @@ dsprite: MACRO
 	db LOW(\3 * 8) + \4
 	db \5, \6
 ENDM
+
+dbaw: MACRO
+; odd way of defining a pointer where the second byte
+; is skipped
+	dw BANK(\1), \1
+ENDM

@@ -133,9 +133,9 @@ Intro_StartingScreen:
 	and a
 	jr nz, Intro_CharacterCastScreen
 
-	call Func_077_523f
-	call Func_077_4b70
-	call Func_077_4bf8
+	call Intro_CheckButtonSkip
+	call Intro_InitStars
+	call Intro_MoveStars
 	jp Intro_StartingScreen
 
 Intro_CharacterCastScreen:
@@ -164,7 +164,7 @@ Intro_CharacterCastScreen:
 	ld [wdcf5], a
 
 .NewScreen:
-	call Func_077_4943
+	call Intro_SetupNewScreen
 	call Func_077_52a6
 
 	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJ16 | LCDCF_OBJON | LCDCF_BGON
@@ -188,7 +188,7 @@ Intro_CharacterCastScreen:
 	and a
 	jr nz, .SkipToTitle
 
-	call Func_077_523f
+	call Intro_CheckButtonSkip
 
 ; Intro state manager
 	ld a, [wdcf5]
@@ -261,7 +261,7 @@ Intro_CharacterCastScreen:
 	jp .NewScreen
 
 .begin_screen
-	call Func_077_4943
+	call Intro_SetupNewScreen
 	ld a, 1
 	ld [wdcf5], a
 	jp .Loop
@@ -1183,7 +1183,6 @@ TitleScreen_Sprites:
 	dsprite  0,  0,  5,  0, $3a, 2
 	db -1 ; end
 
-
 .NewGameText:
 	dsprite  0,  0,  0,  0, $3c, 2
 	dsprite  0,  0,  1,  0, $3e, 2
@@ -1221,13 +1220,436 @@ Func_077_48bc:
 Func_077_48d9:
 	dr $1dc8d9, $1dc943
 
-Func_077_4943:
-	dr $1dc943, $1dcb70
+Intro_SetupNewScreen:
+; set appropriate scrolling animation
+	ld a, [wdce8]
+	ld de, Intro_ScrollingModes
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [wdcfb], a ; BG scrolling mode
+	ld a, [hli]
+	ld [wdcf4], a ; window scrolling mode
 
-Func_077_4b70:
-	dr $1dcb70, $1dcbf8
+; set initial BG positions
+	ld a, [wdcfb]
+	ld de, Intro_InitialBGPositions
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [hSCY], a
+	ld a, [hli]
+	ld [hSCX], a
 
-Func_077_4bf8:
+; set initial window positions
+	ld a, [wdcf4]
+	ld de, Intro_InitialWindowPositions
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [wWY], a
+	ldh [rWY], a
+	ld a, [hli]
+	ld [wWX], a
+	ldh [rWX], a
+	ld a, [wdce8]
+
+; render to BG
+	ld de, Intro_TilemapPointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+; offset the map so that it may be scrolled in
+	ld hl, $9814
+	ld bc, $0a12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $a
+	ldh [hFF92], a
+	call PlaceTilemap_Bank0
+	ld a, [wdce8]
+
+; render to window
+	ld de, Intro_TilemapPointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+; get window tilemap
+	ld de, 2
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	ld hl, $9c00
+	ld bc, $0a12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $a
+	ldh [hFF92], a
+	call Func_1373
+
+; set bg attributes
+	ld a, [wdce8]
+	ld de, Intro_AttrPointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	ld hl, $9814
+	ld bc, $0a12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $a
+	ldh [hFF92], a
+	call PlaceAttrmap
+
+; set win attributes
+	ld a, [wdce8]
+	ld de, Intro_AttrPointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld de, 2
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	ld hl, $9c00
+	ld bc, $0a12
+	ld a, $12
+	ldh [hFF93], a
+	ld a, $a
+	ldh [hFF92], a
+	call Func_1367
+
+; set BG palettes
+	ld a, [wdce8]
+	ld de, Intro_BGPalettePointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+
+; static object palette
+	ld hl, Intro_ObjPalette
+	ld de, wcaf0
+	ld bc, $40
+	call CopyBytes3
+
+; load in GFX for BG layer
+	ld a, [wdce8]
+	ld de, Intro_BGGFXPointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [wTempBank], a
+	ld a, [hli]
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $9000
+	ld bc, $0800
+	call FarCopyBytesVRAM
+
+; load in GFX for window layer
+	ld a, [wdce8]
+	ld de, Intro_WinGFXPointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [wTempBank], a
+	ld a, [hli]
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $8800
+	ld bc, $0800
+	call FarCopyBytesVRAM
+
+; load in GFX for sprite layer
+	ld a, [wdce8]
+	ld de, Intro_SpriteGFXPointers
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [wTempBank], a
+	ld a, [hli]
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $8000
+	ld bc, $0800
+	call FarCopyBytesVRAM
+
+	ld a, $a0
+	ld [wcd42], a
+	ld a, $38
+	ld [wcd43], a
+	ld a, [wdce8]
+	inc a
+	ld [wcd44], a
+	ret
+
+Intro_ScrollingModes:
+	dw $101
+	dw $202
+	dw $301
+	dw $402
+	dw $202
+	dw $302
+	dw $101
+	dw $402
+
+Intro_InitialBGPositions:
+	dw $0
+	dw $0
+	dw $0
+	dw $80
+	dw $80
+
+Intro_InitialWindowPositions:
+	dw $0
+	dw $a000
+	dw $5880
+	dw $a000
+	dw $5880
+
+Intro_TilemapPointers:
+	dw unk_077_5f43
+	dw unk_077_6597
+	dw unk_077_5ff7
+	dw unk_077_664b
+	dw unk_077_60ab
+	dw unk_077_66ff
+	dw unk_077_615f
+	dw unk_077_67b3
+	dw unk_077_6213
+	dw unk_077_6867
+	dw unk_077_62c7
+	dw unk_077_691b
+	dw unk_077_637b
+	dw unk_077_69cf
+	dw unk_077_642f
+	dw unk_077_6a83
+
+Intro_AttrPointers:
+	dw unk_077_5e8f
+	dw unk_077_64e3
+	dw unk_077_5e8f
+	dw unk_077_64e3
+	dw unk_077_5e8f
+	dw unk_077_64e3
+	dw unk_077_5e8f
+	dw unk_077_64e3
+	dw unk_077_5e8f
+	dw unk_077_64e3
+	dw unk_077_5e8f
+	dw unk_077_64e3
+	dw unk_077_5e8f
+	dw unk_077_64e3
+	dw unk_077_5e8f
+	dw unk_077_64e3
+
+Intro_BGPalettePointers:
+	dw unk_077_5c4f
+	dw unk_077_5c97
+	dw unk_077_5cdf
+	dw unk_077_5d27
+	dw unk_077_5d6f
+	dw unk_077_5db7
+	dw unk_077_5dff
+	dw unk_077_5e47
+
+Intro_BGGFXPointers:
+	dbaw IntroBG_GFX_1
+	dbaw IntroBG_GFX_2
+	dbaw IntroBG_GFX_3
+	dbaw IntroBG_GFX_4
+	dbaw IntroBG_GFX_5
+	dbaw IntroBG_GFX_6
+	dbaw IntroBG_GFX_7
+	dbaw IntroBG_GFX_8
+
+Intro_WinGFXPointers:
+	dbaw IntroWin_GFX_1
+	dbaw IntroWin_GFX_2
+	dbaw IntroWin_GFX_3
+	dbaw IntroWin_GFX_4
+	dbaw IntroWin_GFX_5
+	dbaw IntroWin_GFX_6
+	dbaw IntroWin_GFX_7
+	dbaw IntroWin_GFX_8
+
+Intro_SpriteGFXPointers:
+	dbaw IntroSprite_GFX_1
+	dbaw IntroSprite_GFX_2
+	dbaw IntroSprite_GFX_3
+	dbaw IntroSprite_GFX_4
+	dbaw IntroSprite_GFX_5
+	dbaw IntroSprite_GFX_6
+	dbaw IntroSprite_GFX_7
+	dbaw IntroSprite_GFX_8
+
+Intro_InitStars:
+	ld a, [wdce8]
+	cp 7
+	ret nc
+	ld a, [wdcf6]
+	and a
+	jr z, asm_077_4b81
+	dec a
+	ld [wdcf6], a
+	ret
+
+asm_077_4b81:
+	ld bc, wdd50
+
+asm_077_4b84:
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, asm_077_4b98
+	ld hl, 5
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $5f
+	jr c, asm_077_4b84
+	ret
+
+asm_077_4b98:
+	ld de, unk_077_4bc0
+	ld a, [wdce8]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, 1
+	ld [bc], a
+	inc bc
+	ld a, [hli]
+	ld [wdcf6], a
+	ld a, [hli]
+	ld [bc], a
+	ld a, [wdce8]
+	inc a
+	ld [wdce8], a
+	ret
+
+unk_077_4bc0:
+	db $f0
+	db $70
+	db $2
+	db $18
+	db $1
+	db $0
+	db $0
+	db $0
+	db $0
+	db $90
+	db $2
+	db $18
+	db $1
+	db $0
+	db $0
+	db $0
+	db $f0
+	db $80
+	db $2
+	db $18
+	db $1
+	db $0
+	db $0
+	db $0
+	db $0
+	db $90
+	db $2
+	db $18
+	db $1
+	db $0
+	db $0
+	db $0
+	db $f0
+	db $70
+	db $2
+	db $18
+	db $1
+	db $0
+	db $0
+	db $0
+	db $0
+	db $80
+	db $2
+	db $18
+	db $1
+	db $0
+	db $0
+	db $0
+	db $f0
+	db $90
+	db $2
+	db $18
+	db $2
+	db $0
+	db $0
+	db $0
+
+Intro_MoveStars:
 	dr $1dcbf8, $1dcd06
 
 Func_077_4d06:
@@ -1236,8 +1658,17 @@ Func_077_4d06:
 Func_077_4e10:
 	dr $1dce10, $1dd23f
 
-Func_077_523f:
-	dr $1dd23f, $1dd282
+Intro_CheckButtonSkip:
+	ldh a, [hJoypadDown]
+	and a
+	ret z
+; able to be skipped by any button
+	ld a, 1
+	ld [hFade], a
+	ret
+
+Func_077_5249:
+	dr $1dd249, $1dd282
 
 Func_077_5282:
 	dr $1dd282, $1dd289
@@ -1255,7 +1686,10 @@ Intro_Palette1:
 	dr $1dd337, $1dd37f
 
 Intro_Palette2:
-	dr $1dd37f, $1dd40f
+	dr $1dd37f, $1dd3c7
+
+Intro_ObjPalette:
+	dr $1dd3c7, $1dd40f
 
 IntroStart_Attrs:
 	dr $1dd40f, $1dd577
@@ -1267,7 +1701,85 @@ IntroStart_GFX:
 	dr $1dd6df, $1dd84f
 
 IntroStars_GFX:
-	dr $1dd84f, $1deb37
+	dr $1dd84f, $1ddc4f
+
+unk_077_5c4f::
+	dr $1ddc4f, $1ddc97
+
+unk_077_5c97::
+	dr $1ddc97, $1ddcdf
+
+unk_077_5cdf::
+	dr $1ddcdf, $1ddd27
+
+unk_077_5d27::
+	dr $1ddd27, $1ddd6f
+
+unk_077_5d6f::
+	dr $1ddd6f, $1dddb7
+
+unk_077_5db7::
+	dr $1dddb7, $1dddff
+
+unk_077_5dff::
+	dr $1dddff, $1dde47
+
+unk_077_5e47::
+	dr $1dde47, $1dde8f
+
+unk_077_5e8f::
+	dr $1dde8f, $1ddf43
+
+unk_077_5f43::
+	dr $1ddf43, $1ddff7
+
+unk_077_5ff7::
+	dr $1ddff7, $1de0ab
+
+unk_077_60ab::
+	dr $1de0ab, $1de15f
+
+unk_077_615f::
+	dr $1de15f, $1de213
+
+unk_077_6213::
+	dr $1de213, $1de2c7
+
+unk_077_62c7::
+	dr $1de2c7, $1de37b
+
+unk_077_637b::
+	dr $1de37b, $1de42f
+
+unk_077_642f::
+	dr $1de42f, $1de4e3
+
+unk_077_64e3::
+	dr $1de4e3, $1de597
+
+unk_077_6597::
+	dr $1de597, $1de64b
+
+unk_077_664b::
+	dr $1de64b, $1de6ff
+
+unk_077_66ff::
+	dr $1de6ff, $1de7b3
+
+unk_077_67b3::
+	dr $1de7b3, $1de867
+
+unk_077_6867::
+	dr $1de867, $1de91b
+
+unk_077_691b::
+	dr $1de91b, $1de9cf
+
+unk_077_69cf::
+	dr $1de9cf, $1dea83
+
+unk_077_6a83::
+	dr $1dea83, $1deb37
 
 TitleScreen_Palette1:
 	dw $7ffc
