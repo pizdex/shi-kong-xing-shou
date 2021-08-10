@@ -1692,13 +1692,13 @@ Intro_ObjPalette:
 	dr $1dd3c7, $1dd40f
 
 IntroStart_Attrs:
-	dr $1dd40f, $1dd577
+INCBIN "gfx/title_screen/intro/background/begin.gbcattr"
 
 IntroStart_Tilemap:
-	dr $1dd577, $1dd6df
+INCBIN "gfx/title_screen/intro/background/begin.tilemap"
 
 IntroStart_GFX:
-	dr $1dd6df, $1dd84f
+INCBIN "gfx/title_screen/intro/background/begin.2bpp"
 
 IntroStars_GFX:
 	dr $1dd84f, $1ddc4f
