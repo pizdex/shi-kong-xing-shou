@@ -178,7 +178,7 @@ Intro_CharacterCastScreen:
 
 .Loop:
 	call DelayFrame
-	call Func_077_4e10
+	call Intro_LoadNewTextSprites
 
 	ldh a, [hFF9D]
 	inc a
@@ -1655,8 +1655,346 @@ Intro_MoveStars:
 Func_077_4d06:
 	dr $1dcd06, $1dce10
 
-Func_077_4e10:
-	dr $1dce10, $1dd23f
+Intro_LoadNewTextSprites:
+	ld hl, wVirtualOAM
+	ld bc, $28
+	ld de, 4
+.clear
+	ld a, $a0
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .clear
+	xor a
+	ld [wd1fb], a
+	call .LoadSprites
+	ret
+
+.LoadSprites:
+	ld hl, Intro_TextSprites
+	ld de, wcd42
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [de]
+	and a
+	ret z
+	add a
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb]
+	ld e, a
+	ld d, $c0
+.load_sprite
+	ld a, [hli]
+	cp -1
+	jr z, .done
+	add c
+	ld [de], a
+	inc de
+	ld a, [hli]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .load_sprite
+.done
+	ld a, e
+	ld [wd1fb], a
+	ret
+
+Intro_TextSprites:
+	dw .Nothing
+	dw .Ballot
+	dw .Buck
+	dw .Nina
+	dw .Claude
+	dw .Helen
+	dw .Lante
+	dw .Newton
+	dw .Mitt
+
+.Nothing:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $00, 0
+	db -1 ; end
+
+.Ballot:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  0,  0, $24, 0
+	dsprite  4,  0,  1,  0, $26, 0
+	dsprite  4,  0,  2,  0, $28, 0
+	dsprite  4,  0,  3,  0, $2a, 0
+	dsprite  4,  0,  4,  0, $2c, 0
+	dsprite  4,  0,  5,  0, $2e, 0
+	dsprite  4,  0,  6,  0, $30, 0
+	dsprite  4,  0,  7,  0, $32, 0
+	dsprite  4,  0,  8,  0, $34, 0
+	dsprite  6,  0,  0,  0, $36, 0
+	dsprite  6,  0,  1,  0, $38, 0
+	dsprite  6,  0,  2,  0, $3a, 0
+	dsprite  6,  0,  3,  0, $3c, 0
+	dsprite  6,  0,  4,  0, $3e, 0
+	dsprite  6,  0,  5,  0, $40, 0
+	dsprite  6,  0,  6,  0, $42, 0
+	db -1 ; end
+
+.Buck:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  0,  0, $24, 0
+	dsprite  4,  0,  1,  0, $26, 0
+	dsprite  4,  0,  2,  0, $28, 0
+	dsprite  4,  0,  3,  0, $2a, 0
+	dsprite  4,  0,  4,  0, $2c, 0
+	dsprite  4,  0,  5,  0, $2e, 0
+	dsprite  4,  0,  6,  0, $30, 0
+	dsprite  4,  0,  7,  0, $32, 0
+	dsprite  4,  0,  8,  0, $34, 0
+	dsprite  6,  0,  0,  0, $36, 0
+	dsprite  6,  0,  1,  0, $38, 0
+	dsprite  6,  0,  2,  0, $3a, 0
+	dsprite  6,  0,  3,  0, $3c, 0
+	dsprite  6,  0,  4,  0, $3e, 0
+	dsprite  6,  0,  5,  0, $40, 0
+	dsprite  6,  0,  6,  0, $42, 0
+	dsprite  6,  0,  7,  0, $44, 0
+	dsprite  6,  0,  8,  0, $46, 0
+	db -1 ; end
+
+.Nina:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  0,  0, $24, 0
+	dsprite  4,  0,  1,  0, $26, 0
+	dsprite  4,  0,  2,  0, $28, 0
+	dsprite  4,  0,  3,  0, $2a, 0
+	dsprite  4,  0,  4,  0, $2c, 0
+	dsprite  4,  0,  5,  0, $2e, 0
+	dsprite  4,  0,  6,  0, $30, 0
+	dsprite  4,  0,  7,  0, $32, 0
+	dsprite  4,  0,  8,  0, $34, 0
+	dsprite  6,  0,  1,  0, $36, 0
+	dsprite  6,  0,  2,  0, $38, 0
+	dsprite  6,  0,  3,  0, $3a, 0
+	dsprite  6,  0,  4,  0, $3c, 0
+	dsprite  6,  0,  5,  0, $3e, 0
+	dsprite  6,  0,  6,  0, $40, 0
+	db -1 ; end
+
+.Claude:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  0,  0, $24, 0
+	dsprite  4,  0,  1,  0, $26, 0
+	dsprite  4,  0,  2,  0, $28, 0
+	dsprite  4,  0,  3,  0, $2a, 0
+	dsprite  4,  0,  4,  0, $2c, 0
+	dsprite  4,  0,  5,  0, $2e, 0
+	dsprite  4,  0,  6,  0, $30, 0
+	dsprite  4,  0,  7,  0, $32, 0
+	db -1 ; end
+
+.Helen:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  0,  0, $24, 0
+	dsprite  4,  0,  1,  0, $26, 0
+	dsprite  4,  0,  2,  0, $28, 0
+	dsprite  4,  0,  3,  0, $2a, 0
+	dsprite  4,  0,  4,  0, $2c, 0
+	dsprite  4,  0,  5,  0, $2e, 0
+	dsprite  4,  0,  6,  0, $30, 0
+	dsprite  4,  0,  7,  0, $32, 0
+	db -1 ; end
+
+.Lante:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  1,  0, $24, 0
+	dsprite  4,  0,  2,  0, $26, 0
+	dsprite  4,  0,  3,  0, $28, 0
+	dsprite  4,  0,  4,  0, $2a, 0
+	dsprite  4,  0,  5,  0, $2c, 0
+	dsprite  4,  0,  6,  0, $2e, 0
+	db -1 ; end
+
+.Newton:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  0,  0, $24, 0
+	dsprite  4,  0,  1,  0, $26, 0
+	dsprite  4,  0,  2,  0, $28, 0
+	dsprite  4,  0,  3,  0, $2a, 0
+	dsprite  4,  0,  4,  0, $2c, 0
+	dsprite  4,  0,  5,  0, $2e, 0
+	dsprite  4,  0,  6,  0, $30, 0
+	dsprite  4,  0,  7,  0, $32, 0
+	dsprite  4,  0,  8,  0, $34, 0
+	dsprite  6,  0,  0,  0, $36, 0
+	dsprite  6,  0,  1,  0, $38, 0
+	dsprite  6,  0,  2,  0, $3a, 0
+	dsprite  6,  0,  3,  0, $3c, 0
+	dsprite  6,  0,  4,  0, $3e, 0
+	dsprite  6,  0,  5,  0, $40, 0
+	dsprite  6,  0,  6,  0, $42, 0
+	db -1 ; end
+
+.Mitt:
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $02, 0
+	dsprite  0,  0,  2,  0, $04, 0
+	dsprite  0,  0,  3,  0, $06, 0
+	dsprite  0,  0,  4,  0, $08, 0
+	dsprite  0,  0,  5,  0, $0a, 0
+	dsprite  0,  0,  6,  0, $0c, 0
+	dsprite  0,  0,  7,  0, $0e, 0
+	dsprite  0,  0,  8,  0, $10, 0
+	dsprite  2,  0,  0,  0, $12, 0
+	dsprite  2,  0,  1,  0, $14, 0
+	dsprite  2,  0,  2,  0, $16, 0
+	dsprite  2,  0,  3,  0, $18, 0
+	dsprite  2,  0,  4,  0, $1a, 0
+	dsprite  2,  0,  5,  0, $1c, 0
+	dsprite  2,  0,  6,  0, $1e, 0
+	dsprite  2,  0,  7,  0, $20, 0
+	dsprite  2,  0,  8,  0, $22, 0
+	dsprite  4,  0,  0,  0, $24, 0
+	dsprite  4,  0,  1,  0, $26, 0
+	dsprite  4,  0,  2,  0, $28, 0
+	dsprite  4,  0,  3,  0, $2a, 0
+	dsprite  4,  0,  4,  0, $2c, 0
+	dsprite  4,  0,  5,  0, $2e, 0
+	dsprite  4,  0,  6,  0, $30, 0
+	dsprite  4,  0,  7,  0, $32, 0
+	db -1 ; end
 
 Intro_CheckButtonSkip:
 	ldh a, [hJoypadDown]
