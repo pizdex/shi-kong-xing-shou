@@ -2,9 +2,9 @@ Func_02d_4000:
 	dr $b4000, $b507b
 
 Func_02d_507b::
-	ld a, [wdcc8]
+	ld a, [wMovementPointer]
 	ld l, a
-	ld a, [wdcc8 + 1]
+	ld a, [wMovementPointer + 1]
 	ld h, a
 	jp Func_02d_50b3
 

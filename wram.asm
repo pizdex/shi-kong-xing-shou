@@ -227,7 +227,8 @@ wGameTimeMinutes:: ds 1
 wd0df:: ds 1
 wd0e0:: ds 3
 wd0e3:: ds 1
-wd0e4:: ds $b
+wd0e4:: ds $a
+wd0ee:: ds 1
 wd0ef:: ds 1
 wd0f0:: ds 1
 wd0f1:: ds 1
@@ -238,7 +239,7 @@ wd0f5:: ds 1
 wCharacterTileDest:: ds 2
 wd0f8:: ds 1
 wd0f9:: ds 1
-wd0fa:: ds 1
+wTargetMode:: ds 1
 wd0fb:: ds 2
 wd0fd:: ds 2
 wd0ff:: ds 1
@@ -251,7 +252,10 @@ wd1a0:: ds 8
 wd1a8:: ds 8
 wd1b0:: ds $32
 
-wd1e2:: ds $f
+wd1e2:: ds 1
+wd1e3:: ds 1
+
+	ds 13
 
 wd1f1:: ds 1
 wd1f2:: ds 7
@@ -286,10 +290,91 @@ wd3f8:: ds 1
 wd3f9:: ds 5
 wd3fe:: ds 1
 wd3ff:: ds 1
-wd400:: ds $20b
 
-wd60b:: ds 1
-wd60c:: ds $1bf
+; sound engine
+wd400:: ds 1
+	ds 1
+
+wd402:: ds 1
+wSoundCurChannel:: ds 1
+wCurrentSongID:: ds 1
+wSoundNumChannels:: ds 1
+wd406:: ds 1
+	ds 7
+
+; music channels
+wChannels::
+wChannel1:: channel_struct wChannel1
+wChannel2:: channel_struct wChannel2
+wChannel3:: channel_struct wChannel3
+wChannel4:: channel_struct wChannel4
+
+; sfx channels
+wSFXChannels::
+wChannel5:: channel_struct wChannel5
+wChannel6:: channel_struct wChannel6
+wChannel7:: channel_struct wChannel7
+wChannel8:: channel_struct wChannel8
+
+wd56e:: ds 1
+wd56f:: ds 1
+wd570:: ds 1
+wd571:: ds 1
+wd572:: ds 1
+wd573:: ds 1
+wd574:: ds 1
+
+wd575:: ds 1
+wd576:: ds 1
+wd577:: ds 2
+wd579:: ds 1
+wd57a:: ds 1
+wd57b:: ds 1
+wd57c:: ds 1
+wd57d:: ds 1
+wd57e:: ds 1
+wd57f:: ds 1
+wd580:: ds 1
+wd581:: ds 2
+wd583:: ds 1
+
+	ds $14
+wd598:: ds 1
+wd599:: ds 2
+wd59b:: ds 1
+
+	ds $6b
+
+wd607:: ds 1
+wd608:: ds 1
+wd609:: ds 1
+wd60a:: ds 1
+wSoundFadeEnabled:: ds 1
+wSoundFadeTimer:: ds 1
+wd60d:: ds 1
+	ds 8
+wd616:: ds $2c
+wd642:: ds $2c
+wd66e:: ds $2c
+wd69a:: ds 1
+	ds $23
+
+wd6be:: ds 1
+	ds 7
+
+wd6c6:: ds 1
+	ds $23
+
+wd6ea:: ds 1
+	ds 7
+
+wd6f2:: ds 1
+	ds $2b
+
+wd71e:: ds 1
+	ds $2b
+
+wd74a:: ds $81
 
 wd7cb:: ds $9f ; mon dex
 
@@ -418,8 +503,8 @@ wTextBGMapPointer:: ds 2
 wdad0:: ds $12
 
 wdae2:: ds 1
-wdae3:: ds 1
-wdae7:: ds 7
+wdae3:: ds 4
+wdae7:: ds 4
 wdaeb:: ds $30
 
 wGameTimeSeconds:: ds 1
@@ -435,14 +520,14 @@ wdc9f:: ds $11
 wdcb0:: ds 1
 wdcb1:: ds 1
 wdcb2:: ds 1
-wdcb3:: ds 2
-
+wdcb3:: ds 1
+wdcb4:: ds 1
 wdcb5:: ds 1
 wdcb6:: ds 5
 
 wdcbb:: ds $d
 
-wdcc8:: ds 2
+wMovementPointer:: ds 2
 wdcca:: ds 1
 wdccb:: ds 1
 wdccc:: ds 1

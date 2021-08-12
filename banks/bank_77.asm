@@ -3,7 +3,7 @@ Intro_VastFame::
 	call ClearBGMap0
 
 	xor a
-	ldh [hFFBF], a
+	ldh [hFade], a
 	ldh [hSCX], a
 	ldh [hFFAF], a
 	ldh [hSCY], a
@@ -129,7 +129,7 @@ Intro_StartingScreen:
 	ldh [hFF9D], a
 
 ; screen skip
-	ldh a, [hFFBF]
+	ldh a, [hFade]
 	and a
 	jr nz, Intro_CharacterCastScreen
 
@@ -152,7 +152,7 @@ Intro_CharacterCastScreen:
 	call PlaySound
 
 	xor a
-	ldh [hFFBF], a
+	ldh [hFade], a
 	ldh [hSCX], a
 	ldh [hFFAF], a
 	ldh [hSCY], a
@@ -184,7 +184,7 @@ Intro_CharacterCastScreen:
 	inc a
 	ldh [hFF9D], a
 
-	ldh a, [hFFBF]
+	ldh a, [hFade]
 	and a
 	jr nz, .SkipToTitle
 
@@ -231,7 +231,7 @@ Intro_CharacterCastScreen:
 	xor a
 	ld [wdce8], a
 	ld a, 1
-	ld [hFFBF], a
+	ld [hFade], a
 	ld c, $40
 	call Func_077_5282
 	jp .Loop
@@ -249,7 +249,7 @@ Intro_CharacterCastScreen:
 	call Func_077_52a6
 
 	xor a
-	ldh [hFFBF], a
+	ldh [hFade], a
 	ldh [hSCX], a
 	ldh [hFFAF], a
 	ldh [hSCY], a
@@ -273,7 +273,7 @@ TitleScreen:
 	call PlaySound
 
 	xor a
-	ldh [hFFBF], a
+	ldh [hFade], a
 	ldh [hSCX], a
 	ldh [hFFAF], a
 	ldh [hSCY], a
@@ -367,7 +367,7 @@ TitleScreen:
 	ldh a, [hFF9D]
 	inc a
 	ldh [hFF9D], a
-	ldh a, [hFFBF]
+	ldh a, [hFade]
 	and a
 	jr nz, .asm_4307
 	call Func_077_4525
@@ -392,9 +392,9 @@ TitleScreen:
 
 .asm_4307
 	xor a
-	ldh [hFFBF], a
-	ld [wd0fa], a
-	jp Func_023b
+	ldh [hFade], a
+	ld [wTargetMode], a
+	jp JumpToGameMode
 	ret
 
 Intro_Delay:

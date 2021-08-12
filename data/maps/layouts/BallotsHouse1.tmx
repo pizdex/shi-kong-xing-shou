@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<map orientation="orthogonal" renderorder="right-down" tilewidth="32" tileheight="32" width="6" height="5">
+	<tileset firstgid="1" tilewidth="32" tileheight="32">
+		<image source="../blocks/BallotsHouse1.tmx"/>
+	</tileset>
+	<layer id="1" name="layout" width="6" height="5">
+		<data encoding="csv">
+1,2,3,4,5,6,
+7,8,9,10,11,6,
+12,13,13,14,15,6,
+16,13,13,17,18,6,
+6,19,20,6,6,6</data>
+	</layer>
+</map>

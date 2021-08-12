@@ -1,0 +1,29 @@
+@org $0c, $41cb:
+	signpost;
+	text "↑機場";
+	done;
+
+@org $0c, $41d3:
+	signpost;
+	text "天之都";
+	done;
+
+@org $0c, $41da:
+	signpost;
+	text "←綠色樹海";
+	done;
+
+@org $0c, $41e5:
+	signpost;
+	text "↑天之都";
+	done;
+
+@org $0c, $41ee:
+	signpost;
+	text "綠色樹海";
+	done;
+
+@org $0c, $41f7:
+	signpost;
+	text "邦林企業";
+	done;

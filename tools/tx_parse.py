@@ -16,6 +16,7 @@ tokens = [
 	('line',			'TX_LINE'),
 	('cont',			'TX_CONT'),
 	('init',			'TX_INIT'),
+	('signpost',		'TX_SIGN'),
 	('done',			'TX_END'),
 	('\d+',			 'DECIMAL_NUMBER'),
 	('\$[0-9a-fA-F]+',  'HEXADECIMAL_NUMBER'),
@@ -70,9 +71,9 @@ for l in t:
 			address = b[3][1][1]
 			for q in b[1:]:
 				if q[0] == 'DECIMAL_NUMBER':
-					label = ("text_%s_%s" % (bank[1:], address[1:]))
+					label = ("text_%s_%s" % (bank[1:].zfill(2), address[1:].zfill(4)))
 				elif q[0] == 'HEXADECIMAL_NUMBER':
-					label = ("text_%s_%s" % (bank[1:], address[1:]))
+					label = ("text_%s_%s" % (bank[1:].zfill(2), address[1:].zfill(4)))
 				elif q[0] == 'LABEL':
 					label = q[1].group(1)[1:-1]
 			print(f'\n{label}::')
@@ -134,6 +135,9 @@ for l in t:
 		
 		elif comm == 'TX_END':
 			print(f'\tdone')
+		
+		elif comm == 'TX_SIGN':
+			print(f'\ttext_sign')
 			
 		elif comm == 'FORCEMAP':
 			strr = ""

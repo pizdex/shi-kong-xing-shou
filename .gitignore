@@ -8,6 +8,8 @@ gfx/faces/*.gbcpal
 gfx/monsters/**/*.2bpp
 gfx/monsters/**/*.gbcpal
 gfx/cutscenes/meteor/*.2bpp
+gfx/tilesets/*.2bpp
+data/maps/**/*.bin
 
 # compiled roms
 *.gbc
