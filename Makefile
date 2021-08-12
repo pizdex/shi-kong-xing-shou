@@ -73,8 +73,7 @@ data/text/%.asm: data/text/%.txt
 
 gfx/character_set/%.1bpp: tools/gfx += --interleave --png=$<
 gfx/battle/%.2bpp: tools/gfx += --interleave --png=$<
-gfx/title_screen/intro/sprites/%.2bpp: tools/gfx += --interleave --remove-whitespace --png=$<
-
+gfx/intro/sprites/%.2bpp: tools/gfx += --interleave --remove-whitespace --png=$<
 
 ### Catch-all graphics rules
 

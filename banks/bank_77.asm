@@ -88,12 +88,12 @@ Intro:
 	ldh [hFF92], a
 	call PlaceAttrmap
 
-	ld hl, Intro_Palette1
+	ld hl, IntroStart_BGPalette
 	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
 
-	ld hl, Intro_Palette2
+	ld hl, IntroStart_ObjPalette
 	ld de, wcaf0
 	ld bc, $40
 	call CopyBytes3
@@ -302,12 +302,12 @@ TitleScreen:
 	ldh [hFF92], a
 	call PlaceAttrmap
 
-	ld hl, TitleScreen_Palette1
+	ld hl, TitleScreen_BGPalette
 	ld de, wcab0
 	ld bc, $40
 	call CopyBytes3
 
-	ld hl, TitleScreen_Palette2
+	ld hl, TitleScreen_ObjPalette
 	ld de, wcaf0
 	ld bc, $40
 	call CopyBytes3
@@ -489,7 +489,7 @@ asm_077_4394:
 	ld a, SFX_34
 	call PlaySound
 	ld a, 1
-	ld [hFade], a
+	ld [hFFBF], a
 	xor a
 	ld [wd9d2], a
 	ld a, [wdcfb]
@@ -504,18 +504,18 @@ asm_077_4394:
 	ld b, $3c
 	rst FarCall
 	xor a
-	ld [wTargetMode], a
+	ld [wd0fa], a
 	ret
 
 asm_077_43c2:
 	ld a, 1
 	ld [wdcb3], a
 	xor a
-	ldh [hFade], a
-	ld [wTargetMode], a
+	ldh [hFFBF], a
+	ld [wd0fa], a
 	ld a, 0
 	ld [hFFBA], a
-	jp JumpToModeAndSetMapPredefs
+	jp Func_0257
 	ret
 
 Func_077_43d6:
@@ -1212,13 +1212,175 @@ TitleScreen_Sprites:
 	db -1 ; end
 
 Func_077_4856:
-	dr $1dc856, $1dc8bc
+	ld a, [wdcfb]
+	cp 4
+	jr z, asm_077_48a8
+	cp 3
+	jr z, asm_077_4894
+	cp 2
+	jr z, asm_077_487f
+	cp 1
+	jr z, asm_077_486a
+	ret
+
+asm_077_486a:
+	ld a, [hSCX]
+	inc a
+	inc a
+	inc a
+	inc a
+	ld [hSCX], a
+	cp $a0
+	jr z, asm_077_4879
+	ret
+
+asm_077_4879:
+	ld a, 1
+	ld [wdcf5], a
+	ret
+
+asm_077_487f:
+	ld a, [hSCX]
+	dec a
+	dec a
+	dec a
+	dec a
+	ld [hSCX], a
+	cp $a8
+	jr z, asm_077_488e
+	ret
+
+asm_077_488e:
+	ld a, 1
+	ld [wdcf5], a
+	ret
+
+asm_077_4894:
+	ld a, [hSCY]
+	dec a
+	dec a
+	dec a
+	dec a
+	ld [hSCY], a
+	and a
+	jr z, asm_077_48a2
+	ret
+
+asm_077_48a2:
+	ld a, 1
+	ld [wdcf5], a
+	ret
+
+asm_077_48a8:
+	ld a, [hSCY]
+	inc a
+	inc a
+	inc a
+	inc a
+	ld [hSCY], a
+	and a
+	jr z, asm_077_48b6
+	ret
+
+asm_077_48b6:
+	ld a, 1
+	ld [wdcf5], a
+	ret
 
 Func_077_48bc:
-	dr $1dc8bc, $1dc8d9
+	ld a, [wdcf3]
+	cp $20
+	jr z, asm_077_48c8
+	inc a
+	ld [wdcf3], a
+	ret
+
+asm_077_48c8:
+	ld a, [wcd42]
+	sub 8
+	ld [wcd42], a
+	cp $38
+	ret nz
+	ld a, 2
+	ld [wdcf5], a
+	ret
 
 Func_077_48d9:
-	dr $1dc8d9, $1dc943
+	ld a, [wdcf4]
+	cp 4
+	jp z, asm_077_492f
+	cp 3
+	jp z, asm_077_491a
+	cp 2
+	jp z, asm_077_4906
+	cp 1
+	jp z, asm_077_48f1
+	ret
+
+asm_077_48f1:
+	ld a, [wWX]
+	dec a
+	dec a
+	dec a
+	dec a
+	ld [wWX], a
+	cp $58
+	jr z, asm_077_4900
+	ret
+
+asm_077_4900:
+	ld a, 4
+	ld [wdcf5], a
+	ret
+
+asm_077_4906:
+	ld a, [wWY]
+	dec a
+	dec a
+	dec a
+	dec a
+	ld [wWY], a
+	and a
+	jr z, asm_077_4914
+	ret
+
+asm_077_4914:
+	ld a, 4
+	ld [wdcf5], a
+	ret
+
+asm_077_491a:
+	ld a, [wWX]
+	dec a
+	dec a
+	dec a
+	dec a
+	ld [wWX], a
+	cp $58
+	jr z, asm_077_4929
+	ret
+
+asm_077_4929:
+	ld a, 4
+	ld [wdcf5], a
+	ret
+
+asm_077_492f:
+	ld a, [wWY]
+	dec a
+	dec a
+	dec a
+	dec a
+	ld [wWY], a
+	and a
+	jr z, asm_077_493d
+	ret
+
+asm_077_493d:
+	ld a, 4
+	ld [wdcf5], a
+	ret
+
 
 Intro_SetupNewScreen:
 ; set appropriate scrolling animation
@@ -1364,7 +1526,7 @@ Intro_SetupNewScreen:
 	call CopyBytes3
 
 ; static object palette
-	ld hl, Intro_ObjPalette
+	ld hl, IntroText_Palette
 	ld de, wcaf0
 	ld bc, $40
 	call CopyBytes3
@@ -1457,80 +1619,77 @@ Intro_InitialWindowPositions:
 	dw $5880
 
 Intro_TilemapPointers:
-	dw unk_077_5f43
-	dw unk_077_6597
-	dw unk_077_5ff7
-	dw unk_077_664b
-	dw unk_077_60ab
-	dw unk_077_66ff
-	dw unk_077_615f
-	dw unk_077_67b3
-	dw unk_077_6213
-	dw unk_077_6867
-	dw unk_077_62c7
-	dw unk_077_691b
-	dw unk_077_637b
-	dw unk_077_69cf
-	dw unk_077_642f
-	dw unk_077_6a83
+	dw IntroBallot_BGTilemap
+	dw IntroBallot_WinTilemap
+
+	dw IntroBuck_BGTilemap
+	dw IntroBuck_WinTilemap
+
+	dw IntroNina_BGTilemap
+	dw IntroNina_WinTilemap
+
+	dw IntroClaude_BGTilemap
+	dw IntroClaude_WinTilemap
+
+	dw IntroHelen_BGTilemap
+	dw IntroHelen_WinTilemap
+
+	dw IntroLante_BGTilemap
+	dw IntroLante_WinTilemap
+
+	dw IntroRandt_BGTilemap
+	dw IntroRandt_WinTilemap
+
+	dw IntroMitt_BGTilemap
+	dw IntroMitt_WinTilemap
 
 Intro_AttrPointers:
-	dw unk_077_5e8f
-	dw unk_077_64e3
-	dw unk_077_5e8f
-	dw unk_077_64e3
-	dw unk_077_5e8f
-	dw unk_077_64e3
-	dw unk_077_5e8f
-	dw unk_077_64e3
-	dw unk_077_5e8f
-	dw unk_077_64e3
-	dw unk_077_5e8f
-	dw unk_077_64e3
-	dw unk_077_5e8f
-	dw unk_077_64e3
-	dw unk_077_5e8f
-	dw unk_077_64e3
+; Using the same attributes for all intro pictures
+; for both BG and Window
+rept 8
+	dw IntroPics_BGAttrs
+	dw IntroPics_WinAttrs
+endr
 
 Intro_BGPalettePointers:
-	dw unk_077_5c4f
-	dw unk_077_5c97
-	dw unk_077_5cdf
-	dw unk_077_5d27
-	dw unk_077_5d6f
-	dw unk_077_5db7
-	dw unk_077_5dff
-	dw unk_077_5e47
+	dw IntroBallot_Palette
+	dw IntroBuck_Palette
+	dw IntroNina_Palette
+	dw IntroClaude_Palette
+	dw IntroHelen_Palette
+	dw IntroLante_Palette
+	dw IntroRandt_Palette
+	dw IntroMitt_Palette
 
 Intro_BGGFXPointers:
-	dbaw IntroBG_GFX_1
-	dbaw IntroBG_GFX_2
-	dbaw IntroBG_GFX_3
-	dbaw IntroBG_GFX_4
-	dbaw IntroBG_GFX_5
-	dbaw IntroBG_GFX_6
-	dbaw IntroBG_GFX_7
-	dbaw IntroBG_GFX_8
+	dbaw IntroBallot_BGGFX
+	dbaw IntroBuck_BGGFX
+	dbaw IntroNina_BGGFX
+	dbaw IntroClaude_BGGFX
+	dbaw IntroHelen_BGGFX
+	dbaw IntroLante_BGGFX
+	dbaw IntroRandt_BGGFX
+	dbaw IntroMitt_BGGFX
 
 Intro_WinGFXPointers:
-	dbaw IntroWin_GFX_1
-	dbaw IntroWin_GFX_2
-	dbaw IntroWin_GFX_3
-	dbaw IntroWin_GFX_4
-	dbaw IntroWin_GFX_5
-	dbaw IntroWin_GFX_6
-	dbaw IntroWin_GFX_7
-	dbaw IntroWin_GFX_8
+	dbaw IntroBallot_WinGFX
+	dbaw IntroBuck_WinGFX
+	dbaw IntroNina_WinGFX
+	dbaw IntroClaude_WinGFX
+	dbaw IntroHelen_WinGFX
+	dbaw IntroLante_WinGFX
+	dbaw IntroRandt_WinGFX
+	dbaw IntroMitt_WinGFX
 
 Intro_SpriteGFXPointers:
-	dbaw IntroSprite_GFX_1
-	dbaw IntroSprite_GFX_2
-	dbaw IntroSprite_GFX_3
-	dbaw IntroSprite_GFX_4
-	dbaw IntroSprite_GFX_5
-	dbaw IntroSprite_GFX_6
-	dbaw IntroSprite_GFX_7
-	dbaw IntroSprite_GFX_8
+	dbaw IntroBallot_TextGFX
+	dbaw IntroBuck_TextGFX
+	dbaw IntroNina_TextGFX
+	dbaw IntroClaude_TextGFX
+	dbaw IntroHelen_TextGFX
+	dbaw IntroLante_TextGFX
+	dbaw IntroRandt_TextGFX
+	dbaw IntroMitt_TextGFX
 
 Intro_InitStars:
 	ld a, [wdce8]
@@ -1538,31 +1697,30 @@ Intro_InitStars:
 	ret nc
 	ld a, [wdcf6]
 	and a
-	jr z, asm_077_4b81
+	jr z, .asm_077_4b81
 	dec a
 	ld [wdcf6], a
 	ret
 
-asm_077_4b81:
+.asm_077_4b81
 	ld bc, wdd50
-
-asm_077_4b84:
+.asm_077_4b84
 	ld hl, 3
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, asm_077_4b98
+	jr z, .asm_077_4b98
 	ld hl, 5
 	add hl, bc
 	push hl
 	pop bc
 	ld a, l
 	cp $5f
-	jr c, asm_077_4b84
+	jr c, .asm_077_4b84
 	ret
 
-asm_077_4b98:
-	ld de, unk_077_4bc0
+.asm_077_4b98
+	ld de, .StarSprites
 	ld a, [wdce8]
 	ld l, a
 	ld h, 0
@@ -1591,69 +1749,441 @@ asm_077_4b98:
 	ld [wdce8], a
 	ret
 
-unk_077_4bc0:
-	db $f0
-	db $70
-	db $2
-	db $18
-	db $1
-	db $0
-	db $0
-	db $0
-	db $0
-	db $90
-	db $2
-	db $18
-	db $1
-	db $0
-	db $0
-	db $0
-	db $f0
-	db $80
-	db $2
-	db $18
-	db $1
-	db $0
-	db $0
-	db $0
-	db $0
-	db $90
-	db $2
-	db $18
-	db $1
-	db $0
-	db $0
-	db $0
-	db $f0
-	db $70
-	db $2
-	db $18
-	db $1
-	db $0
-	db $0
-	db $0
-	db $0
-	db $80
-	db $2
-	db $18
-	db $1
-	db $0
-	db $0
-	db $0
-	db $f0
-	db $90
-	db $2
-	db $18
-	db $2
-	db $0
-	db $0
-	db $0
+.StarSprites:
+	dsprite 30,  0, 14,  0, $02, (OAMF_PAL1|OAMF_BANK1) + 0
+	dsprite  0,  1,  0,  0, $00, 0
+	dsprite  0,  0, 18,  0, $02, (OAMF_PAL1|OAMF_BANK1) + 0
+	dsprite  0,  1,  0,  0, $00, 0
+	dsprite 30,  0, 16,  0, $02, (OAMF_PAL1|OAMF_BANK1) + 0
+	dsprite  0,  1,  0,  0, $00, 0
+	dsprite  0,  0, 18,  0, $02, (OAMF_PAL1|OAMF_BANK1) + 0
+	dsprite  0,  1,  0,  0, $00, 0
+	dsprite 30,  0, 14,  0, $02, (OAMF_PAL1|OAMF_BANK1) + 0
+	dsprite  0,  1,  0,  0, $00, 0
+	dsprite  0,  0, 16,  0, $02, (OAMF_PAL1|OAMF_BANK1) + 0
+	dsprite  0,  1,  0,  0, $00, 0
+	dsprite 30,  0, 18,  0, $02, (OAMF_PAL1|OAMF_BANK1) + 0
+	dsprite  0,  2,  0,  0, $00, 0
+
 
 Intro_MoveStars:
-	dr $1dcbf8, $1dcd06
+	ld bc, wdd50
+
+asm_077_4bfb:
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, asm_077_4c0f
+
+asm_077_4c03:
+	ld hl, 5
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $5f
+	jr c, asm_077_4bfb
+	ret
+
+asm_077_4c0f:
+	ld de, unk_077_4c20
+	ld hl, 4
+	add hl, bc
+	ld a, [hl]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+unk_077_4c20:
+	dw asm_077_4c26
+	dw asm_077_4ccb
+	dw asm_077_4c78
+
+asm_077_4c26:
+	ret
+
+unk_077_4c27:
+	dw $ff00
+	dw $fc03
+	dw $fc04
+	dw $fc03
+	dw $fc03
+	dw $fc03
+	dw $fc03
+	dw $fc04
+	dw $fb04
+	dw $fb04
+	dw $fb04
+	dw $fb04
+	dw $fb04
+	dw $fb04
+	dw $fb04
+	dw $fa04
+	dw $fa05
+	dw $fa05
+	dw $fcfe
+	dw $fffc
+	dw $fdfa
+	dw $fcfa
+	dw $fbfa
+	dw $fcfc
+	dw $fcfd
+	dw $fcff
+	dw $fcff
+	dw $fcff
+	dw $fc00
+	dw $fc00
+	dw $fc01
+	dw $fc01
+	dw $fc02
+	dw $fc02
+	dw $fc02
+	dw $fc03
+	dw $fa05
+	dw $fa06
+	dw $fa05
+	dw $fa06
+	db $88
+
+asm_077_4c78:
+	ld de, unk_077_4c27
+	ld a, [wdcf3]
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld a, [hli]
+	cp $88
+	jr z, asm_077_4cbf
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	add e
+	ld [hl], a
+	ld hl, 1
+	add hl, bc
+	ld a, [hl]
+	add d
+	ld [hl], a
+	ld hl, 2
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, asm_077_4ca3
+	dec [hl]
+	jr asm_077_4cb4
+
+asm_077_4ca3:
+	ld [hl], 2
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp 5
+	jp c, asm_077_4cb4
+	ld a, 1
+	ld [hl], a
+
+asm_077_4cb4:
+	ld a, [wdcf3]
+	add 2
+	ld [wdcf3], a
+	jp asm_077_4c03
+
+asm_077_4cbf:
+	xor a
+	ld [wdcf3], a
+	ld a, 1
+	ld [hFFBF], a
+	jp asm_077_4c03
+
+asm_077_4ccb:
+	ld hl, 1
+	add hl, bc
+	dec [hl]
+	dec [hl]
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	add 4
+	ld [hl], a
+	cp $a8
+	jr z, asm_077_4cfd
+	ld hl, 2
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, asm_077_4ce9
+	dec [hl]
+	jp asm_077_4c03
+
+asm_077_4ce9:
+	ld [hl], 2
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp 5
+	jp c, asm_077_4c03
+	ld a, 1
+	ld [hl], a
+	jp asm_077_4c03
+
+asm_077_4cfd:
+	ld hl, 3
+	add hl, bc
+	ld [hl], 0
+	jp asm_077_4c03
 
 Func_077_4d06:
-	dr $1dcd06, $1dce10
+	ld hl, $c000
+	ld bc, $28
+	ld de, 4
+
+asm_077_4d0f:
+	ld a, $a0
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, asm_077_4d0f
+	xor a
+	ld [wd1fb], a
+	call Func_077_4d1e
+	ret
+
+Func_077_4d1e:
+	ld bc, $dd50
+
+asm_077_4d21:
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, asm_077_4d35
+
+asm_077_4d29:
+	ld hl, 5
+	add hl, bc
+	push hl
+	pop bc
+	ld a, l
+	cp $5f
+	jr c, asm_077_4d21
+	ret
+
+asm_077_4d35:
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	ld [wdcf7], a
+	ld hl, 1
+	add hl, bc
+	ld a, [hl]
+	ld [wdcf8], a
+	ld hl, 3
+	add hl, bc
+	ld a, [hl]
+	ld de, unk_077_4d82
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wd1fb]
+	ld e, a
+	ld d, $c0
+
+asm_077_4d5b:
+	ld a, [hli]
+	cp $ff
+	jr z, asm_077_4d7b
+	push bc
+	ld b, a
+	ld a, [wdcf7]
+	add b
+	pop bc
+	ld [de], a
+	inc de
+	ld a, [hli]
+	push bc
+	ld b, a
+	ld a, [wdcf8]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop bc
+	jr asm_077_4d5b
+
+asm_077_4d7b:
+	ld a, e
+	ld [wd1fb], a
+	jp asm_077_4d29
+
+unk_077_4d82:
+	dw unk_077_4d8c
+	dw unk_077_4d8c
+	dw unk_077_4dad
+	dw unk_077_4dce
+	dw unk_077_4def
+
+unk_077_4d8c:
+	db $0
+	db $0
+	db $0
+	db $0
+	db $0
+	db $8
+	db $2
+	db $0
+	db $0
+	db $10
+	db $4
+	db $0
+	db $0
+	db $18
+	db $6
+	db $0
+	db $10
+	db $0
+	db $8
+	db $0
+	db $10
+	db $8
+	db $a
+	db $0
+	db $10
+	db $10
+	db $c
+	db $0
+	db $10
+	db $18
+	db $e
+	db $0
+	db $ff
+
+unk_077_4dad:
+	db $0
+	db $0
+	db $10
+	db $0
+	db $0
+	db $8
+	db $12
+	db $0
+	db $0
+	db $10
+	db $14
+	db $0
+	db $0
+	db $18
+	db $16
+	db $0
+	db $10
+	db $0
+	db $18
+	db $0
+	db $10
+	db $8
+	db $1a
+	db $0
+	db $10
+	db $10
+	db $1c
+	db $0
+	db $10
+	db $18
+	db $1e
+	db $0
+	db $ff
+
+unk_077_4dce:
+	db $0
+	db $0
+	db $20
+	db $0
+	db $0
+	db $8
+	db $22
+	db $0
+	db $0
+	db $10
+	db $24
+	db $0
+	db $0
+	db $18
+	db $26
+	db $0
+	db $10
+	db $0
+	db $28
+	db $0
+	db $10
+	db $8
+	db $2a
+	db $0
+	db $10
+	db $10
+	db $2c
+	db $0
+	db $10
+	db $18
+	db $2e
+	db $0
+	db $ff
+
+unk_077_4def:
+	db $0
+	db $0
+	db $30
+	db $0
+	db $0
+	db $8
+	db $32
+	db $0
+	db $0
+	db $10
+	db $34
+	db $0
+	db $0
+	db $18
+	db $36
+	db $0
+	db $10
+	db $0
+	db $38
+	db $0
+	db $10
+	db $8
+	db $3a
+	db $0
+	db $10
+	db $10
+	db $3c
+	db $0
+	db $10
+	db $18
+	db $3e
+	db $0
+	db $ff
+
 
 Intro_LoadNewTextSprites:
 	ld hl, wVirtualOAM
@@ -1719,21 +2249,21 @@ Intro_LoadNewTextSprites:
 
 Intro_TextSprites:
 	dw .Nothing
-	dw .Ballot
-	dw .Buck
-	dw .Nina
-	dw .Claude
-	dw .Helen
-	dw .Lante
-	dw .Newton
-	dw .Mitt
+	dw .BallotText
+	dw .BuckText
+	dw .NinaText
+	dw .ClaudeText
+	dw .HelenText
+	dw .LanteText
+	dw .RandtText
+	dw .MittText
 
 .Nothing:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $00, 0
 	db -1 ; end
 
-.Ballot:
+.BallotText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -1770,7 +2300,7 @@ Intro_TextSprites:
 	dsprite  6,  0,  6,  0, $42, 0
 	db -1 ; end
 
-.Buck:
+.BuckText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -1809,7 +2339,7 @@ Intro_TextSprites:
 	dsprite  6,  0,  8,  0, $46, 0
 	db -1 ; end
 
-.Nina:
+.NinaText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -1845,7 +2375,7 @@ Intro_TextSprites:
 	dsprite  6,  0,  6,  0, $40, 0
 	db -1 ; end
 
-.Claude:
+.ClaudeText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -1874,7 +2404,7 @@ Intro_TextSprites:
 	dsprite  4,  0,  7,  0, $32, 0
 	db -1 ; end
 
-.Helen:
+.HelenText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -1903,7 +2433,7 @@ Intro_TextSprites:
 	dsprite  4,  0,  7,  0, $32, 0
 	db -1 ; end
 
-.Lante:
+.LanteText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -1930,7 +2460,7 @@ Intro_TextSprites:
 	dsprite  4,  0,  6,  0, $2e, 0
 	db -1 ; end
 
-.Newton:
+.RandtText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -1967,7 +2497,7 @@ Intro_TextSprites:
 	dsprite  6,  0,  6,  0, $42, 0
 	db -1 ; end
 
-.Mitt:
+.MittText:
 	dsprite  0,  0,  0,  0, $00, 0
 	dsprite  0,  0,  1,  0, $02, 0
 	dsprite  0,  0,  2,  0, $04, 0
@@ -2002,202 +2532,446 @@ Intro_CheckButtonSkip:
 	ret z
 ; able to be skipped by any button
 	ld a, 1
-	ld [hFade], a
+	ld [hFFBF], a
 	ret
 
 Func_077_5249:
-	dr $1dd249, $1dd282
+	ld hl, IntroStart_BGPalette
+	call CopyBackgroundPalettes
+	ld hl, IntroStart_BGPalette
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+	ret
+
+; unused?
+	ld hl, unk_077_52f7
+	call CopyBackgroundPalettes
+	ld hl, unk_077_52f7
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+	ret
+
+; unused?
+	ld hl, unk_077_52b7
+	call CopyBackgroundPalettes
+	ld hl, unk_077_52f7
+	ld de, wcab0
+	ld bc, $40
+	call CopyBytes3
+	ret
 
 Func_077_5282:
-	dr $1dd282, $1dd289
+	call DelayFrame
+	dec c
+	jr nz, Func_077_5282
+	ret
 
 Func_077_5289:
-	dr $1dd289, $1dd297
+	ld hl, wcd00
+	ld bc, $0100
+
+asm_077_528f:
+	xor a
+	ld [hli], a
+	dec bc
+	ld a, c
+	or b
+	jr nz, asm_077_528f
+	ret
 
 Func_077_5297:
-	dr $1dd297, $1dd2a6
+	ld hl, wdd50
+	ld bc, $10
+
+asm_077_529d:
+	ld [hl], 0
+	inc hl
+	dec c
+	ld a, c
+	or b
+	jr nz, asm_077_529d
+	ret
 
 Func_077_52a6:
-	dr $1dd2a6, $1dd337
+	ld hl, $c000
+	ld bc, $28
+	ld de, 4
 
-Intro_Palette1:
-	dr $1dd337, $1dd37f
+asm_077_52af:
+	ld a, $a0
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, asm_077_52af
+	ret
 
-Intro_Palette2:
-	dr $1dd37f, $1dd3c7
+unk_077_52b7:
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
+	dw $7fff
 
-Intro_ObjPalette:
-	dr $1dd3c7, $1dd40f
+unk_077_52f7:
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+	dw $0
+
+
+IntroStart_BGPalette:
+	RGB 30, 30, 30
+	RGB 31, 22, 28
+	RGB 20, 13, 10
+	RGB 00, 00, 00
+
+rept 8
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
+
+IntroStart_ObjPalette:
+	RGB 21, 21, 21
+	RGB 22, 00, 00
+	RGB 29, 14, 00
+	RGB 31, 24, 00
+
+rept 8
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
+
+IntroText_Palette:
+	RGB 21, 21, 21
+	RGB 00, 00, 06
+	RGB 16, 26, 31
+	RGB 31, 31, 31
+
+rept 8
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
 IntroStart_Attrs:
-INCBIN "gfx/title_screen/intro/background/begin.gbcattr"
+INCBIN "gfx/intro/background/begin.gbcattr"
 
 IntroStart_Tilemap:
-INCBIN "gfx/title_screen/intro/background/begin.tilemap"
+INCBIN "gfx/intro/background/begin.tilemap"
 
 IntroStart_GFX:
-INCBIN "gfx/title_screen/intro/background/begin.2bpp"
+INCBIN "gfx/intro/background/begin.2bpp"
 
 IntroStars_GFX:
-	dr $1dd84f, $1ddc4f
+INCBIN "gfx/intro/sprites/stars.2bpp"
 
-unk_077_5c4f::
-	dr $1ddc4f, $1ddc97
+IntroBallot_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 28, 00, 00
+	RGB 00, 00, 00
 
-unk_077_5c97::
-	dr $1ddc97, $1ddcdf
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 09, 20, 30
+	RGB 00, 00, 00
 
-unk_077_5cdf::
-	dr $1ddcdf, $1ddd27
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_5d27::
-	dr $1ddd27, $1ddd6f
+IntroBuck_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 13, 06, 29
+	RGB 00, 00, 00
 
-unk_077_5d6f::
-	dr $1ddd6f, $1dddb7
+	RGB 30, 30, 30
+	RGB 31, 26, 00
+	RGB 12, 23, 06
+	RGB 00, 00, 00
 
-unk_077_5db7::
-	dr $1dddb7, $1dddff
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_5dff::
-	dr $1dddff, $1dde47
+IntroNina_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 00, 13, 00
+	RGB 00, 00, 00
 
-unk_077_5e47::
-	dr $1dde47, $1dde8f
+	RGB 30, 30, 30
+	RGB 31, 19, 16
+	RGB 12, 18, 31
+	RGB 00, 00, 00
 
-unk_077_5e8f::
-	dr $1dde8f, $1ddf43
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_5f43::
-	dr $1ddf43, $1ddff7
+IntroClaude_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 18, 14, 00
+	RGB 00, 00, 00
 
-unk_077_5ff7::
-	dr $1ddff7, $1de0ab
+	RGB 30, 30, 30
+	RGB 31, 26, 00
+	RGB 29, 04, 00
+	RGB 00, 00, 00
 
-unk_077_60ab::
-	dr $1de0ab, $1de15f
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_615f::
-	dr $1de15f, $1de213
+IntroHelen_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 00, 18, 31
+	RGB 00, 00, 00
 
-unk_077_6213::
-	dr $1de213, $1de2c7
+	RGB 30, 30, 30
+	RGB 31, 07, 26
+	RGB 00, 19, 30
+	RGB 00, 00, 00
 
-unk_077_62c7::
-	dr $1de2c7, $1de37b
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_637b::
-	dr $1de37b, $1de42f
+IntroLante_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 25, 00, 17
+	RGB 00, 00, 00
 
-unk_077_642f::
-	dr $1de42f, $1de4e3
+	RGB 30, 30, 30
+	RGB 19, 24, 31
+	RGB 22, 11, 23
+	RGB 00, 00, 00
 
-unk_077_64e3::
-	dr $1de4e3, $1de597
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_6597::
-	dr $1de597, $1de64b
+IntroRandt_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 00
+	RGB 13, 13, 25
+	RGB 00, 00, 00
 
-unk_077_664b::
-	dr $1de64b, $1de6ff
+	RGB 30, 30, 30
+	RGB 16, 22, 31
+	RGB 28, 13, 10
+	RGB 00, 00, 00
 
-unk_077_66ff::
-	dr $1de6ff, $1de7b3
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_67b3::
-	dr $1de7b3, $1de867
+IntroMitt_Palette::
+	RGB 30, 30, 30
+	RGB 31, 22, 13
+	RGB 31, 25, 00
+	RGB 00, 00, 00
 
-unk_077_6867::
-	dr $1de867, $1de91b
+	RGB 30, 30, 30
+	RGB 31, 22, 28
+	RGB 20, 13, 10
+	RGB 00, 00, 00
 
-unk_077_691b::
-	dr $1de91b, $1de9cf
+rept 7
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
-unk_077_69cf::
-	dr $1de9cf, $1dea83
+IntroPics_BGAttrs::
+INCBIN "gfx/intro/background/pics.gbcattr"
 
-unk_077_6a83::
-	dr $1dea83, $1deb37
+IntroBallot_BGTilemap::
+INCBIN "gfx/intro/background/ballot.tilemap"
 
-TitleScreen_Palette1:
-	dw $7ffc
-	dw $6a20
-	dw $5800
-	dw $1400
+IntroBuck_BGTilemap::
+INCBIN "gfx/intro/background/buck.tilemap"
 
-	dw $7fff
-	dw $7e80
-	dw $7000
-	dw $1400
+IntroNina_BGTilemap::
+INCBIN "gfx/intro/background/nina.tilemap"
 
-	dw $7fff
-	dw $7ef7
-	dw $790d
-	dw $1400
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
-	dw 0
+IntroClaude_BGTilemap::
+INCBIN "gfx/intro/background/claude.tilemap"
 
-TitleScreen_Palette2:
-	dw $56B5
- 	dw $0016
- 	dw $01DD
- 	dw $031F
+IntroHelen_BGTilemap::
+INCBIN "gfx/intro/background/helen.tilemap"
 
- 	dw $56B5
- 	dw $00E0
- 	dw $0246
- 	dw $03B6
- 	dw $56B5
- 	dw $294A
- 	dw $001F
- 	dw $7BDE
+IntroLante_BGTilemap::
+INCBIN "gfx/intro/background/lante.tilemap"
 
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
- 	dw $0000
+IntroRandt_BGTilemap::
+INCBIN "gfx/intro/background/randt.tilemap"
+
+IntroMitt_BGTilemap::
+INCBIN "gfx/intro/background/mitt.tilemap"
+
+IntroPics_WinAttrs::
+INCBIN "gfx/intro/window/pics.gbcattr"
+
+IntroBallot_WinTilemap::
+INCBIN "gfx/intro/window/ballot.tilemap"
+
+IntroBuck_WinTilemap::
+INCBIN "gfx/intro/window/buck.tilemap"
+
+IntroNina_WinTilemap::
+INCBIN "gfx/intro/window/nina.tilemap"
+
+IntroClaude_WinTilemap::
+INCBIN "gfx/intro/window/claude.tilemap"
+
+IntroHelen_WinTilemap::
+INCBIN "gfx/intro/window/helen.tilemap"
+
+IntroLante_WinTilemap::
+INCBIN "gfx/intro/window/lante.tilemap"
+
+IntroRandt_WinTilemap::
+INCBIN "gfx/intro/window/randt.tilemap"
+
+IntroMitt_WinTilemap::
+INCBIN "gfx/intro/window/mitt.tilemap"
+
+TitleScreen_BGPalette:
+	RGB 28, 31, 31
+	RGB 00, 17, 26
+	RGB 00, 00, 22
+	RGB 00, 00, 05
+
+	RGB 31, 31, 31
+	RGB 00, 20, 31
+	RGB 00, 00, 28
+	RGB 00, 00, 05
+
+	RGB 31, 31, 31
+	RGB 23, 23, 31
+	RGB 13, 08, 30
+	RGB 00, 00, 05
+
+; fill remaining slots
+rept 6
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
+
+TitleScreen_ObjPalette:
+	RGB 21, 21, 21
+	RGB 22, 00, 00
+	RGB 29, 14, 00
+	RGB 31, 24, 00
+
+	RGB 21, 21, 21
+	RGB 00, 07, 00
+	RGB 06, 18, 00
+	RGB 22, 29, 00
+
+	RGB 21, 21, 21
+	RGB 10, 10, 10
+	RGB 31, 00, 00
+	RGB 30, 30, 30
+
+; fill remaining slots
+rept 6
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+endr
 
 
 TitleScreen_Attrs:
@@ -2207,24 +2981,24 @@ TitleScreen_Tilemap:
 	INCBIN "gfx/title_screen/title_screen.tilemap"
 
 VastFame_Attrs:
-	INCBIN "gfx/title_screen/vast_fame_logo.gbcattr"
+	INCBIN "gfx/intro/vast_fame_logo.gbcattr"
 
 VastFame_Tilemap:
-	INCBIN "gfx/title_screen/vast_fame_logo.tilemap"
+	INCBIN "gfx/intro/vast_fame_logo.tilemap"
 
 VastFame_Palette:
-	dw $7bde
-	dw $7e80
-	dw $6c00
-	dw 0
-	dw $7bde
-	dw $5294
-	dw $294a
-	dw 0
+	RGB 30, 30, 30
+	RGB 00, 20, 31
+	RGB 00, 00, 27
+	RGB 00, 00, 00
+
+	RGB 30, 30, 30
+	RGB 20, 20, 20
+	RGB 10, 10, 10
+	RGB 00, 00, 00
 
 VastFameGFX:
-	INCBIN "gfx/title_screen/vast_fame_logo.2bpp"
-
+	INCBIN "gfx/intro/vast_fame_logo.2bpp"
 
 SECTION "banknum77", ROMX[$7fff], BANK[$77]
 	db $77

@@ -1,38 +1,38 @@
-IntroBG_GFX_1::
-	dr $1e0000, $1e0800
+IntroBallot_BGGFX::
+INCBIN "gfx/intro/background/ballot.2bpp"
 
-IntroWin_GFX_1::
-	dr $1e0800, $1e0a80
+IntroBallot_WinGFX::
+INCBIN "gfx/intro/window/ballot.2bpp"
 
-IntroBG_GFX_2::
-	dr $1e0a80, $1e1280
+IntroBuck_BGGFX::
+INCBIN "gfx/intro/background/buck.2bpp"
 
-IntroWin_GFX_2::
-	dr $1e1280, $1e1470
+IntroBuck_WinGFX::
+INCBIN "gfx/intro/window/buck.2bpp"
 
-IntroBG_GFX_3::
-	dr $1e1470, $1e1c70
+IntroNina_BGGFX::
+INCBIN "gfx/intro/background/nina.2bpp"
 
-IntroWin_GFX_3::
-	dr $1e1c70, $1e1ee0
+IntroNina_WinGFX::
+INCBIN "gfx/intro/window/nina.2bpp"
 
-IntroBG_GFX_4::
-	dr $1e1ee0, $1e26e0
+IntroClaude_BGGFX::
+INCBIN "gfx/intro/background/claude.2bpp"
 
-IntroWin_GFX_4::
-	dr $1e26e0, $1e28b0
+IntroClaude_WinGFX::
+INCBIN "gfx/intro/window/claude.2bpp"
 
-IntroBG_GFX_5::
-	dr $1e28b0, $1e30b0
+IntroHelen_BGGFX::
+INCBIN "gfx/intro/background/helen.2bpp"
 
-IntroWin_GFX_5::
-	dr $1e30b0, $1e31b0
+IntroHelen_WinGFX::
+INCBIN "gfx/intro/window/helen.2bpp"
 
-IntroBG_GFX_6::
-	dr $1e31b0, $1e39b0
+IntroLante_BGGFX::
+INCBIN "gfx/intro/background/lante.2bpp"
 
-IntroWin_GFX_6::
-	dr $1e39b0, $1e3ab0
+IntroLante_WinGFX::
+INCBIN "gfx/intro/window/lante.2bpp"
 
 SECTION "banknum78", ROMX[$7fff], BANK[$78]
 	db $78

@@ -1,38 +1,38 @@
-IntroBG_GFX_7:
-	dr $1e4000, $1e4800
+IntroRandt_BGGFX::
+INCBIN "gfx/intro/background/randt.2bpp"
 
-IntroWin_GFX_7::
-	dr $1e4800, $1e4b80
+IntroRandt_WinGFX::
+INCBIN "gfx/intro/window/randt.2bpp"
 
-IntroBG_GFX_8::
-	dr $1e4b80, $1e5380
+IntroMitt_BGGFX::
+INCBIN "gfx/intro/background/mitt.2bpp"
 
-IntroWin_GFX_8::
-	dr $1e5380, $1e5680
+IntroMitt_WinGFX::
+INCBIN "gfx/intro/window/mitt.2bpp"
 
-IntroSprite_GFX_1::
-INCBIN "gfx/title_screen/intro/sprites/1.2bpp"
+IntroBallot_TextGFX::
+INCBIN "gfx/intro/sprites/ballot.2bpp"
 
-IntroSprite_GFX_2::
-INCBIN "gfx/title_screen/intro/sprites/2.2bpp"
+IntroBuck_TextGFX::
+INCBIN "gfx/intro/sprites/buck.2bpp"
 
-IntroSprite_GFX_3::
-INCBIN "gfx/title_screen/intro/sprites/3.2bpp"
+IntroNina_TextGFX::
+INCBIN "gfx/intro/sprites/nina.2bpp"
 
-IntroSprite_GFX_4::
-INCBIN "gfx/title_screen/intro/sprites/4.2bpp"
+IntroClaude_TextGFX::
+INCBIN "gfx/intro/sprites/claude.2bpp"
 
-IntroSprite_GFX_5::
-INCBIN "gfx/title_screen/intro/sprites/5.2bpp"
+IntroHelen_TextGFX::
+INCBIN "gfx/intro/sprites/helen.2bpp"
 
-IntroSprite_GFX_6::
-INCBIN "gfx/title_screen/intro/sprites/6.2bpp"
+IntroLante_TextGFX::
+INCBIN "gfx/intro/sprites/lante.2bpp"
 
-IntroSprite_GFX_7::
-INCBIN "gfx/title_screen/intro/sprites/7.2bpp"
+IntroRandt_TextGFX::
+INCBIN "gfx/intro/sprites/randt.2bpp"
 
-IntroSprite_GFX_8::
-INCBIN "gfx/title_screen/intro/sprites/8.2bpp"
+IntroMitt_TextGFX::
+INCBIN "gfx/intro/sprites/mitt.2bpp"
 
 SECTION "banknum79", ROMX[$7fff], BANK[$79]
 	db $79
