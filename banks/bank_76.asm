@@ -1,13 +1,10 @@
-unk_076_4000:
-	dr $1d8000, $1d8800
+TitleScreenGFX:
+	INCBIN "gfx/title_screen/title_screen.2bpp"
 
-unk_076_4800:
-	dr $1d8800, $1d8fa0
+TitleScreenGFX_Sprites:
+	INCBIN "gfx/title_screen/title_screen_sprites.2bpp"
 
-unk_076_4fa0:
-	dr $1d8fa0, $1d92a0
-
-unk_076_52a0:
+TitleScreen_MenuGFX:
 	INCBIN "gfx/title_screen/characters.2bpp"
 
 SECTION "banknum76", ROMX[$7fff], BANK[$76]
